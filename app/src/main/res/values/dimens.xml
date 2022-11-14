@@ -7,5 +7,6 @@
     <dimen name="fonte_item_lista">22dp</dimen>
     <dimen name="fonte_edit">28dp</dimen>
     <dimen name="fonte_botao_avulso">20dp</dimen>
-    <dimen name="progress_bar">100dp</dimen>
+    <dimen name="progress_bar_config">100dp</dimen>
+    <dimen name="progress_bar">50dp</dimen>
 </resources>

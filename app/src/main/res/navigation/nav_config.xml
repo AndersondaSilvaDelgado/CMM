@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_main"
+    app:startDestination="@id/menuInicialFragment">
+
+    <fragment
+        android:id="@+id/menuInicialFragment"
+        android:name="br.com.usinasantafe.cmm.features.presenter.ui.config.view.MenuInicialFragment"
+        android:label="fragment_menu_inicial"
+        tools:layout="@layout/fragment_menu_inicial" >
+        <action
+            android:id="@+id/action_menuInicialFragment_to_senhaFragment"
+            app:destination="@id/senhaFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/senhaFragment"
+        android:name="br.com.usinasantafe.cmm.features.presenter.ui.config.view.SenhaFragment"
+        android:label="fragment_senha"
+        tools:layout="@layout/fragment_senha" >
+        <action
+            android:id="@+id/action_senhaFragment_to_configFragment"
+            app:destination="@id/configFragment" />
+        <action
+            android:id="@+id/action_senhaFragment_to_menuInicialFragment"
+            app:destination="@id/menuInicialFragment"
+            app:popUpTo="@id/menuInicialFragment"
+            app:popUpToInclusive="true"/>
+    </fragment>
+    <fragment
+        android:id="@+id/configFragment"
+        android:name="br.com.usinasantafe.cmm.features.presenter.ui.config.view.ConfigFragment"
+        android:label="fragment_config"
+        tools:layout="@layout/fragment_config" >
+        <action
+            android:id="@+id/action_configFragment_to_menuInicialFragment"
+            app:destination="@id/menuInicialFragment"
+            app:popUpTo="@id/menuInicialFragment"
+            app:popUpToInclusive="true"/>
+        <action
+            android:id="@+id/action_configFragment_to_senhaFragment"
+            app:destination="@id/senhaFragment"
+            app:popUpTo="@id/senhaFragment"
+            app:popUpToInclusive="true"/>
+    </fragment>
+</navigation>

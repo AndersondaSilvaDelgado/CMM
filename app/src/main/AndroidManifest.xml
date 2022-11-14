@@ -3,23 +3,37 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="br.com.usinasantafe.cmm">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <application
         android:name=".CMM"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
         android:icon="@mipmap/ic_launcher"
-        android:label="@string/app_name"
+        android:label="${appName}"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CMM"
         tools:targetApi="31">
         <activity
-            android:name=".features.core.presenter.config.view.MainActivity"
+            android:name=".features.presenter.ui.splash.view.SplashActivity"
+            android:exported="true" />
+        <activity
+            android:name=".features.presenter.ui.checklist.view.CheckListActivity"
+            android:exported="true" />
+        <activity
+            android:name=".features.presenter.ui.apontmmfert.view.ApontActivity"
+            android:exported="true" />
+        <activity
+            android:name=".features.presenter.ui.boletimmmfert.view.BoletimActivity"
+            android:exported="true" />
+        <activity
+            android:name=".features.presenter.ui.config.view.ConfigActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

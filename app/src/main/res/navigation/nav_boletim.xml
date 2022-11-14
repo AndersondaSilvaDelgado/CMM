@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_boletim"
+    app:startDestination="@id/operadorBolFragment">
+
+    <fragment
+        android:id="@+id/operadorBolFragment"
+        android:name="br.com.usinasantafe.cmm.features.presenter.ui.boletimmmfert.view.OperadorBolFragment"
+        android:label="fragment_operador_bol"
+        tools:layout="@layout/fragment_operador_bol" >
+        <action
+            android:id="@+id/action_operadorBolFragment_to_equipBolFragment"
+            app:destination="@id/equipBolFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/equipBolFragment"
+        android:name="br.com.usinasantafe.cmm.features.presenter.ui.boletimmmfert.view.EquipBolFragment"
+        android:label="fragment_equip_bol"
+        tools:layout="@layout/fragment_equip_bol" >
+        <action
+            android:id="@+id/action_equipBolFragment_to_turnoBolFragment"
+            app:destination="@id/turnoBolFragment" />
+        <action
+            android:id="@+id/action_equipBolFragment_to_operadorBolFragment"
+            app:destination="@id/operadorBolFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/turnoBolFragment"
+        android:name="br.com.usinasantafe.cmm.features.presenter.ui.boletimmmfert.view.TurnoBolFragment"
+        android:label="fragment_turno"
+        tools:layout="@layout/fragment_turno" >
+        <action
+            android:id="@+id/action_turnoBolFragment_to_OSBolFragment"
+            app:destination="@id/OSBolFragment" />
+        <action
+            android:id="@+id/action_turnoBolFragment_to_equipBolFragment"
+            app:destination="@id/equipBolFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/OSBolFragment"
+        android:name="br.com.usinasantafe.cmm.features.presenter.ui.boletimmmfert.view.OSBolFragment"
+        android:label="fragment_os_bol"
+        tools:layout="@layout/fragment_os_bol" >
+        <action
+            android:id="@+id/action_OSBolFragment_to_ativBolFragment"
+            app:destination="@id/ativBolFragment" />
+        <action
+            android:id="@+id/action_OSBolFragment_to_turnoBolFragment"
+            app:destination="@id/turnoBolFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/ativBolFragment"
+        android:name="br.com.usinasantafe.cmm.features.presenter.ui.boletimmmfert.view.AtivBolFragment"
+        android:label="fragment_ativ_bol"
+        tools:layout="@layout/fragment_ativ_bol" >
+        <action
+            android:id="@+id/action_ativBolFragment_to_horimetroBolFragment"
+            app:destination="@id/horimetroBolFragment" />
+        <action
+            android:id="@+id/action_ativBolFragment_to_OSBolFragment"
+            app:destination="@id/OSBolFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/horimetroBolFragment"
+        android:name="br.com.usinasantafe.cmm.features.presenter.ui.boletimmmfert.view.HorimetroBolFragment"
+        android:label="fragment_horimetro_bol"
+        tools:layout="@layout/fragment_horimetro_bol" >
+        <action
+            android:id="@+id/action_horimetroBolFragment_to_ativBolFragment"
+            app:destination="@id/ativBolFragment" />
+    </fragment>
+</navigation>
