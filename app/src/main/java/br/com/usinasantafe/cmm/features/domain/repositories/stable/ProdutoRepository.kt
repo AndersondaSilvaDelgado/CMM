@@ -9,6 +9,6 @@ interface ProdutoRepository {
 
     suspend fun deleteAllProduto()
 
-    suspend fun getAllProduto(): Flow<Result<List<Produto>>>
+    suspend fun recoverAllProduto(): Flow<Result<List<Produto>>>
 
 }

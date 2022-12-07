@@ -9,6 +9,6 @@ interface ComponenteRepository {
 
     suspend fun deleteAllComponente()
 
-    suspend fun getAllComponente(): Flow<Result<List<Componente>>>
+    suspend fun recoverAllComponente(): Flow<Result<List<Componente>>>
 
 }

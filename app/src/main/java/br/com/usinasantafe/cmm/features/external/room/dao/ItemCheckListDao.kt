@@ -9,7 +9,7 @@ import br.com.usinasantafe.cmm.features.infra.models.ItemCheckListModel
 interface ItemCheckListDao {
 
     @Insert
-    suspend fun insert(itemCheckListModel: ItemCheckListModel): Long
+    suspend fun insertAll(vararg itemCheckListModels: ItemCheckListModel)
 
     @Query("DELETE FROM tbitemchecklistest")
     suspend fun deleteAll()

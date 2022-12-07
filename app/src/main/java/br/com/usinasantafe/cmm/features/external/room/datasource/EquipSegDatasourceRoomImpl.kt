@@ -9,8 +9,8 @@ class EquipSegDatasourceRoomImpl @Inject constructor (
     private val equipSegDao: EquipSegDao
 ): EquipSegDatasourceRoom {
 
-    override suspend fun addEquipSeg(equipSegModel: EquipSegModel): Long {
-        return equipSegDao.insert(equipSegModel)
+    override suspend fun addAllEquipSeg(vararg equipSegModels: EquipSegModel) {
+        equipSegDao.insertAll(*equipSegModels)
     }
 
     override suspend fun deleteAllEquipSeg() {

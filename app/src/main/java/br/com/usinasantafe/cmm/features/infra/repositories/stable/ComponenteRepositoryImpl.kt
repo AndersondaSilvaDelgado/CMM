@@ -6,6 +6,7 @@ import br.com.usinasantafe.cmm.features.infra.models.toComponenteModel
 import br.com.usinasantafe.cmm.features.domain.repositories.stable.ComponenteRepository
 import br.com.usinasantafe.cmm.features.infra.datasource.room.ComponenteDatasourceRoom
 import br.com.usinasantafe.cmm.features.infra.datasource.webservice.ComponenteDatasourceWebService
+import br.com.usinasantafe.cmm.features.infra.models.toBocalModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
@@ -16,26 +17,19 @@ class ComponenteRepositoryImpl @Inject constructor(
 ): ComponenteRepository {
 
     override suspend fun addAllComponente(componenteList: List<Componente>) {
-        for(componente in componenteList){
-            val componenteModel = componente.toComponenteModel()
-            componenteDatasourceRoom.addComponente(componenteModel)
-        }
+        componenteDatasourceRoom.addAllComponente(*componenteList.map { it.toComponenteModel() }.toTypedArray())
     }
 
     override suspend fun deleteAllComponente() {
         componenteDatasourceRoom.deleteAllComponente()
     }
 
-    override suspend fun getAllComponente(): Flow<Result<List<Componente>>> {
+    override suspend fun recoverAllComponente(): Flow<Result<List<Componente>>> {
         return flow {
             componenteDatasourceWebService.getAllComponente()
                 .collect { result ->
                     result.onSuccess { componenteModelList ->
-                        val componenteList = mutableListOf<Componente>()
-                        for (componenteModel in componenteModelList){
-                            componenteList.add(componenteModel.toComponente())
-                        }
-                        emit(Result.success(componenteList))
+                        emit(Result.success(componenteModelList.map { it.toComponente() }))
                     }
                 }
         }

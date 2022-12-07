@@ -1,14 +1,12 @@
 package br.com.usinasantafe.cmm.features.presenter.ui.config.viewmodel
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import br.com.usinasantafe.cmm.common.extension.percentage
 import br.com.usinasantafe.cmm.features.domain.entities.Config
 import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.common.CheckUpdate
 import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.config.RecoverConfig
 import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.config.SaveConfig
-import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.updatedatabase.UpdateDataBase
+import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.manipulationdata.UpdateDataBase
 import br.com.usinasantafe.cmm.features.presenter.models.ResultUpdateDataBase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -56,27 +54,27 @@ class ConfigViewModel @Inject constructor (
         _uiStateFlow.value = ConfigFragmentState.RecoverConfig(config)
     }
 
-    fun recoverConfig() = viewModelScope.launch {
-        var config = recoverConfig.invoke()
+    fun recoverDataConfig() = viewModelScope.launch {
+        var config = recoverConfig()
         config?.let { setConfig(it) }
     }
 
-    fun checkUpdate() = viewModelScope.launch {
-        setCheckUpdate(checkUpdate.invoke())
+    fun checkUpdateData() = viewModelScope.launch {
+        setCheckUpdate(checkUpdate())
     }
 
-    fun saveConfig(nroEquip: String, senha: String) =
+    fun saveDataConfig(nroEquip: String, senha: String) =
         viewModelScope.launch {
-            saveConfig.invoke(nroEquip, senha).
+            saveConfig(nroEquip, senha).
                 onStart {
                     setLoadingEquip()
                 }
                 .catch { catch ->
-                    _resultUpdateDataBase.value = ResultUpdateDataBase(100, "Erro: $catch")
+                    _resultUpdateDataBase.value = ResultUpdateDataBase(100, "Erro: $catch", 100)
                 }
                 . collect { resultUpdateDataBase ->
                     _resultUpdateDataBase.value = resultUpdateDataBase
-                    if(percentage(resultUpdateDataBase.count, resultUpdateDataBase.size) == 100){
+                    if(resultUpdateDataBase.percentage == 100){
                         hideLoadingEquip()
                     }
                 }
@@ -89,11 +87,11 @@ class ConfigViewModel @Inject constructor (
                     setLoadingDataBase()
                 }
                 .catch { catch ->
-                    _resultUpdateDataBase.value = ResultUpdateDataBase(100, "Erro: $catch")
+                    _resultUpdateDataBase.value = ResultUpdateDataBase(100, "Erro: $catch", 100)
                 }
                 .collect{ resultUpdateDataBase ->
                     _resultUpdateDataBase.value = resultUpdateDataBase
-                    if(percentage(resultUpdateDataBase.count, resultUpdateDataBase.size) == 100){
+                    if(resultUpdateDataBase.percentage == 100){
                         hideLoadingDataBase()
                     }
                 }

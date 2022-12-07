@@ -2,10 +2,9 @@ package br.com.usinasantafe.cmm.features.presenter.ui.boletimmmfert.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import br.com.usinasantafe.cmm.common.extension.percentage
 import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.boletimmmfert.SetMatricFuncBoletimMMFert
 import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.common.CheckMatricOperador
-import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.updatedatabase.UpdateFunc
+import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.manipulationdata.UpdateFunc
 import br.com.usinasantafe.cmm.features.presenter.models.ResultUpdateDataBase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -36,14 +35,6 @@ class OperadorBolViewModel @Inject constructor (
         _uiStateFlow.value = OperadorBolFragmentState.CheckSetMatricFunc(checkSetMatricOperador)
     }
 
-    fun checkMatricFunc(matricOperador: String) = viewModelScope.launch {
-        checkMatricOperador(checkMatricOperador(matricOperador))
-    }
-
-    fun setMatricFunc(matricOperador: String) = viewModelScope.launch {
-        checkSetMatricOperador(setMatricFuncBoletimMMFert(matricOperador))
-    }
-
     private fun showUpdateFunc(){
         _uiStateFlow.value = OperadorBolFragmentState.IsUpdateFunc(true)
     }
@@ -52,21 +43,29 @@ class OperadorBolViewModel @Inject constructor (
         _uiStateFlow.value = OperadorBolFragmentState.IsUpdateFunc(false)
     }
 
-    fun updateDados() =
+    fun checkMatricFunc(matricOperador: String) = viewModelScope.launch {
+        checkMatricOperador(checkMatricOperador(matricOperador))
+    }
+
+    fun setMatricFunc(matricOperador: String) = viewModelScope.launch {
+        checkSetMatricOperador(setMatricFuncBoletimMMFert(matricOperador))
+    }
+
+    fun updateDataFunc() =
         viewModelScope.launch {
             updateFunc().
             onStart {
                 showUpdateFunc()
             }
-                .catch { catch ->
-                    _resultUpdateDataBase.value = ResultUpdateDataBase(100, "Erro: $catch")
+            .catch { catch ->
+                _resultUpdateDataBase.value = ResultUpdateDataBase(1, "Erro: $catch", 100, 100)
+            }
+            .collect{ resultUpdateDataBase ->
+                _resultUpdateDataBase.value = resultUpdateDataBase
+                if(resultUpdateDataBase.percentage == 100){
+                    hideUpdateFunc()
                 }
-                .collect{ resultUpdateDataBase ->
-                    _resultUpdateDataBase.value = resultUpdateDataBase
-                    if(percentage(resultUpdateDataBase.count, resultUpdateDataBase.size) == 100){
-                        hideUpdateFunc()
-                    }
-                }
+            }
         }
 
 }

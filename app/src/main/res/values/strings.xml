@@ -40,4 +40,6 @@
     <string name="texto_campo_vazio">CAMPO VAZIO! POR FAVOR, PREENCHA O CAMPO %1$s PARA DAR CONTINUIDADE AO APONTAMENTO.</string>
     <string name="texto_dado_invalido_com_atual">DADO INVÁLIDO! POR FAVOR, VERIFIQUE SE O CAMPO %1$s FOI DIGITADO CORRETAMENTE OU ATUALIZE OS DADOS PARA VERIFICAR SE OS MESMOS NÃO ESTÃO DESATUALIZADOS.</string>
     <string name="texto_falha_insercao_campo">FALHA DE INSERÇÃO! OCORREU UMA FALHA NA INSERÇÃO DO CAMPO %1$s. POR FAVOR, ENTRE EM CONTATO COM TI.</string>
+    <string name="texto_msg_atualizacao">OS DADOS DOS %1$s. FOI ATUALIZADA COM SUCESSO!</string>
+    <string name="texto_dado_invalido">DADO INVÁLIDO! POR FAVOR, VERIFIQUE SE O CAMPO %1$s FOI DIGITADO CORRETAMENTE.</string>
 </resources>

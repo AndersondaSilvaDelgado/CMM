@@ -22,4 +22,15 @@ class ROSAtivDatasourceWebServiceImpl @Inject constructor(
         }
     }
 
+    override suspend fun recoverROSAtiv(nroOS: String): Flow<Result<List<ROSAtivModel>>> {
+        return flow{
+            val response = rOSAtivApi.get(nroOS)
+            if (response.isSuccessful) {
+                emit(Result.success(response.body()!!))
+            } else {
+                emit(Result.failure(Throwable("Erro recebimento de dados")))
+            }
+        }
+    }
+
 }

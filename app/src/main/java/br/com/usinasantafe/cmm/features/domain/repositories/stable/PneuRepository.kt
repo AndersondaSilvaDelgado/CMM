@@ -9,5 +9,5 @@ interface PneuRepository {
 
     suspend fun deleteAllPneu()
 
-    suspend fun getAllPneu(): Flow<Result<List<Pneu>>>
+    suspend fun recoverAllPneu(): Flow<Result<List<Pneu>>>
 }

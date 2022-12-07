@@ -9,6 +9,6 @@ interface PropriedadeRepository {
 
     suspend fun deleteAllPropriedade()
 
-    suspend fun getAllPropriedade(): Flow<Result<List<Propriedade>>>
+    suspend fun recoverAllPropriedade(): Flow<Result<List<Propriedade>>>
 
 }

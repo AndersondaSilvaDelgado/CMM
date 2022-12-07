@@ -4,7 +4,7 @@ import br.com.usinasantafe.cmm.features.infra.models.ServicoModel
 
 interface ServicoDatasourceRoom {
 
-    suspend fun addServico(servicoModel: ServicoModel): Long
+    suspend fun addAllServico(vararg servicoModels: ServicoModel)
 
     suspend fun deleteAllServico()
 

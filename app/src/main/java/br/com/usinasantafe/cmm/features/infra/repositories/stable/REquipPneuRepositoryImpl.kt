@@ -4,6 +4,7 @@ import br.com.usinasantafe.cmm.features.domain.entities.REquipPneu
 import br.com.usinasantafe.cmm.features.domain.repositories.stable.REquipPneuRepository
 import br.com.usinasantafe.cmm.features.infra.datasource.room.REquipPneuDatasourceRoom
 import br.com.usinasantafe.cmm.features.infra.datasource.webservice.REquipPneuDatasourceWebService
+import br.com.usinasantafe.cmm.features.infra.models.toREquipAtivModel
 import br.com.usinasantafe.cmm.features.infra.models.toREquipPneu
 import br.com.usinasantafe.cmm.features.infra.models.toREquipPneuModel
 import kotlinx.coroutines.flow.Flow
@@ -16,26 +17,19 @@ class REquipPneuRepositoryImpl @Inject constructor(
 ): REquipPneuRepository {
 
     override suspend fun addAllREquipPneu(rEquipPneuList: List<REquipPneu>) {
-        for(rEquipPneu in rEquipPneuList){
-            val rEquipPneuModel = rEquipPneu.toREquipPneuModel()
-            rEquipPneuDatasourceRoom.addREquipPneu(rEquipPneuModel)
-        }
+        rEquipPneuDatasourceRoom.addAllREquipPneu(*rEquipPneuList.map { it.toREquipPneuModel() }.toTypedArray())
     }
 
     override suspend fun deleteAllREquipPneu() {
         rEquipPneuDatasourceRoom.deleteAllREquipPneu()
     }
 
-    override suspend fun getREquipPneu(nroEquip: String): Flow<Result<List<REquipPneu>>> {
+    override suspend fun recoverREquipPneu(nroEquip: String): Flow<Result<List<REquipPneu>>> {
         return flow {
             rEquipPneuDatasourceWebService.getREquipPneu(nroEquip)
                 .collect { result ->
                     result.onSuccess {rEquipPneuModelList ->
-                        val rEquipPneuList = mutableListOf<REquipPneu>()
-                        for (rEquipPneuModel in rEquipPneuModelList){
-                            rEquipPneuList.add(rEquipPneuModel.toREquipPneu())
-                        }
-                        emit(Result.success(rEquipPneuList))
+                        emit(Result.success(rEquipPneuModelList.map { it.toREquipPneu() }))
                     }
                 }
         }

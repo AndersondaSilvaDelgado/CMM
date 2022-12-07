@@ -10,7 +10,7 @@ import kotlinx.serialization.Serializable
 data class ROSAtivModel(
     @PrimaryKey(autoGenerate = true)
     val idROSAtiv: Long,
-    val nroOS: Long,
+    val idOS: Long,
     val idAtiv: Long
 )
 
@@ -18,7 +18,7 @@ fun ROSAtiv.toROSAtivModel(): ROSAtivModel{
     return with(this){
         ROSAtivModel(
             idROSAtiv = this.idROSAtiv,
-            nroOS = this.idOS,
+            idOS = this.idOS,
             idAtiv = this.idAtiv
         )
     }
@@ -28,7 +28,7 @@ fun ROSAtivModel.toROSAtiv(): ROSAtiv {
     return with(this){
         ROSAtiv(
             idROSAtiv = this.idROSAtiv,
-            idOS = this.nroOS,
+            idOS = this.idOS,
             idAtiv = this.idAtiv
         )
     }

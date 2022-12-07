@@ -9,6 +9,6 @@ import retrofit2.http.POST
 interface REquipAtivApi {
 
     @FormUrlEncoded
-    @POST("requipativ.php")
-    suspend fun get(@Field("dado") dado: String): Response<List<REquipAtivModel>>
+    @POST("find-requipativ.php")
+    suspend fun get(@Field("nroEquip") nroEquip: String): Response<List<REquipAtivModel>>
 }

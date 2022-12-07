@@ -9,6 +9,6 @@ interface EquipSegRepository {
 
     suspend fun deleteAllEquipSeg()
 
-    suspend fun getAllEquipSeg(): Flow<Result<List<EquipSeg>>>
+    suspend fun recoverAllEquipSeg(): Flow<Result<List<EquipSeg>>>
 
 }

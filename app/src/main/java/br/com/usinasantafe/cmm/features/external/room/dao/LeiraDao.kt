@@ -9,7 +9,7 @@ import br.com.usinasantafe.cmm.features.infra.models.LeiraModel
 interface LeiraDao {
 
     @Insert
-    suspend fun insert(leiraModel: LeiraModel): Long
+    suspend fun insertAll(vararg leiraModels: LeiraModel)
 
     @Query("DELETE FROM tbleiraest")
     suspend fun deleteAll()

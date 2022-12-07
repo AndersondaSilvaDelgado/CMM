@@ -9,11 +9,16 @@ class AtividadeDatasourceRoomImpl @Inject constructor (
     private val atividadeDao: AtividadeDao
 ): AtividadeDatasourceRoom {
 
-    override suspend fun addAtividade(atividadeModel: AtividadeModel): Long {
-        return atividadeDao.insert(atividadeModel)
+    override suspend fun addAllAtividade(vararg atividadeModels: AtividadeModel) {
+        atividadeDao.insertAll(*atividadeModels)
     }
 
     override suspend fun deleteAllAtividade() {
         atividadeDao.deleteAll()
     }
+
+    override suspend fun listInIdAtiv(vararg idAtivs: Long): List<AtividadeModel> {
+        return atividadeDao.listInIdAtiv(*idAtivs)
+    }
+
 }

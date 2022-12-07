@@ -9,6 +9,8 @@ interface AtividadeRepository {
 
     suspend fun deleteAllAtividade()
 
-    suspend fun getAllAtividade(): Flow<Result<List<Atividade>>>
+    suspend fun recoverAllAtividade(): Flow<Result<List<Atividade>>>
+
+    suspend fun listInIdAtiv(idAtivs: List<Long>): List<Atividade>
 
 }

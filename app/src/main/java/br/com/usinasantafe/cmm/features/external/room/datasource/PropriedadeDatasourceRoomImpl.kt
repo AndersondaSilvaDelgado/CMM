@@ -9,8 +9,8 @@ class PropriedadeDatasourceRoomImpl @Inject constructor (
     private val propriedadeDao: PropriedadeDao
 ): PropriedadeDatasourceRoom {
 
-    override suspend fun addPropriedade(propriedadeModel: PropriedadeModel): Long {
-        return propriedadeDao.insert(propriedadeModel)
+    override suspend fun addAllPropriedade(vararg propriedadeModels: PropriedadeModel) {
+        propriedadeDao.insertAll(*propriedadeModels)
     }
 
     override suspend fun deleteAllPropriedade() {

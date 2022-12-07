@@ -20,7 +20,7 @@
         style="@style/EditViewNumber" />
 
     <include
-        android:id="@+id/layout_novo_botoes"
+        android:id="@+id/layout_botoes"
         layout="@layout/layout_botoes" />
 
 </LinearLayout>

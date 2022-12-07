@@ -9,6 +9,6 @@ interface FrenteRepository {
 
     suspend fun deleteAllFrente()
 
-    suspend fun getAllFrente(): Flow<Result<List<Frente>>>
+    suspend fun recoverAllFrente(): Flow<Result<List<Frente>>>
 
 }

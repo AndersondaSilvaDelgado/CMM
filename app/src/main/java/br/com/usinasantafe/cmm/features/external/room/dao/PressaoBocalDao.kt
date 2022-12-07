@@ -9,7 +9,7 @@ import br.com.usinasantafe.cmm.features.infra.models.PressaoBocalModel
 interface PressaoBocalDao {
 
     @Insert
-    suspend fun insert(pressaoBocalModel: PressaoBocalModel): Long
+    suspend fun insertAll(vararg pressaoBocalModels: PressaoBocalModel)
 
     @Query("DELETE FROM tbpressaobocalest")
     suspend fun deleteAll()

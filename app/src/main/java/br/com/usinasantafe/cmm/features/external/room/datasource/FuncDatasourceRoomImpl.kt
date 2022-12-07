@@ -9,8 +9,8 @@ class FuncDatasourceRoomImpl @Inject constructor (
     private val funcDao: FuncDao
 ): FuncDatasourceRoom {
 
-    override suspend fun addFunc(funcModel: FuncModel): Long {
-        return funcDao.insert(funcModel)
+    override suspend fun addAllFunc(vararg funcModels: FuncModel) {
+        funcDao.insertAll(*funcModels)
     }
 
     override suspend fun deleteAllFunc() {

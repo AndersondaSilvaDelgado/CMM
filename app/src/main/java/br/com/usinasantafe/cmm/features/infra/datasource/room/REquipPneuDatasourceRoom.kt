@@ -4,7 +4,7 @@ import br.com.usinasantafe.cmm.features.infra.models.REquipPneuModel
 
 interface REquipPneuDatasourceRoom {
 
-    suspend fun addREquipPneu(rEquipPneuModel: REquipPneuModel): Long
+    suspend fun addAllREquipPneu(vararg rEquipPneuModels: REquipPneuModel)
 
     suspend fun deleteAllREquipPneu()
 

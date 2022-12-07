@@ -9,6 +9,6 @@ interface ItemOSMecanRepository {
 
     suspend fun deleteAllItemOSMecan()
 
-    suspend fun getAllItemOSMecan(): Flow<Result<List<ItemOSMecan>>>
+    suspend fun recoverAllItemOSMecan(): Flow<Result<List<ItemOSMecan>>>
 
 }

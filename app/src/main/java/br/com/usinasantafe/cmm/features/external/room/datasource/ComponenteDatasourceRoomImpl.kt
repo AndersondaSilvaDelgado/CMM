@@ -9,8 +9,8 @@ class ComponenteDatasourceRoomImpl @Inject constructor (
     private val componenteDao: ComponenteDao
 ): ComponenteDatasourceRoom {
 
-    override suspend fun addComponente(componenteModel: ComponenteModel): Long {
-        return componenteDao.insert(componenteModel)
+    override suspend fun addAllComponente(vararg componenteModels: ComponenteModel) {
+        componenteDao.insertAll(*componenteModels)
     }
 
     override suspend fun deleteAllComponente() {

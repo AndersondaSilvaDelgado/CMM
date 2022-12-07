@@ -9,9 +9,14 @@ import br.com.usinasantafe.cmm.features.infra.models.OSModel
 interface OSDao {
 
     @Insert
-    suspend fun insert(osModel: OSModel): Long
+    suspend fun insertAll(vararg osModels: OSModel)
 
     @Query("DELETE FROM tbosest")
     suspend fun deleteAll()
 
+    @Query("SELECT count(*) FROM tbosest WHERE nroOS = :nroOS")
+    suspend fun check(nroOS: Long): Int
+
+    @Query("SELECT * FROM tbosest WHERE nroOS = :nroOS")
+    suspend fun getNroOS(nroOS: Long): OSModel
 }

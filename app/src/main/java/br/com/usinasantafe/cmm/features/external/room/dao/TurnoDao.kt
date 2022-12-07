@@ -9,12 +9,15 @@ import br.com.usinasantafe.cmm.features.infra.models.TurnoModel
 interface TurnoDao {
 
     @Insert
-    suspend fun insert(turnoModel: TurnoModel): Long
+    suspend fun insertAll(vararg turnoModels: TurnoModel)
 
     @Query("DELETE FROM tbturnoest")
     suspend fun deleteAll()
 
     @Query("SELECT count(*) FROM tbturnoest")
     suspend fun count(): Int
+
+    @Query("SELECT * FROM tbturnoest WHERE codTurno = :codTurno")
+    suspend fun listCod(codTurno: Long): List<TurnoModel>
 
 }

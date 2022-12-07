@@ -6,6 +6,7 @@ import br.com.usinasantafe.cmm.features.infra.models.toFuncModel
 import br.com.usinasantafe.cmm.features.domain.repositories.stable.FuncRepository
 import br.com.usinasantafe.cmm.features.infra.datasource.room.FuncDatasourceRoom
 import br.com.usinasantafe.cmm.features.infra.datasource.webservice.FuncDatasourceWebService
+import br.com.usinasantafe.cmm.features.infra.models.toFrenteModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
@@ -16,26 +17,19 @@ class FuncRepositoryImpl @Inject constructor(
 ): FuncRepository {
 
     override suspend fun addAllFunc(funcList: List<Func>) {
-        for(func in funcList){
-            val funcModel = func.toFuncModel()
-            funcDatasourceRoom.addFunc(funcModel)
-        }
+        funcDatasourceRoom.addAllFunc(*funcList.map { it.toFuncModel() }.toTypedArray())
     }
 
     override suspend fun deleteAllFunc() {
         funcDatasourceRoom.deleteAllFunc()
     }
 
-    override suspend fun getAllFunc(): Flow<Result<List<Func>>> {
+    override suspend fun recoverAllFunc(): Flow<Result<List<Func>>> {
         return flow {
             funcDatasourceWebService.getAllFunc()
                 .collect { result ->
                     result.onSuccess {funcModelList ->
-                        val funcList = mutableListOf<Func>()
-                        for (funcModel in funcModelList){
-                            funcList.add(funcModel.toFunc())
-                        }
-                        emit(Result.success(funcList))
+                        emit(Result.success(funcModelList.map { it.toFunc() }))
                     }
                 }
         }

@@ -9,7 +9,7 @@ import br.com.usinasantafe.cmm.features.infra.models.MotoMecModel
 interface MotoMecDao {
 
     @Insert
-    suspend fun insert(motoMecModel: MotoMecModel): Long
+    suspend fun insertAll(vararg motoMecModels: MotoMecModel)
 
     @Query("DELETE FROM tbmotomecest")
     suspend fun deleteAll()

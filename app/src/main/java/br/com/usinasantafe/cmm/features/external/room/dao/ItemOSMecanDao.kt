@@ -9,7 +9,7 @@ import br.com.usinasantafe.cmm.features.infra.models.ItemOSMecanModel
 interface ItemOSMecanDao {
 
     @Insert
-    suspend fun insert(itemOSMecanModel: ItemOSMecanModel): Long
+    suspend fun insertAll(vararg itemOSMecanModels: ItemOSMecanModel)
 
     @Query("DELETE FROM tbitemosmecanest")
     suspend fun deleteAll()

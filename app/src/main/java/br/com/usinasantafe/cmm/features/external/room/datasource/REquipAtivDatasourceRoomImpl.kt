@@ -9,12 +9,16 @@ class REquipAtivDatasourceRoomImpl @Inject constructor (
     private val rEquipAtivDao: REquipAtivDao
 ): REquipAtivDatasourceRoom {
 
-    override suspend fun addREquipAtiv(rEquipAtivModel: REquipAtivModel): Long {
-        return rEquipAtivDao.insert(rEquipAtivModel)
+    override suspend fun addAllREquipAtiv(vararg rEquipAtivModels: REquipAtivModel) {
+        rEquipAtivDao.insertAll(*rEquipAtivModels)
     }
 
     override suspend fun deleteAllREquipAtiv() {
         rEquipAtivDao.deleteAll()
+    }
+
+    override suspend fun listREquipAtiv(idEquip: Long): List<REquipAtivModel> {
+        return rEquipAtivDao.listIdEquip(idEquip)
     }
 
 }

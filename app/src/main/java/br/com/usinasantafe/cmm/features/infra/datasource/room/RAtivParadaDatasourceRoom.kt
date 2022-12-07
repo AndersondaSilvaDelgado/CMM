@@ -4,7 +4,7 @@ import br.com.usinasantafe.cmm.features.infra.models.RAtivParadaModel
 
 interface RAtivParadaDatasourceRoom {
 
-    suspend fun addRAtivParada(rAtivParadaModel: RAtivParadaModel): Long
+    suspend fun addAllRAtivParada(vararg rAtivParadaModels: RAtivParadaModel)
 
     suspend fun deleteAllRAtivParada()
 

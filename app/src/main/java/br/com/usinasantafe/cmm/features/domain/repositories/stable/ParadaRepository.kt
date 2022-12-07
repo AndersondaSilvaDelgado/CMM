@@ -9,6 +9,6 @@ interface ParadaRepository {
 
     suspend fun deleteAllParada()
 
-    suspend fun getAllParada(): Flow<Result<List<Parada>>>
+    suspend fun recoverAllParada(): Flow<Result<List<Parada>>>
 
 }

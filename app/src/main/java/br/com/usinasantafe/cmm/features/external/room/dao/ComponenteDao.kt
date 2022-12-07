@@ -9,7 +9,7 @@ import br.com.usinasantafe.cmm.features.infra.models.ComponenteModel
 interface ComponenteDao {
 
     @Insert
-    suspend fun insert(componenteModel: ComponenteModel): Long
+    suspend fun insertAll(vararg componenteModels: ComponenteModel)
 
     @Query("DELETE FROM tbcomponenteest")
     suspend fun deleteAll()

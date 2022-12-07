@@ -9,8 +9,8 @@ class BocalDatasourceRoomImpl @Inject constructor (
     private val bocalDao: BocalDao
 ): BocalDatasourceRoom {
 
-    override suspend fun addBocal(bocalModel: BocalModel): Long {
-        return bocalDao.insert(bocalModel)
+    override suspend fun addAllBocal(vararg bocalModels: BocalModel) {
+        bocalDao.insertAll(*bocalModels)
     }
 
     override suspend fun deleteAllBocal() {

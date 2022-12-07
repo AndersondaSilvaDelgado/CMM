@@ -12,7 +12,6 @@ import androidx.navigation.fragment.findNavController
 import br.com.usinasantafe.cmm.R
 import br.com.usinasantafe.cmm.common.dialog.GenericDialogProgressBar
 import br.com.usinasantafe.cmm.common.base.BaseFragment
-import br.com.usinasantafe.cmm.common.extension.percentage
 import br.com.usinasantafe.cmm.common.extension.showGenericAlertDialog
 import br.com.usinasantafe.cmm.databinding.FragmentConfigBinding
 import br.com.usinasantafe.cmm.features.domain.entities.Config
@@ -69,7 +68,7 @@ class ConfigFragment : BaseFragment<FragmentConfigBinding>(
                 val nroEquip = editTextEquipConfig.text.toString().trim()
                 val senha = editTextSenhaConfig.text.toString().trim()
                 if(validate(nroEquip, senha)){
-                    viewModel.saveConfig(nroEquip, senha)
+                    viewModel.saveDataConfig(nroEquip, senha)
                 } else {
                     showGenericAlertDialog(getString(R.string.texto_config_invalida), requireContext())
                 }
@@ -86,8 +85,8 @@ class ConfigFragment : BaseFragment<FragmentConfigBinding>(
             textStatusAtualDados.isVisible = false
             progressBarAtualDados.isVisible = false
         }
-        viewModel.recoverConfig()
-        viewModel.checkUpdate()
+        viewModel.recoverDataConfig()
+        viewModel.checkUpdateData()
     }
 
     private fun validate(nroEquip: String, senha: String) : Boolean {
@@ -116,7 +115,7 @@ class ConfigFragment : BaseFragment<FragmentConfigBinding>(
             resultUpdateDataBase?.let {
                 if(typeUpdate){
                     textStatusAtualDados.text = resultUpdateDataBase.describe
-                    progressBarAtualDados.progress = percentage(resultUpdateDataBase.count, resultUpdateDataBase.size)
+                    progressBarAtualDados.progress = resultUpdateDataBase.percentage
                 } else {
                     genericDialogProgressBar.setValue(resultUpdateDataBase)
                 }
@@ -131,7 +130,7 @@ class ConfigFragment : BaseFragment<FragmentConfigBinding>(
                 textStatusAtualDados.isVisible = isLoading
                 progressBarAtualDados.isVisible = isLoading
             } else {
-                viewModel.checkUpdate()
+                viewModel.checkUpdateData()
             }
         }
     }

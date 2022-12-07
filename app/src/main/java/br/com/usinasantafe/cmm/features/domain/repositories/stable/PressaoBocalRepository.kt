@@ -9,6 +9,6 @@ interface PressaoBocalRepository {
 
     suspend fun deleteAllPressaoBocal()
 
-    suspend fun getAllPressaoBocal(): Flow<Result<List<PressaoBocal>>>
+    suspend fun recoverAllPressaoBocal(): Flow<Result<List<PressaoBocal>>>
 
 }

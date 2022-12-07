@@ -6,6 +6,7 @@ import br.com.usinasantafe.cmm.features.infra.models.toLeiraModel
 import br.com.usinasantafe.cmm.features.domain.repositories.stable.LeiraRepository
 import br.com.usinasantafe.cmm.features.infra.datasource.room.LeiraDatasourceRoom
 import br.com.usinasantafe.cmm.features.infra.datasource.webservice.LeiraDatasourceWebService
+import br.com.usinasantafe.cmm.features.infra.models.toItemOSMecanModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
@@ -16,26 +17,19 @@ class LeiraRepositoryImpl @Inject constructor(
 ): LeiraRepository {
 
     override suspend fun addAllLeira(leiraList: List<Leira>) {
-        for(leira in leiraList){
-            val leiraModel = leira.toLeiraModel()
-            leiraDatasourceRoom.addLeira(leiraModel)
-        }
+        leiraDatasourceRoom.addAllLeira(*leiraList.map { it.toLeiraModel() }.toTypedArray())
     }
 
     override suspend fun deleteAllLeira() {
         leiraDatasourceRoom.deleteAllLeira()
     }
 
-    override suspend fun getAllLeira(): Flow<Result<List<Leira>>> {
+    override suspend fun recoverAllLeira(): Flow<Result<List<Leira>>> {
         return flow {
             leiraDatasourceWebService.getAllLeira()
                 .collect { result ->
                     result.onSuccess {leiraModelList ->
-                        val leiraList = mutableListOf<Leira>()
-                        for (leiraModel in leiraModelList){
-                            leiraList.add(leiraModel.toLeira())
-                        }
-                        emit(Result.success(leiraList))
+                        emit(Result.success(leiraModelList.map { it.toLeira() }))
                     }
                 }
         }

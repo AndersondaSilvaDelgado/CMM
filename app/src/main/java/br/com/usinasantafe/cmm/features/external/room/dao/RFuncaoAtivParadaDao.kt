@@ -9,7 +9,7 @@ import br.com.usinasantafe.cmm.features.infra.models.RFuncaoAtivParadaModel
 interface RFuncaoAtivParadaDao {
 
     @Insert
-    suspend fun insert(rFuncaoAtivParadaModel: RFuncaoAtivParadaModel): Long
+    suspend fun insertAll(vararg rFuncaoAtivParadaModel: RFuncaoAtivParadaModel)
 
     @Query("DELETE FROM tbrfuncaoativparadaest")
     suspend fun deleteAll()

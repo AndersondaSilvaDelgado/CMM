@@ -4,7 +4,7 @@ import br.com.usinasantafe.cmm.features.infra.models.PneuModel
 
 interface PneuDatasourceRoom {
 
-    suspend fun addPneu(pneuModel: PneuModel): Long
+    suspend fun addAllPneu(vararg pneuModels: PneuModel)
 
     suspend fun deleteAllPneu()
 

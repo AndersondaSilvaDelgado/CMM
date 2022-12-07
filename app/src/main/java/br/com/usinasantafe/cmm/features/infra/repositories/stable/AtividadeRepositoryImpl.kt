@@ -6,6 +6,7 @@ import br.com.usinasantafe.cmm.features.infra.models.toAtividadeModel
 import br.com.usinasantafe.cmm.features.domain.repositories.stable.AtividadeRepository
 import br.com.usinasantafe.cmm.features.infra.datasource.room.AtividadeDatasourceRoom
 import br.com.usinasantafe.cmm.features.infra.datasource.webservice.AtividadeDatasourceWebService
+import br.com.usinasantafe.cmm.features.infra.models.AtividadeModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
@@ -16,29 +17,27 @@ class AtividadeRepositoryImpl @Inject constructor(
 ): AtividadeRepository {
 
     override suspend fun addAllAtividade(ativList: List<Atividade>) {
-        for(ativ in ativList){
-            val ativModel = ativ.toAtividadeModel()
-            atividadeDatasourceRoom.addAtividade(ativModel)
-        }
+        atividadeDatasourceRoom.addAllAtividade(*ativList.map { it.toAtividadeModel() }.toTypedArray())
     }
 
     override suspend fun deleteAllAtividade() {
         atividadeDatasourceRoom.deleteAllAtividade()
     }
 
-    override suspend fun getAllAtividade(): Flow<Result<List<Atividade>>> {
+    override suspend fun recoverAllAtividade(): Flow<Result<List<Atividade>>> {
         return flow {
             atividadeDatasourceWebService.getAllAtividade()
                 .collect { result ->
                     result.onSuccess { atividadeModelList ->
-                        val ativList = mutableListOf<Atividade>()
-                        for (ativModel in atividadeModelList){
-                            ativList.add(ativModel.toAtividade())
-                        }
-                        emit(Result.success(ativList))
+                        emit(Result.success(atividadeModelList.map { it.toAtividade() }))
                     }
                 }
             }
     }
+
+    override suspend fun listInIdAtiv(idAtivs: List<Long>): List<Atividade> {
+        return atividadeDatasourceRoom.listInIdAtiv(*idAtivs.toLongArray()).map { it.toAtividade() }
+    }
+
 
 }

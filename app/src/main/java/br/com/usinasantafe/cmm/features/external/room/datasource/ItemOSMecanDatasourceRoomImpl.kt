@@ -9,8 +9,8 @@ class ItemOSMecanDatasourceRoomImpl @Inject constructor (
     private val itemOSMecanDao: ItemOSMecanDao
 ): ItemOSMecanDatasourceRoom {
 
-    override suspend fun addItemOSMecan(itemOSMecanModel: ItemOSMecanModel): Long {
-        return itemOSMecanDao.insert(itemOSMecanModel)
+    override suspend fun addAllItemOSMecan(vararg itemOSMecanModels: ItemOSMecanModel) {
+        itemOSMecanDao.insertAll(*itemOSMecanModels)
     }
 
     override suspend fun deleteAllItemOSMecan() {

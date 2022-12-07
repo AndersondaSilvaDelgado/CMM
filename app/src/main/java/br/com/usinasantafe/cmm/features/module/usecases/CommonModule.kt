@@ -1,9 +1,7 @@
 package br.com.usinasantafe.cmm.features.module.usecases
 
-import br.com.usinasantafe.cmm.features.domain.usecases.implementos.common.CheckMatricOperadorImpl
-import br.com.usinasantafe.cmm.features.domain.usecases.implementos.common.CheckUpdateImpl
-import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.common.CheckMatricOperador
-import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.common.CheckUpdate
+import br.com.usinasantafe.cmm.features.domain.usecases.implementos.common.*
+import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.common.*
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -16,10 +14,30 @@ interface CommonModule {
 
     @Singleton
     @Binds
-    fun bindCheckOperador(usecase: CheckMatricOperadorImpl): CheckMatricOperador
+    fun bindCheckMatricOperador(usecase: CheckMatricOperadorImpl): CheckMatricOperador
 
     @Singleton
     @Binds
-    fun bindCheckUpdateConfig(usecase: CheckUpdateImpl): CheckUpdate
+    fun bindCheckNroOS(usecase: CheckNroOSImpl): CheckNroOS
+
+    @Singleton
+    @Binds
+    fun bindCheckUpdate(usecase: CheckUpdateImpl): CheckUpdate
+
+    @Singleton
+    @Binds
+    fun bindGetNroEquipConfig(usecase: GetEquipConfigImpl): GetEquipConfig
+
+    @Singleton
+    @Binds
+    fun bindGetOSNroConfig(usecase: GetOSNroImpl): GetOSNro
+
+    @Singleton
+    @Binds
+    fun bindListAtiv(usecase: ListAtivImpl): ListAtiv
+
+    @Singleton
+    @Binds
+    fun bindListTurno(usecase: ListTurnoImpl): ListTurno
 
 }

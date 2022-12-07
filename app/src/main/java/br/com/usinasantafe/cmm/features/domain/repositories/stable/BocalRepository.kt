@@ -9,6 +9,6 @@ interface BocalRepository {
 
     suspend fun deleteAllBocal()
 
-    suspend fun getAllBocal(): Flow<Result<List<Bocal>>>
+    suspend fun recoverAllBocal(): Flow<Result<List<Bocal>>>
 
 }

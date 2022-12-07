@@ -9,8 +9,8 @@ class PneuDatasourceRoomImpl @Inject constructor(
     private val pneuDao: PneuDao
 ): PneuDatasourceRoom {
 
-    override suspend fun addPneu(pneuModel: PneuModel): Long {
-        return pneuDao.insert(pneuModel)
+    override suspend fun addAllPneu(vararg pneuModels: PneuModel) {
+        pneuDao.insertAll(*pneuModels)
     }
 
     override suspend fun deleteAllPneu() {

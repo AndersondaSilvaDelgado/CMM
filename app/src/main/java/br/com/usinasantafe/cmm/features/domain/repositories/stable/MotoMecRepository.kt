@@ -9,6 +9,6 @@ interface MotoMecRepository {
 
     suspend fun deleteAllMotoMec()
 
-    suspend fun getAllMotoMec(): Flow<Result<List<MotoMec>>>
+    suspend fun recoverAllMotoMec(): Flow<Result<List<MotoMec>>>
 
 }

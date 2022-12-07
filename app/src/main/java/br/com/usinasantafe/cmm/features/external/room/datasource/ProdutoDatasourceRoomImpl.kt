@@ -9,8 +9,8 @@ class ProdutoDatasourceRoomImpl @Inject constructor (
     private val produtoDao: ProdutoDao
 ): ProdutoDatasourceRoom {
 
-    override suspend fun addProduto(produtoModel: ProdutoModel): Long {
-        return produtoDao.insert(produtoModel)
+    override suspend fun addAllProduto(vararg produtoModels: ProdutoModel) {
+        produtoDao.insertAll(*produtoModels)
     }
 
     override suspend fun deleteAllProduto() {

@@ -9,8 +9,8 @@ class ParadaDatasourceRoomImpl @Inject constructor (
     private val paradaDao: ParadaDao
 ): ParadaDatasourceRoom {
 
-    override suspend fun addParada(paradaModel: ParadaModel): Long {
-        return paradaDao.insert(paradaModel)
+    override suspend fun addAllParada(vararg paradaModels: ParadaModel) {
+        paradaDao.insertAll(*paradaModels)
     }
 
     override suspend fun deleteAllParada() {

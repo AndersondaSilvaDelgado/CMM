@@ -9,8 +9,8 @@ class LeiraDatasourceRoomImpl @Inject constructor (
     private val leiraDao: LeiraDao
 ): LeiraDatasourceRoom {
 
-    override suspend fun addLeira(leiraModel: LeiraModel): Long {
-        return leiraDao.insert(leiraModel)
+    override suspend fun addAllLeira(vararg leiraModels: LeiraModel) {
+        leiraDao.insertAll(*leiraModels)
     }
 
     override suspend fun deleteAllLeira() {

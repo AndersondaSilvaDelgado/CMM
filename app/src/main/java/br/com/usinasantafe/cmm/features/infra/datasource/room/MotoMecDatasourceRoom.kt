@@ -4,7 +4,7 @@ import br.com.usinasantafe.cmm.features.infra.models.MotoMecModel
 
 interface MotoMecDatasourceRoom {
 
-    suspend fun addMotoMec(motoMecModel: MotoMecModel): Long
+    suspend fun addAllMotoMec(vararg motoMecModels: MotoMecModel)
 
     suspend fun deleteAllMotoMec()
 

@@ -9,7 +9,7 @@ import br.com.usinasantafe.cmm.features.infra.models.EquipSegModel
 interface EquipSegDao {
 
     @Insert
-    suspend fun insert(equipSegModel: EquipSegModel): Long
+    suspend fun insertAll(vararg equipSegModels: EquipSegModel)
 
     @Query("DELETE FROM tbequipsegest")
     suspend fun deleteAll()

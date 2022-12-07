@@ -4,7 +4,7 @@ import br.com.usinasantafe.cmm.features.infra.models.FuncModel
 
 interface FuncDatasourceRoom {
 
-    suspend fun addFunc(funcModel: FuncModel): Long
+    suspend fun addAllFunc(vararg funcModels: FuncModel)
 
     suspend fun deleteAllFunc()
 

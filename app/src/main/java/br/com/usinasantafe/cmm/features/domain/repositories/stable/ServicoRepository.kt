@@ -9,6 +9,6 @@ interface ServicoRepository {
 
     suspend fun deleteAllServico()
 
-    suspend fun getAllServico(): Flow<Result<List<Servico>>>
+    suspend fun recoverAllServico(): Flow<Result<List<Servico>>>
 
 }

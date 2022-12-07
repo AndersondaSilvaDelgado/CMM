@@ -9,7 +9,7 @@ import retrofit2.http.POST
 interface EquipApi {
 
     @FormUrlEncoded
-    @POST("equip.php")
-    suspend fun get(@Field("dado") dado: String): Response<List<EquipModel>>
+    @POST("find-equip.php")
+    suspend fun get(@Field("nroEquip") nroEquip: String): Response<List<EquipModel>>
 
 }

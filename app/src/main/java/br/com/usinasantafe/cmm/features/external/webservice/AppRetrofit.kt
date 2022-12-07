@@ -25,9 +25,9 @@ object AppRetrofit {
             .build()
     }
 
-    fun gson(): Gson = GsonBuilder().create()
+    private fun gson(): Gson = GsonBuilder().create()
 
-    fun getInstance() = Retrofit.Builder()
+    fun getInstance(): Retrofit = Retrofit.Builder()
             .baseUrl(BASE_URL)
             .addConverterFactory(GsonConverterFactory.create(gson()))
             .client(httpClient())

@@ -9,8 +9,8 @@ class FrenteDatasourceRoomImpl @Inject constructor (
     private val frenteDao: FrenteDao
 ): FrenteDatasourceRoom {
 
-    override suspend fun addFrente(frenteModel: FrenteModel): Long {
-        return frenteDao.insert(frenteModel)
+    override suspend fun addAllFrente(vararg frenteModels: FrenteModel) {
+        frenteDao.insertAll(*frenteModels)
     }
 
     override suspend fun deleteAllFrente() {

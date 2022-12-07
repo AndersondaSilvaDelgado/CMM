@@ -9,9 +9,12 @@ import br.com.usinasantafe.cmm.features.infra.models.ROSAtivModel
 interface ROSAtivDao {
 
     @Insert
-    suspend fun insert(rOSAtivModel: ROSAtivModel): Long
+    suspend fun insertAll(vararg rOSAtivModels: ROSAtivModel)
 
     @Query("DELETE FROM tbrosativest")
     suspend fun deleteAll()
+
+    @Query("SELECT * FROM tbrosativest WHERE idOS = :idOS")
+    suspend fun listIdOS(idOS: Long): List<ROSAtivModel>
 
 }

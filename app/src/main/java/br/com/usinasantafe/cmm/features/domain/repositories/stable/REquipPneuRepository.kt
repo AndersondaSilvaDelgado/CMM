@@ -10,6 +10,6 @@ interface REquipPneuRepository {
 
     suspend fun deleteAllREquipPneu()
 
-    suspend fun getREquipPneu(nroEquip: String): Flow<Result<List<REquipPneu>>>
+    suspend fun recoverREquipPneu(nroEquip: String): Flow<Result<List<REquipPneu>>>
 
 }

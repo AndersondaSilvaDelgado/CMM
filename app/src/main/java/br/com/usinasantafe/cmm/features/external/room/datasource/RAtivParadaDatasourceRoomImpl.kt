@@ -9,8 +9,8 @@ class RAtivParadaDatasourceRoomImpl @Inject constructor (
     private val rAtivParadaDao: RAtivParadaDao
 ): RAtivParadaDatasourceRoom {
 
-    override suspend fun addRAtivParada(rAtivParadaModel: RAtivParadaModel): Long {
-        return rAtivParadaDao.insert(rAtivParadaModel)
+    override suspend fun addAllRAtivParada(vararg rAtivParadaModels: RAtivParadaModel) {
+        rAtivParadaDao.insertAll(*rAtivParadaModels)
     }
 
     override suspend fun deleteAllRAtivParada() {

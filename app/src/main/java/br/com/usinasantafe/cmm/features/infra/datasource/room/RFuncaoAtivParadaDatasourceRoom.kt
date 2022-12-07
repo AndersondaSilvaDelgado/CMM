@@ -4,7 +4,7 @@ import br.com.usinasantafe.cmm.features.infra.models.RFuncaoAtivParadaModel
 
 interface RFuncaoAtivParadaDatasourceRoom {
 
-    suspend fun addRFuncaoAtivParada(rFuncaoAtivParadaModel: RFuncaoAtivParadaModel): Long
+    suspend fun addAllRFuncaoAtivParada(vararg rFuncaoAtivParadaModels: RFuncaoAtivParadaModel)
 
     suspend fun deleteAllRFuncaoAtivParada()
 

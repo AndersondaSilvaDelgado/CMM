@@ -9,7 +9,7 @@ import br.com.usinasantafe.cmm.features.infra.models.PneuModel
 interface PneuDao {
 
     @Insert
-    suspend fun insert(pneuModel: PneuModel): Long
+    suspend fun insertAll(vararg pneuModels: PneuModel)
 
     @Query("DELETE FROM tbpneuest")
     suspend fun deleteAll()

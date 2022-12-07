@@ -9,6 +9,12 @@ interface OSRepository {
 
     suspend fun deleteAllOS()
 
-    suspend fun getAllOS(): Flow<Result<List<OS>>>
+    suspend fun recoverAllOS(): Flow<Result<List<OS>>>
+
+    suspend fun recoverOS(nroOS: String): Flow<Result<List<OS>>>
+
+    suspend fun checkOS(nroOS: String): Boolean
+
+    suspend fun getOSNro(nroOS: Long): OS
 
 }

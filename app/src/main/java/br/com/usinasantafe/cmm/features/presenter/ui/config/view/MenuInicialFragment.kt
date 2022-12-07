@@ -58,7 +58,7 @@ class MenuInicialFragment: BaseFragment<FragmentMenuInicialBinding>(
         )
 
         val listAdapter = CustomAdapter(opcaoMenu).apply {
-            onItemClick = { text ->
+            onItemClick = { text, pos ->
                 when(text){
                     "BOLETIM" -> eventBoletim()
                     "CONFIGURAÇÃO" -> eventConfig()

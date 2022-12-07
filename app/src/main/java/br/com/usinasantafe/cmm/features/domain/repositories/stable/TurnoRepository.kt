@@ -9,8 +9,10 @@ interface TurnoRepository {
 
     suspend fun deleteAllTurno()
 
-    suspend fun getAllTurno(): Flow<Result<List<Turno>>>
+    suspend fun recoverAllTurno(): Flow<Result<List<Turno>>>
 
     suspend fun hasTurno(): Boolean
+
+    suspend fun listTurno(codTurno: Long): List<Turno>
 
 }

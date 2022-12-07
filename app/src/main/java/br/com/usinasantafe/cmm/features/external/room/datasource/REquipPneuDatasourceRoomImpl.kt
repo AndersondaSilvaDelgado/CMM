@@ -9,8 +9,8 @@ class REquipPneuDatasourceRoomImpl @Inject constructor (
     private val rEquipPneuDao: REquipPneuDao
 ): REquipPneuDatasourceRoom {
 
-    override suspend fun addREquipPneu(rEquipPneuModel: REquipPneuModel): Long {
-        return rEquipPneuDao.insert(rEquipPneuModel)
+    override suspend fun addAllREquipPneu(vararg rEquipPneuModels: REquipPneuModel) {
+        rEquipPneuDao.insertAll(*rEquipPneuModels)
     }
 
     override suspend fun deleteAllREquipPneu() {

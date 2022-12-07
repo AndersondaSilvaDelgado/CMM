@@ -22,7 +22,7 @@ object RoomModule {
             appContext,
             AppDatabaseRoom::class.java,
             BASE_DB
-        ).build()
+        ).allowMainThreadQueries().build()
     }
 
 }

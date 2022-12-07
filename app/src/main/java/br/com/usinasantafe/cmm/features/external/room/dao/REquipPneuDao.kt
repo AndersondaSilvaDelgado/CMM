@@ -9,7 +9,7 @@ import br.com.usinasantafe.cmm.features.infra.models.REquipPneuModel
 interface REquipPneuDao {
 
     @Insert
-    suspend fun insert(rEquipPneuModel: REquipPneuModel): Long
+    suspend fun insertAll(vararg rEquipPneuModels: REquipPneuModel)
 
     @Query("DELETE FROM tbrequippneuest")
     suspend fun deleteAll()

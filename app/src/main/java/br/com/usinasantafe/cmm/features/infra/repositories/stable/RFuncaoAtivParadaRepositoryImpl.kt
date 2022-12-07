@@ -6,6 +6,7 @@ import br.com.usinasantafe.cmm.features.infra.models.toRFuncaoAtivParadaModel
 import br.com.usinasantafe.cmm.features.domain.repositories.stable.RFuncaoAtivParadaRepository
 import br.com.usinasantafe.cmm.features.infra.datasource.room.RFuncaoAtivParadaDatasourceRoom
 import br.com.usinasantafe.cmm.features.infra.datasource.webservice.RFuncaoAtivParadaDatasourceWebService
+import br.com.usinasantafe.cmm.features.infra.models.toREquipPneuModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
@@ -16,26 +17,19 @@ class RFuncaoAtivParadaRepositoryImpl @Inject constructor(
 ): RFuncaoAtivParadaRepository {
 
     override suspend fun addAllRFuncaoAtivParada(rFuncaoAtivParadaList: List<RFuncaoAtivParada>) {
-        for(rFuncaoAtivParada in rFuncaoAtivParadaList){
-            val rFuncaoAtivParadaModel = rFuncaoAtivParada.toRFuncaoAtivParadaModel()
-            rFuncaoAtivParadaDatasourceRoom.addRFuncaoAtivParada(rFuncaoAtivParadaModel)
-        }
+        rFuncaoAtivParadaDatasourceRoom.addAllRFuncaoAtivParada(*rFuncaoAtivParadaList.map { it.toRFuncaoAtivParadaModel() }.toTypedArray())
     }
 
     override suspend fun deleteAllRFuncaoAtivParada() {
         rFuncaoAtivParadaDatasourceRoom.deleteAllRFuncaoAtivParada()
     }
 
-    override suspend fun getAllRFuncaoAtivParada(): Flow<Result<List<RFuncaoAtivParada>>> {
+    override suspend fun recoverAllRFuncaoAtivParada(): Flow<Result<List<RFuncaoAtivParada>>> {
         return flow {
             rFuncaoAtivParadaDatasourceWebService.getAllRFuncaoAtivParada()
                 .collect { result ->
                     result.onSuccess {rFuncaoAtivParadaModelList ->
-                        val rFuncaoAtivParadaList = mutableListOf<RFuncaoAtivParada>()
-                        for (rFuncaoAtivParadaModel in rFuncaoAtivParadaModelList){
-                            rFuncaoAtivParadaList.add(rFuncaoAtivParadaModel.toRFuncaoAtivParada())
-                        }
-                        emit(Result.success(rFuncaoAtivParadaList))
+                        emit(Result.success(rFuncaoAtivParadaModelList.map { it.toRFuncaoAtivParada() }))
                     }
                 }
         }

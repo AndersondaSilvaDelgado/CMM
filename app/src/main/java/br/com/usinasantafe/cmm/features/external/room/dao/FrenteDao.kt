@@ -9,7 +9,7 @@ import br.com.usinasantafe.cmm.features.infra.models.FrenteModel
 interface FrenteDao {
 
     @Insert
-    suspend fun insert(frenteModel: FrenteModel): Long
+    suspend fun insertAll(vararg frenteModels: FrenteModel)
 
     @Query("DELETE FROM tbfrenteest")
     suspend fun deleteAll()

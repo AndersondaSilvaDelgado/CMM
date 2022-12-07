@@ -9,12 +9,16 @@ class ROSAtivDatasourceRoomImpl @Inject constructor (
     private val rOSAtivDao: ROSAtivDao
 ): ROSAtivDatasourceRoom {
 
-    override suspend fun addROSAtiv(rOSAtivModel: ROSAtivModel): Long {
-        return rOSAtivDao.insert(rOSAtivModel)
+    override suspend fun addAllROSAtiv(vararg rOSAtivModels: ROSAtivModel) {
+        rOSAtivDao.insertAll(*rOSAtivModels)
     }
 
     override suspend fun deleteAllROSAtiv() {
         rOSAtivDao.deleteAll()
+    }
+
+    override suspend fun listROSAtiv(idOS: Long): List<ROSAtivModel> {
+        return rOSAtivDao.listIdOS(idOS)
     }
 
 }

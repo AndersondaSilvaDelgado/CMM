@@ -4,8 +4,10 @@ import br.com.usinasantafe.cmm.features.infra.models.AtividadeModel
 
 interface AtividadeDatasourceRoom {
 
-    suspend fun addAtividade(atividadeModel: AtividadeModel): Long
+    suspend fun addAllAtividade(vararg atividadeModels: AtividadeModel)
 
     suspend fun deleteAllAtividade()
+
+    suspend fun listInIdAtiv(vararg idAtivs: Long): List<AtividadeModel>
 
 }

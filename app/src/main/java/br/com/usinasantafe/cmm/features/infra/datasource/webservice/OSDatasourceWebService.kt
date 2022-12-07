@@ -7,4 +7,6 @@ interface OSDatasourceWebService {
 
     suspend fun getAllOS(): Flow<Result<List<OSModel>>>
 
+    suspend fun recoverOS(nroOS: String): Flow<Result<List<OSModel>>>
+
 }

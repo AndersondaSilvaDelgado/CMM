@@ -24,19 +24,23 @@
             app:destination="@id/turnoBolFragment" />
         <action
             android:id="@+id/action_equipBolFragment_to_operadorBolFragment"
-            app:destination="@id/operadorBolFragment" />
+            app:destination="@id/operadorBolFragment"
+            app:popUpTo="@id/operadorBolFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/turnoBolFragment"
         android:name="br.com.usinasantafe.cmm.features.presenter.ui.boletimmmfert.view.TurnoBolFragment"
         android:label="fragment_turno"
-        tools:layout="@layout/fragment_turno" >
+        tools:layout="@layout/fragment_turno_bol" >
         <action
             android:id="@+id/action_turnoBolFragment_to_OSBolFragment"
             app:destination="@id/OSBolFragment" />
         <action
             android:id="@+id/action_turnoBolFragment_to_equipBolFragment"
-            app:destination="@id/equipBolFragment" />
+            app:destination="@id/equipBolFragment"
+            app:popUpTo="@id/equipBolFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/OSBolFragment"
@@ -48,7 +52,9 @@
             app:destination="@id/ativBolFragment" />
         <action
             android:id="@+id/action_OSBolFragment_to_turnoBolFragment"
-            app:destination="@id/turnoBolFragment" />
+            app:destination="@id/turnoBolFragment"
+            app:popUpTo="@id/turnoBolFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/ativBolFragment"
@@ -60,7 +66,9 @@
             app:destination="@id/horimetroBolFragment" />
         <action
             android:id="@+id/action_ativBolFragment_to_OSBolFragment"
-            app:destination="@id/OSBolFragment" />
+            app:destination="@id/OSBolFragment"
+            app:popUpTo="@id/OSBolFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/horimetroBolFragment"
@@ -69,6 +77,8 @@
         tools:layout="@layout/fragment_horimetro_bol" >
         <action
             android:id="@+id/action_horimetroBolFragment_to_ativBolFragment"
-            app:destination="@id/ativBolFragment" />
+            app:destination="@id/ativBolFragment"
+            app:popUpTo="@id/ativBolFragment"
+            app:popUpToInclusive="true" />
     </fragment>
 </navigation>

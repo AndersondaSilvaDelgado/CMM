@@ -9,8 +9,8 @@ class ItemCheckListDatasourceRoomImpl @Inject constructor (
     private val itemCheckListDao: ItemCheckListDao
 ): ItemCheckListDatasourceRoom {
 
-    override suspend fun addItemCheckList(itemCheckListModel: ItemCheckListModel): Long {
-        return itemCheckListDao.insert(itemCheckListModel)
+    override suspend fun addAllItemCheckList(vararg itemCheckListModels: ItemCheckListModel) {
+        itemCheckListDao.insertAll(*itemCheckListModels)
     }
 
     override suspend fun deleteAllItemCheckList() {

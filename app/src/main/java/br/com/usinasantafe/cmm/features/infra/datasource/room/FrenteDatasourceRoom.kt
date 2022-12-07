@@ -4,7 +4,7 @@ import br.com.usinasantafe.cmm.features.infra.models.FrenteModel
 
 interface FrenteDatasourceRoom {
 
-    suspend fun addFrente(frenteModel: FrenteModel): Long
+    suspend fun addAllFrente(vararg frenteModels: FrenteModel)
 
     suspend fun deleteAllFrente()
 

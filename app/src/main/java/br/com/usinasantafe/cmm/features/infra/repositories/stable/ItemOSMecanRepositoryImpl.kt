@@ -6,6 +6,7 @@ import br.com.usinasantafe.cmm.features.infra.models.toItemOSMecanModel
 import br.com.usinasantafe.cmm.features.domain.repositories.stable.ItemOSMecanRepository
 import br.com.usinasantafe.cmm.features.infra.datasource.room.ItemOSMecanDatasourceRoom
 import br.com.usinasantafe.cmm.features.infra.datasource.webservice.ItemOSMecanDatasourceWebService
+import br.com.usinasantafe.cmm.features.infra.models.toItemCheckListModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
@@ -16,26 +17,19 @@ class ItemOSMecanRepositoryImpl @Inject constructor(
 ): ItemOSMecanRepository {
 
     override suspend fun addAllItemOSMecan(itemOSMecanList: List<ItemOSMecan>) {
-        for(itemOSMecan in itemOSMecanList){
-            val itemOSMecanModel = itemOSMecan.toItemOSMecanModel()
-            itemOSMecanDatasourceRoom.addItemOSMecan(itemOSMecanModel)
-        }
+        itemOSMecanDatasourceRoom.addAllItemOSMecan(*itemOSMecanList.map { it.toItemOSMecanModel() }.toTypedArray())
     }
 
     override suspend fun deleteAllItemOSMecan() {
         itemOSMecanDatasourceRoom.deleteAllItemOSMecan()
     }
 
-    override suspend fun getAllItemOSMecan(): Flow<Result<List<ItemOSMecan>>> {
+    override suspend fun recoverAllItemOSMecan(): Flow<Result<List<ItemOSMecan>>> {
         return flow {
             itemOSMecanDatasourceWebService.getAllItemOSMecan()
                 .collect { result ->
                     result.onSuccess {itemOSMecanModelList ->
-                        val itemOSMecanList = mutableListOf<ItemOSMecan>()
-                        for (itemOSMecanModel in itemOSMecanModelList){
-                            itemOSMecanList.add(itemOSMecanModel.toItemOSMecan())
-                        }
-                        emit(Result.success(itemOSMecanList))
+                        emit(Result.success(itemOSMecanModelList.map { it.toItemOSMecan() }))
                     }
                 }
         }

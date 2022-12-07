@@ -9,6 +9,6 @@ interface LeiraRepository {
 
     suspend fun deleteAllLeira()
 
-    suspend fun getAllLeira(): Flow<Result<List<Leira>>>
+    suspend fun recoverAllLeira(): Flow<Result<List<Leira>>>
 
 }

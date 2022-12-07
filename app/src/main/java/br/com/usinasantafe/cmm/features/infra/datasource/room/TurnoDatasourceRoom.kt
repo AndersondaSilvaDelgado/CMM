@@ -4,10 +4,12 @@ import br.com.usinasantafe.cmm.features.infra.models.TurnoModel
 
 interface TurnoDatasourceRoom {
 
-    suspend fun addTurno(turnoModel: TurnoModel): Long
+    suspend fun addAllTurno(vararg turnoModels: TurnoModel)
 
     suspend fun deleteAllTurno()
 
     suspend fun hasTurno(): Boolean
+
+    suspend fun listTurno(codTurno: Long): List<TurnoModel>
 
 }

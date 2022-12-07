@@ -9,7 +9,7 @@ import br.com.usinasantafe.cmm.features.infra.models.FuncModel
 interface FuncDao {
 
     @Insert
-    suspend fun insert(funcModel: FuncModel): Long
+    suspend fun insertAll(vararg funcModels: FuncModel)
 
     @Query("DELETE FROM tbfuncest")
     suspend fun deleteAll()

@@ -4,7 +4,7 @@ import br.com.usinasantafe.cmm.features.infra.models.ItemOSMecanModel
 
 interface ItemOSMecanDatasourceRoom {
 
-    suspend fun addItemOSMecan(itemOSMecanModel: ItemOSMecanModel): Long
+    suspend fun addAllItemOSMecan(vararg itemOSMecanModels: ItemOSMecanModel)
 
     suspend fun deleteAllItemOSMecan()
 

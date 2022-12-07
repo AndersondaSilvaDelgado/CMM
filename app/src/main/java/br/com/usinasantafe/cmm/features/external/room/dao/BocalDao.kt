@@ -9,7 +9,7 @@ import br.com.usinasantafe.cmm.features.infra.models.BocalModel
 interface BocalDao {
 
     @Insert
-    suspend fun insert(bocalModel: BocalModel): Long
+    suspend fun insertAll(vararg bocalModels: BocalModel)
 
     @Query("DELETE FROM tbbocalest")
     suspend fun deleteAll()

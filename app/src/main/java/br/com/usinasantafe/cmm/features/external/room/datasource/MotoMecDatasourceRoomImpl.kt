@@ -9,8 +9,8 @@ class MotoMecDatasourceRoomImpl @Inject constructor (
     private val motoMecDao: MotoMecDao
 ): MotoMecDatasourceRoom {
 
-    override suspend fun addMotoMec(motoMecModel: MotoMecModel): Long {
-        return motoMecDao.insert(motoMecModel)
+    override suspend fun addAllMotoMec(vararg motoMecModels: MotoMecModel) {
+        motoMecDao.insertAll(*motoMecModels)
     }
 
     override suspend fun deleteAllMotoMec() {

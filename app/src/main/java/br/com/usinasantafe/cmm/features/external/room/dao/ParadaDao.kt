@@ -9,7 +9,7 @@ import br.com.usinasantafe.cmm.features.infra.models.ParadaModel
 interface ParadaDao {
 
     @Insert
-    suspend fun insert(paradaModel: ParadaModel): Long
+    suspend fun insertAll(vararg paradaModels: ParadaModel)
 
     @Query("DELETE FROM tbparadaest")
     suspend fun deleteAll()

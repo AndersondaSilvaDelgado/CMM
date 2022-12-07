@@ -9,7 +9,7 @@ import br.com.usinasantafe.cmm.features.infra.models.ServicoModel
 interface ServicoDao {
 
     @Insert
-    suspend fun insert(servicoModel: ServicoModel): Long
+    suspend fun insertAll(vararg servicoModels: ServicoModel)
 
     @Query("DELETE FROM tbservicoest")
     suspend fun deleteAll()

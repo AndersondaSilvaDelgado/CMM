@@ -31,7 +31,7 @@ class ConfigDatasourceSharedPreferencesImpl @Inject constructor(
         val editor = sharedPreferences.edit()
         editor.putLong(BASE_SHARE_PREFERENCES_EQUIP, config.equipConfig)
         editor.putString(BASE_SHARE_PREFERENCES_SENHA, config.senhaConfig)
-        editor.apply()
+        editor.commit()
     }
 
 }

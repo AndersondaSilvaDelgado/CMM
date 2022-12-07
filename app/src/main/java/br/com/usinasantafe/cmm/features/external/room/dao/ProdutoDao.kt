@@ -9,7 +9,7 @@ import br.com.usinasantafe.cmm.features.infra.models.ProdutoModel
 interface ProdutoDao {
 
     @Insert
-    suspend fun insert(produtoModel: ProdutoModel): Long
+    suspend fun insertAll(vararg produtoModels: ProdutoModel)
 
     @Query("DELETE FROM tbprodutoest")
     suspend fun deleteAll()

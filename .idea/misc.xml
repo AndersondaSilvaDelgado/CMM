@@ -17,6 +17,7 @@
         <entry key="..\:/Users/anderson/Documents/Android Kotlin/CMM/app/src/main/res/layout/fragment_config.xml" value="0.12552083333333333" />
         <entry key="..\:/Users/anderson/Documents/Android Kotlin/CMM/app/src/main/res/layout/fragment_equip.xml" value="0.27291666666666664" />
         <entry key="..\:/Users/anderson/Documents/Android Kotlin/CMM/app/src/main/res/layout/fragment_equip_bol.xml" value="0.27291666666666664" />
+        <entry key="..\:/Users/anderson/Documents/Android Kotlin/CMM/app/src/main/res/layout/fragment_horimetro_bol.xml" value="0.121875" />
         <entry key="..\:/Users/anderson/Documents/Android Kotlin/CMM/app/src/main/res/layout/fragment_item_check_list.xml" value="0.27291666666666664" />
         <entry key="..\:/Users/anderson/Documents/Android Kotlin/CMM/app/src/main/res/layout/fragment_menu.xml" value="0.27291666666666664" />
         <entry key="..\:/Users/anderson/Documents/Android Kotlin/CMM/app/src/main/res/layout/fragment_menu_inicial.xml" value="0.12552083333333333" />
@@ -30,10 +31,12 @@
         <entry key="..\:/Users/anderson/Documents/Android Kotlin/CMM/app/src/main/res/layout/fragment_perg_atual_check_list.xml" value="0.27291666666666664" />
         <entry key="..\:/Users/anderson/Documents/Android Kotlin/CMM/app/src/main/res/layout/fragment_senha.xml" value="0.12552083333333333" />
         <entry key="..\:/Users/anderson/Documents/Android Kotlin/CMM/app/src/main/res/layout/fragment_turno.xml" value="0.27291666666666664" />
+        <entry key="..\:/Users/anderson/Documents/Android Kotlin/CMM/app/src/main/res/layout/fragment_turno_bol.xml" value="0.15833333333333333" />
         <entry key="..\:/Users/anderson/Documents/Android Kotlin/CMM/app/src/main/res/layout/item_row_text.xml" value="0.12552083333333333" />
         <entry key="..\:/Users/anderson/Documents/Android Kotlin/CMM/app/src/main/res/layout/layout_botoes.xml" value="0.140625" />
         <entry key="..\:/Users/anderson/Documents/Android Kotlin/CMM/app/src/main/res/layout/layout_botoes_s_atual.xml" value="0.140625" />
         <entry key="..\:/Users/anderson/Documents/Android Kotlin/CMM/app/src/main/res/layout/layout_botoes_virgula.xml" value="0.140625" />
+        <entry key="..\:/Users/anderson/Documents/Android Kotlin/CMM/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1805" />
       </map>
     </option>
   </component>

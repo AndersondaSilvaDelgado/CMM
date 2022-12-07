@@ -9,9 +9,15 @@ import br.com.usinasantafe.cmm.features.infra.models.EquipModel
 interface EquipDao {
 
     @Insert
-    suspend fun insert(equipModel: EquipModel): Long
+    suspend fun insertAll(vararg equipModels: EquipModel)
 
     @Query("DELETE FROM tbequipest")
     suspend fun deleteAll()
+
+    @Query("SELECT * FROM tbequipest WHERE nroEquip = :nroEquip")
+    suspend fun getNro(nroEquip: Long): EquipModel
+
+    @Query("SELECT * FROM tbequipest WHERE idEquip = :idEquip")
+    suspend fun getId(idEquip: Long): EquipModel
 
 }

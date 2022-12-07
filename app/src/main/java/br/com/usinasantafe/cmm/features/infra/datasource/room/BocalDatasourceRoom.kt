@@ -4,7 +4,7 @@ import br.com.usinasantafe.cmm.features.infra.models.BocalModel
 
 interface BocalDatasourceRoom {
 
-    suspend fun addBocal(bocalModel: BocalModel): Long
+    suspend fun addAllBocal(vararg bocalModels: BocalModel)
 
     suspend fun deleteAllBocal()
 

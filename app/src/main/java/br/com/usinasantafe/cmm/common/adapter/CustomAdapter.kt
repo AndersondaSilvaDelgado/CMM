@@ -10,7 +10,7 @@ class CustomAdapter(
     private val dataSet: List<String>
 ) : RecyclerView.Adapter<CustomAdapter.ViewHolder>() {
 
-    var onItemClick: ((text: String) -> Unit)? = null
+    var onItemClick: ((text: String, position: Int) -> Unit)? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val itemBinding = ItemRowTextBinding
@@ -19,7 +19,7 @@ class CustomAdapter(
     }
 
     override fun onBindViewHolder(viewHolder: ViewHolder, position: Int) {
-        viewHolder.bindView(dataSet[position])
+        viewHolder.bindView(dataSet[position], position)
     }
 
     override fun getItemCount() = dataSet.size
@@ -30,11 +30,11 @@ class CustomAdapter(
 
         private val textView: TextView = textRowItemBinding.textView
 
-        fun bindView(text: String) {
+        fun bindView(text: String, position: Int) {
             textView.text = text
 
             itemView.setOnClickListener {
-                onItemClick?.invoke(text)
+                onItemClick?.invoke(text, position)
             }
 
         }

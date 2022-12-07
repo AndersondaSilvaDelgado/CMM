@@ -9,9 +9,12 @@ import br.com.usinasantafe.cmm.features.infra.models.AtividadeModel
 interface AtividadeDao {
 
     @Insert
-    suspend fun insert(atividadeModel: AtividadeModel): Long
+    fun insertAll(vararg atividadeModels: AtividadeModel)
 
     @Query("DELETE FROM tbatividadeest")
     suspend fun deleteAll()
+
+    @Query("SELECT * FROM tbatividadeest WHERE idAtiv IN (:idAtivs)")
+    suspend fun listInIdAtiv(vararg idAtivs: Long): List<AtividadeModel>
 
 }

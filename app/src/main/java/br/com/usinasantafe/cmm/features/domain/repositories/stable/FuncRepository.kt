@@ -9,7 +9,7 @@ interface FuncRepository {
 
     suspend fun deleteAllFunc()
 
-    suspend fun getAllFunc(): Flow<Result<List<Func>>>
+    suspend fun recoverAllFunc(): Flow<Result<List<Func>>>
 
     suspend fun checkFuncNro(nroFunc: String): Boolean
 

@@ -4,7 +4,7 @@ import br.com.usinasantafe.cmm.features.infra.models.LeiraModel
 
 interface LeiraDatasourceRoom {
 
-    suspend fun addLeira(leiraModel: LeiraModel): Long
+    suspend fun addAllLeira(vararg leiraModels: LeiraModel)
 
     suspend fun deleteAllLeira()
 

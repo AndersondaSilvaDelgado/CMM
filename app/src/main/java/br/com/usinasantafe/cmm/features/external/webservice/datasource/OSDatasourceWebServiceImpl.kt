@@ -22,4 +22,15 @@ class OSDatasourceWebServiceImpl @Inject constructor(
         }
     }
 
+    override suspend fun recoverOS(nroOS: String): Flow<Result<List<OSModel>>> {
+        return flow{
+            val response = osApi.get(nroOS)
+            if (response.isSuccessful) {
+                emit(Result.success(response.body()!!))
+            } else {
+                emit(Result.failure(Throwable("Erro recebimento de dados")))
+            }
+        }
+    }
+
 }

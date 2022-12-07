@@ -6,9 +6,10 @@ import javax.inject.Inject
 
 class SetMatricFuncBoletimMMFertImpl @Inject constructor(
     private val boletimMMFertRepository: BoletimMMFertRepository
-): SetMatricFuncBoletimMMFert
-{
+): SetMatricFuncBoletimMMFert {
+
     override suspend fun invoke(matricOperador: String): Boolean {
-        return boletimMMFertRepository.startBoletimMMFert()
+        return boletimMMFertRepository.setMatricFuncBoletimMMFert(matricOperador)
     }
+
 }

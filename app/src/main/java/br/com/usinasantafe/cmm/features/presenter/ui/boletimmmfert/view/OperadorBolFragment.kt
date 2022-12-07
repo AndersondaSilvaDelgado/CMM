@@ -14,9 +14,9 @@ import androidx.navigation.fragment.findNavController
 import br.com.usinasantafe.cmm.R
 import br.com.usinasantafe.cmm.common.base.BaseFragment
 import br.com.usinasantafe.cmm.common.dialog.GenericDialogProgressBar
-import br.com.usinasantafe.cmm.common.extension.BackPressHandler
 import br.com.usinasantafe.cmm.common.extension.setListenerButtonsGeneric
 import br.com.usinasantafe.cmm.common.extension.showGenericAlertDialog
+import br.com.usinasantafe.cmm.common.extension.showToast
 import br.com.usinasantafe.cmm.databinding.FragmentOperadorBolBinding
 import br.com.usinasantafe.cmm.features.presenter.models.ResultUpdateDataBase
 import br.com.usinasantafe.cmm.features.presenter.ui.boletimmmfert.viewmodel.OperadorBolFragmentState
@@ -35,7 +35,6 @@ class OperadorBolFragment : BaseFragment<FragmentOperadorBolBinding>(
 
     private val viewModel: OperadorBolViewModel by viewModels()
     private lateinit var genericDialogProgressBar: GenericDialogProgressBar
-    var backPressHandler: BackPressHandler? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -64,16 +63,16 @@ class OperadorBolFragment : BaseFragment<FragmentOperadorBolBinding>(
 
     private fun setListener() {
         with(binding){
-            setListenerButtonsGeneric(layoutNovoBotoes, editTextPadrao)
-            layoutNovoBotoes.buttonOkPadrao.setOnClickListener {
+            setListenerButtonsGeneric(layoutBotoes, editTextPadrao)
+            layoutBotoes.buttonOkPadrao.setOnClickListener {
                 if(editTextPadrao.text.isNotEmpty()){
                     viewModel.checkMatricFunc(editTextPadrao.text.toString())
                 } else {
                     showGenericAlertDialog(getString(R.string.texto_campo_vazio, "MATRICULA DO OPERADOR"), requireContext())
                 }
             }
-            layoutNovoBotoes.buttonAtualPadrao.setOnClickListener {
-
+            layoutBotoes.buttonAtualPadrao.setOnClickListener {
+                viewModel.updateDataFunc()
             }
         }
 
@@ -105,10 +104,8 @@ class OperadorBolFragment : BaseFragment<FragmentOperadorBolBinding>(
     }
 
     private fun handleStatusUpdate(resultUpdateDataBase: ResultUpdateDataBase?){
-        with(binding) {
-            resultUpdateDataBase?.let {
-                genericDialogProgressBar.setValue(resultUpdateDataBase)
-            }
+        resultUpdateDataBase?.let {
+            genericDialogProgressBar.setValue(resultUpdateDataBase)
         }
     }
 
@@ -122,7 +119,7 @@ class OperadorBolFragment : BaseFragment<FragmentOperadorBolBinding>(
             )
         } else {
             genericDialogProgressBar.cancel()
-            findNavController().navigate(R.id.action_configFragment_to_menuInicialFragment)
+            showToast(getString(R.string.texto_msg_atualizacao, "COLABORADORES"), requireContext())
         }
     }
 

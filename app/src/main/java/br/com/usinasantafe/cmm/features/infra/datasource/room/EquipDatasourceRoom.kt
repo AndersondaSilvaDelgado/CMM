@@ -4,8 +4,12 @@ import br.com.usinasantafe.cmm.features.infra.models.EquipModel
 
 interface EquipDatasourceRoom {
 
-    suspend fun addEquip(equipModel: EquipModel): Long
+    suspend fun addAllEquip(vararg equipModels: EquipModel)
 
     suspend fun deleteAllEquip()
+
+    suspend fun getEquipNro(nroEquip: Long): EquipModel
+
+    suspend fun getEquipId(idEquip: Long): EquipModel
 
 }

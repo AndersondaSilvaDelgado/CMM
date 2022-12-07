@@ -6,6 +6,8 @@ import br.com.usinasantafe.cmm.features.infra.models.toTurnoModel
 import br.com.usinasantafe.cmm.features.domain.repositories.stable.TurnoRepository
 import br.com.usinasantafe.cmm.features.infra.datasource.room.TurnoDatasourceRoom
 import br.com.usinasantafe.cmm.features.infra.datasource.webservice.TurnoDatasourceWebService
+import br.com.usinasantafe.cmm.features.infra.models.TurnoModel
+import br.com.usinasantafe.cmm.features.infra.models.toServicoModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
@@ -16,26 +18,19 @@ class TurnoRepositoryImpl @Inject constructor(
 ): TurnoRepository {
 
     override suspend fun addAllTurno(turnoList: List<Turno>) {
-        for(turno in turnoList){
-            val turnoModel = turno.toTurnoModel()
-            turnoDatasourceRoom.addTurno(turnoModel)
-        }
+        turnoDatasourceRoom.addAllTurno(*turnoList.map { it.toTurnoModel() }.toTypedArray())
     }
 
     override suspend fun deleteAllTurno() {
         turnoDatasourceRoom.deleteAllTurno()
     }
 
-    override suspend fun getAllTurno(): Flow<Result<List<Turno>>> {
+    override suspend fun recoverAllTurno(): Flow<Result<List<Turno>>> {
         return flow {
             turnoDatasourceWebService.getAllTurno()
                 .collect { result ->
                     result.onSuccess {turnoModelList ->
-                        val turnoList = mutableListOf<Turno>()
-                        for (turnoModel in turnoModelList){
-                            turnoList.add(turnoModel.toTurno())
-                        }
-                        emit(Result.success(turnoList))
+                        emit(Result.success(turnoModelList.map { it.toTurno() }))
                     }
                 }
         }
@@ -43,6 +38,10 @@ class TurnoRepositoryImpl @Inject constructor(
 
     override suspend fun hasTurno(): Boolean {
         return turnoDatasourceRoom.hasTurno()
+    }
+
+    override suspend fun listTurno(codTurno: Long): List<Turno> {
+        return turnoDatasourceRoom.listTurno(codTurno).map { it.toTurno() }
     }
 
 }

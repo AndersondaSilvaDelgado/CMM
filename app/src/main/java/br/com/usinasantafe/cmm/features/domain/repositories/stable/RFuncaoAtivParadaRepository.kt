@@ -9,6 +9,6 @@ interface RFuncaoAtivParadaRepository {
 
     suspend fun deleteAllRFuncaoAtivParada()
 
-    suspend fun getAllRFuncaoAtivParada(): Flow<Result<List<RFuncaoAtivParada>>>
+    suspend fun recoverAllRFuncaoAtivParada(): Flow<Result<List<RFuncaoAtivParada>>>
 
 }

@@ -9,8 +9,8 @@ class ServicoDatasourceRoomImpl @Inject constructor(
     private val servicoDao: ServicoDao
 ): ServicoDatasourceRoom {
 
-    override suspend fun addServico(servicoModel: ServicoModel): Long {
-        return servicoDao.insert(servicoModel)
+    override suspend fun addAllServico(vararg servicoModels: ServicoModel) {
+        servicoDao.insertAll(*servicoModels)
     }
 
     override suspend fun deleteAllServico() {

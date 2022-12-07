@@ -9,8 +9,8 @@ class TurnoDatasourceRoomImpl @Inject constructor (
     private val turnoDao: TurnoDao
 ): TurnoDatasourceRoom {
 
-    override suspend fun addTurno(turnoModel: TurnoModel): Long {
-        return turnoDao.insert(turnoModel)
+    override suspend fun addAllTurno(vararg turnoModels: TurnoModel) {
+        turnoDao.insertAll(*turnoModels)
     }
 
     override suspend fun deleteAllTurno() {
@@ -19,6 +19,10 @@ class TurnoDatasourceRoomImpl @Inject constructor (
 
     override suspend fun hasTurno(): Boolean {
         return (turnoDao.count() > 0)
+    }
+
+    override suspend fun listTurno(codTurno: Long): List<TurnoModel> {
+        return turnoDao.listCod(codTurno)
     }
 
 }

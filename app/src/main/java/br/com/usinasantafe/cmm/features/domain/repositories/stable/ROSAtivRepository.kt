@@ -9,6 +9,10 @@ interface ROSAtivRepository {
 
     suspend fun deleteAllROSAtiv()
 
-    suspend fun getAllROSAtiv(): Flow<Result<List<ROSAtiv>>>
+    suspend fun recoverAllROSAtiv(): Flow<Result<List<ROSAtiv>>>
+
+    suspend fun recoverROSAtiv(nroOS: String): Flow<Result<List<ROSAtiv>>>
+
+    suspend fun listROSAtiv(idOS: Long): List<ROSAtiv>
 
 }

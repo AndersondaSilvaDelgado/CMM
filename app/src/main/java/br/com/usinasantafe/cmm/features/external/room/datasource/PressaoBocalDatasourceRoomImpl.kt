@@ -9,8 +9,8 @@ class PressaoBocalDatasourceRoomImpl @Inject constructor (
     private val pressaoBocalDao: PressaoBocalDao
 ): PressaoBocalDatasourceRoom {
 
-    override suspend fun addPressaoBocal(pressaoBocalModel: PressaoBocalModel): Long {
-        return pressaoBocalDao.insert(pressaoBocalModel)
+    override suspend fun addAllPressaoBocal(vararg pressaoBocalModels: PressaoBocalModel) {
+        pressaoBocalDao.insertAll(*pressaoBocalModels)
     }
 
     override suspend fun deleteAllPressaoBocal() {

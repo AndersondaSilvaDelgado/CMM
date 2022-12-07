@@ -4,7 +4,7 @@ import br.com.usinasantafe.cmm.features.infra.models.EquipSegModel
 
 interface EquipSegDatasourceRoom {
 
-    suspend fun addEquipSeg(equipSegModel: EquipSegModel): Long
+    suspend fun addAllEquipSeg(vararg equipSegModels: EquipSegModel)
 
     suspend fun deleteAllEquipSeg()
 

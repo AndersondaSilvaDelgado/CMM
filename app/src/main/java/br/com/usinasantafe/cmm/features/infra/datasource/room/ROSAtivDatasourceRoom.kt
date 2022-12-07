@@ -4,8 +4,10 @@ import br.com.usinasantafe.cmm.features.infra.models.ROSAtivModel
 
 interface ROSAtivDatasourceRoom {
 
-    suspend fun addROSAtiv(rOSAtivModel: ROSAtivModel): Long
+    suspend fun addAllROSAtiv(vararg rOSAtivModels: ROSAtivModel)
 
     suspend fun deleteAllROSAtiv()
+
+    suspend fun listROSAtiv(idOS: Long): List<ROSAtivModel>
 
 }

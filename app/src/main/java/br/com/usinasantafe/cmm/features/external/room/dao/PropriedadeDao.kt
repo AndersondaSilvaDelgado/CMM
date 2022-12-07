@@ -9,7 +9,7 @@ import br.com.usinasantafe.cmm.features.infra.models.PropriedadeModel
 interface PropriedadeDao {
 
     @Insert
-    suspend fun insert(propriedadeModel: PropriedadeModel): Long
+    suspend fun insertAll(vararg propriedadeModels: PropriedadeModel)
 
     @Query("DELETE FROM tbpropriedadeest")
     suspend fun deleteAll()
