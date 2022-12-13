@@ -1,6 +1,6 @@
 package br.com.usinasantafe.cmm.features.domain.repositories.stable
 
-import br.com.usinasantafe.cmm.features.domain.entities.MotoMec
+import br.com.usinasantafe.cmm.features.domain.entities.stable.MotoMec
 import kotlinx.coroutines.flow.Flow
 
 interface MotoMecRepository {

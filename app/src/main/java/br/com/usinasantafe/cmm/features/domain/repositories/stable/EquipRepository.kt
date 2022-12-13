@@ -1,6 +1,6 @@
 package br.com.usinasantafe.cmm.features.domain.repositories.stable
 
-import br.com.usinasantafe.cmm.features.domain.entities.Equip
+import br.com.usinasantafe.cmm.features.domain.entities.stable.Equip
 import kotlinx.coroutines.flow.Flow
 
 interface EquipRepository {
@@ -14,5 +14,7 @@ interface EquipRepository {
     suspend fun getEquipNro(nroEquip: Long): Equip
 
     suspend fun getEquipId(idEquip: Long): Equip
+
+    suspend fun getEquip(): Equip
 
 }

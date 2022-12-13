@@ -1,9 +1,11 @@
 package br.com.usinasantafe.cmm.features.module.repository
 
 import br.com.usinasantafe.cmm.features.domain.repositories.stable.*
+import br.com.usinasantafe.cmm.features.domain.repositories.variable.ApontMMFertRepository
 import br.com.usinasantafe.cmm.features.domain.repositories.variable.BoletimMMFertRepository
 import br.com.usinasantafe.cmm.features.domain.repositories.variable.ConfigRepository
 import br.com.usinasantafe.cmm.features.infra.repositories.stable.*
+import br.com.usinasantafe.cmm.features.infra.repositories.variable.ApontMMFertRepositoryImpl
 import br.com.usinasantafe.cmm.features.infra.repositories.variable.BoletimMMFertRepositoryImpl
 import br.com.usinasantafe.cmm.features.infra.repositories.variable.ConfigRepositoryImpl
 import dagger.Binds
@@ -15,6 +17,10 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 @Module
 interface RepositoryModule {
+
+    @Singleton
+    @Binds
+    fun bindApontMMFertRepository(repository: ApontMMFertRepositoryImpl): ApontMMFertRepository
 
     @Singleton
     @Binds

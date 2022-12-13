@@ -3,7 +3,8 @@ package br.com.usinasantafe.cmm.features.external.room.dao
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
-import br.com.usinasantafe.cmm.features.infra.models.LeiraModel
+import br.com.usinasantafe.cmm.common.utils.TB_LEIRA
+import br.com.usinasantafe.cmm.features.infra.models.stable.LeiraModel
 
 @Dao
 interface LeiraDao {
@@ -11,7 +12,7 @@ interface LeiraDao {
     @Insert
     suspend fun insertAll(vararg leiraModels: LeiraModel)
 
-    @Query("DELETE FROM tbleiraest")
+    @Query("DELETE FROM $TB_LEIRA")
     suspend fun deleteAll()
 
 }

@@ -1,12 +1,11 @@
 package br.com.usinasantafe.cmm.features.infra.repositories.stable
 
-import br.com.usinasantafe.cmm.features.domain.entities.EquipSeg
-import br.com.usinasantafe.cmm.features.infra.models.toEquipSeg
-import br.com.usinasantafe.cmm.features.infra.models.toEquipSegModel
+import br.com.usinasantafe.cmm.features.domain.entities.stable.EquipSeg
+import br.com.usinasantafe.cmm.features.infra.models.stable.toEquipSeg
+import br.com.usinasantafe.cmm.features.infra.models.stable.toEquipSegModel
 import br.com.usinasantafe.cmm.features.domain.repositories.stable.EquipSegRepository
 import br.com.usinasantafe.cmm.features.infra.datasource.room.EquipSegDatasourceRoom
 import br.com.usinasantafe.cmm.features.infra.datasource.webservice.EquipSegDatasourceWebService
-import br.com.usinasantafe.cmm.features.infra.models.toEquipModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject

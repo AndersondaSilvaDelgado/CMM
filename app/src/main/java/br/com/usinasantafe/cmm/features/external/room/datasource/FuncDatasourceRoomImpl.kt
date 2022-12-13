@@ -1,6 +1,6 @@
 package br.com.usinasantafe.cmm.features.external.room.datasource
 
-import br.com.usinasantafe.cmm.features.infra.models.FuncModel
+import br.com.usinasantafe.cmm.features.infra.models.stable.FuncModel
 import br.com.usinasantafe.cmm.features.external.room.dao.FuncDao
 import br.com.usinasantafe.cmm.features.infra.datasource.room.FuncDatasourceRoom
 import javax.inject.Inject

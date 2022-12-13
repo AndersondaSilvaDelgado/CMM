@@ -1,6 +1,6 @@
 package br.com.usinasantafe.cmm.features.infra.datasource.webservice
 
-import br.com.usinasantafe.cmm.features.infra.models.OSModel
+import br.com.usinasantafe.cmm.features.infra.models.stable.OSModel
 import kotlinx.coroutines.flow.Flow
 
 interface OSDatasourceWebService {

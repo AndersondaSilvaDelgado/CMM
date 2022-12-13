@@ -1,6 +1,6 @@
 package br.com.usinasantafe.cmm.features.infra.datasource.sharedpreferences
 
-import br.com.usinasantafe.cmm.features.domain.entities.Config
+import br.com.usinasantafe.cmm.features.domain.entities.variable.Config
 
 interface ConfigDatasourceSharedPreferences {
 

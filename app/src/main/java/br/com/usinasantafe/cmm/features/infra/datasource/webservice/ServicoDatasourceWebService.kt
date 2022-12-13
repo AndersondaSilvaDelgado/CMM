@@ -1,6 +1,6 @@
 package br.com.usinasantafe.cmm.features.infra.datasource.webservice
 
-import br.com.usinasantafe.cmm.features.infra.models.ServicoModel
+import br.com.usinasantafe.cmm.features.infra.models.stable.ServicoModel
 import kotlinx.coroutines.flow.Flow
 
 interface ServicoDatasourceWebService {

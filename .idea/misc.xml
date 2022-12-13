@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/anderson/Documents/Android Kotlin/CMM/app/src/main/res/layout/activity_apont.xml" value="0.1" />
         <entry key="..\:/Users/anderson/Documents/Android Kotlin/CMM/app/src/main/res/layout/activity_apontamento.xml" value="0.27291666666666664" />
         <entry key="..\:/Users/anderson/Documents/Android Kotlin/CMM/app/src/main/res/layout/activity_boletim.xml" value="0.27291666666666664" />
         <entry key="..\:/Users/anderson/Documents/Android Kotlin/CMM/app/src/main/res/layout/activity_check_list.xml" value="0.27291666666666664" />
@@ -20,6 +21,7 @@
         <entry key="..\:/Users/anderson/Documents/Android Kotlin/CMM/app/src/main/res/layout/fragment_horimetro_bol.xml" value="0.121875" />
         <entry key="..\:/Users/anderson/Documents/Android Kotlin/CMM/app/src/main/res/layout/fragment_item_check_list.xml" value="0.27291666666666664" />
         <entry key="..\:/Users/anderson/Documents/Android Kotlin/CMM/app/src/main/res/layout/fragment_menu.xml" value="0.27291666666666664" />
+        <entry key="..\:/Users/anderson/Documents/Android Kotlin/CMM/app/src/main/res/layout/fragment_menu_apont.xml" value="0.19074074074074074" />
         <entry key="..\:/Users/anderson/Documents/Android Kotlin/CMM/app/src/main/res/layout/fragment_menu_inicial.xml" value="0.12552083333333333" />
         <entry key="..\:/Users/anderson/Documents/Android Kotlin/CMM/app/src/main/res/layout/fragment_operador.xml" value="0.27291666666666664" />
         <entry key="..\:/Users/anderson/Documents/Android Kotlin/CMM/app/src/main/res/layout/fragment_operador_bol.xml" value="0.14479166666666668" />
@@ -27,6 +29,7 @@
         <entry key="..\:/Users/anderson/Documents/Android Kotlin/CMM/app/src/main/res/layout/fragment_os_apont.xml" value="0.25885416666666666" />
         <entry key="..\:/Users/anderson/Documents/Android Kotlin/CMM/app/src/main/res/layout/fragment_os_bol.xml" value="0.27291666666666664" />
         <entry key="..\:/Users/anderson/Documents/Android Kotlin/CMM/app/src/main/res/layout/fragment_parada.xml" value="0.25885416666666666" />
+        <entry key="..\:/Users/anderson/Documents/Android Kotlin/CMM/app/src/main/res/layout/fragment_parada_apont.xml" value="0.19074074074074074" />
         <entry key="..\:/Users/anderson/Documents/Android Kotlin/CMM/app/src/main/res/layout/fragment_parada_bol.xml" value="0.27291666666666664" />
         <entry key="..\:/Users/anderson/Documents/Android Kotlin/CMM/app/src/main/res/layout/fragment_perg_atual_check_list.xml" value="0.27291666666666664" />
         <entry key="..\:/Users/anderson/Documents/Android Kotlin/CMM/app/src/main/res/layout/fragment_senha.xml" value="0.12552083333333333" />

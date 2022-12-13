@@ -3,7 +3,8 @@ package br.com.usinasantafe.cmm.features.external.room.dao
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
-import br.com.usinasantafe.cmm.features.infra.models.OSModel
+import br.com.usinasantafe.cmm.common.utils.TB_OS
+import br.com.usinasantafe.cmm.features.infra.models.stable.OSModel
 
 @Dao
 interface OSDao {
@@ -11,12 +12,12 @@ interface OSDao {
     @Insert
     suspend fun insertAll(vararg osModels: OSModel)
 
-    @Query("DELETE FROM tbosest")
+    @Query("DELETE FROM $TB_OS")
     suspend fun deleteAll()
 
-    @Query("SELECT count(*) FROM tbosest WHERE nroOS = :nroOS")
+    @Query("SELECT count(*) FROM $TB_OS WHERE nroOS = :nroOS")
     suspend fun check(nroOS: Long): Int
 
-    @Query("SELECT * FROM tbosest WHERE nroOS = :nroOS")
+    @Query("SELECT * FROM $TB_OS WHERE nroOS = :nroOS")
     suspend fun getNroOS(nroOS: Long): OSModel
 }

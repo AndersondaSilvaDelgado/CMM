@@ -22,6 +22,14 @@ interface DatasourceRoomModule {
 
     @Singleton
     @Binds
+    fun bindBoletimFertDatasource(dataSource: BoletimFertDatasourceRoomImpl): BoletimFertDatasourceRoom
+
+    @Singleton
+    @Binds
+    fun bindBoletimMMDatasource(dataSource: BoletimMMDatasourceRoomImpl): BoletimMMDatasourceRoom
+
+    @Singleton
+    @Binds
     fun bindComponenteDatasource(dataSource: ComponenteDatasourceRoomImpl): ComponenteDatasourceRoom
 
     @Singleton

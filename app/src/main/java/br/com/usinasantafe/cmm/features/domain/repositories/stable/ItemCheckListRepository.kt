@@ -1,6 +1,6 @@
 package br.com.usinasantafe.cmm.features.domain.repositories.stable
 
-import br.com.usinasantafe.cmm.features.domain.entities.ItemCheckList
+import br.com.usinasantafe.cmm.features.domain.entities.stable.ItemCheckList
 import kotlinx.coroutines.flow.Flow
 
 interface ItemCheckListRepository {

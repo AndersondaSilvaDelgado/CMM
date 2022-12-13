@@ -2,11 +2,11 @@ package br.com.usinasantafe.cmm.features.presenter.ui.config.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import br.com.usinasantafe.cmm.features.domain.entities.Config
+import br.com.usinasantafe.cmm.features.domain.entities.variable.Config
 import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.common.CheckUpdate
 import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.config.RecoverConfig
 import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.config.SaveConfig
-import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.manipulationdata.UpdateDataBase
+import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.database.UpdateAllDataBase
 import br.com.usinasantafe.cmm.features.presenter.models.ResultUpdateDataBase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -19,7 +19,7 @@ import javax.inject.Inject
 @HiltViewModel
 class ConfigViewModel @Inject constructor (
     private val recoverConfig: RecoverConfig,
-    private val updateDataBase: UpdateDataBase,
+    private val updateAllDataBase: UpdateAllDataBase,
     private val saveConfig: SaveConfig,
     private val checkUpdate: CheckUpdate
 ): ViewModel() {
@@ -82,7 +82,7 @@ class ConfigViewModel @Inject constructor (
 
     fun updateDados() =
         viewModelScope.launch {
-            updateDataBase().
+            updateAllDataBase().
                 onStart {
                     setLoadingDataBase()
                 }

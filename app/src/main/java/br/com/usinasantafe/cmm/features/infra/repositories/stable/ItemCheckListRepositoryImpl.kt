@@ -1,12 +1,11 @@
 package br.com.usinasantafe.cmm.features.infra.repositories.stable
 
-import br.com.usinasantafe.cmm.features.domain.entities.ItemCheckList
-import br.com.usinasantafe.cmm.features.infra.models.toItemCheckList
-import br.com.usinasantafe.cmm.features.infra.models.toItemCheckListModel
+import br.com.usinasantafe.cmm.features.domain.entities.stable.ItemCheckList
+import br.com.usinasantafe.cmm.features.infra.models.stable.toItemCheckList
+import br.com.usinasantafe.cmm.features.infra.models.stable.toItemCheckListModel
 import br.com.usinasantafe.cmm.features.domain.repositories.stable.ItemCheckListRepository
 import br.com.usinasantafe.cmm.features.infra.datasource.room.ItemCheckListDatasourceRoom
 import br.com.usinasantafe.cmm.features.infra.datasource.webservice.ItemCheckListDatasourceWebService
-import br.com.usinasantafe.cmm.features.infra.models.toFuncModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject

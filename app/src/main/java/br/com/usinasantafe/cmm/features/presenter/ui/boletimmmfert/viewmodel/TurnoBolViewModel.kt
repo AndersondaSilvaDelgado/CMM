@@ -2,10 +2,10 @@ package br.com.usinasantafe.cmm.features.presenter.ui.boletimmmfert.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import br.com.usinasantafe.cmm.features.domain.entities.Turno
+import br.com.usinasantafe.cmm.features.domain.entities.stable.Turno
 import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.boletimmmfert.SetIdTurnoBoletimMMFert
 import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.common.ListTurno
-import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.manipulationdata.UpdateTurno
+import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.database.update.UpdateTurno
 import br.com.usinasantafe.cmm.features.presenter.models.ResultUpdateDataBase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow

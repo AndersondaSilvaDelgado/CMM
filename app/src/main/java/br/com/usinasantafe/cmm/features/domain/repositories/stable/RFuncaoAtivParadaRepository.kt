@@ -1,6 +1,6 @@
 package br.com.usinasantafe.cmm.features.domain.repositories.stable
 
-import br.com.usinasantafe.cmm.features.domain.entities.RFuncaoAtivParada
+import br.com.usinasantafe.cmm.features.domain.entities.stable.RFuncaoAtivParada
 import kotlinx.coroutines.flow.Flow
 
 interface RFuncaoAtivParadaRepository {
@@ -10,5 +10,7 @@ interface RFuncaoAtivParadaRepository {
     suspend fun deleteAllRFuncaoAtivParada()
 
     suspend fun recoverAllRFuncaoAtivParada(): Flow<Result<List<RFuncaoAtivParada>>>
+
+    suspend fun listRFuncaoAtiv(): List<RFuncaoAtivParada>
 
 }

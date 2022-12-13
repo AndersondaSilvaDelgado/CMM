@@ -1,7 +1,7 @@
 package br.com.usinasantafe.cmm.features.external.webservice.datasource
 
 import br.com.usinasantafe.cmm.features.external.webservice.api.ItemCheckListApi
-import br.com.usinasantafe.cmm.features.infra.models.ItemCheckListModel
+import br.com.usinasantafe.cmm.features.infra.models.stable.ItemCheckListModel
 import br.com.usinasantafe.cmm.features.infra.datasource.webservice.ItemCheckListDatasourceWebService
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow

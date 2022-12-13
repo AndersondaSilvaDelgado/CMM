@@ -1,6 +1,6 @@
 package br.com.usinasantafe.cmm.features.infra.datasource.webservice
 
-import br.com.usinasantafe.cmm.features.infra.models.ItemCheckListModel
+import br.com.usinasantafe.cmm.features.infra.models.stable.ItemCheckListModel
 import kotlinx.coroutines.flow.Flow
 
 interface ItemCheckListDatasourceWebService {

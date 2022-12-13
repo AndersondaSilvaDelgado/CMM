@@ -1,7 +1,7 @@
 package br.com.usinasantafe.cmm.features.external.webservice.datasource
 
 import br.com.usinasantafe.cmm.features.external.webservice.api.ServicoApi
-import br.com.usinasantafe.cmm.features.infra.models.ServicoModel
+import br.com.usinasantafe.cmm.features.infra.models.stable.ServicoModel
 import br.com.usinasantafe.cmm.features.infra.datasource.webservice.ServicoDatasourceWebService
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow

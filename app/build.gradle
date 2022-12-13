@@ -42,6 +42,7 @@ android {
             dimension 'cmm'
             applicationIdSuffix '.pmm'
             manifestPlaceholders.appName = "PMM"
+
         }
         ecm {
             dimension 'cmm'

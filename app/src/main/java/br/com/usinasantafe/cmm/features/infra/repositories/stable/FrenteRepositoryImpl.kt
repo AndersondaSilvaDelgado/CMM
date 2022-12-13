@@ -1,12 +1,11 @@
 package br.com.usinasantafe.cmm.features.infra.repositories.stable
 
-import br.com.usinasantafe.cmm.features.domain.entities.Frente
-import br.com.usinasantafe.cmm.features.infra.models.toFrente
-import br.com.usinasantafe.cmm.features.infra.models.toFrenteModel
+import br.com.usinasantafe.cmm.features.domain.entities.stable.Frente
+import br.com.usinasantafe.cmm.features.infra.models.stable.toFrente
+import br.com.usinasantafe.cmm.features.infra.models.stable.toFrenteModel
 import br.com.usinasantafe.cmm.features.domain.repositories.stable.FrenteRepository
 import br.com.usinasantafe.cmm.features.infra.datasource.room.FrenteDatasourceRoom
 import br.com.usinasantafe.cmm.features.infra.datasource.webservice.FrenteDatasourceWebService
-import br.com.usinasantafe.cmm.features.infra.models.toEquipSegModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject

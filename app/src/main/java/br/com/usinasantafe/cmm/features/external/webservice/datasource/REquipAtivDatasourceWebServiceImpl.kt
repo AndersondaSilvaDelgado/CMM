@@ -2,7 +2,7 @@ package br.com.usinasantafe.cmm.features.external.webservice.datasource
 
 import br.com.usinasantafe.cmm.features.external.webservice.api.REquipAtivApi
 import br.com.usinasantafe.cmm.features.infra.datasource.webservice.REquipAtivDatasourceWebService
-import br.com.usinasantafe.cmm.features.infra.models.REquipAtivModel
+import br.com.usinasantafe.cmm.features.infra.models.stable.REquipAtivModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject

@@ -7,6 +7,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import br.com.usinasantafe.cmm.R
 import br.com.usinasantafe.cmm.common.adapter.CustomAdapter
@@ -14,13 +15,14 @@ import br.com.usinasantafe.cmm.common.base.BaseFragment
 import br.com.usinasantafe.cmm.common.dialog.GenericDialogProgressBar
 import br.com.usinasantafe.cmm.common.extension.showToast
 import br.com.usinasantafe.cmm.databinding.FragmentAtivBolBinding
-import br.com.usinasantafe.cmm.features.domain.entities.Atividade
+import br.com.usinasantafe.cmm.features.domain.entities.stable.Atividade
 import br.com.usinasantafe.cmm.features.presenter.models.ResultUpdateDataBase
 import br.com.usinasantafe.cmm.features.presenter.ui.boletimmmfert.viewmodel.AtivBolFragmentState
 import br.com.usinasantafe.cmm.features.presenter.ui.boletimmmfert.viewmodel.AtivBolViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class AtivBolFragment : BaseFragment<FragmentAtivBolBinding>(
@@ -46,15 +48,23 @@ class AtivBolFragment : BaseFragment<FragmentAtivBolBinding>(
     }
 
     private fun observeState(){
-        viewModel.uiStateFlow.flowWithLifecycle(viewLifecycleOwner.lifecycle, Lifecycle.State.STARTED)
-            .onEach { state -> handleStateChange(state) }
-            .launchIn(viewLifecycleOwner.lifecycleScope)
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED){
+                viewModel.uiStateFlow.collect{
+                    state -> handleStateChange(state)
+                }
+            }
+        }
     }
 
     private fun observeResult(){
-        viewModel.resultUpdateDataBase.flowWithLifecycle(viewLifecycleOwner.lifecycle, Lifecycle.State.STARTED)
-            .onEach { state -> handleStatusUpdate(state) }
-            .launchIn(viewLifecycleOwner.lifecycleScope)
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED){
+                viewModel.resultUpdateDataBase.collect{
+                    state -> handleStatusUpdate(state)
+                }
+            }
+        }
     }
 
     private fun viewList(ativList: List<Atividade>) {
@@ -62,7 +72,7 @@ class AtivBolFragment : BaseFragment<FragmentAtivBolBinding>(
         val ativListView = ativList.map { it.descrAtiv }
 
         val listAdapter = CustomAdapter(ativListView).apply {
-            onItemClick = { text, pos ->
+            onItemClick = { _, pos ->
                 viewModel.setIdAtiv(ativList[pos])
                 findNavController().navigate(R.id.action_ativBolFragment_to_horimetroBolFragment)
             }

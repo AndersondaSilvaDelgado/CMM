@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.boletimmmfert.SetMatricFuncBoletimMMFert
 import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.common.CheckMatricOperador
-import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.manipulationdata.UpdateFunc
+import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.database.update.UpdateFunc
 import br.com.usinasantafe.cmm.features.presenter.models.ResultUpdateDataBase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow

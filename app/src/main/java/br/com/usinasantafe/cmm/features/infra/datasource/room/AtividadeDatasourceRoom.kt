@@ -1,6 +1,6 @@
 package br.com.usinasantafe.cmm.features.infra.datasource.room
 
-import br.com.usinasantafe.cmm.features.infra.models.AtividadeModel
+import br.com.usinasantafe.cmm.features.infra.models.stable.AtividadeModel
 
 interface AtividadeDatasourceRoom {
 

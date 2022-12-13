@@ -1,6 +1,8 @@
 package br.com.usinasantafe.cmm.features.domain.usecases.implementos.boletimmmfert
 
+import br.com.usinasantafe.cmm.features.domain.repositories.stable.EquipRepository
 import br.com.usinasantafe.cmm.features.domain.repositories.variable.BoletimMMFertRepository
+import br.com.usinasantafe.cmm.features.domain.repositories.variable.ConfigRepository
 import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.boletimmmfert.StartBoletimMMFert
 import javax.inject.Inject
 

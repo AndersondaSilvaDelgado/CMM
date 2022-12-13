@@ -8,19 +8,21 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import br.com.usinasantafe.cmm.R
 import br.com.usinasantafe.cmm.common.dialog.GenericDialogProgressBar
 import br.com.usinasantafe.cmm.common.base.BaseFragment
 import br.com.usinasantafe.cmm.common.extension.showGenericAlertDialog
 import br.com.usinasantafe.cmm.databinding.FragmentConfigBinding
-import br.com.usinasantafe.cmm.features.domain.entities.Config
+import br.com.usinasantafe.cmm.features.domain.entities.variable.Config
 import br.com.usinasantafe.cmm.features.presenter.models.ResultUpdateDataBase
 import br.com.usinasantafe.cmm.features.presenter.ui.config.viewmodel.ConfigFragmentState
 import br.com.usinasantafe.cmm.features.presenter.ui.config.viewmodel.ConfigViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.launch
 
 
 @AndroidEntryPoint
@@ -48,20 +50,28 @@ class ConfigFragment : BaseFragment<FragmentConfigBinding>(
     }
 
     private fun observeState(){
-        viewModel.uiStateFlow.flowWithLifecycle(viewLifecycleOwner.lifecycle, Lifecycle.State.STARTED)
-            .onEach { state -> handleStateChange(state) }
-            .launchIn(viewLifecycleOwner.lifecycleScope)
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED){
+                viewModel.uiStateFlow.collect{
+                    state -> handleStateChange(state)
+                }
+            }
+        }
     }
 
     private fun observeResult(){
-        viewModel.resultUpdateDataBase.flowWithLifecycle(viewLifecycleOwner.lifecycle, Lifecycle.State.STARTED)
-            .onEach { state -> handleStatus(state) }
-            .launchIn(viewLifecycleOwner.lifecycleScope)
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED){
+                viewModel.resultUpdateDataBase.collect{
+                    state -> handleStatus(state)
+                }
+            }
+        }
     }
 
     private fun setListener() {
         with(binding) {
-            buttonAtualizarBD.setOnClickListener {
+            buttonAtualBaseDados.setOnClickListener {
                 viewModel.updateDados()
             }
             buttonSalvarConfig.setOnClickListener {

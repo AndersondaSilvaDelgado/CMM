@@ -1,7 +1,7 @@
 package br.com.usinasantafe.cmm.features.external.webservice.datasource
 
 import br.com.usinasantafe.cmm.features.external.webservice.api.LeiraApi
-import br.com.usinasantafe.cmm.features.infra.models.LeiraModel
+import br.com.usinasantafe.cmm.features.infra.models.stable.LeiraModel
 import br.com.usinasantafe.cmm.features.infra.datasource.webservice.LeiraDatasourceWebService
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow

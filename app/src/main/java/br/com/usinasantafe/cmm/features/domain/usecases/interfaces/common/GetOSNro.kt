@@ -1,6 +1,6 @@
 package br.com.usinasantafe.cmm.features.domain.usecases.interfaces.common
 
-import br.com.usinasantafe.cmm.features.domain.entities.OS
+import br.com.usinasantafe.cmm.features.domain.entities.stable.OS
 
 interface GetOSNro {
 

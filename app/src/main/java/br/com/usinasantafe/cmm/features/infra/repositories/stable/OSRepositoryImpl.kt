@@ -1,12 +1,11 @@
 package br.com.usinasantafe.cmm.features.infra.repositories.stable
 
-import br.com.usinasantafe.cmm.features.domain.entities.OS
-import br.com.usinasantafe.cmm.features.infra.models.toOS
-import br.com.usinasantafe.cmm.features.infra.models.toOSModel
+import br.com.usinasantafe.cmm.features.domain.entities.stable.OS
+import br.com.usinasantafe.cmm.features.infra.models.stable.toOS
+import br.com.usinasantafe.cmm.features.infra.models.stable.toOSModel
 import br.com.usinasantafe.cmm.features.domain.repositories.stable.OSRepository
 import br.com.usinasantafe.cmm.features.infra.datasource.room.OSDatasourceRoom
 import br.com.usinasantafe.cmm.features.infra.datasource.webservice.OSDatasourceWebService
-import br.com.usinasantafe.cmm.features.infra.models.toMotoMecModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject

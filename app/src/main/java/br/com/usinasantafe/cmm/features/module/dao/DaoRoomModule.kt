@@ -26,6 +26,18 @@ object DaoRoomModule {
 
     @Singleton
     @Provides
+    fun provideBoletimFertDao(database: AppDatabaseRoom): BoletimFertDao {
+        return database.boletimFertDao()
+    }
+
+    @Singleton
+    @Provides
+    fun provideBoletimMMDao(database: AppDatabaseRoom): BoletimMMDao {
+        return database.boletimMMDao()
+    }
+
+    @Singleton
+    @Provides
     fun provideComponenteDao(database: AppDatabaseRoom): ComponenteDao {
         return database.componenteDao()
     }

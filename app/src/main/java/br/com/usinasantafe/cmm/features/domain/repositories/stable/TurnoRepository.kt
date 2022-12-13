@@ -1,6 +1,6 @@
 package br.com.usinasantafe.cmm.features.domain.repositories.stable
 
-import br.com.usinasantafe.cmm.features.domain.entities.Turno
+import br.com.usinasantafe.cmm.features.domain.entities.stable.Turno
 import kotlinx.coroutines.flow.Flow
 
 interface TurnoRepository {

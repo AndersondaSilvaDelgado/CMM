@@ -1,13 +1,11 @@
 package br.com.usinasantafe.cmm.features.infra.repositories.stable
 
-import br.com.usinasantafe.cmm.features.domain.entities.Turno
-import br.com.usinasantafe.cmm.features.infra.models.toTurno
-import br.com.usinasantafe.cmm.features.infra.models.toTurnoModel
+import br.com.usinasantafe.cmm.features.domain.entities.stable.Turno
+import br.com.usinasantafe.cmm.features.infra.models.stable.toTurno
+import br.com.usinasantafe.cmm.features.infra.models.stable.toTurnoModel
 import br.com.usinasantafe.cmm.features.domain.repositories.stable.TurnoRepository
 import br.com.usinasantafe.cmm.features.infra.datasource.room.TurnoDatasourceRoom
 import br.com.usinasantafe.cmm.features.infra.datasource.webservice.TurnoDatasourceWebService
-import br.com.usinasantafe.cmm.features.infra.models.TurnoModel
-import br.com.usinasantafe.cmm.features.infra.models.toServicoModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject

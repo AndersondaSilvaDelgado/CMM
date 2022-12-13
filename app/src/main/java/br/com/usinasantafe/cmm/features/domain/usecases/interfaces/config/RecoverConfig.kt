@@ -1,6 +1,6 @@
 package br.com.usinasantafe.cmm.features.domain.usecases.interfaces.config
 
-import br.com.usinasantafe.cmm.features.domain.entities.Config
+import br.com.usinasantafe.cmm.features.domain.entities.variable.Config
 
 interface RecoverConfig {
 

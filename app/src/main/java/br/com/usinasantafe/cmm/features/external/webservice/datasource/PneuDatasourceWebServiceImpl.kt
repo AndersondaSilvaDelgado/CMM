@@ -1,7 +1,7 @@
 package br.com.usinasantafe.cmm.features.external.webservice.datasource
 
 import br.com.usinasantafe.cmm.features.external.webservice.api.PneuApi
-import br.com.usinasantafe.cmm.features.infra.models.PneuModel
+import br.com.usinasantafe.cmm.features.infra.models.stable.PneuModel
 import br.com.usinasantafe.cmm.features.infra.datasource.webservice.PneuDatasourceWebService
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow

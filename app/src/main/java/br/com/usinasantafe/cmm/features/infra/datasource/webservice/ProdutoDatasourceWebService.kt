@@ -1,6 +1,6 @@
 package br.com.usinasantafe.cmm.features.infra.datasource.webservice
 
-import br.com.usinasantafe.cmm.features.infra.models.ProdutoModel
+import br.com.usinasantafe.cmm.features.infra.models.stable.ProdutoModel
 import kotlinx.coroutines.flow.Flow
 
 interface ProdutoDatasourceWebService {

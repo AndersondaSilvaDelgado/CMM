@@ -1,6 +1,6 @@
 package br.com.usinasantafe.cmm.features.domain.repositories.stable
 
-import br.com.usinasantafe.cmm.features.domain.entities.PressaoBocal
+import br.com.usinasantafe.cmm.features.domain.entities.stable.PressaoBocal
 import kotlinx.coroutines.flow.Flow
 
 interface PressaoBocalRepository {

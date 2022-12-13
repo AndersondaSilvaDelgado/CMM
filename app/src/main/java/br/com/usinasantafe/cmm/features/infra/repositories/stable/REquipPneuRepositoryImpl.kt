@@ -1,12 +1,11 @@
 package br.com.usinasantafe.cmm.features.infra.repositories.stable
 
-import br.com.usinasantafe.cmm.features.domain.entities.REquipPneu
+import br.com.usinasantafe.cmm.features.domain.entities.stable.REquipPneu
 import br.com.usinasantafe.cmm.features.domain.repositories.stable.REquipPneuRepository
 import br.com.usinasantafe.cmm.features.infra.datasource.room.REquipPneuDatasourceRoom
 import br.com.usinasantafe.cmm.features.infra.datasource.webservice.REquipPneuDatasourceWebService
-import br.com.usinasantafe.cmm.features.infra.models.toREquipAtivModel
-import br.com.usinasantafe.cmm.features.infra.models.toREquipPneu
-import br.com.usinasantafe.cmm.features.infra.models.toREquipPneuModel
+import br.com.usinasantafe.cmm.features.infra.models.stable.toREquipPneu
+import br.com.usinasantafe.cmm.features.infra.models.stable.toREquipPneuModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject

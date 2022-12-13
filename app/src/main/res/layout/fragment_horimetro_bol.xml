@@ -11,13 +11,13 @@
     tools:context=".features.presenter.ui.boletimmmfert.view.HorimetroBolFragment">
 
     <TextView
-        android:id="@+id/textViewPadrao"
-        style="@style/TextView"
+        android:id="@+id/text_view_padrao"
+        style="@style/text_view"
         android:text="@string/texto_horimetro" />
 
     <EditText
-        android:id="@+id/editTextPadrao"
-        style="@style/EditView" />
+        android:id="@+id/edit_text_padrao"
+        style="@style/edit_view" />
 
     <include
         android:id="@+id/layout_botoes"

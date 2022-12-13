@@ -1,6 +1,6 @@
 package br.com.usinasantafe.cmm.features.infra.datasource.room
 
-import br.com.usinasantafe.cmm.features.infra.models.ServicoModel
+import br.com.usinasantafe.cmm.features.infra.models.stable.ServicoModel
 
 interface ServicoDatasourceRoom {
 

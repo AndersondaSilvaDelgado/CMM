@@ -1,12 +1,11 @@
 package br.com.usinasantafe.cmm.features.infra.repositories.stable
 
-import br.com.usinasantafe.cmm.features.domain.entities.PressaoBocal
-import br.com.usinasantafe.cmm.features.infra.models.toPressaoBocal
-import br.com.usinasantafe.cmm.features.infra.models.toPressaoBocalModel
+import br.com.usinasantafe.cmm.features.domain.entities.stable.PressaoBocal
+import br.com.usinasantafe.cmm.features.infra.models.stable.toPressaoBocal
+import br.com.usinasantafe.cmm.features.infra.models.stable.toPressaoBocalModel
 import br.com.usinasantafe.cmm.features.domain.repositories.stable.PressaoBocalRepository
 import br.com.usinasantafe.cmm.features.infra.datasource.room.PressaoBocalDatasourceRoom
 import br.com.usinasantafe.cmm.features.infra.datasource.webservice.PressaoBocalDatasourceWebService
-import br.com.usinasantafe.cmm.features.infra.models.toPneuModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject

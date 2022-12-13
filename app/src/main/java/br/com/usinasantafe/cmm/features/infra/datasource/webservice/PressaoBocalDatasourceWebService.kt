@@ -1,6 +1,6 @@
 package br.com.usinasantafe.cmm.features.infra.datasource.webservice
 
-import br.com.usinasantafe.cmm.features.infra.models.PressaoBocalModel
+import br.com.usinasantafe.cmm.features.infra.models.stable.PressaoBocalModel
 import kotlinx.coroutines.flow.Flow
 
 interface PressaoBocalDatasourceWebService {

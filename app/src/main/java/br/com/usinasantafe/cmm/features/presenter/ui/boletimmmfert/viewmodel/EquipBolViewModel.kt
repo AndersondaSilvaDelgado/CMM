@@ -2,8 +2,7 @@ package br.com.usinasantafe.cmm.features.presenter.ui.boletimmmfert.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import br.com.usinasantafe.cmm.features.domain.entities.Equip
-import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.boletimmmfert.SetIdEquipBoletimMMFert
+import br.com.usinasantafe.cmm.features.domain.entities.stable.Equip
 import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.common.GetEquipConfig
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -13,8 +12,7 @@ import javax.inject.Inject
 
 @HiltViewModel
 class EquipBolViewModel @Inject constructor (
-    private val getEquipConfig: GetEquipConfig,
-    private val setIdEquipBoletimMMFert: SetIdEquipBoletimMMFert
+    private val getEquipConfig: GetEquipConfig
 ): ViewModel() {
 
     private val _uiStateFlow = MutableStateFlow<EquipBolFragmentState>(EquipBolFragmentState.Init)
@@ -26,10 +24,6 @@ class EquipBolViewModel @Inject constructor (
 
     fun recoverNroEquip() = viewModelScope.launch {
         getEquipNro(getEquipConfig())
-    }
-
-    fun setEquip() = viewModelScope.launch {
-        setIdEquipBoletimMMFert()
     }
 
 }

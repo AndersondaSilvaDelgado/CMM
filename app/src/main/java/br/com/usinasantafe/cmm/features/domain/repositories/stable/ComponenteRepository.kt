@@ -1,6 +1,6 @@
 package br.com.usinasantafe.cmm.features.domain.repositories.stable
 
-import br.com.usinasantafe.cmm.features.domain.entities.Componente
+import br.com.usinasantafe.cmm.features.domain.entities.stable.Componente
 import kotlinx.coroutines.flow.Flow
 
 interface ComponenteRepository {

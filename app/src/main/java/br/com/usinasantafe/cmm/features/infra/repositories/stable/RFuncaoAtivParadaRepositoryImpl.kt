@@ -1,17 +1,18 @@
 package br.com.usinasantafe.cmm.features.infra.repositories.stable
 
-import br.com.usinasantafe.cmm.features.domain.entities.RFuncaoAtivParada
-import br.com.usinasantafe.cmm.features.infra.models.toRFuncaoAtivParada
-import br.com.usinasantafe.cmm.features.infra.models.toRFuncaoAtivParadaModel
+import br.com.usinasantafe.cmm.features.domain.entities.stable.RFuncaoAtivParada
+import br.com.usinasantafe.cmm.features.infra.models.stable.toRFuncaoAtivParada
+import br.com.usinasantafe.cmm.features.infra.models.stable.toRFuncaoAtivParadaModel
 import br.com.usinasantafe.cmm.features.domain.repositories.stable.RFuncaoAtivParadaRepository
+import br.com.usinasantafe.cmm.features.domain.repositories.variable.BoletimMMFertRepository
 import br.com.usinasantafe.cmm.features.infra.datasource.room.RFuncaoAtivParadaDatasourceRoom
 import br.com.usinasantafe.cmm.features.infra.datasource.webservice.RFuncaoAtivParadaDatasourceWebService
-import br.com.usinasantafe.cmm.features.infra.models.toREquipPneuModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
 class RFuncaoAtivParadaRepositoryImpl @Inject constructor(
+    private val boletimMMFertRepository: BoletimMMFertRepository,
     private val rFuncaoAtivParadaDatasourceRoom: RFuncaoAtivParadaDatasourceRoom,
     private val rFuncaoAtivParadaDatasourceWebService: RFuncaoAtivParadaDatasourceWebService
 ): RFuncaoAtivParadaRepository {
@@ -33,6 +34,10 @@ class RFuncaoAtivParadaRepositoryImpl @Inject constructor(
                     }
                 }
         }
+    }
+
+    override suspend fun listRFuncaoAtiv(): List<RFuncaoAtivParada> {
+        return rFuncaoAtivParadaDatasourceRoom.listRFuncaoAtiv(boletimMMFertRepository.getAtiv()).map { it.toRFuncaoAtivParada() }
     }
 
 }

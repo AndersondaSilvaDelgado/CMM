@@ -12,12 +12,12 @@
     tools:context=".features.presenter.ui.config.view.MenuInicialFragment">
 
     <TextView
-        android:id="@+id/textViewPrincipal"
-        style="@style/TextViewTituloLista"
+        android:id="@+id/text_view_principal"
+        style="@style/text_view_titulo_lista"
         android:text="@string/texto_menu_principal" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/menu_inicial"
+        android:id="@+id/list_menu_inicial"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
@@ -25,8 +25,8 @@
         tools:listitem="@layout/item_row_text" />
 
     <TextView
-        android:id="@+id/textViewProcesso"
-        style="@style/TextViewItemList"
+        android:id="@+id/text_view_processo"
+        style="@style/text_view_item_list"
         tools:text="TESTE" />
 
 </LinearLayout>

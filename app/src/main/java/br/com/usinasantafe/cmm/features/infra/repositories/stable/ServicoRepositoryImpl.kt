@@ -1,12 +1,11 @@
 package br.com.usinasantafe.cmm.features.infra.repositories.stable
 
-import br.com.usinasantafe.cmm.features.domain.entities.Servico
-import br.com.usinasantafe.cmm.features.infra.models.toServico
-import br.com.usinasantafe.cmm.features.infra.models.toServicoModel
+import br.com.usinasantafe.cmm.features.domain.entities.stable.Servico
+import br.com.usinasantafe.cmm.features.infra.models.stable.toServico
+import br.com.usinasantafe.cmm.features.infra.models.stable.toServicoModel
 import br.com.usinasantafe.cmm.features.domain.repositories.stable.ServicoRepository
 import br.com.usinasantafe.cmm.features.infra.datasource.room.ServicoDatasourceRoom
 import br.com.usinasantafe.cmm.features.infra.datasource.webservice.ServicoDatasourceWebService
-import br.com.usinasantafe.cmm.features.infra.models.toROSAtivModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject

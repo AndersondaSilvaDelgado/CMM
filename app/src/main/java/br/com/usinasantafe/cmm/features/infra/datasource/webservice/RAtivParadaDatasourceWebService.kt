@@ -1,6 +1,6 @@
 package br.com.usinasantafe.cmm.features.infra.datasource.webservice
 
-import br.com.usinasantafe.cmm.features.infra.models.RAtivParadaModel
+import br.com.usinasantafe.cmm.features.infra.models.stable.RAtivParadaModel
 import kotlinx.coroutines.flow.Flow
 
 interface RAtivParadaDatasourceWebService {

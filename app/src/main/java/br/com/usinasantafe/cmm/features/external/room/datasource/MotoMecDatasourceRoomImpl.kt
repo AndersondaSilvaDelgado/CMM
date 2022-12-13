@@ -1,6 +1,6 @@
 package br.com.usinasantafe.cmm.features.external.room.datasource
 
-import br.com.usinasantafe.cmm.features.infra.models.MotoMecModel
+import br.com.usinasantafe.cmm.features.infra.models.stable.MotoMecModel
 import br.com.usinasantafe.cmm.features.external.room.dao.MotoMecDao
 import br.com.usinasantafe.cmm.features.infra.datasource.room.MotoMecDatasourceRoom
 import javax.inject.Inject

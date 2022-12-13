@@ -1,6 +1,6 @@
 package br.com.usinasantafe.cmm.features.external.room.datasource
 
-import br.com.usinasantafe.cmm.features.infra.models.LeiraModel
+import br.com.usinasantafe.cmm.features.infra.models.stable.LeiraModel
 import br.com.usinasantafe.cmm.features.external.room.dao.LeiraDao
 import br.com.usinasantafe.cmm.features.infra.datasource.room.LeiraDatasourceRoom
 import javax.inject.Inject

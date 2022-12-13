@@ -7,11 +7,13 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import br.com.usinasantafe.cmm.R
 import br.com.usinasantafe.cmm.common.adapter.CustomAdapter
 import br.com.usinasantafe.cmm.common.base.BaseFragment
 import br.com.usinasantafe.cmm.common.extension.showGenericAlertDialog
+import br.com.usinasantafe.cmm.common.utils.StatusConnection
 import br.com.usinasantafe.cmm.databinding.FragmentMenuInicialBinding
 import br.com.usinasantafe.cmm.features.presenter.ui.boletimmmfert.view.BoletimActivity
 import br.com.usinasantafe.cmm.features.presenter.ui.config.viewmodel.MenuInicialFragmentState
@@ -19,6 +21,7 @@ import br.com.usinasantafe.cmm.features.presenter.ui.config.viewmodel.MenuInicia
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class MenuInicialFragment: BaseFragment<FragmentMenuInicialBinding>(
@@ -41,9 +44,13 @@ class MenuInicialFragment: BaseFragment<FragmentMenuInicialBinding>(
     }
 
     private fun observeState(){
-        viewModel.uiStateFlow.flowWithLifecycle(viewLifecycleOwner.lifecycle, Lifecycle.State.STARTED)
-            .onEach { state -> handleStateChange(state) }
-            .launchIn(viewLifecycleOwner.lifecycleScope)
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED){
+                viewModel.uiStateFlow.collect{
+                    state -> handleStateChange(state)
+                }
+            }
+        }
     }
 
     private fun viewList() {
@@ -58,14 +65,14 @@ class MenuInicialFragment: BaseFragment<FragmentMenuInicialBinding>(
         )
 
         val listAdapter = CustomAdapter(opcaoMenu).apply {
-            onItemClick = { text, pos ->
+            onItemClick = { text, _ ->
                 when(text){
                     "BOLETIM" -> eventBoletim()
                     "CONFIGURAÇÃO" -> eventConfig()
                 }
             }
         }
-        binding.menuInicial.run {
+        binding.listMenuInicial.run {
             setHasFixedSize(true)
             adapter = listAdapter
         }

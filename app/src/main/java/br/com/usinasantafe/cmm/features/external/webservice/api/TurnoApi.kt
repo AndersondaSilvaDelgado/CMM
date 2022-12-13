@@ -1,6 +1,6 @@
 package br.com.usinasantafe.cmm.features.external.webservice.api
 
-import br.com.usinasantafe.cmm.features.infra.models.TurnoModel
+import br.com.usinasantafe.cmm.features.infra.models.stable.TurnoModel
 import retrofit2.Response
 import retrofit2.http.GET
 

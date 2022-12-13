@@ -1,6 +1,6 @@
 package br.com.usinasantafe.cmm.features.infra.datasource.room
 
-import br.com.usinasantafe.cmm.features.infra.models.PneuModel
+import br.com.usinasantafe.cmm.features.infra.models.stable.PneuModel
 
 interface PneuDatasourceRoom {
 

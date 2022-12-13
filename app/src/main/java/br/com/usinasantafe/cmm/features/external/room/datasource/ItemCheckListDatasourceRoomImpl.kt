@@ -1,6 +1,6 @@
 package br.com.usinasantafe.cmm.features.external.room.datasource
 
-import br.com.usinasantafe.cmm.features.infra.models.ItemCheckListModel
+import br.com.usinasantafe.cmm.features.infra.models.stable.ItemCheckListModel
 import br.com.usinasantafe.cmm.features.external.room.dao.ItemCheckListDao
 import br.com.usinasantafe.cmm.features.infra.datasource.room.ItemCheckListDatasourceRoom
 import javax.inject.Inject

@@ -6,6 +6,7 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import br.com.usinasantafe.cmm.R
 import br.com.usinasantafe.cmm.common.base.BaseFragment
@@ -16,6 +17,7 @@ import br.com.usinasantafe.cmm.features.presenter.ui.config.viewmodel.SenhaViewM
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
+import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class SenhaFragment : BaseFragment<FragmentSenhaBinding>(
@@ -28,11 +30,7 @@ class SenhaFragment : BaseFragment<FragmentSenhaBinding>(
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         setListener()
-    }
-
-    override fun onStart() {
-        super.onStart()
-        observe()
+        observeState()
     }
 
     private fun setListener() {
@@ -44,10 +42,14 @@ class SenhaFragment : BaseFragment<FragmentSenhaBinding>(
         }
     }
 
-    private fun observe(){
-        viewModel.uiStateFlow.flowWithLifecycle(viewLifecycleOwner.lifecycle, Lifecycle.State.STARTED)
-            .onEach { state -> handleStateChange(state) }
-            .launchIn(viewLifecycleOwner.lifecycleScope)
+    private fun observeState(){
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED){
+                viewModel.uiStateFlow.collect{
+                    state -> handleStateChange(state)
+                }
+            }
+        }
     }
 
     private fun handleStateChange(state: SenhaFragmentState){

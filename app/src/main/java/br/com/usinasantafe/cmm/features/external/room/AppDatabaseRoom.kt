@@ -1,12 +1,21 @@
 package br.com.usinasantafe.cmm.features.external.room
 
 import androidx.room.*
+import br.com.usinasantafe.cmm.common.utils.VERSION_DB
 import br.com.usinasantafe.cmm.features.external.room.dao.*
-import br.com.usinasantafe.cmm.features.infra.models.*
+import br.com.usinasantafe.cmm.features.infra.models.stable.*
+import br.com.usinasantafe.cmm.features.infra.models.variable.room.ApontFertModel
+import br.com.usinasantafe.cmm.features.infra.models.variable.room.ApontMMModel
+import br.com.usinasantafe.cmm.features.infra.models.variable.room.BoletimFertModel
+import br.com.usinasantafe.cmm.features.infra.models.variable.room.BoletimMMModel
 
 @Database(entities = [AtividadeModel::class,
                             BocalModel::class,
                             ComponenteModel::class,
+                            ApontFertModel::class,
+                            ApontMMModel::class,
+                            BoletimMMModel::class,
+                            BoletimFertModel::class,
                             EquipModel::class,
                             EquipSegModel::class,
                             FrenteModel::class,
@@ -28,12 +37,13 @@ import br.com.usinasantafe.cmm.features.infra.models.*
                             ROSAtivModel::class,
                             ServicoModel::class,
                             TurnoModel::class]
-    , version = 1
-    , exportSchema = true)
+    , version = VERSION_DB
+    , exportSchema = false)
 abstract class AppDatabaseRoom: RoomDatabase() {
-
     abstract fun atividadeDao(): AtividadeDao
     abstract fun bocalDao(): BocalDao
+    abstract fun boletimFertDao(): BoletimFertDao
+    abstract fun boletimMMDao(): BoletimMMDao
     abstract fun componenteDao(): ComponenteDao
     abstract fun equipDao(): EquipDao
     abstract fun equipSegDao(): EquipSegDao

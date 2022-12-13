@@ -1,6 +1,6 @@
 package br.com.usinasantafe.cmm.features.infra.datasource.room
 
-import br.com.usinasantafe.cmm.features.infra.models.ParadaModel
+import br.com.usinasantafe.cmm.features.infra.models.stable.ParadaModel
 
 interface ParadaDatasourceRoom {
 

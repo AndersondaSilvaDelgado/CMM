@@ -1,12 +1,11 @@
 package br.com.usinasantafe.cmm.features.infra.repositories.stable
 
-import br.com.usinasantafe.cmm.features.domain.entities.MotoMec
-import br.com.usinasantafe.cmm.features.infra.models.toMotoMec
-import br.com.usinasantafe.cmm.features.infra.models.toMotoMecModel
+import br.com.usinasantafe.cmm.features.domain.entities.stable.MotoMec
+import br.com.usinasantafe.cmm.features.infra.models.stable.toMotoMec
+import br.com.usinasantafe.cmm.features.infra.models.stable.toMotoMecModel
 import br.com.usinasantafe.cmm.features.domain.repositories.stable.MotoMecRepository
 import br.com.usinasantafe.cmm.features.infra.datasource.room.MotoMecDatasourceRoom
 import br.com.usinasantafe.cmm.features.infra.datasource.webservice.MotoMecDatasourceWebService
-import br.com.usinasantafe.cmm.features.infra.models.toLeiraModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject

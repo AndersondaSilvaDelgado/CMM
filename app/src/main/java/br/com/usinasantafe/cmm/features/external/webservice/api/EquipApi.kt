@@ -1,6 +1,6 @@
 package br.com.usinasantafe.cmm.features.external.webservice.api
 
-import br.com.usinasantafe.cmm.features.infra.models.EquipModel
+import br.com.usinasantafe.cmm.features.infra.models.stable.EquipModel
 import retrofit2.Response
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded

@@ -1,6 +1,6 @@
 package br.com.usinasantafe.cmm.features.domain.repositories.stable
 
-import br.com.usinasantafe.cmm.features.domain.entities.ItemOSMecan
+import br.com.usinasantafe.cmm.features.domain.entities.stable.ItemOSMecan
 import kotlinx.coroutines.flow.Flow
 
 interface ItemOSMecanRepository {

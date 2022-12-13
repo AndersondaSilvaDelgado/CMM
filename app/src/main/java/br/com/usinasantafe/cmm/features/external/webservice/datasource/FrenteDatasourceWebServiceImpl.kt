@@ -1,7 +1,7 @@
 package br.com.usinasantafe.cmm.features.external.webservice.datasource
 
 import br.com.usinasantafe.cmm.features.external.webservice.api.FrenteApi
-import br.com.usinasantafe.cmm.features.infra.models.FrenteModel
+import br.com.usinasantafe.cmm.features.infra.models.stable.FrenteModel
 import br.com.usinasantafe.cmm.features.infra.datasource.webservice.FrenteDatasourceWebService
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow

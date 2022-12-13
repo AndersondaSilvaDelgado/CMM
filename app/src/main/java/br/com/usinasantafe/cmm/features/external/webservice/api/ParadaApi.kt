@@ -1,6 +1,6 @@
 package br.com.usinasantafe.cmm.features.external.webservice.api
 
-import br.com.usinasantafe.cmm.features.infra.models.ParadaModel
+import br.com.usinasantafe.cmm.features.infra.models.stable.ParadaModel
 import retrofit2.Response
 import retrofit2.http.GET
 

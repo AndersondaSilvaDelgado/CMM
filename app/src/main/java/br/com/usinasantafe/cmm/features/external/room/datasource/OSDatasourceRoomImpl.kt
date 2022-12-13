@@ -1,6 +1,6 @@
 package br.com.usinasantafe.cmm.features.external.room.datasource
 
-import br.com.usinasantafe.cmm.features.infra.models.OSModel
+import br.com.usinasantafe.cmm.features.infra.models.stable.OSModel
 import br.com.usinasantafe.cmm.features.external.room.dao.OSDao
 import br.com.usinasantafe.cmm.features.infra.datasource.room.OSDatasourceRoom
 import javax.inject.Inject

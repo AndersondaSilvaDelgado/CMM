@@ -3,7 +3,7 @@ package br.com.usinasantafe.cmm.features.external.sharedpreferences.datasource
 import android.content.SharedPreferences
 import br.com.usinasantafe.cmm.common.utils.BASE_SHARE_PREFERENCES_EQUIP
 import br.com.usinasantafe.cmm.common.utils.BASE_SHARE_PREFERENCES_SENHA
-import br.com.usinasantafe.cmm.features.domain.entities.Config
+import br.com.usinasantafe.cmm.features.domain.entities.variable.Config
 import br.com.usinasantafe.cmm.features.infra.datasource.sharedpreferences.ConfigDatasourceSharedPreferences
 import javax.inject.Inject
 

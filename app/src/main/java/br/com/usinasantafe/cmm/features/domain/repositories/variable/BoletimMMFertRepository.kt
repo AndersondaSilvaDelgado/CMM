@@ -1,16 +1,24 @@
 package br.com.usinasantafe.cmm.features.domain.repositories.variable
 
-import br.com.usinasantafe.cmm.features.domain.entities.BoletimMMFert
-
 interface BoletimMMFertRepository {
 
-    suspend fun getBoletimMMFert(): BoletimMMFert
+    suspend fun clearBoletimMMFert()
+
+    suspend fun getAtiv(): Long
+
+    suspend fun getIdBoletim(): Long
+
+    suspend fun getIdEquip(): Long
+
+    suspend fun getOS(): Long
+
+    suspend fun insertBoletimMMFert(): Boolean
+
+    suspend fun setHorimetroInicialBoletimMMFert(horimetroInicial: String): Boolean
 
     suspend fun setIdAtivBoletimMMFert(idAtiv: Long): Boolean
 
     suspend fun setMatricFuncBoletimMMFert(matricOperador: String): Boolean
-
-    suspend fun setIdEquipBoletimMMFert(idEquip: Long): Boolean
 
     suspend fun setIdTurnoBoletimMMFert(idTurno: Long): Boolean
 

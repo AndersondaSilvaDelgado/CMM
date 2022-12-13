@@ -1,7 +1,11 @@
 package br.com.usinasantafe.cmm.features.module.usecases
 
-import br.com.usinasantafe.cmm.features.domain.usecases.implementos.manipulationdata.*
-import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.manipulationdata.*
+import br.com.usinasantafe.cmm.features.domain.usecases.implementos.database.UpdateAllDataBaseImpl
+import br.com.usinasantafe.cmm.features.domain.usecases.implementos.database.recover.*
+import br.com.usinasantafe.cmm.features.domain.usecases.implementos.database.update.*
+import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.database.UpdateAllDataBase
+import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.database.recover.*
+import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.database.update.*
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -38,7 +42,7 @@ interface ManipulationDataModule {
 
     @Singleton
     @Binds
-    fun bindUpdateDataBase(usecase: UpdateDataBaseImpl): UpdateDataBase
+    fun bindUpdateDataBase(usecase: UpdateAllDataBaseImpl): UpdateAllDataBase
 
     @Singleton
     @Binds

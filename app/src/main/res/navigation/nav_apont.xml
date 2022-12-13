@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_apont"
+    app:startDestination="@id/menuApontFragment">
+
+    <fragment
+        android:id="@+id/menuApontFragment"
+        android:name="br.com.usinasantafe.cmm.features.presenter.ui.apontmmfert.view.MenuApontFragment"
+        android:label="fragment_menu_apont"
+        tools:layout="@layout/fragment_menu_apont" >
+        <action
+            android:id="@+id/action_menuApontFragment_to_OSApontFragment"
+            app:destination="@id/OSApontFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/OSApontFragment"
+        android:name="br.com.usinasantafe.cmm.features.presenter.ui.apontmmfert.view.OSApontFragment"
+        android:label="fragment_os_apont"
+        tools:layout="@layout/fragment_os_apont" >
+        <action
+            android:id="@+id/action_OSApontFragment_to_ativApontFragment"
+            app:destination="@id/ativApontFragment" />
+        <action
+            android:id="@+id/action_OSApontFragment_to_menuApontFragment"
+            app:destination="@id/menuApontFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/ativApontFragment"
+        android:name="br.com.usinasantafe.cmm.features.presenter.ui.apontmmfert.view.AtivApontFragment"
+        android:label="fragment_ativ_apont"
+        tools:layout="@layout/fragment_ativ_apont" >
+        <action
+            android:id="@+id/action_ativApontFragment_to_paradaApontFragment"
+            app:destination="@id/paradaApontFragment" />
+        <action
+            android:id="@+id/action_ativApontFragment_to_OSApontFragment"
+            app:destination="@id/OSApontFragment" />
+        <action
+            android:id="@+id/action_ativApontFragment_to_menuApontFragment"
+            app:destination="@id/menuApontFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/paradaApontFragment"
+        android:name="br.com.usinasantafe.cmm.features.presenter.ui.apontmmfert.view.ParadaApontFragment"
+        android:label="fragment_parada_apont"
+        tools:layout="@layout/fragment_parada_apont" >
+        <action
+            android:id="@+id/action_paradaApontFragment_to_ativApontFragment"
+            app:destination="@id/ativApontFragment" />
+        <action
+            android:id="@+id/action_paradaApontFragment_to_menuApontFragment"
+            app:destination="@id/menuApontFragment" />
+    </fragment>
+</navigation>

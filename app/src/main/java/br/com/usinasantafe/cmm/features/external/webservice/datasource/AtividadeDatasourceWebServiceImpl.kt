@@ -1,7 +1,7 @@
 package br.com.usinasantafe.cmm.features.external.webservice.datasource
 
 import br.com.usinasantafe.cmm.features.external.webservice.api.AtividadeApi
-import br.com.usinasantafe.cmm.features.infra.models.AtividadeModel
+import br.com.usinasantafe.cmm.features.infra.models.stable.AtividadeModel
 import br.com.usinasantafe.cmm.features.infra.datasource.webservice.AtividadeDatasourceWebService
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow

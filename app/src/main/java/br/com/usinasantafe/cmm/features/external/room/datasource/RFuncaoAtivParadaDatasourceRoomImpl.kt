@@ -1,6 +1,6 @@
 package br.com.usinasantafe.cmm.features.external.room.datasource
 
-import br.com.usinasantafe.cmm.features.infra.models.RFuncaoAtivParadaModel
+import br.com.usinasantafe.cmm.features.infra.models.stable.RFuncaoAtivParadaModel
 import br.com.usinasantafe.cmm.features.external.room.dao.RFuncaoAtivParadaDao
 import br.com.usinasantafe.cmm.features.infra.datasource.room.RFuncaoAtivParadaDatasourceRoom
 import javax.inject.Inject
@@ -15,6 +15,10 @@ class RFuncaoAtivParadaDatasourceRoomImpl @Inject constructor (
 
     override suspend fun deleteAllRFuncaoAtivParada() {
         rFuncaoAtivParadaDao.deleteAll()
+    }
+
+    override suspend fun listRFuncaoAtiv(idAtiv: Long): List<RFuncaoAtivParadaModel> {
+        return rFuncaoAtivParadaDao.listRFuncaoAtiv(idAtiv)
     }
 
 }

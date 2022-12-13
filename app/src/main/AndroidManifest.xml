@@ -19,10 +19,6 @@
         <activity
             android:name=".features.presenter.ui.splash.view.SplashActivity"
             android:exported="true" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".features.presenter.ui.checklist.view.CheckListActivity"
@@ -36,6 +32,10 @@
         <activity
             android:name=".features.presenter.ui.config.view.ConfigActivity"
             android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
     </application>
 

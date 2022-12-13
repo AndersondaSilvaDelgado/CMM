@@ -2,7 +2,7 @@ package br.com.usinasantafe.cmm.features.domain.usecases.implementos.config
 
 import br.com.usinasantafe.cmm.features.domain.repositories.variable.ConfigRepository
 import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.config.SaveConfig
-import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.manipulationdata.RecoverEquip
+import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.database.recover.RecoverEquip
 import br.com.usinasantafe.cmm.features.presenter.models.ResultUpdateDataBase
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow

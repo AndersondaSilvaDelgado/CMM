@@ -11,13 +11,13 @@
     tools:context=".features.presenter.ui.boletimmmfert.view.OSBolFragment">
 
     <TextView
-        android:id="@+id/textViewPadrao"
-        style="@style/TextView"
+        android:id="@+id/text_view_padrao"
+        style="@style/text_view"
         android:text="@string/texto_os" />
 
     <EditText
-        android:id="@+id/editTextPadrao"
-        style="@style/EditViewNumber" />
+        android:id="@+id/edit_text_padrao"
+        style="@style/edit_view_number" />
 
     <include
         android:id="@+id/layout_botoes"

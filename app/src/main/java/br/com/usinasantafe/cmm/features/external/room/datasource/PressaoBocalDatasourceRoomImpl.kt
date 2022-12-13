@@ -1,6 +1,6 @@
 package br.com.usinasantafe.cmm.features.external.room.datasource
 
-import br.com.usinasantafe.cmm.features.infra.models.PressaoBocalModel
+import br.com.usinasantafe.cmm.features.infra.models.stable.PressaoBocalModel
 import br.com.usinasantafe.cmm.features.external.room.dao.PressaoBocalDao
 import br.com.usinasantafe.cmm.features.infra.datasource.room.PressaoBocalDatasourceRoom
 import javax.inject.Inject

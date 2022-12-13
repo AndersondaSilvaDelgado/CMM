@@ -11,46 +11,45 @@
     tools:context=".features.presenter.ui.config.view.ConfigFragment">
 
     <TextView
-        android:id="@+id/textViewEquipConfig"
-        style="@style/TextView"
+        android:id="@+id/text_view_equip_config"
+        style="@style/text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/texto_equip" />
 
     <EditText
-        android:id="@+id/editTextEquipConfig"
-        style="@style/EditViewNumber"
+        android:id="@+id/edit_text_equip_config"
+        style="@style/edit_view_number"
         android:inputType="number" />
 
     <TextView
-        android:id="@+id/textViewSenhaConfig"
-        style="@style/TextView"
+        android:id="@+id/text_view_senha_config"
+        style="@style/text_view"
         android:text="@string/texto_senha" />
 
     <EditText
-        android:id="@+id/editTextSenhaConfig"
-        style="@style/EditView"
+        android:id="@+id/edit_text_senha_config"
+        style="@style/edit_view"
         android:inputType="text" >
         <requestFocus />
     </EditText>
 
     <LinearLayout
-        android:id="@+id/rightRelativeLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal" >
 
         <Button
-            android:id="@+id/buttonCancConfig"
-            style="@style/BotaoAvulso"
+            android:id="@+id/button_canc_config"
+            style="@style/botao_avulso"
             android:layout_weight="1"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="@string/texto_padrao_cancelar" />
 
         <Button
-            android:id="@+id/buttonSalvarConfig"
-            style="@style/BotaoAvulso"
+            android:id="@+id/button_salvar_config"
+            style="@style/botao_avulso"
             android:layout_weight="1"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
@@ -59,22 +58,22 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/buttonAtualizarBD"
-        style="@style/BotaoAvulso"
+        android:id="@+id/button_atual_base_dados"
+        style="@style/botao_avulso"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/texto_atualizar_bd" />
 
     <ProgressBar
-        android:id="@+id/progressBarAtualDados"
+        android:id="@+id/progress_bar_atual_dados"
         style="@android:style/Widget.ProgressBar.Horizontal"
         android:layout_marginTop="30dp"
         android:layout_width="match_parent"
         android:layout_height="@dimen/progress_bar_config" />
 
     <TextView
-        android:id="@+id/textStatusAtualDados"
-        style="@style/TextViewItemList"
+        android:id="@+id/text_status_atual_dados"
+        style="@style/text_view_item_list"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"

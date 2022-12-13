@@ -1,6 +1,6 @@
 package br.com.usinasantafe.cmm.features.external.room.datasource
 
-import br.com.usinasantafe.cmm.features.infra.models.TurnoModel
+import br.com.usinasantafe.cmm.features.infra.models.stable.TurnoModel
 import br.com.usinasantafe.cmm.features.external.room.dao.TurnoDao
 import br.com.usinasantafe.cmm.features.infra.datasource.room.TurnoDatasourceRoom
 import javax.inject.Inject

@@ -1,6 +1,6 @@
 package br.com.usinasantafe.cmm.features.domain.repositories.stable
 
-import br.com.usinasantafe.cmm.features.domain.entities.REquipAtiv
+import br.com.usinasantafe.cmm.features.domain.entities.stable.REquipAtiv
 import kotlinx.coroutines.flow.Flow
 
 interface REquipAtivRepository {

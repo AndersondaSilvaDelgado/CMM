@@ -11,14 +11,13 @@
     tools:context=".features.presenter.ui.boletimmmfert.view.EquipBolFragment">
 
     <TextView
-        android:id="@+id/textViewEquipamento"
-        style="@style/TextViewTituloLista"
+        android:id="@+id/text_view_equipamento"
+        style="@style/text_view_titulo_lista"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/texto_titulo_equip" />
 
     <LinearLayout
-        android:id="@+id/rightRelLayout"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
@@ -27,40 +26,39 @@
         android:paddingTop="20dp" >
 
         <TextView
-            android:id="@+id/textViewCodEquip"
+            android:id="@+id/text_view_cod_equip"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_weight="2"
             android:text="@string/texto_cod_equip"
-            style="@style/TextView" />
+            style="@style/text_view" />
 
         <TextView
-            android:id="@+id/textViewDescEquip"
+            android:id="@+id/text_view_desc_equip"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:text="@string/texto_descr_equip"
-            style="@style/TextView" />
+            style="@style/text_view" />
 
     </LinearLayout>
 
     <LinearLayout
-        android:id="@+id/rightRelativeLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal" >
 
         <Button
-            android:id="@+id/buttonCancEquip"
-            style="@style/BotaoAvulso"
+            android:id="@+id/button_canc_equip"
+            style="@style/botao_avulso"
             android:layout_weight="1"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="@string/texto_padrao_canc" />
 
         <Button
-            android:id="@+id/buttonOkEquip"
-            style="@style/BotaoAvulso"
+            android:id="@+id/button_ok_equip"
+            style="@style/botao_avulso"
             android:layout_weight="1"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"

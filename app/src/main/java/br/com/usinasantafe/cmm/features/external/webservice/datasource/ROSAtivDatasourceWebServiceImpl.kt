@@ -1,7 +1,7 @@
 package br.com.usinasantafe.cmm.features.external.webservice.datasource
 
 import br.com.usinasantafe.cmm.features.external.webservice.api.ROSAtivApi
-import br.com.usinasantafe.cmm.features.infra.models.ROSAtivModel
+import br.com.usinasantafe.cmm.features.infra.models.stable.ROSAtivModel
 import br.com.usinasantafe.cmm.features.infra.datasource.webservice.ROSAtivDatasourceWebService
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow

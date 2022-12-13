@@ -1,6 +1,6 @@
 package br.com.usinasantafe.cmm.features.infra.datasource.room
 
-import br.com.usinasantafe.cmm.features.infra.models.REquipAtivModel
+import br.com.usinasantafe.cmm.features.infra.models.stable.REquipAtivModel
 
 interface REquipAtivDatasourceRoom {
 

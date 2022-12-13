@@ -1,12 +1,11 @@
 package br.com.usinasantafe.cmm.features.infra.repositories.stable
 
-import br.com.usinasantafe.cmm.features.domain.entities.Atividade
-import br.com.usinasantafe.cmm.features.infra.models.toAtividade
-import br.com.usinasantafe.cmm.features.infra.models.toAtividadeModel
+import br.com.usinasantafe.cmm.features.domain.entities.stable.Atividade
+import br.com.usinasantafe.cmm.features.infra.models.stable.toAtividade
+import br.com.usinasantafe.cmm.features.infra.models.stable.toAtividadeModel
 import br.com.usinasantafe.cmm.features.domain.repositories.stable.AtividadeRepository
 import br.com.usinasantafe.cmm.features.infra.datasource.room.AtividadeDatasourceRoom
 import br.com.usinasantafe.cmm.features.infra.datasource.webservice.AtividadeDatasourceWebService
-import br.com.usinasantafe.cmm.features.infra.models.AtividadeModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject

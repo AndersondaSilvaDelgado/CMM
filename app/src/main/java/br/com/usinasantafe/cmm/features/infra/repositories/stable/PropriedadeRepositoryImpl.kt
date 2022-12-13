@@ -1,12 +1,11 @@
 package br.com.usinasantafe.cmm.features.infra.repositories.stable
 
-import br.com.usinasantafe.cmm.features.domain.entities.Propriedade
-import br.com.usinasantafe.cmm.features.infra.models.toPropriedade
-import br.com.usinasantafe.cmm.features.infra.models.toPropriedadeModel
+import br.com.usinasantafe.cmm.features.domain.entities.stable.Propriedade
+import br.com.usinasantafe.cmm.features.infra.models.stable.toPropriedade
+import br.com.usinasantafe.cmm.features.infra.models.stable.toPropriedadeModel
 import br.com.usinasantafe.cmm.features.domain.repositories.stable.PropriedadeRepository
 import br.com.usinasantafe.cmm.features.infra.datasource.room.PropriedadeDatasourceRoom
 import br.com.usinasantafe.cmm.features.infra.datasource.webservice.PropriedadeDatasourceWebService
-import br.com.usinasantafe.cmm.features.infra.models.toProdutoModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject

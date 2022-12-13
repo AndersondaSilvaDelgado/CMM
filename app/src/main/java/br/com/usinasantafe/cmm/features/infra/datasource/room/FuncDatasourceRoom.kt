@@ -1,6 +1,6 @@
 package br.com.usinasantafe.cmm.features.infra.datasource.room
 
-import br.com.usinasantafe.cmm.features.infra.models.FuncModel
+import br.com.usinasantafe.cmm.features.infra.models.stable.FuncModel
 
 interface FuncDatasourceRoom {
 

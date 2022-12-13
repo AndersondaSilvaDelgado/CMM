@@ -1,6 +1,6 @@
 package br.com.usinasantafe.cmm.features.external.webservice.api
 
-import br.com.usinasantafe.cmm.features.infra.models.AtividadeModel
+import br.com.usinasantafe.cmm.features.infra.models.stable.AtividadeModel
 import retrofit2.Response
 import retrofit2.http.GET
 

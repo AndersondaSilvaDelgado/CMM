@@ -1,6 +1,6 @@
 package br.com.usinasantafe.cmm.features.external.room.datasource
 
-import br.com.usinasantafe.cmm.features.infra.models.RAtivParadaModel
+import br.com.usinasantafe.cmm.features.infra.models.stable.RAtivParadaModel
 import br.com.usinasantafe.cmm.features.external.room.dao.RAtivParadaDao
 import br.com.usinasantafe.cmm.features.infra.datasource.room.RAtivParadaDatasourceRoom
 import javax.inject.Inject

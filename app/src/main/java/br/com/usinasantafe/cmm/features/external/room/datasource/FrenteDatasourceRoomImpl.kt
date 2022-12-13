@@ -1,6 +1,6 @@
 package br.com.usinasantafe.cmm.features.external.room.datasource
 
-import br.com.usinasantafe.cmm.features.infra.models.FrenteModel
+import br.com.usinasantafe.cmm.features.infra.models.stable.FrenteModel
 import br.com.usinasantafe.cmm.features.external.room.dao.FrenteDao
 import br.com.usinasantafe.cmm.features.infra.datasource.room.FrenteDatasourceRoom
 import javax.inject.Inject

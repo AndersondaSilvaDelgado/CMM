@@ -12,12 +12,12 @@
     tools:context=".features.presenter.ui.boletimmmfert.view.TurnoBolFragment">
 
     <TextView
-        android:id="@+id/textViewTurno"
-        style="@style/TextViewTituloLista"
+        android:id="@+id/text_view_turno"
+        style="@style/text_view_titulo_lista"
         android:text="@string/texto_turno" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/listTurno"
+        android:id="@+id/list_turno"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
@@ -25,15 +25,15 @@
         tools:listitem="@layout/item_row_text" />
 
     <Button
-        android:id="@+id/buttonRetTurno"
-        style="@style/BotaoAvulso"
+        android:id="@+id/button_ret_turno"
+        style="@style/botao_avulso"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/texto_padrao_retornar" />
 
     <Button
-        android:id="@+id/buttonAtualTurno"
-        style="@style/BotaoAvulso"
+        android:id="@+id/button_atual_turno"
+        style="@style/botao_avulso"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/texto_atualizar_bd" />

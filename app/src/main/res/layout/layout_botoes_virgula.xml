@@ -17,24 +17,24 @@
             android:weightSum="3">
             
             <Button
-                android:id="@+id/buttonNum1"
-                style="@style/BotaoNumerico"
+                android:id="@+id/button_num_1"
+                style="@style/botao_numerico"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:text="@string/texto_num1" />
 
             <Button
-                android:id="@+id/buttonNum2"
-                style="@style/BotaoNumerico"
+                android:id="@+id/button_num_2"
+                style="@style/botao_numerico"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:text="@string/texto_num2" />
 
             <Button
-                android:id="@+id/buttonNum3"
-                style="@style/BotaoNumerico"
+                android:id="@+id/button_num_3"
+                style="@style/botao_numerico"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -49,24 +49,24 @@
             android:weightSum="3">
 
             <Button
-                android:id="@+id/buttonNum4"
-                style="@style/BotaoNumerico"
+                android:id="@+id/button_num_4"
+                style="@style/botao_numerico"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:text="@string/texto_num4" />
 
             <Button
-                android:id="@+id/buttonNum5"
-                style="@style/BotaoNumerico"
+                android:id="@+id/button_num_5"
+                style="@style/botao_numerico"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:text="@string/texto_num5" />
 
             <Button
-                android:id="@+id/buttonNum6"
-                style="@style/BotaoNumerico"
+                android:id="@+id/button_num_6"
+                style="@style/botao_numerico"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -81,24 +81,24 @@
             android:weightSum="3">
 
             <Button
-                android:id="@+id/buttonNum7"
-                style="@style/BotaoNumerico"
+                android:id="@+id/button_num_7"
+                style="@style/botao_numerico"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:text="@string/texto_num7" />
 
             <Button
-                android:id="@+id/buttonNum8"
-                style="@style/BotaoNumerico"
+                android:id="@+id/button_num_8"
+                style="@style/botao_numerico"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:text="@string/texto_num8" />
 
             <Button
-                android:id="@+id/buttonNum9"
-                style="@style/BotaoNumerico"
+                android:id="@+id/button_num_9"
+                style="@style/botao_numerico"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -113,8 +113,8 @@
             android:weightSum="3">
 
             <Button
-                android:id="@+id/buttonNum0"
-                style="@style/BotaoNumerico"
+                android:id="@+id/button_num_0"
+                style="@style/botao_numerico"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -122,7 +122,7 @@
 
             <Button
                 android:id="@+id/buttonNum00"
-                style="@style/BotaoNumerico"
+                style="@style/botao_numerico"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -130,7 +130,7 @@
 
             <Button
                 android:id="@+id/buttonVirg"
-                style="@style/BotaoNumerico"
+                style="@style/botao_numerico"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
@@ -145,16 +145,16 @@
             android:weightSum="2">
 
             <Button
-                android:id="@+id/buttonCancPadrao"
-                style="@style/BotaoNumerico"
+                android:id="@+id/button_canc_padrao"
+                style="@style/botao_numerico"
                 android:layout_width="0dp"
                 android:layout_height="match_parent"
                 android:layout_weight="1"
                 android:text="@string/texto_padrao_apagar" />
 
            <Button
-               android:id="@+id/buttonOkPadrao"
-               style="@style/BotaoNumerico"
+               android:id="@+id/button_ok_padrao"
+               style="@style/botao_numerico"
                android:layout_width="0dp"
                android:layout_height="match_parent"
                android:layout_weight="1"

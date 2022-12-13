@@ -1,7 +1,7 @@
 package br.com.usinasantafe.cmm.features.module.datasource
 
-import br.com.usinasantafe.cmm.features.external.memory.datasource.BoletimMMFertDatasourceMemoryImpl
-import br.com.usinasantafe.cmm.features.infra.datasource.memory.BoletimMMFertDatasourceMemory
+import br.com.usinasantafe.cmm.features.external.memory.datasource.*
+import br.com.usinasantafe.cmm.features.infra.datasource.memory.*
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -14,6 +14,18 @@ interface DatasourceMemory {
 
     @Singleton
     @Binds
-    fun bindBoletimMMFertDatasource(dataSource: BoletimMMFertDatasourceMemoryImpl): BoletimMMFertDatasourceMemory
+    fun bindApontMMDatasourceMemory(dataSource: ApontMMDatasourceMemoryImpl): ApontMMDatasourceMemory
+
+    @Singleton
+    @Binds
+    fun bindApontFertDatasourceMemory(dataSource: ApontFertDatasourceMemoryImpl): ApontFertDatasourceMemory
+
+    @Singleton
+    @Binds
+    fun bindBoletimFertDatasource(dataSource: BoletimFertDatasourceMemoryImpl): BoletimFertDatasourceMemory
+
+    @Singleton
+    @Binds
+    fun bindBoletimMMDatasource(dataSource: BoletimMMDatasourceMemoryImpl): BoletimMMDatasourceMemory
 
 }

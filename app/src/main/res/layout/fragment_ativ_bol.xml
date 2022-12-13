@@ -12,14 +12,14 @@
     tools:context=".features.presenter.ui.boletimmmfert.view.AtivBolFragment">
 
     <TextView
-        android:id="@+id/textViewTituloAtividade"
-        style="@style/TextViewTituloLista"
+        android:id="@+id/text_view_titulo_atividade"
+        style="@style/text_view_titulo_lista"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/texto_atividade" />
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/listAtividade"
+        android:id="@+id/list_atividade"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1"
@@ -27,15 +27,15 @@
         tools:listitem="@layout/item_row_text" />
 
     <Button
-        android:id="@+id/buttonAtualAtividade"
-        style="@style/BotaoAvulso"
+        android:id="@+id/button_atual_atividade"
+        style="@style/botao_avulso"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/texto_atualizar" />
 
     <Button
-        android:id="@+id/buttonRetAtividade"
-        style="@style/BotaoAvulso"
+        android:id="@+id/button_ret_atividade"
+        style="@style/botao_avulso"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@string/texto_padrao_retornar" />

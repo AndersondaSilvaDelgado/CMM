@@ -14,11 +14,11 @@ interface BoletimMMFertModule {
 
     @Singleton
     @Binds
-    fun bindSetIdAtivBoletimMMFert(usecase: SetIdAtivBoletimMMFertImpl): SetIdAtivBoletimMMFert
+    fun bindSetHorimetroInicialBoletimMMFert(usecase: SetHorimetroInicialBoletimMMFertImpl): SetHorimetroInicialBoletimMMFert
 
     @Singleton
     @Binds
-    fun bindSetIdEquipBoletimMMFert(usecase: SetIdEquipBoletimMMFertImpl): SetIdEquipBoletimMMFert
+    fun bindSetIdAtivBoletimMMFert(usecase: SetIdAtivBoletimMMFertImpl): SetIdAtivBoletimMMFert
 
     @Singleton
     @Binds

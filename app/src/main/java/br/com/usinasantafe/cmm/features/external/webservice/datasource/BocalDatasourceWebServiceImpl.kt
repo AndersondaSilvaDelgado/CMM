@@ -1,7 +1,7 @@
 package br.com.usinasantafe.cmm.features.external.webservice.datasource
 
 import br.com.usinasantafe.cmm.features.external.webservice.api.BocalApi
-import br.com.usinasantafe.cmm.features.infra.models.BocalModel
+import br.com.usinasantafe.cmm.features.infra.models.stable.BocalModel
 import br.com.usinasantafe.cmm.features.infra.datasource.webservice.BocalDatasourceWebService
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow

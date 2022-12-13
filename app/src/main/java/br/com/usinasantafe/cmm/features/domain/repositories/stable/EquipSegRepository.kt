@@ -1,6 +1,6 @@
 package br.com.usinasantafe.cmm.features.domain.repositories.stable
 
-import br.com.usinasantafe.cmm.features.domain.entities.EquipSeg
+import br.com.usinasantafe.cmm.features.domain.entities.stable.EquipSeg
 import kotlinx.coroutines.flow.Flow
 
 interface EquipSegRepository {

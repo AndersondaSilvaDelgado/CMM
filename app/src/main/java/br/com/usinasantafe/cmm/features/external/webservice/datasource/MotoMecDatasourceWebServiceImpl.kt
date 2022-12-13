@@ -1,7 +1,7 @@
 package br.com.usinasantafe.cmm.features.external.webservice.datasource
 
 import br.com.usinasantafe.cmm.features.external.webservice.api.MotoMecApi
-import br.com.usinasantafe.cmm.features.infra.models.MotoMecModel
+import br.com.usinasantafe.cmm.features.infra.models.stable.MotoMecModel
 import br.com.usinasantafe.cmm.features.infra.datasource.webservice.MotoMecDatasourceWebService
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow

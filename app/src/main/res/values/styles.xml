@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <style name="TextViewTituloLista">
+    <style name="text_view_titulo_lista">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:gravity">center</item>
@@ -9,7 +9,7 @@
         <item name="android:textColor">#000000</item>
     </style>
 
-    <style name="TextViewItemList">
+    <style name="text_view_item_list">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_alignParentLeft">true</item>
@@ -18,7 +18,7 @@
         <item name="android:textColor">#000000</item>
     </style>
 
-    <style name="TextView">
+    <style name="text_view">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_alignParentLeft">true</item>
@@ -29,7 +29,7 @@
         <item name="android:textColor">#000000</item>
     </style>
 
-    <style name="EditView">
+    <style name="edit_view">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_alignParentLeft">true</item>
@@ -39,7 +39,7 @@
         <item name="android:textColor">#000000</item>
     </style>
 
-    <style name="EditViewNumber">
+    <style name="edit_view_number">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_alignParentLeft">true</item>
@@ -50,23 +50,22 @@
         <item name="android:textColor">#000000</item>
     </style>
 
-    <style name="BotaoAvulso">
+    <style name="botao_avulso">
         <item name="android:minHeight">60dp</item>
         <item name="android:minWidth">100dp</item>
         <item name="android:textColor">#000000</item>
         <item name="android:textSize">@dimen/fonte_botao_avulso</item>
     </style>
 
-    <style name="BotaoNumerico">
+    <style name="botao_numerico">
         <item name="android:textAppearance">?android:attr/textAppearanceLargeInverse</item>
         <item name="android:textColor">#000000</item>
     </style>
 
-    <style name="BotaoNumOkCanc">
+    <style name="botao_num_ok_canc">
         <item name="android:textAppearance">?android:attr/textAppearanceLargeInverse</item>
         <item name="android:textColor">#000000</item>
-        <item name="android:textSize">@dimen/fonte_num_ok_canc</item>
+        <item name="android:textSize">18dp</item>
     </style>
 
-    <dimen name="fonte_num_ok_canc">18dp</dimen>
 </resources>

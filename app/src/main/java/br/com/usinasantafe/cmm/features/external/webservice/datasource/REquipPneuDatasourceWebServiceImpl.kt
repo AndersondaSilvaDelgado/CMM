@@ -2,7 +2,7 @@ package br.com.usinasantafe.cmm.features.external.webservice.datasource
 
 import br.com.usinasantafe.cmm.features.external.webservice.api.REquipPneuApi
 import br.com.usinasantafe.cmm.features.infra.datasource.webservice.REquipPneuDatasourceWebService
-import br.com.usinasantafe.cmm.features.infra.models.REquipPneuModel
+import br.com.usinasantafe.cmm.features.infra.models.stable.REquipPneuModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject

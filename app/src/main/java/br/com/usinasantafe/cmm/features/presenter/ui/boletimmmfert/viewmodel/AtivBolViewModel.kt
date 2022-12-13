@@ -2,10 +2,10 @@ package br.com.usinasantafe.cmm.features.presenter.ui.boletimmmfert.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import br.com.usinasantafe.cmm.features.domain.entities.Atividade
+import br.com.usinasantafe.cmm.features.domain.entities.stable.Atividade
 import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.boletimmmfert.SetIdAtivBoletimMMFert
 import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.common.ListAtiv
-import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.manipulationdata.RecoverAtividade
+import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.database.recover.RecoverAtividade
 import br.com.usinasantafe.cmm.features.presenter.models.ResultUpdateDataBase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow

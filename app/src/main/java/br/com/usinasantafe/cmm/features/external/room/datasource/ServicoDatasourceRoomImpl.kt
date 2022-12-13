@@ -1,6 +1,6 @@
 package br.com.usinasantafe.cmm.features.external.room.datasource
 
-import br.com.usinasantafe.cmm.features.infra.models.ServicoModel
+import br.com.usinasantafe.cmm.features.infra.models.stable.ServicoModel
 import br.com.usinasantafe.cmm.features.external.room.dao.ServicoDao
 import br.com.usinasantafe.cmm.features.infra.datasource.room.ServicoDatasourceRoom
 import javax.inject.Inject

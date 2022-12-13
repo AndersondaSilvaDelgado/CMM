@@ -1,6 +1,6 @@
 package br.com.usinasantafe.cmm.features.domain.repositories.stable
 
-import br.com.usinasantafe.cmm.features.domain.entities.Pneu
+import br.com.usinasantafe.cmm.features.domain.entities.stable.Pneu
 import kotlinx.coroutines.flow.Flow
 
 interface PneuRepository {

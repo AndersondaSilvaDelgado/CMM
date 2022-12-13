@@ -1,7 +1,7 @@
 package br.com.usinasantafe.cmm.features.external.webservice.datasource
 
 import br.com.usinasantafe.cmm.features.external.webservice.api.RFuncaoAtivParadaApi
-import br.com.usinasantafe.cmm.features.infra.models.RFuncaoAtivParadaModel
+import br.com.usinasantafe.cmm.features.infra.models.stable.RFuncaoAtivParadaModel
 import br.com.usinasantafe.cmm.features.infra.datasource.webservice.RFuncaoAtivParadaDatasourceWebService
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow

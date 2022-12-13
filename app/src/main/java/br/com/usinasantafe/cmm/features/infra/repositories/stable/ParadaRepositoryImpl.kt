@@ -1,12 +1,11 @@
 package br.com.usinasantafe.cmm.features.infra.repositories.stable
 
-import br.com.usinasantafe.cmm.features.domain.entities.Parada
-import br.com.usinasantafe.cmm.features.infra.models.toParada
-import br.com.usinasantafe.cmm.features.infra.models.toParadaModel
+import br.com.usinasantafe.cmm.features.domain.entities.stable.Parada
+import br.com.usinasantafe.cmm.features.infra.models.stable.toParada
+import br.com.usinasantafe.cmm.features.infra.models.stable.toParadaModel
 import br.com.usinasantafe.cmm.features.domain.repositories.stable.ParadaRepository
 import br.com.usinasantafe.cmm.features.infra.datasource.room.ParadaDatasourceRoom
 import br.com.usinasantafe.cmm.features.infra.datasource.webservice.ParadaDatasourceWebService
-import br.com.usinasantafe.cmm.features.infra.models.toOSModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject

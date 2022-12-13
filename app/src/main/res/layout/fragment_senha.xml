@@ -12,15 +12,15 @@
 
 
     <TextView
-        android:id="@+id/textViewSenha"
-        style="@style/TextView"
+        android:id="@+id/text_view_senha"
+        style="@style/text_view"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/texto_senha" />
 
     <EditText
-        android:id="@+id/editTextSenha"
-        style="@style/EditView"
+        android:id="@+id/edit_text_senha"
+        style="@style/edit_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:inputType="textPassword" >
@@ -28,22 +28,21 @@
     </EditText>
 
     <LinearLayout
-        android:id="@+id/rightRelativeLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal" >
 
         <Button
-            android:id="@+id/buttonOkSenha"
-            style="@style/BotaoAvulso"
+            android:id="@+id/button_ok_senha"
+            style="@style/botao_avulso"
             android:layout_weight="1"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:text="@string/texto_padrao_ok" />
 
         <Button
-            android:id="@+id/buttonCancSenha"
-            style="@style/BotaoAvulso"
+            android:id="@+id/button_canc_senha"
+            style="@style/botao_avulso"
             android:layout_weight="1"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"

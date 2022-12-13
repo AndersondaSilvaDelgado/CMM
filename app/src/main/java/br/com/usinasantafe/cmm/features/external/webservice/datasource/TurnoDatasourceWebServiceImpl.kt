@@ -1,7 +1,7 @@
 package br.com.usinasantafe.cmm.features.external.webservice.datasource
 
 import br.com.usinasantafe.cmm.features.external.webservice.api.TurnoApi
-import br.com.usinasantafe.cmm.features.infra.models.TurnoModel
+import br.com.usinasantafe.cmm.features.infra.models.stable.TurnoModel
 import br.com.usinasantafe.cmm.features.infra.datasource.webservice.TurnoDatasourceWebService
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
