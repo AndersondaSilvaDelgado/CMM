@@ -11,17 +11,16 @@ class RecoverREquipAtivImpl @Inject constructor(
     private val rEquipAtivRepository: REquipAtivRepository
 ): RecoverREquipAtiv {
 
-    override suspend fun invoke(nroEquip: String, count: Int, size: Int): Flow<ResultUpdateDataBase> {
+    override suspend fun invoke(nroEquip: String, contador: Int, qtde: Int): Flow<ResultUpdateDataBase> {
         return flow {
-            val size = size
-            var count = count
-            emit(ResultUpdateDataBase(++count,"Limpando Dados da Tabela REquipAtiv", size))
+            var contRecoverREquipAtiv = contador
+            emit(ResultUpdateDataBase(++contRecoverREquipAtiv,"Limpando Dados da Tabela REquipAtiv", qtde))
             rEquipAtivRepository.deleteAllREquipAtiv()
-            emit(ResultUpdateDataBase(++count,"Recebendo Dados da Tabela REquipAtiv", size))
+            emit(ResultUpdateDataBase(++contRecoverREquipAtiv,"Recebendo Dados da Tabela REquipAtiv", qtde))
             rEquipAtivRepository.recoverREquipAtiv(nroEquip)
                 .collect{ result ->
                     result.onSuccess { rEquipAtivList ->
-                        emit(ResultUpdateDataBase(++count,"Salvandos Dados da Tabela REquipAtiv", size))
+                        emit(ResultUpdateDataBase(++contRecoverREquipAtiv,"Salvandos Dados da Tabela REquipAtiv", qtde))
                         rEquipAtivRepository.addAllREquipAtiv(rEquipAtivList)
                     }
                 }

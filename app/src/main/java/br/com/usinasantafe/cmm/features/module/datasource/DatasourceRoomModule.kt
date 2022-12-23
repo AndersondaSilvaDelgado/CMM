@@ -1,7 +1,15 @@
 package br.com.usinasantafe.cmm.features.module.datasource
 
-import br.com.usinasantafe.cmm.features.external.room.datasource.*
-import br.com.usinasantafe.cmm.features.infra.datasource.room.*
+import br.com.usinasantafe.cmm.features.external.room.datasource.stable.*
+import br.com.usinasantafe.cmm.features.external.room.datasource.variable.ApontFertDatasourceRoomImpl
+import br.com.usinasantafe.cmm.features.external.room.datasource.variable.ApontMMDatasourceRoomImpl
+import br.com.usinasantafe.cmm.features.external.room.datasource.variable.BoletimFertDatasourceRoomImpl
+import br.com.usinasantafe.cmm.features.external.room.datasource.variable.BoletimMMDatasourceRoomImpl
+import br.com.usinasantafe.cmm.features.infra.datasource.room.stable.*
+import br.com.usinasantafe.cmm.features.infra.datasource.room.variable.ApontFertDatasourceRoom
+import br.com.usinasantafe.cmm.features.infra.datasource.room.variable.ApontMMDatasourceRoom
+import br.com.usinasantafe.cmm.features.infra.datasource.room.variable.BoletimFertDatasourceRoom
+import br.com.usinasantafe.cmm.features.infra.datasource.room.variable.BoletimMMDatasourceRoom
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -11,6 +19,14 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 interface DatasourceRoomModule {
+
+    @Singleton
+    @Binds
+    fun bindApontMMDatasource(dataSource: ApontMMDatasourceRoomImpl): ApontMMDatasourceRoom
+
+    @Singleton
+    @Binds
+    fun bindApontFertDatasource(dataSource: ApontFertDatasourceRoomImpl): ApontFertDatasourceRoom
 
     @Singleton
     @Binds
@@ -62,7 +78,7 @@ interface DatasourceRoomModule {
 
     @Singleton
     @Binds
-    fun bindMotoMecDatasource(dataSource: MotoMecDatasourceRoomImpl): MotoMecDatasourceRoom
+    fun bindMotoMecDatasource(dataSource: OperMotoMecDatasourceRoomImpl): OperMotoMecDatasourceRoom
 
     @Singleton
     @Binds

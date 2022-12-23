@@ -18,27 +18,42 @@ class BoletimFertDatasourceMemoryImpl @Inject constructor (
     }
 
     override suspend fun setHorimetroInicial(horimetroInicial: Double): Boolean {
-        AppDatabaseMemory.boletimFert?.hodometroInicialBol = horimetroInicial
+        if(checkBoletim()){
+            return false
+        }
+        AppDatabaseMemory.boletimFert!!.hodometroInicialBol = horimetroInicial
         return true
     }
 
     override suspend fun setIdAtiv(idAtiv: Long): Boolean {
-        AppDatabaseMemory.boletimFert?.ativPrincBol = idAtiv
+        if(checkBoletim()){
+            return false
+        }
+        AppDatabaseMemory.boletimFert!!.idAtivBol = idAtiv
         return true
     }
 
     override suspend fun setIdTurno(idTurno: Long): Boolean {
-        AppDatabaseMemory.boletimFert?.idTurnoBol = idTurno
+        if(checkBoletim()){
+            return false
+        }
+        AppDatabaseMemory.boletimFert!!.idTurnoBol = idTurno
         return true
     }
 
     override suspend fun setMatricOperador(nroMatric: Long): Boolean {
-        AppDatabaseMemory.boletimFert?.matricFuncBol = nroMatric
+        if(checkBoletim()){
+            return false
+        }
+        AppDatabaseMemory.boletimFert!!.matricFuncBol = nroMatric
         return true
     }
 
     override suspend fun setNroOS(nroOS: Long): Boolean {
-        AppDatabaseMemory.boletimFert?.osBol = nroOS
+        if(checkBoletim()){
+            return false
+        }
+        AppDatabaseMemory.boletimFert!!.nroOSBol = nroOS
         return true
     }
 
@@ -48,6 +63,10 @@ class BoletimFertDatasourceMemoryImpl @Inject constructor (
             idEquipBol = idEquip
         )
         return true
+    }
+
+    private fun checkBoletim(): Boolean{
+        return AppDatabaseMemory.boletimFert == null
     }
 
 }

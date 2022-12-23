@@ -4,8 +4,8 @@ import br.com.usinasantafe.cmm.features.domain.entities.stable.ROSAtiv
 import br.com.usinasantafe.cmm.features.infra.models.stable.toROSAtiv
 import br.com.usinasantafe.cmm.features.infra.models.stable.toROSAtivModel
 import br.com.usinasantafe.cmm.features.domain.repositories.stable.ROSAtivRepository
-import br.com.usinasantafe.cmm.features.infra.datasource.room.ROSAtivDatasourceRoom
-import br.com.usinasantafe.cmm.features.infra.datasource.webservice.ROSAtivDatasourceWebService
+import br.com.usinasantafe.cmm.features.infra.datasource.room.stable.ROSAtivDatasourceRoom
+import br.com.usinasantafe.cmm.features.infra.datasource.webservice.stable.ROSAtivDatasourceWebService
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject

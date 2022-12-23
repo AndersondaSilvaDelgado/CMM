@@ -11,17 +11,16 @@ class UpdatePressaoBocalImpl @Inject constructor(
     private val pressaoBocalRepository: PressaoBocalRepository
 ): UpdatePressaoBocal {
 
-    override suspend fun invoke(count: Int, size: Int): Flow<ResultUpdateDataBase> {
+    override suspend fun invoke(contador: Int, qtde: Int): Flow<ResultUpdateDataBase> {
         return flow {
-            val size = size
-            var count = count
-            emit(ResultUpdateDataBase(++count,"Limpando Dados da Tabela PressaoBocal", size))
+            var contUpdatePressaoBocal = contador
+            emit(ResultUpdateDataBase(++contUpdatePressaoBocal,"Limpando Dados da Tabela PressaoBocal", qtde))
             pressaoBocalRepository.deleteAllPressaoBocal()
-            emit(ResultUpdateDataBase(++count,"Recebendo Dados da Tabela PressaoBocal", size))
+            emit(ResultUpdateDataBase(++contUpdatePressaoBocal,"Recebendo Dados da Tabela PressaoBocal", qtde))
             pressaoBocalRepository.recoverAllPressaoBocal()
                 .collect{ result ->
                     result.onSuccess { pressaoBocalList ->
-                        emit(ResultUpdateDataBase(++count,"Salvandos Dados da Tabela PressaoBocal", size))
+                        emit(ResultUpdateDataBase(++contUpdatePressaoBocal,"Salvandos Dados da Tabela PressaoBocal", qtde))
                         pressaoBocalRepository.addAllPressaoBocal(pressaoBocalList)
                     }
                 }

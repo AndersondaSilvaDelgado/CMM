@@ -15,30 +15,29 @@ class RecoverEquipImpl @Inject constructor(
     private val rEquipPneu: RecoverREquipPneu,
 ): RecoverEquip {
 
-    override suspend fun invoke(nroEquip: String, count: Int, size: Int): Flow<ResultUpdateDataBase> {
+    override suspend fun invoke(nroEquip: String, contador: Int, qtde: Int): Flow<ResultUpdateDataBase> {
         return flow {
-            val size = size
-            var count = count
-            emit(ResultUpdateDataBase(++count,"Limpando Dados da Tabela Equip", size))
+            var contRecoverEquip = contador
+            emit(ResultUpdateDataBase(++contRecoverEquip,"Limpando Dados da Tabela Equip", qtde))
             equipRepository.deleteAllEquip()
-            emit(ResultUpdateDataBase(++count,"Recebendo Dados da Tabela Equip", size))
+            emit(ResultUpdateDataBase(++contRecoverEquip,"Recebendo Dados da Tabela Equip", qtde))
             equipRepository.recoverEquip(nroEquip)
                 .collect{ result ->
                     result.onSuccess { equipList ->
                         if(equipList.isNotEmpty()){
-                            emit(ResultUpdateDataBase(++count, "Salvandos Dados da Tabela Equip", size))
+                            emit(ResultUpdateDataBase(++contRecoverEquip, "Salvandos Dados da Tabela Equip", qtde))
                             equipRepository.addAllEquip(equipList)
-                            rEquipAtiv(nroEquip, count, size).collect{
+                            rEquipAtiv(nroEquip, contRecoverEquip, qtde).collect{
                                 emit(it)
-                                count = it.count;
+                                contRecoverEquip = it.count;
                             }
-                            rEquipPneu(nroEquip, count, size).collect(){
+                            rEquipPneu(nroEquip, contRecoverEquip, qtde).collect(){
                                 emit(it)
-                                count = it.count;
+                                contRecoverEquip = it.count;
                             }
-                            emit(ResultUpdateDataBase(size, "Termino de Atualização", size))
+                            emit(ResultUpdateDataBase(qtde, "Termino de Atualização", qtde))
                         } else {
-                            emit(ResultUpdateDataBase(size, "Equipamente Inexistente!", size))
+                            emit(ResultUpdateDataBase(qtde, "Equipamente Inexistente!", qtde))
                         }
                     }
                 }

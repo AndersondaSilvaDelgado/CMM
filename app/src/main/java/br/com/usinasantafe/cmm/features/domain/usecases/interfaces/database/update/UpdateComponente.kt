@@ -5,6 +5,6 @@ import kotlinx.coroutines.flow.Flow
 
 interface UpdateComponente {
 
-    suspend operator fun invoke(count: Int = 0, size: Int = 3): Flow<ResultUpdateDataBase>
+    suspend operator fun invoke(contador: Int = 0, qtde: Int = 3): Flow<ResultUpdateDataBase>
 
 }

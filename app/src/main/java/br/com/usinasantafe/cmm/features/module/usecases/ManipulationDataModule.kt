@@ -82,7 +82,7 @@ interface ManipulationDataModule {
 
     @Singleton
     @Binds
-    fun bindUpdateMotoMec(usecase: UpdateMotoMecImpl): UpdateMotoMec
+    fun bindUpdateMotoMec(usecase: UpdateOperMotoMecImpl): UpdateOperMotoMec
 
     @Singleton
     @Binds

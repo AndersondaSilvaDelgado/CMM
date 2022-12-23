@@ -11,17 +11,16 @@ class UpdateLeiraImpl @Inject constructor(
     private val leiraRepository: LeiraRepository
 ): UpdateLeira {
 
-    override suspend fun invoke(count: Int, size: Int): Flow<ResultUpdateDataBase> {
+    override suspend fun invoke(contador: Int, qtde: Int): Flow<ResultUpdateDataBase> {
         return flow {
-            val size = size
-            var count = count
-            emit(ResultUpdateDataBase(++count, "Limpando Dados da Tabela Leira", size))
+            var contUpdateLeira = contador
+            emit(ResultUpdateDataBase(++contUpdateLeira, "Limpando Dados da Tabela Leira", qtde))
             leiraRepository.deleteAllLeira()
-                    emit(ResultUpdateDataBase(++count,"Recebendo Dados da Tabela Leira", size))
+                    emit(ResultUpdateDataBase(++contUpdateLeira,"Recebendo Dados da Tabela Leira", qtde))
             leiraRepository.recoverAllLeira()
                 .collect{ result ->
                     result.onSuccess { leiraList ->
-                        emit(ResultUpdateDataBase(++count,"Salvandos Dados da Tabela Leira", size))
+                        emit(ResultUpdateDataBase(++contUpdateLeira,"Salvandos Dados da Tabela Leira", qtde))
                         leiraRepository.addAllLeira(leiraList)
                     }
                 }

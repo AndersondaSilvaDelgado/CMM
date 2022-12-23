@@ -3,6 +3,7 @@ package br.com.usinasantafe.cmm.features.external.sharedpreferences.datasource
 import android.content.SharedPreferences
 import br.com.usinasantafe.cmm.common.utils.BASE_SHARE_PREFERENCES_EQUIP
 import br.com.usinasantafe.cmm.common.utils.BASE_SHARE_PREFERENCES_SENHA
+import br.com.usinasantafe.cmm.common.utils.BASE_SHARE_PREFERENCES_STATUS_ENVIO
 import br.com.usinasantafe.cmm.features.domain.entities.variable.Config
 import br.com.usinasantafe.cmm.features.infra.datasource.sharedpreferences.ConfigDatasourceSharedPreferences
 import javax.inject.Inject
@@ -16,10 +17,6 @@ class ConfigDatasourceSharedPreferencesImpl @Inject constructor(
         return result != null
     }
 
-    override suspend fun senhaConfig(): String {
-        return sharedPreferences.getString(BASE_SHARE_PREFERENCES_SENHA, null)!!
-    }
-
     override suspend fun getConfig(): Config {
         return Config(
             sharedPreferences.getLong(BASE_SHARE_PREFERENCES_EQUIP, 0L),
@@ -31,6 +28,7 @@ class ConfigDatasourceSharedPreferencesImpl @Inject constructor(
         val editor = sharedPreferences.edit()
         editor.putLong(BASE_SHARE_PREFERENCES_EQUIP, config.equipConfig)
         editor.putString(BASE_SHARE_PREFERENCES_SENHA, config.senhaConfig)
+        editor.putString(BASE_SHARE_PREFERENCES_STATUS_ENVIO, config.senhaConfig)
         editor.commit()
     }
 

@@ -11,17 +11,16 @@ class UpdateROSAtivImpl @Inject constructor(
     private val rOSAtivRepository: ROSAtivRepository
 ): UpdateROSAtiv {
 
-    override suspend fun invoke(count: Int, size: Int): Flow<ResultUpdateDataBase> {
+    override suspend fun invoke(contador: Int, qtde: Int): Flow<ResultUpdateDataBase> {
         return flow {
-            val size = size
-            var count = count
-            emit(ResultUpdateDataBase(++count,"Limpando Dados da Tabela ROSAtiv", size))
+            var contUpdateROSAtiv = contador
+            emit(ResultUpdateDataBase(++contUpdateROSAtiv,"Limpando Dados da Tabela ROSAtiv", qtde))
             rOSAtivRepository.deleteAllROSAtiv()
-            emit(ResultUpdateDataBase(++count,"Recebendo Dados da Tabela ROSAtiv", size))
+            emit(ResultUpdateDataBase(++contUpdateROSAtiv,"Recebendo Dados da Tabela ROSAtiv", qtde))
             rOSAtivRepository.recoverAllROSAtiv()
                 .collect{ result ->
                     result.onSuccess { rOSAtivList ->
-                        emit(ResultUpdateDataBase(++count,"Salvandos Dados da Tabela ROSAtiv", size))
+                        emit(ResultUpdateDataBase(++contUpdateROSAtiv,"Salvandos Dados da Tabela ROSAtiv", qtde))
                         rOSAtivRepository.addAllROSAtiv(rOSAtivList)
                     }
                 }

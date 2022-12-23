@@ -5,32 +5,33 @@ import androidx.room.PrimaryKey
 import br.com.usinasantafe.cmm.common.utils.StatusConnection
 import br.com.usinasantafe.cmm.common.utils.TB_APONT_FERT
 import br.com.usinasantafe.cmm.features.domain.entities.variable.ApontFert
+import java.util.*
 
 @Entity(tableName = TB_APONT_FERT)
-data class ApontFertModel(
+data class ApontFertRoomModel(
     @PrimaryKey(autoGenerate = true)
     var idApontFert: Long? = null,
     var idBolApontFert: Long,
-    var osApontFert: Long,
-    var ativApontFert: Long,
-    var paradaApontFert: Long,
+    var nroOSApontFert: Long,
+    var idAtivApontFert: Long,
+    var idParadaApontFert: Long,
     var pressaoApontFert: Double,
     var velocApontFert: Long,
     var bocalApontFert: Long,
-    var dthrApontLongFert: Long,
+    var dthrApontFert: Long,
     var statusConApontFert: StatusConnection,
     var longitudeApontFert: Double,
     var latitudeApontFert: Double,
 )
 
-fun ApontFert.toApontFertModel(): ApontFertModel{
+fun ApontFert.toApontFertRoomModel(): ApontFertRoomModel{
     return with(this){
-        ApontFertModel(
+        ApontFertRoomModel(
             idBolApontFert = this.idBolApont,
-            osApontFert =  this.osApont!!,
-            ativApontFert =  this.ativApont!!,
-            paradaApontFert = this.paradaApont!!,
-            dthrApontLongFert = this.dthrApontLong!!,
+            nroOSApontFert =  this.nroOSApont!!,
+            idAtivApontFert =  this.idAtivApont!!,
+            idParadaApontFert = this.idParadaApont!!,
+            dthrApontFert = Date().time,
             statusConApontFert = this.statusConApont!!,
             longitudeApontFert = this.longitudeApont!!,
             latitudeApontFert = this.latitudeApont!!,

@@ -11,7 +11,6 @@ import androidx.fragment.app.Fragment
 import br.com.usinasantafe.cmm.R
 import br.com.usinasantafe.cmm.databinding.LayoutBotoesBinding
 import br.com.usinasantafe.cmm.databinding.LayoutBotoesSAtualBinding
-import br.com.usinasantafe.cmm.databinding.LayoutBotoesVirgulaBinding
 
 fun showToast(message: String, context: Context){
     Toast.makeText(context, message, Toast.LENGTH_LONG).show()
@@ -37,34 +36,34 @@ fun Activity.animationEnd(callback: () -> Unit): AnimatorListenerAdapter {
 fun setListenerButtonsGeneric(layoutBotoesBinding: LayoutBotoesBinding, editText: EditText){
     with(layoutBotoesBinding){
         buttonNum0.setOnClickListener {
-            editText.setText("${editText.text}0")
+            editText.setText("${editText.text}" + buttonNum0.text)
         }
         buttonNum1.setOnClickListener {
-            editText.setText("${editText.text}1")
+            editText.setText("${editText.text}" + buttonNum1.text)
         }
         buttonNum2.setOnClickListener {
-            editText.setText("${editText.text}2")
+            editText.setText("${editText.text}" + buttonNum2.text)
         }
         buttonNum3.setOnClickListener {
-            editText.setText("${editText.text}3")
+            editText.setText("${editText.text}" + buttonNum3.text)
         }
         buttonNum4.setOnClickListener {
-            editText.setText("${editText.text}4")
+            editText.setText("${editText.text}" + buttonNum4.text)
         }
         buttonNum5.setOnClickListener {
-            editText.setText("${editText.text}5")
+            editText.setText("${editText.text}" + buttonNum5.text)
         }
         buttonNum6.setOnClickListener {
-            editText.setText("${editText.text}6")
+            editText.setText("${editText.text}" + buttonNum6.text)
         }
         buttonNum7.setOnClickListener {
-            editText.setText("${editText.text}7")
+            editText.setText("${editText.text}" + buttonNum7.text)
         }
         buttonNum8.setOnClickListener {
-            editText.setText("${editText.text}8")
+            editText.setText("${editText.text}" + buttonNum8.text)
         }
         buttonNum9.setOnClickListener {
-            editText.setText("${editText.text}9")
+            editText.setText("${editText.text}" + buttonNum9.text)
         }
         buttonCancPadrao.setOnClickListener {
             if (editText.text.isNotEmpty()) {
@@ -77,34 +76,34 @@ fun setListenerButtonsGeneric(layoutBotoesBinding: LayoutBotoesBinding, editText
 fun setListenerButtonsGenericSUpdate(layoutBotoesSAtualBinding: LayoutBotoesSAtualBinding, editText: EditText){
     with(layoutBotoesSAtualBinding) {
         buttonNum0.setOnClickListener {
-            editText.setText("${editText.text}0")
+            editText.setText("${editText.text}" + buttonNum0.text)
         }
         buttonNum1.setOnClickListener {
-            editText.setText("${editText.text}1")
+            editText.setText("${editText.text}" + buttonNum1.text)
         }
         buttonNum2.setOnClickListener {
-            editText.setText("${editText.text}2")
+            editText.setText("${editText.text}" + buttonNum2.text)
         }
         buttonNum3.setOnClickListener {
-            editText.setText("${editText.text}3")
+            editText.setText("${editText.text}" + buttonNum3.text)
         }
         buttonNum4.setOnClickListener {
-            editText.setText("${editText.text}4")
+            editText.setText("${editText.text}" + buttonNum4.text)
         }
         buttonNum5.setOnClickListener {
-            editText.setText("${editText.text}5")
+            editText.setText("${editText.text}" + buttonNum5.text)
         }
         buttonNum6.setOnClickListener {
-            editText.setText("${editText.text}6")
+            editText.setText("${editText.text}" + buttonNum6.text)
         }
         buttonNum7.setOnClickListener {
-            editText.setText("${editText.text}7")
+            editText.setText("${editText.text}" + buttonNum7.text)
         }
         buttonNum8.setOnClickListener {
-            editText.setText("${editText.text}8")
+            editText.setText("${editText.text}" + buttonNum8.text)
         }
         buttonNum9.setOnClickListener {
-            editText.setText("${editText.text}9")
+            editText.setText("${editText.text}" + buttonNum9.text)
         }
         buttonCancPadrao.setOnClickListener {
             if (editText.text.isNotEmpty()) {
@@ -114,44 +113,61 @@ fun setListenerButtonsGenericSUpdate(layoutBotoesSAtualBinding: LayoutBotoesSAtu
     }
 }
 
-fun setListenerButtonsGenericCVirgula(layoutBotoesVirgulaBinding: LayoutBotoesVirgulaBinding, editText: EditText){
-    with(layoutBotoesVirgulaBinding) {
+fun setListenerButtonsGenericCVirgula(layoutBotoesSAtualBinding: LayoutBotoesSAtualBinding, editText: EditText) {
+    with(layoutBotoesSAtualBinding) {
         buttonNum0.setOnClickListener {
-            editText.setText("${editText.text.toString().replace(",", "")},0")
+            editText.setText(addCaracterVirgula("0", editText))
         }
         buttonNum1.setOnClickListener {
-            editText.setText("${editText.text.toString().replace(",", "")},1")
+            editText.setText(addCaracterVirgula("1", editText))
         }
         buttonNum2.setOnClickListener {
-            editText.setText("${editText.text.toString().replace(",", "")},2")
+            editText.setText(addCaracterVirgula("2", editText))
         }
         buttonNum3.setOnClickListener {
-            editText.setText("${editText.text.toString().replace(",", "")},3")
+            editText.setText(addCaracterVirgula("3", editText))
         }
         buttonNum4.setOnClickListener {
-            editText.setText("${editText.text.toString().replace(",", "")},4")
+            editText.setText(addCaracterVirgula("4", editText))
         }
         buttonNum5.setOnClickListener {
-            editText.setText("${editText.text.toString().replace(",", "")},5")
+            editText.setText(addCaracterVirgula("5", editText))
         }
         buttonNum6.setOnClickListener {
-            editText.setText("${editText.text.toString().replace(",", "")},6")
+            editText.setText(addCaracterVirgula("6", editText))
         }
         buttonNum7.setOnClickListener {
-            editText.setText("${editText.text.toString().replace(",", "")},7")
+            editText.setText(addCaracterVirgula("7", editText))
         }
         buttonNum8.setOnClickListener {
-            editText.setText("${editText.text.toString().replace(",", "")},8")
+            editText.setText(addCaracterVirgula("8", editText))
         }
         buttonNum9.setOnClickListener {
-            editText.setText("${editText.text.toString().replace(",", "")},9")
+            editText.setText(addCaracterVirgula("9", editText))
         }
         buttonCancPadrao.setOnClickListener {
-            if (editText.text.isNotEmpty()) {
-                var value = editText.text.substring(0, editText.text.length - 1)
-                value = value.substring(0, editText.text.length - 1) + ',' + value.substring(editText.text.length - 1)
-                editText.setText(value)
-            }
+            editText.setText(remCaracterVirgula(editText))
         }
     }
+
+
 }
+
+fun addCaracterVirgula(caracter: String, editText: EditText): String {
+    var text = "${editText.text.toString().replace(",", "")}" + caracter
+    var textBuilder: StringBuilder = StringBuilder(text).insert(text.length - 1, ',')
+    return textBuilder.toString()
+}
+
+fun remCaracterVirgula(editText: EditText): String {
+    var textBuilder: StringBuilder = StringBuilder("")
+    if (editText.text.isNotEmpty()) {
+        var text = "${editText.text.toString().replace(",", "")}"
+        text = text.substring(0, text.length - 1)
+        if(text.isNotEmpty()){
+            textBuilder = StringBuilder(text).insert(text.length - 1, ',')
+        }
+    }
+    return textBuilder.toString()
+}
+

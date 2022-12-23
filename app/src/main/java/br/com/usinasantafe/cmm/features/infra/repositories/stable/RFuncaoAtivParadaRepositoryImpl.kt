@@ -5,8 +5,8 @@ import br.com.usinasantafe.cmm.features.infra.models.stable.toRFuncaoAtivParada
 import br.com.usinasantafe.cmm.features.infra.models.stable.toRFuncaoAtivParadaModel
 import br.com.usinasantafe.cmm.features.domain.repositories.stable.RFuncaoAtivParadaRepository
 import br.com.usinasantafe.cmm.features.domain.repositories.variable.BoletimMMFertRepository
-import br.com.usinasantafe.cmm.features.infra.datasource.room.RFuncaoAtivParadaDatasourceRoom
-import br.com.usinasantafe.cmm.features.infra.datasource.webservice.RFuncaoAtivParadaDatasourceWebService
+import br.com.usinasantafe.cmm.features.infra.datasource.room.stable.RFuncaoAtivParadaDatasourceRoom
+import br.com.usinasantafe.cmm.features.infra.datasource.webservice.stable.RFuncaoAtivParadaDatasourceWebService
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject

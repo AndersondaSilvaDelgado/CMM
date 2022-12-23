@@ -4,8 +4,8 @@ import br.com.usinasantafe.cmm.features.domain.entities.stable.Bocal
 import br.com.usinasantafe.cmm.features.infra.models.stable.toBocal
 import br.com.usinasantafe.cmm.features.infra.models.stable.toBocalModel
 import br.com.usinasantafe.cmm.features.domain.repositories.stable.BocalRepository
-import br.com.usinasantafe.cmm.features.infra.datasource.room.BocalDatasourceRoom
-import br.com.usinasantafe.cmm.features.infra.datasource.webservice.BocalDatasourceWebService
+import br.com.usinasantafe.cmm.features.infra.datasource.room.stable.BocalDatasourceRoom
+import br.com.usinasantafe.cmm.features.infra.datasource.webservice.stable.BocalDatasourceWebService
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject

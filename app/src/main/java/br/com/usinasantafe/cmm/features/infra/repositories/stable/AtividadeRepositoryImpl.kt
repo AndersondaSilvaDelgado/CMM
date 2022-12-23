@@ -4,8 +4,8 @@ import br.com.usinasantafe.cmm.features.domain.entities.stable.Atividade
 import br.com.usinasantafe.cmm.features.infra.models.stable.toAtividade
 import br.com.usinasantafe.cmm.features.infra.models.stable.toAtividadeModel
 import br.com.usinasantafe.cmm.features.domain.repositories.stable.AtividadeRepository
-import br.com.usinasantafe.cmm.features.infra.datasource.room.AtividadeDatasourceRoom
-import br.com.usinasantafe.cmm.features.infra.datasource.webservice.AtividadeDatasourceWebService
+import br.com.usinasantafe.cmm.features.infra.datasource.room.stable.AtividadeDatasourceRoom
+import br.com.usinasantafe.cmm.features.infra.datasource.webservice.stable.AtividadeDatasourceWebService
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
@@ -15,8 +15,8 @@ class AtividadeRepositoryImpl @Inject constructor(
     private val atividadeDatasourceWebService: AtividadeDatasourceWebService
 ): AtividadeRepository {
 
-    override suspend fun addAllAtividade(ativList: List<Atividade>) {
-        atividadeDatasourceRoom.addAllAtividade(*ativList.map { it.toAtividadeModel() }.toTypedArray())
+    override suspend fun addAllAtividade(atividadeList: List<Atividade>) {
+        atividadeDatasourceRoom.addAllAtividade(*atividadeList.map { it.toAtividadeModel() }.toTypedArray())
     }
 
     override suspend fun deleteAllAtividade() {
@@ -34,8 +34,8 @@ class AtividadeRepositoryImpl @Inject constructor(
             }
     }
 
-    override suspend fun listInIdAtiv(idAtivs: List<Long>): List<Atividade> {
-        return atividadeDatasourceRoom.listInIdAtiv(*idAtivs.toLongArray()).map { it.toAtividade() }
+    override suspend fun listInIdAtiv(idAtividades: List<Long>): List<Atividade> {
+        return atividadeDatasourceRoom.listInIdAtiv(*idAtividades.toLongArray()).map { it.toAtividade() }
     }
 
 

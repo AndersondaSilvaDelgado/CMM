@@ -1,6 +1,8 @@
 package br.com.usinasantafe.cmm.features.domain.usecases.implementos.database.recover
 
+import br.com.usinasantafe.cmm.common.utils.FlowNote
 import br.com.usinasantafe.cmm.features.domain.repositories.stable.EquipRepository
+import br.com.usinasantafe.cmm.features.domain.repositories.variable.ApontMMFertRepository
 import br.com.usinasantafe.cmm.features.domain.repositories.variable.BoletimMMFertRepository
 import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.database.recover.RecoverAtividade
 import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.database.recover.RecoverREquipAtiv
@@ -13,6 +15,7 @@ import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
 class RecoverAtividadeImpl @Inject constructor(
+    private val apontMMFertRepository: ApontMMFertRepository,
     private val boletimMMFertRepository: BoletimMMFertRepository,
     private val equipRepository: EquipRepository,
     private val recoverREquipAtiv: RecoverREquipAtiv,
@@ -21,29 +24,28 @@ class RecoverAtividadeImpl @Inject constructor(
     private val updateRFuncaoAtivParada: UpdateRFuncaoAtivParada
 ): RecoverAtividade {
 
-    override suspend fun invoke(count: Int, size: Int): Flow<ResultUpdateDataBase> {
+    override suspend fun invoke(flowNote: FlowNote, contador: Int, qtde: Int): Flow<ResultUpdateDataBase> {
         return flow {
-            val size = size
-            var count = count
-            var nroEquip = equipRepository.getEquipId(boletimMMFertRepository.getIdEquip()).nroEquip
-            var nroOS = boletimMMFertRepository.getOS()
-            recoverREquipAtiv(nroEquip.toString(), count, size).collect{
+            var contRecoverAtiv = contador
+            var nroEquip = equipRepository.getEquip().nroEquip
+            var nroOS = if(flowNote == FlowNote.BOLETIM) boletimMMFertRepository.getOS() else apontMMFertRepository.getOS()
+            recoverREquipAtiv(nroEquip.toString(), contRecoverAtiv, qtde).collect{
                 emit(it)
-                count = it.count;
+                contRecoverAtiv = it.count;
             }
-            recoverROSAtiv(nroOS.toString(), count, size).collect{
+            recoverROSAtiv(nroOS.toString(), contRecoverAtiv, qtde).collect{
                 emit(it)
-                count = it.count;
+                contRecoverAtiv = it.count;
             }
-            updateAtividade(count, size).collect{
+            updateAtividade(contRecoverAtiv, qtde).collect{
                 emit(it)
-                count = it.count;
+                contRecoverAtiv = it.count;
             }
-            updateRFuncaoAtivParada(count, size).collect{
+            updateRFuncaoAtivParada(contRecoverAtiv, qtde).collect{
                 emit(it)
-                count = it.count;
+                contRecoverAtiv = it.count;
             }
-            emit(ResultUpdateDataBase(count = size, describe = "Atualização realizada com Sucesso!", size = size))
+            emit(ResultUpdateDataBase(count = qtde, describe = "Atualização realizada com Sucesso!", size = qtde))
         }
     }
 

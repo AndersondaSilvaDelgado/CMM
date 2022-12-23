@@ -13,10 +13,6 @@ class ConfigRepositoryImpl @Inject constructor (
         return configDatasourceSharedPreferences.hasSenhaConfig()
     }
 
-    override suspend fun getSenhaConfig(): String {
-        return configDatasourceSharedPreferences.senhaConfig()
-    }
-
     override suspend fun getConfig(): Config {
         return configDatasourceSharedPreferences.getConfig()
     }

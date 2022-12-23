@@ -11,17 +11,16 @@ class UpdateBocalImpl @Inject constructor(
     private val bocalRepository: BocalRepository
 ): UpdateBocal {
 
-    override suspend fun invoke(count: Int, size: Int): Flow<ResultUpdateDataBase> {
+    override suspend fun invoke(contador: Int, qtde: Int): Flow<ResultUpdateDataBase> {
         return flow {
-            val size = size
-            var count = count
-            emit(ResultUpdateDataBase(++count,"Limpando Dados da Tabela Bocal", size))
+            var contUpdateBocal = contador
+            emit(ResultUpdateDataBase(++contUpdateBocal,"Limpando Dados da Tabela Bocal", qtde))
             bocalRepository.deleteAllBocal()
-            emit(ResultUpdateDataBase(++count,"Recebendo Dados da Tabela Bocal", size))
+            emit(ResultUpdateDataBase(++contUpdateBocal,"Recebendo Dados da Tabela Bocal", qtde))
             bocalRepository.recoverAllBocal()
                 .collect{ result ->
                     result.onSuccess { bocalList ->
-                        emit(ResultUpdateDataBase(++count,"Salvandos Dados da Tabela Bocal", size))
+                        emit(ResultUpdateDataBase(++contUpdateBocal,"Salvandos Dados da Tabela Bocal", qtde))
                         bocalRepository.addAllBocal(bocalList)
                     }
                 }

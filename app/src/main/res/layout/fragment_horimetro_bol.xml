@@ -17,10 +17,10 @@
 
     <EditText
         android:id="@+id/edit_text_padrao"
-        style="@style/edit_view" />
+        style="@style/edit_view_number" />
 
     <include
         android:id="@+id/layout_botoes"
-        layout="@layout/layout_botoes_virgula" />
+        layout="@layout/layout_botoes_s_atual" />
 
 </LinearLayout>

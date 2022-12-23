@@ -11,17 +11,16 @@ class UpdatePneuImpl @Inject constructor(
     private val pneuRepository: PneuRepository
 ): UpdatePneu {
 
-    override suspend fun invoke(count: Int, size: Int): Flow<ResultUpdateDataBase> {
+    override suspend fun invoke(contador: Int, qtde: Int): Flow<ResultUpdateDataBase> {
         return flow {
-            val size = size
-            var count = count
-            emit(ResultUpdateDataBase(++count,"Limpando Dados da Tabela Pneu", size))
+            var contUpdatePneu = contador
+            emit(ResultUpdateDataBase(++contUpdatePneu,"Limpando Dados da Tabela Pneu", qtde))
             pneuRepository.deleteAllPneu()
-            emit(ResultUpdateDataBase(++count,"Recebendo Dados da Tabela Pneu", size))
+            emit(ResultUpdateDataBase(++contUpdatePneu,"Recebendo Dados da Tabela Pneu", qtde))
             pneuRepository.recoverAllPneu()
                 .collect{ result ->
                     result.onSuccess { pneuList ->
-                        emit(ResultUpdateDataBase(++count,"Salvandos Dados da Tabela Pneu", size))
+                        emit(ResultUpdateDataBase(++contUpdatePneu,"Salvandos Dados da Tabela Pneu", qtde))
                         pneuRepository.addAllPneu(pneuList)
                     }
                 }

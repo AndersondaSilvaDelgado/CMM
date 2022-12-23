@@ -3,8 +3,8 @@ package br.com.usinasantafe.cmm.features.infra.repositories.stable
 import br.com.usinasantafe.cmm.features.domain.entities.stable.Equip
 import br.com.usinasantafe.cmm.features.domain.repositories.stable.EquipRepository
 import br.com.usinasantafe.cmm.features.domain.repositories.variable.ConfigRepository
-import br.com.usinasantafe.cmm.features.infra.datasource.room.EquipDatasourceRoom
-import br.com.usinasantafe.cmm.features.infra.datasource.webservice.EquipDatasourceWebService
+import br.com.usinasantafe.cmm.features.infra.datasource.room.stable.EquipDatasourceRoom
+import br.com.usinasantafe.cmm.features.infra.datasource.webservice.stable.EquipDatasourceWebService
 import br.com.usinasantafe.cmm.features.infra.models.stable.toEquip
 import br.com.usinasantafe.cmm.features.infra.models.stable.toEquipModel
 import kotlinx.coroutines.flow.Flow

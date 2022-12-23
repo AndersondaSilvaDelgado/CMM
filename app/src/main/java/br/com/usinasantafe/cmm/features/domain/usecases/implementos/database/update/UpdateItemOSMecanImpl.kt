@@ -11,17 +11,16 @@ class UpdateItemOSMecanImpl @Inject constructor(
     private val itemOSMecanRepository: ItemOSMecanRepository
 ): UpdateItemOSMecan {
 
-    override suspend fun invoke(count: Int, size: Int): Flow<ResultUpdateDataBase> {
+    override suspend fun invoke(contador: Int, qtde: Int): Flow<ResultUpdateDataBase> {
         return flow {
-            val size = size
-            var count = count
-            emit(ResultUpdateDataBase(++count, "Limpando Dados da Tabela ItemOSMecan", size))
+            var contUpdateItemOSMecan = contador
+            emit(ResultUpdateDataBase(++contUpdateItemOSMecan, "Limpando Dados da Tabela ItemOSMecan", qtde))
             itemOSMecanRepository.deleteAllItemOSMecan()
-            emit(ResultUpdateDataBase(++count,"Recebendo Dados da Tabela ItemOSMecan", size))
+            emit(ResultUpdateDataBase(++contUpdateItemOSMecan,"Recebendo Dados da Tabela ItemOSMecan", qtde))
             itemOSMecanRepository.recoverAllItemOSMecan()
                 .collect{ result ->
                     result.onSuccess { itemOSMecanList ->
-                        emit(ResultUpdateDataBase(++count,"Salvandos Dados da Tabela ItemCheckList", size))
+                        emit(ResultUpdateDataBase(++contUpdateItemOSMecan,"Salvandos Dados da Tabela ItemCheckList", qtde))
                         itemOSMecanRepository.addAllItemOSMecan(itemOSMecanList)
                     }
                 }

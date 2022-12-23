@@ -11,6 +11,6 @@ interface AtividadeRepository {
 
     suspend fun recoverAllAtividade(): Flow<Result<List<Atividade>>>
 
-    suspend fun listInIdAtiv(idAtivs: List<Long>): List<Atividade>
+    suspend fun listInIdAtiv(idAtividades: List<Long>): List<Atividade>
 
 }

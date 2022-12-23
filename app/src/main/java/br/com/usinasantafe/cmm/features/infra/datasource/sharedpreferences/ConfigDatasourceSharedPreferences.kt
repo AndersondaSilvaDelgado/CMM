@@ -6,8 +6,6 @@ interface ConfigDatasourceSharedPreferences {
 
     suspend fun hasSenhaConfig(): Boolean
 
-    suspend fun senhaConfig(): String
-
     suspend fun getConfig(): Config
 
     suspend fun saveConfig(config: Config)

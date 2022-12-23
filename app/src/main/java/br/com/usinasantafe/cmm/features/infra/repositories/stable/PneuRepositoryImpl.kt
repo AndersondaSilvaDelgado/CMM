@@ -4,8 +4,8 @@ import br.com.usinasantafe.cmm.features.domain.entities.stable.Pneu
 import br.com.usinasantafe.cmm.features.infra.models.stable.toPneu
 import br.com.usinasantafe.cmm.features.infra.models.stable.toPneuModel
 import br.com.usinasantafe.cmm.features.domain.repositories.stable.PneuRepository
-import br.com.usinasantafe.cmm.features.infra.datasource.room.PneuDatasourceRoom
-import br.com.usinasantafe.cmm.features.infra.datasource.webservice.PneuDatasourceWebService
+import br.com.usinasantafe.cmm.features.infra.datasource.room.stable.PneuDatasourceRoom
+import br.com.usinasantafe.cmm.features.infra.datasource.webservice.stable.PneuDatasourceWebService
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject

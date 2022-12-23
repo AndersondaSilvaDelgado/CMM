@@ -11,17 +11,16 @@ class UpdateComponenteImpl @Inject constructor(
     private val componenteRepository: ComponenteRepository
 ): UpdateComponente {
 
-    override suspend fun invoke(count: Int, size: Int): Flow<ResultUpdateDataBase> {
+    override suspend fun invoke(contador: Int, qtde: Int): Flow<ResultUpdateDataBase> {
         return flow {
-            val size = size
-            var count = count
-            emit(ResultUpdateDataBase(++count,"Limpando Dados da Tabela Componente", size))
+            var contUpdateComponente = contador
+            emit(ResultUpdateDataBase(++contUpdateComponente,"Limpando Dados da Tabela Componente", qtde))
             componenteRepository.deleteAllComponente()
-            emit(ResultUpdateDataBase(++count,"Recebendo Dados da Tabela Componente", size))
+            emit(ResultUpdateDataBase(++contUpdateComponente,"Recebendo Dados da Tabela Componente", qtde))
             componenteRepository.recoverAllComponente()
                 .collect{ result ->
                     result.onSuccess { componenteList ->
-                        emit(ResultUpdateDataBase(++count,"Salvandos Dados da Tabela Componente", size))
+                        emit(ResultUpdateDataBase(++contUpdateComponente,"Salvandos Dados da Tabela Componente", qtde))
                         componenteRepository.addAllComponente(componenteList)
                     }
                 }

@@ -11,17 +11,16 @@ class UpdateServicoImpl @Inject constructor(
     private val servicoRepository: ServicoRepository
 ): UpdateServico {
 
-    override suspend fun invoke(count: Int, size: Int): Flow<ResultUpdateDataBase> {
+    override suspend fun invoke(contador: Int, qtde: Int): Flow<ResultUpdateDataBase> {
         return flow {
-            val size = size
-            var count = count
-            emit(ResultUpdateDataBase(++count,"Limpando Dados da Tabela Servico", size))
+            var contUpdateServico = contador
+            emit(ResultUpdateDataBase(++contUpdateServico,"Limpando Dados da Tabela Servico", qtde))
             servicoRepository.deleteAllServico()
-            emit(ResultUpdateDataBase(++count,"Recebendo Dados da Tabela Servico", size))
+            emit(ResultUpdateDataBase(++contUpdateServico,"Recebendo Dados da Tabela Servico", qtde))
             servicoRepository.recoverAllServico()
                 .collect{ result ->
                     result.onSuccess { servicoList ->
-                        emit(ResultUpdateDataBase(++count,"Salvandos Dados da Tabela Servico", size))
+                        emit(ResultUpdateDataBase(++contUpdateServico,"Salvandos Dados da Tabela Servico", qtde))
                         servicoRepository.addAllServico(servicoList)
                     }
                 }

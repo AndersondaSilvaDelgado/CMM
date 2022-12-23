@@ -24,7 +24,9 @@
             app:destination="@id/ativApontFragment" />
         <action
             android:id="@+id/action_OSApontFragment_to_menuApontFragment"
-            app:destination="@id/menuApontFragment" />
+            app:destination="@id/menuApontFragment"
+            app:popUpTo="@id/menuApontFragment"
+            app:popUpToInclusive="true"/>
     </fragment>
     <fragment
         android:id="@+id/ativApontFragment"
@@ -36,10 +38,14 @@
             app:destination="@id/paradaApontFragment" />
         <action
             android:id="@+id/action_ativApontFragment_to_OSApontFragment"
-            app:destination="@id/OSApontFragment" />
+            app:destination="@id/OSApontFragment"
+            app:popUpTo="@id/OSApontFragment"
+            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_ativApontFragment_to_menuApontFragment"
-            app:destination="@id/menuApontFragment" />
+            app:destination="@id/menuApontFragment"
+            app:popUpTo="@id/menuApontFragment"
+            app:popUpToInclusive="true" />
     </fragment>
     <fragment
         android:id="@+id/paradaApontFragment"
@@ -48,9 +54,13 @@
         tools:layout="@layout/fragment_parada_apont" >
         <action
             android:id="@+id/action_paradaApontFragment_to_ativApontFragment"
-            app:destination="@id/ativApontFragment" />
+            app:destination="@id/ativApontFragment"
+            app:popUpTo="@id/ativApontFragment"
+            app:popUpToInclusive="true" />
         <action
             android:id="@+id/action_paradaApontFragment_to_menuApontFragment"
-            app:destination="@id/menuApontFragment" />
+            app:destination="@id/menuApontFragment"
+            app:popUpTo="@id/menuApontFragment"
+            app:popUpToInclusive="true" />
     </fragment>
 </navigation>

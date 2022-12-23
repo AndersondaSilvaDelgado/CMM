@@ -11,17 +11,16 @@ class RecoverROSAtivImpl @Inject constructor(
     private val rOSAtivRepository: ROSAtivRepository
 ): RecoverROSAtiv {
 
-    override suspend fun invoke(nroOS: String, count: Int, size: Int): Flow<ResultUpdateDataBase> {
+    override suspend fun invoke(nroOS: String, contador: Int, qtde: Int): Flow<ResultUpdateDataBase> {
         return flow {
-            val size = size
-            var count = count
-            emit(ResultUpdateDataBase(++count,"Limpando Dados da Tabela OS", size))
+            var contRecoverROSAtiv = contador
+            emit(ResultUpdateDataBase(++contRecoverROSAtiv,"Limpando Dados da Tabela OS", qtde))
             rOSAtivRepository.deleteAllROSAtiv()
-            emit(ResultUpdateDataBase(++count,"Recebendo Dados da Tabela ROSAtiv", size))
+            emit(ResultUpdateDataBase(++contRecoverROSAtiv,"Recebendo Dados da Tabela ROSAtiv", qtde))
             rOSAtivRepository.recoverAllROSAtiv()
                 .collect{ result ->
                     result.onSuccess { rOSAtivList ->
-                        emit(ResultUpdateDataBase(++count,"Salvandos Dados da Tabela ROSAtiv", size))
+                        emit(ResultUpdateDataBase(++contRecoverROSAtiv,"Salvandos Dados da Tabela ROSAtiv", qtde))
                         rOSAtivRepository.addAllROSAtiv(rOSAtivList)
                     }
                 }

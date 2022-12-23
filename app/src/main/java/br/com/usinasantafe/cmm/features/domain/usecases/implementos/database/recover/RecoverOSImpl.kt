@@ -13,26 +13,25 @@ class RecoverOSImpl @Inject constructor(
     private val rOSAtiv: RecoverROSAtiv
 ): RecoverOS {
 
-    override suspend fun invoke(nroOS: String, count: Int, size: Int): Flow<ResultUpdateDataBase> {
+    override suspend fun invoke(nroOS: String, contador: Int, qtde: Int): Flow<ResultUpdateDataBase> {
         return flow {
-            val size = size
-            var count = count
-            emit(ResultUpdateDataBase(++count,"Limpando Dados da Tabela OS", size))
+            var contRecoverOS = contador
+            emit(ResultUpdateDataBase(++contRecoverOS,"Limpando Dados da Tabela OS", qtde))
             osRepository.deleteAllOS()
-            emit(ResultUpdateDataBase(++count,"Recebendo Dados da Tabela OS", size))
+            emit(ResultUpdateDataBase(++contRecoverOS,"Recebendo Dados da Tabela OS", qtde))
             osRepository.recoverOS(nroOS)
                 .collect{ result ->
                     result.onSuccess { osList ->
                         if(osList.isNotEmpty()){
-                            emit(ResultUpdateDataBase(++count, "Salvandos Dados da Tabela OS", size))
+                            emit(ResultUpdateDataBase(++contRecoverOS, "Salvandos Dados da Tabela OS", qtde))
                             osRepository.addAllOS(osList)
-                            rOSAtiv(nroOS, count, size).collect{
+                            rOSAtiv(nroOS, contRecoverOS, qtde).collect{
                                 emit(it)
-                                count = it.count;
+                                contRecoverOS = it.count;
                             }
-                            emit(ResultUpdateDataBase(size, "Termino de Atualização", size))
+                            emit(ResultUpdateDataBase(qtde, "Termino de Atualização", qtde))
                         } else {
-                            emit(ResultUpdateDataBase(size, "OS Inexistente!", size))
+                            emit(ResultUpdateDataBase(qtde, "OS Inexistente!", qtde))
                         }
                     }
                 }

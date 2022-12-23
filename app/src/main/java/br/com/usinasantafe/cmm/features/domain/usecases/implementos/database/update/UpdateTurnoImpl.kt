@@ -11,17 +11,16 @@ class UpdateTurnoImpl @Inject constructor(
     private val turnoRepository: TurnoRepository
 ): UpdateTurno {
 
-    override suspend fun invoke(count: Int, size: Int): Flow<ResultUpdateDataBase> {
+    override suspend fun invoke(contador: Int, qtde: Int): Flow<ResultUpdateDataBase> {
         return flow {
-            val size = size
-            var count = count
-            emit(ResultUpdateDataBase(++count,"Limpando Dados da Tabela Turno", size))
+            var contUpdateTurno = contador
+            emit(ResultUpdateDataBase(++contUpdateTurno,"Limpando Dados da Tabela Turno", qtde))
             turnoRepository.deleteAllTurno()
-            emit(ResultUpdateDataBase(++count,"Recebendo Dados da Tabela Turno", size))
+            emit(ResultUpdateDataBase(++contUpdateTurno,"Recebendo Dados da Tabela Turno", qtde))
             turnoRepository.recoverAllTurno()
                 .collect{ result ->
                     result.onSuccess { turnoList ->
-                        emit(ResultUpdateDataBase(++count,"Salvandos Dados da Tabela Turno", size))
+                        emit(ResultUpdateDataBase(++contUpdateTurno,"Salvandos Dados da Tabela Turno", qtde))
                         turnoRepository.addAllTurno(turnoList)
                     }
                 }

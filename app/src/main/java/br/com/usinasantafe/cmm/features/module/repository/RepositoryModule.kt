@@ -72,7 +72,7 @@ interface RepositoryModule {
 
     @Singleton
     @Binds
-    fun bindMotoMecRepository(repository: MotoMecRepostioryImpl): MotoMecRepository
+    fun bindMotoMecRepository(repository: OperMotoMecRepostioryImpl): OperMotoMecRepository
 
     @Singleton
     @Binds

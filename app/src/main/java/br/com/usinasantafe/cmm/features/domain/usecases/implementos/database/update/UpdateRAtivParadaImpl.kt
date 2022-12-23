@@ -11,17 +11,16 @@ class UpdateRAtivParadaImpl @Inject constructor(
     private val rAtivParadaRepository: RAtivParadaRepository
 ): UpdateRAtivParada {
 
-    override suspend fun invoke(count: Int, size: Int): Flow<ResultUpdateDataBase> {
+    override suspend fun invoke(contador: Int, qtde: Int): Flow<ResultUpdateDataBase> {
         return flow {
-            val size = size
-            var count = count
-            emit(ResultUpdateDataBase(++count, "Limpando Dados da Tabela RAtivParada", size))
+            var contUpdateRAtivParada = contador
+            emit(ResultUpdateDataBase(++contUpdateRAtivParada, "Limpando Dados da Tabela RAtivParada", qtde))
             rAtivParadaRepository.deleteAllRAtivParada()
-            emit(ResultUpdateDataBase(++count,"Recebendo Dados da Tabela RAtivParada", size))
+            emit(ResultUpdateDataBase(++contUpdateRAtivParada,"Recebendo Dados da Tabela RAtivParada", qtde))
             rAtivParadaRepository.recoverAllRAtivParada()
                 .collect{ result ->
                     result.onSuccess { rAtivParadaList ->
-                        emit(ResultUpdateDataBase(++count,"Salvandos Dados da Tabela RAtivParada", size))
+                        emit(ResultUpdateDataBase(++contUpdateRAtivParada,"Salvandos Dados da Tabela RAtivParada", qtde))
                         rAtivParadaRepository.addAllRAtivParada(rAtivParadaList)
                     }
                 }

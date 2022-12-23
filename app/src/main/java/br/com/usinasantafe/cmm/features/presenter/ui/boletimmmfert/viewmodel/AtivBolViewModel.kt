@@ -2,6 +2,7 @@ package br.com.usinasantafe.cmm.features.presenter.ui.boletimmmfert.viewmodel
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import br.com.usinasantafe.cmm.common.utils.FlowNote
 import br.com.usinasantafe.cmm.features.domain.entities.stable.Atividade
 import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.boletimmmfert.SetIdAtivBoletimMMFert
 import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.common.ListAtiv
@@ -41,7 +42,7 @@ class AtivBolViewModel @Inject constructor (
     }
 
     fun recoverListAtiv() = viewModelScope.launch {
-        setListAtiv(listAtiv())
+        setListAtiv(listAtiv(FlowNote.BOLETIM))
     }
 
     fun setIdAtiv(atividade: Atividade) = viewModelScope.launch {
@@ -50,7 +51,7 @@ class AtivBolViewModel @Inject constructor (
 
     fun updateDataAtiv() =
         viewModelScope.launch {
-            recoverAtividade().
+            recoverAtividade(FlowNote.BOLETIM).
             onStart {
                 showUpdateTurno()
             }

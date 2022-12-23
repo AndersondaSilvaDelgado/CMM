@@ -1,7 +1,9 @@
 package br.com.usinasantafe.cmm.features.module.database
 
 import br.com.usinasantafe.cmm.features.external.webservice.AppRetrofit
-import br.com.usinasantafe.cmm.features.external.webservice.api.*
+import br.com.usinasantafe.cmm.features.external.webservice.api.stable.*
+import br.com.usinasantafe.cmm.features.external.webservice.api.variable.FertirrigacaoApi
+import br.com.usinasantafe.cmm.features.external.webservice.api.variable.MotoMecApi
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -11,6 +13,8 @@ import javax.inject.Singleton
 @Module
 @InstallIn(SingletonComponent::class)
 object RetrofitModule {
+
+    ////////////////////////// Estavel /////////////////////////////////
 
     @Singleton
     @Provides
@@ -74,8 +78,8 @@ object RetrofitModule {
 
     @Singleton
     @Provides
-    fun motoMecRetrofit(): MotoMecApi {
-        return AppRetrofit.getInstance().create(MotoMecApi::class.java)
+    fun motoMecRetrofit(): OperMotoMecApi {
+        return AppRetrofit.getInstance().create(OperMotoMecApi::class.java)
     }
 
     @Singleton
@@ -154,6 +158,20 @@ object RetrofitModule {
     @Provides
     fun turnoRetrofit(): TurnoApi {
         return AppRetrofit.getInstance().create(TurnoApi::class.java)
+    }
+
+    ////////////////////////// Variavel /////////////////////////////////
+
+    @Singleton
+    @Provides
+    fun fertirrigacaoRetrofit(): FertirrigacaoApi {
+        return AppRetrofit.getInstance().create(FertirrigacaoApi::class.java)
+    }
+
+    @Singleton
+    @Provides
+    fun motoMecApiRetrofit(): MotoMecApi {
+        return AppRetrofit.getInstance().create(MotoMecApi::class.java)
     }
 
 }

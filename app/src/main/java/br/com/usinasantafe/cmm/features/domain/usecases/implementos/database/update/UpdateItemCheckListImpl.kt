@@ -11,17 +11,16 @@ class UpdateItemCheckListImpl @Inject constructor(
     private val itemCheckListRepository: ItemCheckListRepository
 ): UpdateItemCheckList {
 
-    override suspend fun invoke(count: Int, size: Int): Flow<ResultUpdateDataBase> {
+    override suspend fun invoke(contador: Int, qtde: Int): Flow<ResultUpdateDataBase> {
         return flow {
-            val size = size
-            var count = count
-            emit(ResultUpdateDataBase(++count, "Limpando Dados da Tabela ItemCheckList", size))
+            var contUpdateItemCheckList = contador
+            emit(ResultUpdateDataBase(++contUpdateItemCheckList, "Limpando Dados da Tabela ItemCheckList", qtde))
             itemCheckListRepository.deleteAllItemCheckList()
-                    emit(ResultUpdateDataBase(++count,"Recebendo Dados da Tabela ItemCheckList", size))
+                    emit(ResultUpdateDataBase(++contUpdateItemCheckList,"Recebendo Dados da Tabela ItemCheckList", qtde))
             itemCheckListRepository.recoverAllItemCheckList()
                 .collect{ result ->
                     result.onSuccess { itemCheckListList ->
-                        emit(ResultUpdateDataBase(++count,"Salvandos Dados da Tabela ItemCheckList", size))
+                        emit(ResultUpdateDataBase(++contUpdateItemCheckList,"Salvandos Dados da Tabela ItemCheckList", qtde))
                         itemCheckListRepository.addAllItemCheckList(itemCheckListList)
                     }
                 }

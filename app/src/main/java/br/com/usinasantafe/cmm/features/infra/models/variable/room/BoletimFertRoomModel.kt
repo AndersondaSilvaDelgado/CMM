@@ -9,7 +9,7 @@ import br.com.usinasantafe.cmm.features.domain.entities.variable.BoletimFert
 import java.util.*
 
 @Entity(tableName = TB_BOLETIM_FERT)
-data class BoletimFertModel (
+data class BoletimFertRoomModel (
     @PrimaryKey(autoGenerate = true)
     val idBolFert: Long? = null,
     val matricFuncBolFert: Long,
@@ -18,8 +18,8 @@ data class BoletimFertModel (
     val idTurnoBolFert: Long,
     val hodometroInicialBolFert: Double,
     val hodometroFinalBolFert: Double? = null,
-    val osBolFert: Long,
-    val ativPrincBolFert: Long,
+    val nroOSBolFert: Long,
+    val idAtivBolFert: Long,
     val dthrInicialBolFert: Long,
     val dthrFinalBolFert: Long? = null,
     val statusBolFert: Long,
@@ -28,16 +28,16 @@ data class BoletimFertModel (
     val latitudeBolFert: Double
 )
 
-fun BoletimFert.toBoletimFertModel(): BoletimFertModel{
+fun BoletimFert.toBoletimFertRoomModel(): BoletimFertRoomModel{
     return with(this){
-        BoletimFertModel(
+        BoletimFertRoomModel(
             matricFuncBolFert = this.matricFuncBol!!,
-            idEquipBolFert = this.idEquipBol!!,
+            idEquipBolFert = this.idEquipBol,
             idEquipBombaBolMMFert = this.idEquipBombaBol!!,
             idTurnoBolFert = this.idTurnoBol!!,
             hodometroInicialBolFert = this.hodometroInicialBol!!,
-            osBolFert = this.osBol!!,
-            ativPrincBolFert = this.ativPrincBol!!,
+            nroOSBolFert = this.nroOSBol!!,
+            idAtivBolFert = this.idAtivBol!!,
             dthrInicialBolFert = Date().time,
             statusBolFert = StatusData.ABERTO.ordinal.toLong(),
             statusConBolFert = StatusConnection.ONLINE.ordinal.toLong(),

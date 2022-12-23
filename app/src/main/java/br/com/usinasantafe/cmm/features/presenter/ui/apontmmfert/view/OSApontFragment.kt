@@ -103,7 +103,7 @@ class OSApontFragment : BaseFragment<FragmentOsApontBinding>(
 
     private fun handleCheckSetNroOS(checkSetNroOS: Boolean) {
         if (checkSetNroOS) {
-            findNavController().navigate(R.id.action_OSBolFragment_to_ativBolFragment)
+            findNavController().navigate(R.id.action_OSApontFragment_to_ativApontFragment)
         } else {
             showGenericAlertDialog(
                 getString(R.string.texto_falha_insercao_campo, "OS"),
@@ -147,7 +147,7 @@ class OSApontFragment : BaseFragment<FragmentOsApontBinding>(
         super.onAttach(context)
         val callback: OnBackPressedCallback = object : OnBackPressedCallback(true) {
             override fun handleOnBackPressed() {
-                findNavController().navigate(R.id.action_OSBolFragment_to_turnoBolFragment)
+                findNavController().navigate(R.id.action_OSApontFragment_to_menuApontFragment)
             }
         }
         requireActivity().onBackPressedDispatcher.addCallback(

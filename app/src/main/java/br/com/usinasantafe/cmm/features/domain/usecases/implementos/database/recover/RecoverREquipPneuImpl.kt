@@ -11,17 +11,16 @@ class RecoverREquipPneuImpl @Inject constructor(
     private val rEquipPneuRepository: REquipPneuRepository
 ): RecoverREquipPneu {
 
-    override suspend fun invoke(nroEquip: String, count: Int, size: Int): Flow<ResultUpdateDataBase> {
+    override suspend fun invoke(nroEquip: String, contador: Int, qtde: Int): Flow<ResultUpdateDataBase> {
         return flow {
-            val size = size
-            var count = count
-            emit(ResultUpdateDataBase(++count,"Limpando Dados da Tabela REquipPneu", size))
+            var contRecoverREquipPneu = contador
+            emit(ResultUpdateDataBase(++contRecoverREquipPneu,"Limpando Dados da Tabela REquipPneu", qtde))
             rEquipPneuRepository.deleteAllREquipPneu()
-            emit(ResultUpdateDataBase(++count,"Recebendo Dados da Tabela REquipPneu", size))
+            emit(ResultUpdateDataBase(++contRecoverREquipPneu,"Recebendo Dados da Tabela REquipPneu", qtde))
             rEquipPneuRepository.recoverREquipPneu(nroEquip)
                 .collect{ result ->
                     result.onSuccess { rEquipPneuList ->
-                        emit(ResultUpdateDataBase(++count,"Salvandos Dados da Tabela REquipPneu", size))
+                        emit(ResultUpdateDataBase(++contRecoverREquipPneu,"Salvandos Dados da Tabela REquipPneu", qtde))
                         rEquipPneuRepository.addAllREquipPneu(rEquipPneuList)
                     }
                 }

@@ -5,6 +5,6 @@ import kotlinx.coroutines.flow.Flow
 
 interface RecoverOS {
 
-    suspend operator fun invoke(nroOS: String, count: Int = 0, size: Int = 7): Flow<ResultUpdateDataBase>
+    suspend operator fun invoke(nroOS: String, contador: Int = 0, qtde: Int = 7): Flow<ResultUpdateDataBase>
 
 }

@@ -5,6 +5,6 @@ import kotlinx.coroutines.flow.Flow
 
 interface RecoverREquipAtiv {
 
-    suspend operator fun invoke(nroEquip: String, count: Int = 0, size: Int = 3): Flow<ResultUpdateDataBase>
+    suspend operator fun invoke(nroEquip: String, contador: Int = 0, qtde: Int = 3): Flow<ResultUpdateDataBase>
 
 }

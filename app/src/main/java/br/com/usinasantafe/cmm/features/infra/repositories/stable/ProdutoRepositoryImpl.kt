@@ -4,8 +4,8 @@ import br.com.usinasantafe.cmm.features.domain.entities.stable.Produto
 import br.com.usinasantafe.cmm.features.infra.models.stable.toProduto
 import br.com.usinasantafe.cmm.features.infra.models.stable.toProdutoModel
 import br.com.usinasantafe.cmm.features.domain.repositories.stable.ProdutoRepository
-import br.com.usinasantafe.cmm.features.infra.datasource.room.ProdutoDatasourceRoom
-import br.com.usinasantafe.cmm.features.infra.datasource.webservice.ProdutoDatasourceWebService
+import br.com.usinasantafe.cmm.features.infra.datasource.room.stable.ProdutoDatasourceRoom
+import br.com.usinasantafe.cmm.features.infra.datasource.webservice.stable.ProdutoDatasourceWebService
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject

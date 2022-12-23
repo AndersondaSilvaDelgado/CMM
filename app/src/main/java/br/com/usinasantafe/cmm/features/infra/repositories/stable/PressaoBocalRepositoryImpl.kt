@@ -4,8 +4,8 @@ import br.com.usinasantafe.cmm.features.domain.entities.stable.PressaoBocal
 import br.com.usinasantafe.cmm.features.infra.models.stable.toPressaoBocal
 import br.com.usinasantafe.cmm.features.infra.models.stable.toPressaoBocalModel
 import br.com.usinasantafe.cmm.features.domain.repositories.stable.PressaoBocalRepository
-import br.com.usinasantafe.cmm.features.infra.datasource.room.PressaoBocalDatasourceRoom
-import br.com.usinasantafe.cmm.features.infra.datasource.webservice.PressaoBocalDatasourceWebService
+import br.com.usinasantafe.cmm.features.infra.datasource.room.stable.PressaoBocalDatasourceRoom
+import br.com.usinasantafe.cmm.features.infra.datasource.webservice.stable.PressaoBocalDatasourceWebService
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject

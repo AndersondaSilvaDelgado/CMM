@@ -11,17 +11,16 @@ class UpdateParadaImpl @Inject constructor(
     private val paradaRepository: ParadaRepository
 ): UpdateParada {
 
-    override suspend fun invoke(count: Int, size: Int): Flow<ResultUpdateDataBase> {
+    override suspend fun invoke(contador: Int, qtde: Int): Flow<ResultUpdateDataBase> {
         return flow {
-            val size = size
-            var count = count
-            emit(ResultUpdateDataBase(++count,"Limpando Dados da Tabela Parada", size))
+            var contUpdateParada = contador
+            emit(ResultUpdateDataBase(++contUpdateParada,"Limpando Dados da Tabela Parada", qtde))
             paradaRepository.deleteAllParada()
-            emit(ResultUpdateDataBase(++count,"Recebendo Dados da Tabela Parada", size))
+            emit(ResultUpdateDataBase(++contUpdateParada,"Recebendo Dados da Tabela Parada", qtde))
             paradaRepository.recoverAllParada()
                 .collect{ result ->
                     result.onSuccess { paradaList ->
-                        emit(ResultUpdateDataBase(++count,"Salvandos Dados da Tabela Parada", size))
+                        emit(ResultUpdateDataBase(++contUpdateParada,"Salvandos Dados da Tabela Parada", qtde))
                         paradaRepository.addAllParada(paradaList)
                     }
                 }

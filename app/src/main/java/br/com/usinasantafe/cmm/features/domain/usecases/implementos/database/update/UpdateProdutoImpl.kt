@@ -11,17 +11,16 @@ class UpdateProdutoImpl @Inject constructor(
     private val produtoRepository: ProdutoRepository
 ): UpdateProduto {
 
-    override suspend fun invoke(count: Int, size: Int): Flow<ResultUpdateDataBase> {
+    override suspend fun invoke(contador: Int, qtde: Int): Flow<ResultUpdateDataBase> {
         return flow {
-            val size = size
-            var count = count
-            emit(ResultUpdateDataBase(++count,"Limpando Dados da Tabela Produto", size))
+            var contUpdateProduto = contador
+            emit(ResultUpdateDataBase(++contUpdateProduto,"Limpando Dados da Tabela Produto", qtde))
             produtoRepository.deleteAllProduto()
-            emit(ResultUpdateDataBase(++count,"Recebendo Dados da Tabela Produto", size))
+            emit(ResultUpdateDataBase(++contUpdateProduto,"Recebendo Dados da Tabela Produto", qtde))
             produtoRepository.recoverAllProduto()
                 .collect{ result ->
                     result.onSuccess { produtoList ->
-                        emit(ResultUpdateDataBase(++count,"Salvandos Dados da Tabela Produto", size))
+                        emit(ResultUpdateDataBase(++contUpdateProduto,"Salvandos Dados da Tabela Produto", qtde))
                         produtoRepository.addAllProduto(produtoList)
                     }
                 }

@@ -4,8 +4,8 @@ import br.com.usinasantafe.cmm.features.domain.entities.stable.Func
 import br.com.usinasantafe.cmm.features.infra.models.stable.toFunc
 import br.com.usinasantafe.cmm.features.infra.models.stable.toFuncModel
 import br.com.usinasantafe.cmm.features.domain.repositories.stable.FuncRepository
-import br.com.usinasantafe.cmm.features.infra.datasource.room.FuncDatasourceRoom
-import br.com.usinasantafe.cmm.features.infra.datasource.webservice.FuncDatasourceWebService
+import br.com.usinasantafe.cmm.features.infra.datasource.room.stable.FuncDatasourceRoom
+import br.com.usinasantafe.cmm.features.infra.datasource.webservice.stable.FuncDatasourceWebService
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject

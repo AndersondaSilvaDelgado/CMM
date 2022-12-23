@@ -11,17 +11,16 @@ class UpdateFuncImpl @Inject constructor(
     private val funcRepository: FuncRepository
 ): UpdateFunc {
 
-    override suspend fun invoke(count: Int, size: Int): Flow<ResultUpdateDataBase> {
+    override suspend fun invoke(contador: Int, qtde: Int): Flow<ResultUpdateDataBase> {
         return flow {
-            val size = size
-            var count = count
-            emit(ResultUpdateDataBase(++count, "Limpando Dados da Tabela Func", size))
+            var contUpdateFunc = contador
+            emit(ResultUpdateDataBase(++contUpdateFunc, "Limpando Dados da Tabela Func", qtde))
             funcRepository.deleteAllFunc()
-            emit(ResultUpdateDataBase(++count,"Recebendo Dados da Tabela Func", size))
+            emit(ResultUpdateDataBase(++contUpdateFunc,"Recebendo Dados da Tabela Func", qtde))
             funcRepository.recoverAllFunc()
                 .collect{ result ->
                     result.onSuccess { funcList ->
-                        emit(ResultUpdateDataBase(++count,"Salvandos Dados da Tabela Func", size))
+                        emit(ResultUpdateDataBase(++contUpdateFunc,"Salvandos Dados da Tabela Func", qtde))
                         funcRepository.addAllFunc(funcList)
                     }
                 }

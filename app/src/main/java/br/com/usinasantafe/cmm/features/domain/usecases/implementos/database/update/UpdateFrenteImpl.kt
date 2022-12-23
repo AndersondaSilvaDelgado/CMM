@@ -11,17 +11,16 @@ class UpdateFrenteImpl @Inject constructor(
     private val frenteRepository: FrenteRepository
 ): UpdateFrente {
 
-    override suspend fun invoke(count: Int, size: Int): Flow<ResultUpdateDataBase> {
+    override suspend fun invoke(contador: Int, qtde: Int): Flow<ResultUpdateDataBase> {
         return flow {
-            val size = size
-            var count = count
-            emit(ResultUpdateDataBase(++count, "Limpando Dados da Tabela Frente", size))
+            var contUpdateFrente = contador
+            emit(ResultUpdateDataBase(++contUpdateFrente, "Limpando Dados da Tabela Frente", qtde))
             frenteRepository.deleteAllFrente()
-            emit(ResultUpdateDataBase(++count,"Recebendo Dados da Tabela Frente", size))
+            emit(ResultUpdateDataBase(++contUpdateFrente,"Recebendo Dados da Tabela Frente", qtde))
             frenteRepository.recoverAllFrente()
                 .collect{ result ->
                     result.onSuccess { frenteList ->
-                        emit(ResultUpdateDataBase(++count,"Salvandos Dados da Tabela Frente", size))
+                        emit(ResultUpdateDataBase(++contUpdateFrente,"Salvandos Dados da Tabela Frente", qtde))
                         frenteRepository.addAllFrente(frenteList)
                     }
                 }

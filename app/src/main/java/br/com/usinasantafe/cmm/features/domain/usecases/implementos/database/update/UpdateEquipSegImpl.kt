@@ -11,17 +11,16 @@ class UpdateEquipSegImpl @Inject constructor(
     private val equipSegRepository: EquipSegRepository
 ): UpdateEquipSeg {
 
-    override suspend fun invoke(count: Int, size: Int): Flow<ResultUpdateDataBase> {
+    override suspend fun invoke(contador: Int, qtde: Int): Flow<ResultUpdateDataBase> {
         return flow {
-            val size = size
-            var count = count
-            emit(ResultUpdateDataBase(++count,"Limpando Dados da Tabela EquipSeg", size))
+            var contUpdateEquipSeg = contador
+            emit(ResultUpdateDataBase(++contUpdateEquipSeg,"Limpando Dados da Tabela EquipSeg", qtde))
             equipSegRepository.deleteAllEquipSeg()
-            emit(ResultUpdateDataBase(++count,"Recebendo Dados da Tabela EquipSeg", size))
+            emit(ResultUpdateDataBase(++contUpdateEquipSeg,"Recebendo Dados da Tabela EquipSeg", qtde))
             equipSegRepository.recoverAllEquipSeg()
                 .collect{ result ->
                     result.onSuccess { equipSegList ->
-                        emit(ResultUpdateDataBase(++count,"Salvandos Dados da Tabela EquipSeg", size))
+                        emit(ResultUpdateDataBase(++contUpdateEquipSeg,"Salvandos Dados da Tabela EquipSeg", qtde))
                         equipSegRepository.addAllEquipSeg(equipSegList)
                     }
                 }

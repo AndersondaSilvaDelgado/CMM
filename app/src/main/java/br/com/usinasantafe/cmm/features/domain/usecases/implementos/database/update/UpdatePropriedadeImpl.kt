@@ -11,17 +11,16 @@ class UpdatePropriedadeImpl @Inject constructor(
     private val propriedadeRepository: PropriedadeRepository
 ): UpdatePropriedade {
 
-    override suspend fun invoke(count: Int, size: Int): Flow<ResultUpdateDataBase> {
+    override suspend fun invoke(contador: Int, qtde: Int): Flow<ResultUpdateDataBase> {
         return flow {
-            val size = size
-            var count = count
-            emit(ResultUpdateDataBase(++count,"Limpando Dados da Tabela Propriedade", size))
+            var contUpdatePropriedade = contador
+            emit(ResultUpdateDataBase(++contUpdatePropriedade,"Limpando Dados da Tabela Propriedade", qtde))
             propriedadeRepository.deleteAllPropriedade()
-            emit(ResultUpdateDataBase(++count,"Recebendo Dados da Tabela Propriedade", size))
+            emit(ResultUpdateDataBase(++contUpdatePropriedade,"Recebendo Dados da Tabela Propriedade", qtde))
             propriedadeRepository.recoverAllPropriedade()
                 .collect{ result ->
                     result.onSuccess { propriedadeList ->
-                        emit(ResultUpdateDataBase(++count,"Salvandos Dados da Tabela Propriedade", size))
+                        emit(ResultUpdateDataBase(++contUpdatePropriedade,"Salvandos Dados da Tabela Propriedade", qtde))
                         propriedadeRepository.addAllPropriedade(propriedadeList)
                     }
                 }

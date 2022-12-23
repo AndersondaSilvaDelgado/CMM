@@ -2,44 +2,51 @@ package br.com.usinasantafe.cmm.features.external.room
 
 import androidx.room.*
 import br.com.usinasantafe.cmm.common.utils.VERSION_DB
-import br.com.usinasantafe.cmm.features.external.room.dao.*
+import br.com.usinasantafe.cmm.features.external.room.dao.stable.*
+import br.com.usinasantafe.cmm.features.external.room.dao.variable.ApontFertDao
+import br.com.usinasantafe.cmm.features.external.room.dao.variable.ApontMMDao
+import br.com.usinasantafe.cmm.features.external.room.dao.variable.BoletimFertDao
+import br.com.usinasantafe.cmm.features.external.room.dao.variable.BoletimMMDao
 import br.com.usinasantafe.cmm.features.infra.models.stable.*
-import br.com.usinasantafe.cmm.features.infra.models.variable.room.ApontFertModel
-import br.com.usinasantafe.cmm.features.infra.models.variable.room.ApontMMModel
-import br.com.usinasantafe.cmm.features.infra.models.variable.room.BoletimFertModel
-import br.com.usinasantafe.cmm.features.infra.models.variable.room.BoletimMMModel
+import br.com.usinasantafe.cmm.features.infra.models.variable.room.ApontFertRoomModel
+import br.com.usinasantafe.cmm.features.infra.models.variable.room.ApontMMRoomModel
+import br.com.usinasantafe.cmm.features.infra.models.variable.room.BoletimFertRoomModel
+import br.com.usinasantafe.cmm.features.infra.models.variable.room.BoletimMMRoomModel
 
-@Database(entities = [AtividadeModel::class,
-                            BocalModel::class,
-                            ComponenteModel::class,
-                            ApontFertModel::class,
-                            ApontMMModel::class,
-                            BoletimMMModel::class,
-                            BoletimFertModel::class,
-                            EquipModel::class,
-                            EquipSegModel::class,
-                            FrenteModel::class,
-                            FuncModel::class,
-                            ItemCheckListModel::class,
-                            ItemOSMecanModel::class,
-                            LeiraModel::class,
-                            MotoMecModel::class,
-                            OSModel::class,
-                            ParadaModel::class,
-                            PneuModel::class,
-                            PressaoBocalModel::class,
-                            ProdutoModel::class,
-                            PropriedadeModel::class,
-                            RAtivParadaModel::class,
-                            REquipAtivModel::class,
-                            REquipPneuModel::class,
-                            RFuncaoAtivParadaModel::class,
-                            ROSAtivModel::class,
-                            ServicoModel::class,
-                            TurnoModel::class]
-    , version = VERSION_DB
-    , exportSchema = false)
-abstract class AppDatabaseRoom: RoomDatabase() {
+@Database(
+    entities = [
+        ApontFertRoomModel::class,
+        ApontMMRoomModel::class,
+        AtividadeModel::class,
+        BocalModel::class,
+        ComponenteModel::class,
+        BoletimMMRoomModel::class,
+        BoletimFertRoomModel::class,
+        EquipModel::class,
+        EquipSegModel::class,
+        FrenteModel::class,
+        FuncModel::class,
+        ItemCheckListModel::class,
+        ItemOSMecanModel::class,
+        LeiraModel::class,
+        OperMotoMecModel::class,
+        OSModel::class,
+        ParadaModel::class,
+        PneuModel::class,
+        PressaoBocalModel::class,
+        ProdutoModel::class,
+        PropriedadeModel::class,
+        RAtivParadaModel::class,
+        REquipAtivModel::class,
+        REquipPneuModel::class,
+        RFuncaoAtivParadaModel::class,
+        ROSAtivModel::class,
+        ServicoModel::class,
+        TurnoModel::class], version = VERSION_DB, exportSchema = false
+)
+abstract class AppDatabaseRoom : RoomDatabase() {
+    abstract fun apontFertDao(): ApontFertDao
+    abstract fun apontMMDao(): ApontMMDao
     abstract fun atividadeDao(): AtividadeDao
     abstract fun bocalDao(): BocalDao
     abstract fun boletimFertDao(): BoletimFertDao
@@ -52,7 +59,7 @@ abstract class AppDatabaseRoom: RoomDatabase() {
     abstract fun itemCheckListDao(): ItemCheckListDao
     abstract fun itemOSMecanDao(): ItemOSMecanDao
     abstract fun leiraDao(): LeiraDao
-    abstract fun motoMecDao(): MotoMecDao
+    abstract fun motoMecDao(): OperMotoMecDao
     abstract fun osDao(): OSDao
     abstract fun paradaDao(): ParadaDao
     abstract fun pneuDao(): PneuDao

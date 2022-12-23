@@ -9,7 +9,7 @@ interface REquipAtivRepository {
 
     suspend fun deleteAllREquipAtiv()
 
-    suspend fun recoverREquipAtiv(nroequip: String): Flow<Result<List<REquipAtiv>>>
+    suspend fun recoverREquipAtiv(nroEquip: String): Flow<Result<List<REquipAtiv>>>
 
     suspend fun listREquipAtiv(idEquip: Long): List<REquipAtiv>
 

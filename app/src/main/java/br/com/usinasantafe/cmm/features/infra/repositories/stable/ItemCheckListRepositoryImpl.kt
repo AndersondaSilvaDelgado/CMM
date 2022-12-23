@@ -4,8 +4,8 @@ import br.com.usinasantafe.cmm.features.domain.entities.stable.ItemCheckList
 import br.com.usinasantafe.cmm.features.infra.models.stable.toItemCheckList
 import br.com.usinasantafe.cmm.features.infra.models.stable.toItemCheckListModel
 import br.com.usinasantafe.cmm.features.domain.repositories.stable.ItemCheckListRepository
-import br.com.usinasantafe.cmm.features.infra.datasource.room.ItemCheckListDatasourceRoom
-import br.com.usinasantafe.cmm.features.infra.datasource.webservice.ItemCheckListDatasourceWebService
+import br.com.usinasantafe.cmm.features.infra.datasource.room.stable.ItemCheckListDatasourceRoom
+import br.com.usinasantafe.cmm.features.infra.datasource.webservice.stable.ItemCheckListDatasourceWebService
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject

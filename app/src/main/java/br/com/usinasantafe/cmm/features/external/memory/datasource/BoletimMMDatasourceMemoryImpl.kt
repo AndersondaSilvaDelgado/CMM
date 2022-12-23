@@ -18,27 +18,42 @@ class BoletimMMDatasourceMemoryImpl @Inject constructor (
     }
 
     override suspend fun setHorimetroInicial(horimetroInicial: Double): Boolean {
-        AppDatabaseMemory.boletimMM?.hodometroInicialBol = horimetroInicial
+        if(checkBoletim()){
+            return false
+        }
+        AppDatabaseMemory.boletimMM!!.hodometroInicialBol = horimetroInicial
         return true
     }
 
     override suspend fun setIdAtiv(idAtiv: Long): Boolean {
-        AppDatabaseMemory.boletimMM?.ativPrincBol = idAtiv
+        if(checkBoletim()){
+            return false
+        }
+        AppDatabaseMemory.boletimMM!!.idAtivBol = idAtiv
         return true
     }
 
     override suspend fun setIdTurno(idTurno: Long): Boolean {
-        AppDatabaseMemory.boletimMM?.idTurnoBol = idTurno
+        if(checkBoletim()){
+            return false
+        }
+        AppDatabaseMemory.boletimMM!!.idTurnoBol = idTurno
         return true
     }
 
     override suspend fun setMatricOperador(nroMatric: Long): Boolean {
-        AppDatabaseMemory.boletimMM?.matricFuncBol = nroMatric
+        if(checkBoletim()){
+            return false
+        }
+        AppDatabaseMemory.boletimMM!!.matricFuncBol = nroMatric
         return true
     }
 
     override suspend fun setNroOS(nroOS: Long): Boolean {
-        AppDatabaseMemory.boletimMM?.osBol = nroOS
+        if(checkBoletim()){
+            return false
+        }
+        AppDatabaseMemory.boletimMM!!.nroOSBol = nroOS
         return true
     }
 
@@ -48,6 +63,10 @@ class BoletimMMDatasourceMemoryImpl @Inject constructor (
             idEquipBol = idEquip
         )
         return true
+    }
+
+    private fun checkBoletim(): Boolean{
+        return AppDatabaseMemory.boletimMM == null
     }
 
 }

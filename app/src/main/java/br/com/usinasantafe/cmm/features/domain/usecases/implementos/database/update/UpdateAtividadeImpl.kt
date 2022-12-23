@@ -11,17 +11,16 @@ class UpdateAtividadeImpl @Inject constructor(
     private val atividadeRepository: AtividadeRepository
 ): UpdateAtividade {
 
-    override suspend fun invoke(count: Int, size: Int): Flow<ResultUpdateDataBase> {
+    override suspend fun invoke(contador: Int, qtde: Int): Flow<ResultUpdateDataBase> {
         return flow {
-            val size = size
-            var count = count
-            emit(ResultUpdateDataBase(++count, "Limpando Dados da Tabela Atividade", size))
+            var contUpdateAtividade = contador
+            emit(ResultUpdateDataBase(++contUpdateAtividade, "Limpando Dados da Tabela Atividade", qtde))
             atividadeRepository.deleteAllAtividade()
-            emit(ResultUpdateDataBase(++count, "Recebendo Dados da Tabela Atividade", size))
+            emit(ResultUpdateDataBase(++contUpdateAtividade, "Recebendo Dados da Tabela Atividade", qtde))
             atividadeRepository.recoverAllAtividade()
                 .collect{ result ->
                     result.onSuccess { ativList ->
-                        emit(ResultUpdateDataBase(++count, "Salvandos Dados da Tabela Atividade", size))
+                        emit(ResultUpdateDataBase(++contUpdateAtividade, "Salvandos Dados da Tabela Atividade", qtde))
                         atividadeRepository.addAllAtividade(ativList)
                     }
                 }

@@ -11,17 +11,16 @@ class UpdateOSImpl @Inject constructor(
     private val osRepository: OSRepository
 ): UpdateOS {
 
-    override suspend fun invoke(count: Int, size: Int): Flow<ResultUpdateDataBase> {
+    override suspend fun invoke(contador: Int, qtde: Int): Flow<ResultUpdateDataBase> {
         return flow {
-            val size = size
-            var count = count
-            emit(ResultUpdateDataBase(++count,"Limpando Dados da Tabela OS", size))
+            var contUpdateOS = contador
+            emit(ResultUpdateDataBase(++contUpdateOS,"Limpando Dados da Tabela OS", qtde))
             osRepository.deleteAllOS()
-            emit(ResultUpdateDataBase(++count,"Recebendo Dados da Tabela OS", size))
+            emit(ResultUpdateDataBase(++contUpdateOS,"Recebendo Dados da Tabela OS", qtde))
             osRepository.recoverAllOS()
                 .collect{ result ->
                     result.onSuccess { osList ->
-                        emit(ResultUpdateDataBase(++count,"Salvandos Dados da Tabela OS", size))
+                        emit(ResultUpdateDataBase(++contUpdateOS,"Salvandos Dados da Tabela OS", qtde))
                         osRepository.addAllOS(osList)
                     }
                 }

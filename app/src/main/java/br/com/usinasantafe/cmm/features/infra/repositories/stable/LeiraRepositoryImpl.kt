@@ -4,8 +4,8 @@ import br.com.usinasantafe.cmm.features.domain.entities.stable.Leira
 import br.com.usinasantafe.cmm.features.infra.models.stable.toLeira
 import br.com.usinasantafe.cmm.features.infra.models.stable.toLeiraModel
 import br.com.usinasantafe.cmm.features.domain.repositories.stable.LeiraRepository
-import br.com.usinasantafe.cmm.features.infra.datasource.room.LeiraDatasourceRoom
-import br.com.usinasantafe.cmm.features.infra.datasource.webservice.LeiraDatasourceWebService
+import br.com.usinasantafe.cmm.features.infra.datasource.room.stable.LeiraDatasourceRoom
+import br.com.usinasantafe.cmm.features.infra.datasource.webservice.stable.LeiraDatasourceWebService
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject

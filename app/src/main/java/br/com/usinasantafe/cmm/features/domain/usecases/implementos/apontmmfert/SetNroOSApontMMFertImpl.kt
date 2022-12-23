@@ -9,7 +9,7 @@ class SetNroOSApontMMFertImpl @Inject constructor(
 ): SetNroOSApontMMFert {
 
     override suspend fun invoke(nroOS: String): Boolean {
-        TODO("Not yet implemented")
+        return apontMMFertRepository.setNroOSApontMMFert(nroOS)
     }
 
 }

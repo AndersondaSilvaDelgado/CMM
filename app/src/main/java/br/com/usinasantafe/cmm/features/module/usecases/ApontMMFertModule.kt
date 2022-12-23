@@ -30,6 +30,10 @@ interface ApontMMFertModule {
 
     @Singleton
     @Binds
+    fun bindSetIdAtivApontMMFert(usecase: SetIdAtivApontMMFertImpl): SetIdAtivApontMMFert
+
+    @Singleton
+    @Binds
     fun bindSetNroOSApontMMFert(usecase: SetNroOSApontMMFertImpl): SetNroOSApontMMFert
 
 }

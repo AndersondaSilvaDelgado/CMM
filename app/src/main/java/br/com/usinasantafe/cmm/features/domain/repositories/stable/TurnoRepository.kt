@@ -5,7 +5,7 @@ import kotlinx.coroutines.flow.Flow
 
 interface TurnoRepository {
 
-    suspend fun addAllTurno(rOSAtivList: List<Turno>)
+    suspend fun addAllTurno(turnoList: List<Turno>)
 
     suspend fun deleteAllTurno()
 

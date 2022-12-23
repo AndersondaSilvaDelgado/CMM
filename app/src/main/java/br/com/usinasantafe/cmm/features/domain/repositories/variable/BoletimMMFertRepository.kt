@@ -8,11 +8,11 @@ interface BoletimMMFertRepository {
 
     suspend fun getIdBoletim(): Long
 
-    suspend fun getIdEquip(): Long
-
     suspend fun getOS(): Long
 
     suspend fun insertBoletimMMFert(): Boolean
+
+    suspend fun sentBoletimMMAbertoFert(): Boolean
 
     suspend fun setHorimetroInicialBoletimMMFert(horimetroInicial: String): Boolean
 

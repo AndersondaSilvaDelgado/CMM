@@ -4,8 +4,8 @@ import br.com.usinasantafe.cmm.features.domain.entities.stable.RAtivParada
 import br.com.usinasantafe.cmm.features.infra.models.stable.toRAtivParada
 import br.com.usinasantafe.cmm.features.infra.models.stable.toRAtivParadaModel
 import br.com.usinasantafe.cmm.features.domain.repositories.stable.RAtivParadaRepository
-import br.com.usinasantafe.cmm.features.infra.datasource.room.RAtivParadaDatasourceRoom
-import br.com.usinasantafe.cmm.features.infra.datasource.webservice.RAtivParadaDatasourceWebService
+import br.com.usinasantafe.cmm.features.infra.datasource.room.stable.RAtivParadaDatasourceRoom
+import br.com.usinasantafe.cmm.features.infra.datasource.webservice.stable.RAtivParadaDatasourceWebService
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject

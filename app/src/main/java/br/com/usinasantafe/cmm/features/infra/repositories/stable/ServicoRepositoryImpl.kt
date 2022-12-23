@@ -4,8 +4,8 @@ import br.com.usinasantafe.cmm.features.domain.entities.stable.Servico
 import br.com.usinasantafe.cmm.features.infra.models.stable.toServico
 import br.com.usinasantafe.cmm.features.infra.models.stable.toServicoModel
 import br.com.usinasantafe.cmm.features.domain.repositories.stable.ServicoRepository
-import br.com.usinasantafe.cmm.features.infra.datasource.room.ServicoDatasourceRoom
-import br.com.usinasantafe.cmm.features.infra.datasource.webservice.ServicoDatasourceWebService
+import br.com.usinasantafe.cmm.features.infra.datasource.room.stable.ServicoDatasourceRoom
+import br.com.usinasantafe.cmm.features.infra.datasource.webservice.stable.ServicoDatasourceWebService
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject

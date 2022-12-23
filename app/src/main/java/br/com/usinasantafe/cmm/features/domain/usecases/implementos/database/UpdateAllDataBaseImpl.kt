@@ -7,6 +7,7 @@ import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
+@Suppress("NAME_SHADOWING")
 class UpdateAllDataBaseImpl @Inject constructor(
     private val updateAtividade: UpdateAtividade,
     private val updateBocal: UpdateBocal,
@@ -17,7 +18,7 @@ class UpdateAllDataBaseImpl @Inject constructor(
     private val updateItemCheckList: UpdateItemCheckList,
     private val updateItemOSMecan: UpdateItemOSMecan,
     private val updateLeira: UpdateLeira,
-    private val updateMotoMec: UpdateMotoMec,
+    private val updateOperMotoMec: UpdateOperMotoMec,
     private val updateOS: UpdateOS,
     private val updateParada: UpdateParada,
     private val updatePneu: UpdatePneu,
@@ -71,7 +72,7 @@ class UpdateAllDataBaseImpl @Inject constructor(
                 emit(it)
                 count = it.count;
             }
-            updateMotoMec(count, size).collect{
+            updateOperMotoMec(count, size).collect{
                 emit(it)
                 count = it.count;
             }
