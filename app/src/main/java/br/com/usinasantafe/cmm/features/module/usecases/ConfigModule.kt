@@ -1,15 +1,7 @@
 package br.com.usinasantafe.cmm.features.module.usecases
 
-import br.com.usinasantafe.cmm.features.domain.usecases.implementos.common.CheckUpdateImpl
-import br.com.usinasantafe.cmm.features.domain.usecases.implementos.config.CheckPasswordConfigImpl
-import br.com.usinasantafe.cmm.features.domain.usecases.implementos.config.HasConfigImpl
-import br.com.usinasantafe.cmm.features.domain.usecases.implementos.config.RecoverConfigImpl
-import br.com.usinasantafe.cmm.features.domain.usecases.implementos.config.SaveConfigImpl
-import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.common.CheckUpdate
-import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.config.CheckPasswordConfig
-import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.config.HasConfig
-import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.config.RecoverConfig
-import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.config.SaveConfig
+import br.com.usinasantafe.cmm.features.domain.usecases.implementos.config.*
+import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.config.*
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -35,5 +27,9 @@ interface ConfigModule {
     @Singleton
     @Binds
     fun bindSaveConfig(usecase: SaveConfigImpl): SaveConfig
+
+    @Singleton
+    @Binds
+    fun bindSetStatusSendConfig(usecase: SetStatusSendConfigImpl): SetStatusSendConfig
 
 }

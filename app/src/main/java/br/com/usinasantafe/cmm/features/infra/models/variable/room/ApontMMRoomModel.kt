@@ -3,6 +3,7 @@ package br.com.usinasantafe.cmm.features.infra.models.variable.room
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import br.com.usinasantafe.cmm.common.utils.StatusConnection
+import br.com.usinasantafe.cmm.common.utils.StatusData
 import br.com.usinasantafe.cmm.common.utils.TB_APONT_MM
 import br.com.usinasantafe.cmm.common.utils.TypeNote
 import br.com.usinasantafe.cmm.features.domain.entities.variable.ApontMM
@@ -18,6 +19,7 @@ data class ApontMMRoomModel(
     var idParadaApontMM: Long?,
     var nroTransbApontMM: Long?,
     var dthrApontMM: Long,
+    var statusApontMM: Long,
     var statusConApontMM: Long,
     var longitudeApontMM: Double,
     var latitudeApontMM: Double,
@@ -28,12 +30,14 @@ data class ApontMMRoomModel(
 fun ApontMM.toApontMMRoomModel(): ApontMMRoomModel{
     return with(this){
         ApontMMRoomModel(
-            idBolApontMM = this.idBolApont,
-            nroOSApontMM =  this.nroOSApont!!,
-            idAtivApontMM =  this.idAtivApont!!,
+            idApontMM = this.idApont,
+            idBolApontMM = this.idBolApont ?: 0,
+            nroOSApontMM =  this.nroOSApont ?: 0,
+            idAtivApontMM =  this.idAtivApont ?: 0,
             idParadaApontMM = this.idParadaApont,
             nroTransbApontMM = this.nroTransbApont,
             dthrApontMM = Date().time,
+            statusApontMM = StatusData.FECHADO.ordinal.toLong(),
             statusConApontMM = StatusConnection.ONLINE.ordinal.toLong(),
             longitudeApontMM = 0.0,
             latitudeApontMM = 0.0,
@@ -54,6 +58,7 @@ fun ApontMMRoomModel.toApontMM(): ApontMM{
             idParadaApont = this.idParadaApontMM,
             nroTransbApont = this.nroTransbApontMM,
             dthrApont = Date(this.dthrApontMM),
+            statusApont = StatusData.values()[this.statusApontMM.toInt()],
             statusConApont = StatusConnection.values()[this.statusConApontMM.toInt()],
             longitudeApont = this.longitudeApontMM,
             latitudeApont = this.latitudeApontMM,

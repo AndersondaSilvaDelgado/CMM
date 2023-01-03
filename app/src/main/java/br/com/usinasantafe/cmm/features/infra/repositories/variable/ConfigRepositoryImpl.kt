@@ -1,5 +1,6 @@
 package br.com.usinasantafe.cmm.features.infra.repositories.variable
 
+import br.com.usinasantafe.cmm.common.utils.StatusSend
 import br.com.usinasantafe.cmm.features.domain.entities.variable.Config
 import br.com.usinasantafe.cmm.features.domain.repositories.variable.ConfigRepository
 import br.com.usinasantafe.cmm.features.infra.datasource.sharedpreferences.ConfigDatasourceSharedPreferences
@@ -18,8 +19,11 @@ class ConfigRepositoryImpl @Inject constructor (
     }
 
     override suspend fun saveConfig(nroEquip: String, senha: String) {
-        configDatasourceSharedPreferences.saveConfig(Config(nroEquip.toLong(), senha))
+        configDatasourceSharedPreferences.saveConfig(Config(nroEquip.toLong(), senha, StatusSend.ENVIADO))
     }
 
+    override suspend fun setStatusSendConfig(statusSend: StatusSend) {
+        configDatasourceSharedPreferences.setStatusSend(statusSend)
+    }
 
 }

@@ -4,6 +4,8 @@ import br.com.usinasantafe.cmm.features.infra.models.variable.room.BoletimMMRoom
 
 interface BoletimMMDatasourceRoom {
 
+    suspend fun checkBoletimAbertoMM(): Boolean
+
     suspend fun getBoletimAbertoMM(): BoletimMMRoomModel
 
     suspend fun insertBoletimMM(boletimMMRoomModel: BoletimMMRoomModel): Boolean

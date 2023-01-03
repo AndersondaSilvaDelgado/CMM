@@ -86,7 +86,7 @@ class AtivApontFragment : BaseFragment<FragmentAtivApontBinding>(
                 viewModel.updateDataAtiv()
             }
             buttonRetAtividade.setOnClickListener {
-                findNavController().navigate(R.id.action_ativBolFragment_to_OSBolFragment)
+                findNavController().navigate(R.id.action_ativApontFragment_to_OSApontFragment)
             }
         }
     }

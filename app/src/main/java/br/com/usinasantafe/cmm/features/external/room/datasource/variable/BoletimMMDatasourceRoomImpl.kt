@@ -10,6 +10,10 @@ class BoletimMMDatasourceRoomImpl @Inject constructor (
     private val boletimMMDao: BoletimMMDao
 ): BoletimMMDatasourceRoom {
 
+    override suspend fun checkBoletimAbertoMM(): Boolean {
+        return boletimMMDao.listBoletimStatus(StatusData.ABERTO.ordinal.toLong()).isNotEmpty()
+    }
+
     override suspend fun getBoletimAbertoMM(): BoletimMMRoomModel {
         return boletimMMDao.listBoletimStatus(StatusData.ABERTO.ordinal.toLong())[0]
     }

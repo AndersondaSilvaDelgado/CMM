@@ -1,6 +1,10 @@
 package br.com.usinasantafe.cmm.features.domain.repositories.variable
 
+import br.com.usinasantafe.cmm.features.domain.entities.variable.BoletimMM
+
 interface BoletimMMFertRepository {
+
+    suspend fun checkAbertoBoletimMMFert(): Boolean
 
     suspend fun clearBoletimMMFert()
 
@@ -12,7 +16,9 @@ interface BoletimMMFertRepository {
 
     suspend fun insertBoletimMMFert(): Boolean
 
-    suspend fun sentBoletimMMAbertoFert(): Boolean
+    suspend fun sendBoletimMMAbertoFert(): Result<List<BoletimMM>>
+
+    suspend fun sentBoletimMMAbertoFert(boletimMMList: List<BoletimMM>)
 
     suspend fun setHorimetroInicialBoletimMMFert(horimetroInicial: String): Boolean
 

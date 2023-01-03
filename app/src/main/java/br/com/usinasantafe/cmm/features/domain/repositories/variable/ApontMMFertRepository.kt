@@ -4,6 +4,8 @@ import br.com.usinasantafe.cmm.common.utils.TypeNote
 
 interface ApontMMFertRepository {
 
+    suspend fun checkApontSend(): Boolean
+
     suspend fun getOS(): Long
 
     suspend fun getTipo(): TypeNote

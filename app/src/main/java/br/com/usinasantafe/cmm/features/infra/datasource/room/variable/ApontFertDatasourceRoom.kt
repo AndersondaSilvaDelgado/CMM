@@ -4,6 +4,8 @@ import br.com.usinasantafe.cmm.features.infra.models.variable.room.ApontFertRoom
 
 interface ApontFertDatasourceRoom {
 
+    fun checkApontFertSend(): Boolean
+
     suspend fun insertApontFert(apontFertRoomModel: ApontFertRoomModel): Boolean
 
 }

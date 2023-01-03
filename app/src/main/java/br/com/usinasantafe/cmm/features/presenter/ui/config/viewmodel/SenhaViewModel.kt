@@ -18,7 +18,7 @@ class SenhaViewModel @Inject constructor (
     val uiStateFlow: StateFlow<SenhaFragmentState> get() = _uiStateFlow
 
     fun verificarSenha(senha: String) = viewModelScope.launch {
-        if(checkPasswordConfig.invoke(senha)){
+        if(checkPasswordConfig(senha)){
             _uiStateFlow.value = SenhaFragmentState.Success
         } else {
             _uiStateFlow.value = SenhaFragmentState.Error

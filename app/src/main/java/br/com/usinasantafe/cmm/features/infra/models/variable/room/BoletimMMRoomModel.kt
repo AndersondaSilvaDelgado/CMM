@@ -31,7 +31,7 @@ fun BoletimMM.toBoletimMMRoomModel(): BoletimMMRoomModel{
     return with(this){
         BoletimMMRoomModel(
             matricFuncBolMM = this.matricFuncBol!!,
-            idEquipBolMM = this.idEquipBol,
+            idEquipBolMM = this.idEquipBol!!,
             idTurnoBolMM = this.idTurnoBol!!,
             hodometroInicialBolMM = this.hodometroInicialBol!!,
             nroOSBolMM = this.nroOSBol!!,

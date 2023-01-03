@@ -7,7 +7,7 @@ import java.util.*
 data class BoletimMM (
     var idBol: Long? = null,
     var matricFuncBol: Long? = null,
-    var idEquipBol: Long,
+    var idEquipBol: Long? = null,
     var idTurnoBol: Long? = null,
     var hodometroInicialBol: Double? = null,
     var hodometroFinalBol: Double? = null,
@@ -15,7 +15,7 @@ data class BoletimMM (
     var idAtivBol: Long? = null,
     var dthrInicialBol: Date = Date(),
     var dthrFinalBol: Date = Date(),
-    var statusBol: StatusData,
+    var statusBol: StatusData? = null,
     var statusConBol: StatusConnection? = null,
     var longitudeBol: Double? = null,
     var latitudeBol: Double? = null,

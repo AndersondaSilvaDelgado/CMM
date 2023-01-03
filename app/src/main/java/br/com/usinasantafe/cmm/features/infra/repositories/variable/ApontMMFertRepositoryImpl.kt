@@ -23,6 +23,11 @@ class ApontMMFertRepositoryImpl @Inject constructor(
     private val boletimFertDatasourceRoom: BoletimFertDatasourceRoom
 ) : ApontMMFertRepository {
 
+    override suspend fun checkApontSend(): Boolean {
+//        return ((apontMMDatasourceRoom.checkApontMMSend()) && (apontFertDatasourceRoom.checkApontFertSend()))
+        return apontMMDatasourceRoom.checkApontMMSend()
+    }
+
     override suspend fun getOS(): Long {
         return if (equipRepository.getEquip().tipoEquip == 1L) {
             apontMMDatasourceMemory.getApontMM().nroOSApont!!
@@ -33,7 +38,7 @@ class ApontMMFertRepositoryImpl @Inject constructor(
 
     override suspend fun getTipo(): TypeNote {
         return if (equipRepository.getEquip().tipoEquip == 1L) {
-            apontMMDatasourceMemory.getApontMM().tipoApont
+            apontMMDatasourceMemory.getApontMM().tipoApont!!
         } else {
             apontFertDatasourceMemory.getApontFert().tipoApont
         }

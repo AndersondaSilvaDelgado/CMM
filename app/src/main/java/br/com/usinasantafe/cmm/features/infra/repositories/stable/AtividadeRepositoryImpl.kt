@@ -37,6 +37,5 @@ class AtividadeRepositoryImpl @Inject constructor(
     override suspend fun listInIdAtiv(idAtividades: List<Long>): List<Atividade> {
         return atividadeDatasourceRoom.listInIdAtiv(*idAtividades.toLongArray()).map { it.toAtividade() }
     }
-
-
+    
 }

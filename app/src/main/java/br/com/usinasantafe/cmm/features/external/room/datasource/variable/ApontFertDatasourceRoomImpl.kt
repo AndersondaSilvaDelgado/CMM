@@ -9,6 +9,10 @@ class ApontFertDatasourceRoomImpl @Inject constructor (
     private val apontFertDao: ApontFertDao
 ): ApontFertDatasourceRoom {
 
+    override fun checkApontFertSend(): Boolean {
+        return true
+    }
+
     override suspend fun insertApontFert(apontFertRoomModel: ApontFertRoomModel): Boolean {
         return apontFertDao.insert(apontFertRoomModel) > 0
     }

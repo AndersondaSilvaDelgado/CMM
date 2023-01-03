@@ -4,6 +4,8 @@ import br.com.usinasantafe.cmm.features.infra.models.variable.room.BoletimFertRo
 
 interface BoletimFertDatasourceRoom {
 
+    suspend fun checkBoletimAbertoFert(): Boolean
+
     suspend fun getBoletimAbertoFert(): BoletimFertRoomModel
 
     suspend fun insertBoletimFert(boletimFertRoomModel: BoletimFertRoomModel): Boolean

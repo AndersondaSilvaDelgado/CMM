@@ -1,14 +1,12 @@
 package br.com.usinasantafe.cmm.features.infra.models.variable.webservice
 
-import br.com.usinasantafe.cmm.common.utils.StatusConnection
 import br.com.usinasantafe.cmm.features.domain.entities.variable.ApontMM
-import br.com.usinasantafe.cmm.features.infra.models.variable.room.ApontMMRoomModel
 import kotlinx.serialization.Serializable
 import java.text.SimpleDateFormat
 import java.util.*
 
 @Serializable
-data class ApontMMWebServiceModel (
+data class ApontMMWebServiceModelOutput (
     var idApontMM: Long,
     var idBolApontMM: Long,
     var nroOSApontMM: Long,
@@ -23,11 +21,16 @@ data class ApontMMWebServiceModel (
     var idProprApontMM: Long?,
 )
 
-fun ApontMM.toApontMMWebServiceModel(): ApontMMWebServiceModel {
+@Serializable
+data class ApontMMWebServiceModelInput (
+    var idApontMM: Long,
+)
+
+fun ApontMM.toApontMMWebServiceModel(): ApontMMWebServiceModelOutput {
     return with(this){
-        ApontMMWebServiceModel(
+        ApontMMWebServiceModelOutput(
             idApontMM = this.idApont!!,
-            idBolApontMM = this.idBolApont,
+            idBolApontMM = this.idBolApont!!,
             nroOSApontMM =  this.nroOSApont!!,
             idAtivApontMM =  this.idAtivApont!!,
             idParadaApontMM = this.idParadaApont,
@@ -38,6 +41,14 @@ fun ApontMM.toApontMMWebServiceModel(): ApontMMWebServiceModel {
             latitudeApontMM = this.longitudeApont!!,
             idFrenteApontMM = this.idFrenteApont,
             idProprApontMM = this.idProprApont
+        )
+    }
+}
+
+fun ApontMMWebServiceModelInput.toApontMM(): ApontMM {
+    return with(this){
+        ApontMM(
+            idApont = idApontMM
         )
     }
 }

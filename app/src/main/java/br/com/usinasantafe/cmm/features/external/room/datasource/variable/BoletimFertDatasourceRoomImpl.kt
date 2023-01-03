@@ -10,6 +10,10 @@ class BoletimFertDatasourceRoomImpl @Inject constructor (
     private val boletimFertDao: BoletimFertDao
 ): BoletimFertDatasourceRoom {
 
+    override suspend fun checkBoletimAbertoFert(): Boolean {
+        return false
+    }
+
     override suspend fun getBoletimAbertoFert(): BoletimFertRoomModel {
         return boletimFertDao.getBoletim(StatusData.ABERTO.ordinal.toLong())
     }

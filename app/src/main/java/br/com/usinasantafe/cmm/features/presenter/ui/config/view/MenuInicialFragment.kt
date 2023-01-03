@@ -1,11 +1,13 @@
 package br.com.usinasantafe.cmm.features.presenter.ui.config.view
 
 import android.content.Intent
+import android.graphics.Color
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
@@ -13,15 +15,14 @@ import br.com.usinasantafe.cmm.R
 import br.com.usinasantafe.cmm.common.adapter.CustomAdapter
 import br.com.usinasantafe.cmm.common.base.BaseFragment
 import br.com.usinasantafe.cmm.common.extension.showGenericAlertDialog
-import br.com.usinasantafe.cmm.common.utils.StatusConnection
+import br.com.usinasantafe.cmm.common.utils.StatusSend
 import br.com.usinasantafe.cmm.databinding.FragmentMenuInicialBinding
 import br.com.usinasantafe.cmm.features.presenter.ui.boletimmmfert.view.BoletimActivity
 import br.com.usinasantafe.cmm.features.presenter.ui.config.viewmodel.MenuInicialFragmentState
 import br.com.usinasantafe.cmm.features.presenter.ui.config.viewmodel.MenuInicialViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
+
 
 @AndroidEntryPoint
 class MenuInicialFragment: BaseFragment<FragmentMenuInicialBinding>(
@@ -30,13 +31,19 @@ class MenuInicialFragment: BaseFragment<FragmentMenuInicialBinding>(
 ) {
 
     private val viewModel: MenuInicialViewModel by viewModels()
+    private val handler = Handler(Looper.getMainLooper())
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
         observe()
         viewList()
+        viewMsg()
 
+    }
+
+    private fun viewMsg() {
+        handler.postDelayed(updateTimerThread, 0);
     }
 
     private fun observe() {
@@ -69,6 +76,7 @@ class MenuInicialFragment: BaseFragment<FragmentMenuInicialBinding>(
                 when(text){
                     "BOLETIM" -> eventBoletim()
                     "CONFIGURAÇÃO" -> eventConfig()
+                    "SAIR" -> eventSair()
                 }
             }
         }
@@ -86,10 +94,18 @@ class MenuInicialFragment: BaseFragment<FragmentMenuInicialBinding>(
         findNavController().navigate(R.id.action_menuInicialFragment_to_senhaFragment)
     }
 
+    private fun eventSair(){
+        val intent = Intent(Intent.ACTION_MAIN)
+        intent.addCategory(Intent.CATEGORY_HOME)
+        intent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
+        startActivity(intent)
+    }
+
     private fun handleStateChange(state: MenuInicialFragmentState){
         when(state){
             is MenuInicialFragmentState.Init -> Unit
             is MenuInicialFragmentState.HasConfig -> handleBoletim(state.hasConfig)
+            is MenuInicialFragmentState.GetStatusSend -> setProcesso(state.statusSend)
         }
     }
 
@@ -100,6 +116,50 @@ class MenuInicialFragment: BaseFragment<FragmentMenuInicialBinding>(
             startActivity(intent)
         } else {
             showGenericAlertDialog(getString(R.string.texto_falha_acesso_boletim), requireContext())
+        }
+    }
+
+    private fun setProcesso(statusSend: StatusSend){
+        when(statusSend){
+            StatusSend.VAZIO -> statusVazio()
+            StatusSend.ENVIADO -> statusEnviado()
+            StatusSend.ENVIANDO -> statusEnviando()
+            StatusSend.ENVIAR -> statusEnviar()
+        }
+    }
+
+    private val updateTimerThread = object: Runnable {
+        override fun run() {
+            viewModel.checkStatusSend()
+            handler.postDelayed(this, 10000)
+        }
+    }
+
+    private fun statusVazio(){
+        with(binding.textViewProcesso){
+            setTextColor(Color.RED)
+            text = "Aparelho sem Equipamento"
+        }
+    }
+
+    private fun statusEnviado(){
+        with(binding.textViewProcesso){
+            setTextColor(Color.GREEN)
+            text = "Todos os Dados já foram Enviados"
+        }
+    }
+
+    private fun statusEnviando(){
+        with(binding.textViewProcesso){
+            setTextColor(Color.YELLOW)
+            text = "Enviando Dados..."
+        }
+    }
+
+    private fun statusEnviar(){
+        with(binding.textViewProcesso){
+            setTextColor(Color.RED)
+            text = "Existem Dados para serem Enviados"
         }
     }
 
