@@ -8,8 +8,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".features.presenter.ui.config.view.SenhaFragment">
-
+    tools:context=".features.presenter.view.config.SenhaFragment">
 
     <TextView
         android:id="@+id/text_view_senha"

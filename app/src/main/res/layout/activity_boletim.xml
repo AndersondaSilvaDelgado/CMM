@@ -4,18 +4,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".features.presenter.ui.boletimmmfert.view.BoletimActivity">
+    tools:context=".features.presenter.view.boletimmmfert.BoletimActivity">
 
     <fragment
         android:id="@+id/nav_host_fragment_content_boletim"
         android:name="androidx.navigation.fragment.NavHostFragment"
-        app:defaultNavHost="true"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <FrameLayout
+        android:id="@+id/boletim_manager_fragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:navGraph="@navigation/nav_boletim" />
+        tools:layout="@layout/fragment_operador_bol" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

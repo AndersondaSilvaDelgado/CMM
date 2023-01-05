@@ -4,18 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".features.presenter.ui.apontmmfert.view.ApontActivity">
+    tools:context=".features.presenter.view.apontmmfert.ApontActivity">
 
-    <fragment
-        android:id="@+id/nav_host_fragment_content_apont"
-        android:name="androidx.navigation.fragment.NavHostFragment"
-        app:defaultNavHost="true"
+    <FrameLayout
+        android:id="@+id/apont_manager_fragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:navGraph="@navigation/nav_apont" />
+        tools:layout="@layout/fragment_menu_apont" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

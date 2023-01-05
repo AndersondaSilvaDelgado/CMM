@@ -17,7 +17,7 @@
         android:theme="@style/Theme.CMM"
         tools:targetApi="31">
         <activity
-            android:name=".features.presenter.ui.splash.view.SplashActivity"
+            android:name=".features.presenter.view.splash.SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -25,16 +25,16 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".features.presenter.ui.checklist.view.CheckListActivity"
+            android:name=".features.presenter.view.checklist.CheckListActivity"
             android:exported="true" />
         <activity
-            android:name=".features.presenter.ui.apontmmfert.view.ApontActivity"
+            android:name=".features.presenter.view.apontmmfert.ApontActivity"
             android:exported="true" />
         <activity
-            android:name=".features.presenter.ui.boletimmmfert.view.BoletimActivity"
+            android:name=".features.presenter.view.boletimmmfert.BoletimActivity"
             android:exported="true" />
         <activity
-            android:name=".features.presenter.ui.config.view.ConfigActivity"
+            android:name=".features.presenter.view.config.ConfigActivity"
             android:exported="true"></activity>
 
         <provider

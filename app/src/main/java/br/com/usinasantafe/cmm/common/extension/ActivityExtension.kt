@@ -4,13 +4,26 @@ import android.animation.Animator
 import android.animation.AnimatorListenerAdapter
 import android.app.Activity
 import android.content.Context
+import android.view.View
+import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.Toast
+import androidx.annotation.IdRes
 import androidx.appcompat.app.AlertDialog
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import br.com.usinasantafe.cmm.R
 import br.com.usinasantafe.cmm.databinding.LayoutBotoesBinding
 import br.com.usinasantafe.cmm.databinding.LayoutBotoesSAtualBinding
+
+fun Activity.hideKeyboard(){
+    val imm: InputMethodManager = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
+    var view: View? = currentFocus
+    if(view == null){
+        view = View(this)
+    }
+    imm.hideSoftInputFromWindow(view.windowToken, 0)
+}
 
 fun showToast(message: String, context: Context){
     Toast.makeText(context, message, Toast.LENGTH_LONG).show()
@@ -171,3 +184,18 @@ fun remCaracterVirgula(editText: EditText): String {
     return textBuilder.toString()
 }
 
+fun AppCompatActivity.replaceFragment(@IdRes id: Int, fragment: Fragment){
+    if(supportFragmentManager.findFragmentById(id) == null){
+        supportFragmentManager.beginTransaction().apply {
+            add(id, fragment)
+            commit()
+        }
+    } else {
+        supportFragmentManager.beginTransaction().apply {
+            replace(id, fragment)
+            addToBackStack(null)
+            commit()
+        }
+    }
+    hideKeyboard()
+}
