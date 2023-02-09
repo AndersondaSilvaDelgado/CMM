@@ -1,5 +1,7 @@
 package br.com.usinasantafe.cmm.features.domain.usecases.implementos.database.recover
 
+import br.com.usinasantafe.cmm.R
+import br.com.usinasantafe.cmm.common.utils.*
 import br.com.usinasantafe.cmm.features.domain.repositories.stable.EquipRepository
 import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.database.recover.RecoverEquip
 import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.database.recover.RecoverREquipAtiv
@@ -18,14 +20,14 @@ class RecoverEquipImpl @Inject constructor(
     override suspend fun invoke(nroEquip: String, contador: Int, qtde: Int): Flow<ResultUpdateDataBase> {
         return flow {
             var contRecoverEquip = contador
-            emit(ResultUpdateDataBase(++contRecoverEquip,"Limpando Dados da Tabela Equip", qtde))
+            emit(ResultUpdateDataBase(++contRecoverEquip, TEXT_CLEAR_TB + TB_EQUIP, qtde))
             equipRepository.deleteAllEquip()
-            emit(ResultUpdateDataBase(++contRecoverEquip,"Recebendo Dados da Tabela Equip", qtde))
+            emit(ResultUpdateDataBase(++contRecoverEquip,TEXT_RECEIVE_WS_TB + TB_EQUIP, qtde))
             equipRepository.recoverEquip(nroEquip)
                 .collect{ result ->
                     result.onSuccess { equipList ->
                         if(equipList.isNotEmpty()){
-                            emit(ResultUpdateDataBase(++contRecoverEquip, "Salvandos Dados da Tabela Equip", qtde))
+                            emit(ResultUpdateDataBase(++contRecoverEquip, TEXT_SAVE_DATA_TB + TB_EQUIP, qtde))
                             equipRepository.addAllEquip(equipList)
                             rEquipAtiv(nroEquip, contRecoverEquip, qtde).collect{
                                 emit(it)
@@ -35,9 +37,9 @@ class RecoverEquipImpl @Inject constructor(
                                 emit(it)
                                 contRecoverEquip = it.count;
                             }
-                            emit(ResultUpdateDataBase(qtde, "Termino de Atualização", qtde))
+                            emit(ResultUpdateDataBase(qtde, TEXT_FINISH_UPDATE, qtde))
                         } else {
-                            emit(ResultUpdateDataBase(qtde, "Equipamente Inexistente!", qtde))
+                            emit(ResultUpdateDataBase(qtde, WEB_RETURN_CLEAR_EQUIP, qtde))
                         }
                     }
                 }

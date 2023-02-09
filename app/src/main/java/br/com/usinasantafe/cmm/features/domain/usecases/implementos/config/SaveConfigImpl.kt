@@ -1,5 +1,6 @@
 package br.com.usinasantafe.cmm.features.domain.usecases.implementos.config
 
+import br.com.usinasantafe.cmm.common.utils.TEXT_FINISH_UPDATE
 import br.com.usinasantafe.cmm.features.domain.repositories.variable.ConfigRepository
 import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.config.SaveConfig
 import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.database.recover.RecoverEquip
@@ -18,7 +19,7 @@ class SaveConfigImpl @Inject constructor(
             recoverEquip(nroEquip)
                 .collect{
                     emit(it)
-                    if(it.describe == "Termino de Atualização"){
+                    if(it.describe == TEXT_FINISH_UPDATE){
                         configRepository.saveConfig(nroEquip, senha)
                         emit(ResultUpdateDataBase(100, "Termino de Salvamento de Configurações", 100))
                     }

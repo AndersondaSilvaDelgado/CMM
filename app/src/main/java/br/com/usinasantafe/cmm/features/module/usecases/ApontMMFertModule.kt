@@ -26,6 +26,14 @@ interface ApontMMFertModule {
 
     @Singleton
     @Binds
+    fun bindRecoverNroOSApontMMFert(usecase: RecoverNroOSApontMMFertImpl): RecoverNroOSApontMMFert
+
+    @Singleton
+    @Binds
+    fun bindSetApontParado(usecase: SetApontParadaImpl): SetApontParada
+
+    @Singleton
+    @Binds
     fun bindSetApontTrabalhando(usecase: SetApontTrabalhandoImpl): SetApontTrabalhando
 
     @Singleton

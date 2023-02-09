@@ -1,5 +1,6 @@
 package br.com.usinasantafe.cmm.features.domain.usecases.implementos.database
 
+import br.com.usinasantafe.cmm.common.utils.TEXT_SUCESS_UPDATE
 import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.database.UpdateAllDataBase
 import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.database.update.*
 import br.com.usinasantafe.cmm.features.presenter.models.ResultUpdateDataBase
@@ -120,7 +121,7 @@ class UpdateAllDataBaseImpl @Inject constructor(
                 emit(it)
                 count = it.count;
             }
-            emit(ResultUpdateDataBase(size, "Atualização realizada com Sucesso!", size))
+            emit(ResultUpdateDataBase(size, TEXT_SUCESS_UPDATE, size))
         }
     }
 

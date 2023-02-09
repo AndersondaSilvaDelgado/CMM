@@ -1,5 +1,9 @@
 package br.com.usinasantafe.cmm.features.domain.usecases.implementos.database.recover
 
+import br.com.usinasantafe.cmm.common.utils.TB_R_EQUIP_PNEU
+import br.com.usinasantafe.cmm.common.utils.TEXT_CLEAR_TB
+import br.com.usinasantafe.cmm.common.utils.TEXT_RECEIVE_WS_TB
+import br.com.usinasantafe.cmm.common.utils.TEXT_SAVE_DATA_TB
 import br.com.usinasantafe.cmm.features.domain.repositories.stable.REquipPneuRepository
 import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.database.recover.RecoverREquipPneu
 import br.com.usinasantafe.cmm.features.presenter.models.ResultUpdateDataBase
@@ -14,13 +18,13 @@ class RecoverREquipPneuImpl @Inject constructor(
     override suspend fun invoke(nroEquip: String, contador: Int, qtde: Int): Flow<ResultUpdateDataBase> {
         return flow {
             var contRecoverREquipPneu = contador
-            emit(ResultUpdateDataBase(++contRecoverREquipPneu,"Limpando Dados da Tabela REquipPneu", qtde))
+            emit(ResultUpdateDataBase(++contRecoverREquipPneu,TEXT_CLEAR_TB + TB_R_EQUIP_PNEU, qtde))
             rEquipPneuRepository.deleteAllREquipPneu()
-            emit(ResultUpdateDataBase(++contRecoverREquipPneu,"Recebendo Dados da Tabela REquipPneu", qtde))
+            emit(ResultUpdateDataBase(++contRecoverREquipPneu,TEXT_RECEIVE_WS_TB + TB_R_EQUIP_PNEU, qtde))
             rEquipPneuRepository.recoverREquipPneu(nroEquip)
                 .collect{ result ->
                     result.onSuccess { rEquipPneuList ->
-                        emit(ResultUpdateDataBase(++contRecoverREquipPneu,"Salvandos Dados da Tabela REquipPneu", qtde))
+                        emit(ResultUpdateDataBase(++contRecoverREquipPneu,TEXT_SAVE_DATA_TB + TB_R_EQUIP_PNEU, qtde))
                         rEquipPneuRepository.addAllREquipPneu(rEquipPneuList)
                     }
                 }

@@ -5,6 +5,6 @@ import kotlinx.coroutines.flow.Flow
 
 interface UpdateAllDataBase {
 
-    suspend operator fun invoke(count: Int = 0, size: Int = 61): Flow<ResultUpdateDataBase>
+    suspend operator fun invoke(count: Int = 0, size: Int = 64): Flow<ResultUpdateDataBase>
 
 }

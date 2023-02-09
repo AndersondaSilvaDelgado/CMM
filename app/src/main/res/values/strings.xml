@@ -47,4 +47,6 @@
     <string name="texto_item_list">TESTE</string>
     <string name="texto_motivo_parada">MOTIVOS DE PARADA</string>
     <string name="texto_pesquisar">PESQUISAR</string>
+    <string name="texto_update_sucess">ATUALIZAÇÃO DA BASE DE DADOS REALIZADA COM SUCESSO!</string>
+    <string name="texto_update_failure">FALHA DE ATUALIZAÇÃO DE DADOS! POR FAVOR ENTRA EM CONTATO COM TI. %1$s</string>
 </resources>

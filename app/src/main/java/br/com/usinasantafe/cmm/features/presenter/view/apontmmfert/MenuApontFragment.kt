@@ -11,13 +11,13 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import br.com.usinasantafe.cmm.BuildConfig
 import br.com.usinasantafe.cmm.R
 import br.com.usinasantafe.cmm.common.adapter.CustomAdapter
 import br.com.usinasantafe.cmm.common.base.BaseFragment
 import br.com.usinasantafe.cmm.common.extension.showGenericAlertDialog
 import br.com.usinasantafe.cmm.common.utils.StatusSend
 import br.com.usinasantafe.cmm.databinding.FragmentMenuApontBinding
-import br.com.usinasantafe.cmm.features.presenter.view.boletimmmfert.FragmentAttachListenerBoletim
 import br.com.usinasantafe.cmm.features.presenter.viewmodel.apontmmfert.MenuApontFragmentState
 import br.com.usinasantafe.cmm.features.presenter.viewmodel.apontmmfert.MenuApontViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -61,10 +61,9 @@ class MenuApontFragment : BaseFragment<FragmentMenuApontBinding>(
     }
 
     private fun viewList(menuApontList: List<String>) {
-
         val listAdapter = CustomAdapter(menuApontList).apply {
             onItemClick = { _, pos ->
-                viewModel.setOpcaoMenu(pos)
+                setOpcaoMenu(pos, menuApontList)
             }
         }
         binding.listMenuPrinc.run {
@@ -77,8 +76,15 @@ class MenuApontFragment : BaseFragment<FragmentMenuApontBinding>(
         when (state) {
             is MenuApontFragmentState.Init -> Unit
             is MenuApontFragmentState.ListMenuApont -> opcaoMenu(state.menuApontList)
+            is MenuApontFragmentState.SetApontPar -> setApontPar(state.apontPar)
             is MenuApontFragmentState.SetApontTrab -> setApontTrab(state.apontTrab)
             is MenuApontFragmentState.GetStatusSend -> setProcesso(state.statusSend)
+        }
+    }
+
+    private fun setOpcaoMenu(pos: Int, menuApontList: List<String>){
+        if(BuildConfig.FLAVOR == "pmm"){
+            viewModel.setOpcaoMenuPMM(pos, menuApontList)
         }
     }
 
@@ -87,9 +93,21 @@ class MenuApontFragment : BaseFragment<FragmentMenuApontBinding>(
     }
 
     private fun startEvents() {
-        viewModel.recoverListMenuApont()
+        if(BuildConfig.FLAVOR == "pmm") {
+            viewModel.recoverListMenuApontPMM()
+        }
     }
 
+    private fun setApontPar(setApontPar: Boolean) {
+        if (setApontPar) {
+            fragmentAttachListenerApont?.goOSApontFragment()
+        } else {
+            showGenericAlertDialog(
+                getString(R.string.texto_falha_acesso_processo, "TRABALHANDO"),
+                requireContext()
+            )
+        }
+    }
     private fun setApontTrab(setApontTrab: Boolean) {
         if (setApontTrab) {
             fragmentAttachListenerApont?.goOSApontFragment()

@@ -18,6 +18,10 @@ interface BoletimMMFertModule {
 
     @Singleton
     @Binds
+    fun bindRecoverNroOSBoletimMMFert(usecase: RecoverNroOSBoletimMMFertImpl): RecoverNroOSBoletimMMFert
+
+    @Singleton
+    @Binds
     fun bindSetHorimetroInicialBoletimMMFert(usecase: SetHorimetroInicialBoletimMMFertImpl): SetHorimetroInicialBoletimMMFert
 
     @Singleton

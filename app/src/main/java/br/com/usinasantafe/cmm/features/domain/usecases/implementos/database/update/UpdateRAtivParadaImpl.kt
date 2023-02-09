@@ -1,5 +1,9 @@
 package br.com.usinasantafe.cmm.features.domain.usecases.implementos.database.update
 
+import br.com.usinasantafe.cmm.common.utils.TB_R_ATIV_PARADA
+import br.com.usinasantafe.cmm.common.utils.TEXT_CLEAR_TB
+import br.com.usinasantafe.cmm.common.utils.TEXT_RECEIVE_WS_TB
+import br.com.usinasantafe.cmm.common.utils.TEXT_SAVE_DATA_TB
 import br.com.usinasantafe.cmm.features.domain.repositories.stable.RAtivParadaRepository
 import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.database.update.UpdateRAtivParada
 import br.com.usinasantafe.cmm.features.presenter.models.ResultUpdateDataBase
@@ -14,13 +18,13 @@ class UpdateRAtivParadaImpl @Inject constructor(
     override suspend fun invoke(contador: Int, qtde: Int): Flow<ResultUpdateDataBase> {
         return flow {
             var contUpdateRAtivParada = contador
-            emit(ResultUpdateDataBase(++contUpdateRAtivParada, "Limpando Dados da Tabela RAtivParada", qtde))
+            emit(ResultUpdateDataBase(++contUpdateRAtivParada, TEXT_CLEAR_TB + TB_R_ATIV_PARADA, qtde))
             rAtivParadaRepository.deleteAllRAtivParada()
-            emit(ResultUpdateDataBase(++contUpdateRAtivParada,"Recebendo Dados da Tabela RAtivParada", qtde))
+            emit(ResultUpdateDataBase(++contUpdateRAtivParada,TEXT_RECEIVE_WS_TB + TB_R_ATIV_PARADA, qtde))
             rAtivParadaRepository.recoverAllRAtivParada()
                 .collect{ result ->
                     result.onSuccess { rAtivParadaList ->
-                        emit(ResultUpdateDataBase(++contUpdateRAtivParada,"Salvandos Dados da Tabela RAtivParada", qtde))
+                        emit(ResultUpdateDataBase(++contUpdateRAtivParada,TEXT_SAVE_DATA_TB + TB_R_ATIV_PARADA, qtde))
                         rAtivParadaRepository.addAllRAtivParada(rAtivParadaList)
                     }
                 }

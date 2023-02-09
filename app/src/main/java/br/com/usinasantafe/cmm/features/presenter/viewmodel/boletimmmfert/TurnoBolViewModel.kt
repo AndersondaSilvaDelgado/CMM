@@ -2,11 +2,13 @@ package br.com.usinasantafe.cmm.features.presenter.viewmodel.boletimmmfert
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import br.com.usinasantafe.cmm.common.utils.StatusUpdate
 import br.com.usinasantafe.cmm.features.domain.entities.stable.Turno
 import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.boletimmmfert.SetIdTurnoBoletimMMFert
 import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.common.ListTurno
 import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.database.update.UpdateTurno
 import br.com.usinasantafe.cmm.features.presenter.models.ResultUpdateDataBase
+import br.com.usinasantafe.cmm.features.presenter.viewmodel.config.ConfigFragmentState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -16,28 +18,25 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class TurnoBolViewModel @Inject constructor (
+class TurnoBolViewModel @Inject constructor(
     private val setIdTurnoBoletimMMFert: SetIdTurnoBoletimMMFert,
     private val listTurno: ListTurno,
     private val updateTurno: UpdateTurno
-): ViewModel() {
+) : ViewModel() {
 
     private val _uiStateFlow = MutableStateFlow<TurnoBolFragmentState>(TurnoBolFragmentState.Init)
     val uiStateFlow: StateFlow<TurnoBolFragmentState> get() = _uiStateFlow
 
-    private val _resultUpdateDataBase = MutableStateFlow<ResultUpdateDataBase?>(null)
-    val resultUpdateDataBase : StateFlow<ResultUpdateDataBase?> get() = _resultUpdateDataBase
-
-    private fun setListTurno(turnoList: List<Turno>){
+    private fun setListTurno(turnoList: List<Turno>) {
         _uiStateFlow.value = TurnoBolFragmentState.ListTurno(turnoList)
     }
 
-    private fun showUpdateTurno(){
-        _uiStateFlow.value = TurnoBolFragmentState.IsUpdateTurno(true)
+    private fun setStatusUpdateTurno(statusUpdate: StatusUpdate) {
+        _uiStateFlow.value = TurnoBolFragmentState.FeedbackUpdateTurno(statusUpdate)
     }
 
-    private fun hideUpdateTurno(){
-        _uiStateFlow.value = TurnoBolFragmentState.IsUpdateTurno(false)
+    private fun setResultUpdate(resultUpdateDataBase: ResultUpdateDataBase){
+        _uiStateFlow.value = TurnoBolFragmentState.SetResultUpdate(resultUpdateDataBase)
     }
 
     fun recoverListTurno() = viewModelScope.launch {
@@ -50,19 +49,17 @@ class TurnoBolViewModel @Inject constructor (
 
     fun updateDataTurno() =
         viewModelScope.launch {
-            updateTurno().
-            onStart {
-                showUpdateTurno()
-            }
-            .catch { catch ->
-                _resultUpdateDataBase.value = ResultUpdateDataBase(1, "Erro: $catch", 100, 100)
-            }
-            .collect{ resultUpdateDataBase ->
-                _resultUpdateDataBase.value = resultUpdateDataBase
-                if(resultUpdateDataBase.percentage == 100){
-                    hideUpdateTurno()
+            updateTurno()
+                .catch { catch ->
+                    setResultUpdate(ResultUpdateDataBase(1, "Erro: $catch", 100, 100))
+                    setStatusUpdateTurno(StatusUpdate.FALHA)
                 }
-            }
+                .collect { resultUpdateDataBase ->
+                    setResultUpdate(resultUpdateDataBase)
+                    if (resultUpdateDataBase.percentage == 100) {
+                        setStatusUpdateTurno(StatusUpdate.ATUALIZADO)
+                    }
+                }
         }
 
 }
@@ -70,5 +67,6 @@ class TurnoBolViewModel @Inject constructor (
 sealed class TurnoBolFragmentState {
     object Init : TurnoBolFragmentState()
     data class ListTurno(val turnoList: List<Turno>) : TurnoBolFragmentState()
-    data class IsUpdateTurno(val isUpdateTurno: Boolean) : TurnoBolFragmentState()
+    data class FeedbackUpdateTurno(val statusUpdate: StatusUpdate) : TurnoBolFragmentState()
+    data class SetResultUpdate(val resultUpdateDataBase: ResultUpdateDataBase) : TurnoBolFragmentState()
 }

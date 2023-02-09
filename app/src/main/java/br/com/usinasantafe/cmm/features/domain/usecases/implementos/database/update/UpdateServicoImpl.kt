@@ -1,5 +1,9 @@
 package br.com.usinasantafe.cmm.features.domain.usecases.implementos.database.update
 
+import br.com.usinasantafe.cmm.common.utils.TB_SERVICO
+import br.com.usinasantafe.cmm.common.utils.TEXT_CLEAR_TB
+import br.com.usinasantafe.cmm.common.utils.TEXT_RECEIVE_WS_TB
+import br.com.usinasantafe.cmm.common.utils.TEXT_SAVE_DATA_TB
 import br.com.usinasantafe.cmm.features.domain.repositories.stable.ServicoRepository
 import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.database.update.UpdateServico
 import br.com.usinasantafe.cmm.features.presenter.models.ResultUpdateDataBase
@@ -14,13 +18,13 @@ class UpdateServicoImpl @Inject constructor(
     override suspend fun invoke(contador: Int, qtde: Int): Flow<ResultUpdateDataBase> {
         return flow {
             var contUpdateServico = contador
-            emit(ResultUpdateDataBase(++contUpdateServico,"Limpando Dados da Tabela Servico", qtde))
+            emit(ResultUpdateDataBase(++contUpdateServico,TEXT_CLEAR_TB + TB_SERVICO, qtde))
             servicoRepository.deleteAllServico()
-            emit(ResultUpdateDataBase(++contUpdateServico,"Recebendo Dados da Tabela Servico", qtde))
+            emit(ResultUpdateDataBase(++contUpdateServico,TEXT_RECEIVE_WS_TB + TB_SERVICO, qtde))
             servicoRepository.recoverAllServico()
                 .collect{ result ->
                     result.onSuccess { servicoList ->
-                        emit(ResultUpdateDataBase(++contUpdateServico,"Salvandos Dados da Tabela Servico", qtde))
+                        emit(ResultUpdateDataBase(++contUpdateServico,TEXT_SAVE_DATA_TB + TB_SERVICO, qtde))
                         servicoRepository.addAllServico(servicoList)
                     }
                 }

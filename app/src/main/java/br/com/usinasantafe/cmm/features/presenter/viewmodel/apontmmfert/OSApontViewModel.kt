@@ -2,29 +2,31 @@ package br.com.usinasantafe.cmm.features.presenter.viewmodel.apontmmfert
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import br.com.usinasantafe.cmm.common.utils.StatusRecover
+import br.com.usinasantafe.cmm.common.utils.WEB_RETURN_CLEAR_OS
+import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.apontmmfert.RecoverNroOSApontMMFert
 import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.apontmmfert.SetNroOSApontMMFert
 import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.common.CheckNroOS
 import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.database.recover.RecoverOS
 import br.com.usinasantafe.cmm.features.presenter.models.ResultUpdateDataBase
+import br.com.usinasantafe.cmm.features.presenter.viewmodel.boletimmmfert.OSBolFragmentState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.catch
+import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
 class OSApontViewModel @Inject constructor (
     private val checkNroOS: CheckNroOS,
-    private val recoverOS: RecoverOS,
+    private val recoverNroOSApontMMFert: RecoverNroOSApontMMFert,
     private val setNroOSApontMMFert: SetNroOSApontMMFert
 ): ViewModel() {
 
     private val _uiStateFlow = MutableStateFlow<OSApontFragmentState>(OSApontFragmentState.Init)
     val uiStateFlow: StateFlow<OSApontFragmentState> get() = _uiStateFlow
-
-    private val _resultUpdateDataBase = MutableStateFlow<ResultUpdateDataBase?>(null)
-    val resultUpdateDataBase: StateFlow<ResultUpdateDataBase?> get() = _resultUpdateDataBase
 
     private fun checkOS(checkNroOS: Boolean) {
         _uiStateFlow.value = OSApontFragmentState.CheckNroOS(checkNroOS)
@@ -32,6 +34,14 @@ class OSApontViewModel @Inject constructor (
 
     private fun checkSetNroOS(checkSetNroOS: Boolean) {
         _uiStateFlow.value = OSApontFragmentState.CheckSetNroOS(checkSetNroOS)
+    }
+
+    private fun setStatusRecoverOS(statusRecover: StatusRecover) {
+        _uiStateFlow.value = OSApontFragmentState.FeedbackUpdateOS(statusRecover)
+    }
+
+    private fun setResultUpdate(resultUpdateDataBase: ResultUpdateDataBase){
+        _uiStateFlow.value = OSApontFragmentState.SetResultUpdate(resultUpdateDataBase)
     }
 
     fun checkDataNroOS(nroOS: String) = viewModelScope.launch {
@@ -44,12 +54,20 @@ class OSApontViewModel @Inject constructor (
 
     fun recoverDataOS(nroOS: String) =
         viewModelScope.launch {
-            recoverOS(nroOS)
+            recoverNroOSApontMMFert(nroOS)
                 .catch { catch ->
-                    _resultUpdateDataBase.value = ResultUpdateDataBase(1, "Erro: $catch", 100, 100)
+                    setResultUpdate(ResultUpdateDataBase(1, "Erro: $catch", 100, 100))
+                    setStatusRecoverOS(StatusRecover.FALHA)
                 }
                 .collect { resultUpdateDataBase ->
-                    _resultUpdateDataBase.value = resultUpdateDataBase
+                    setResultUpdate(resultUpdateDataBase)
+                    if (resultUpdateDataBase.percentage == 100) {
+                        if (resultUpdateDataBase.describe == WEB_RETURN_CLEAR_OS) {
+                            setStatusRecoverOS(StatusRecover.VAZIO)
+                        } else {
+                            setStatusRecoverOS(StatusRecover.SUCESSO)
+                        }
+                    }
                 }
 
         }
@@ -59,4 +77,6 @@ sealed class OSApontFragmentState {
     object Init : OSApontFragmentState()
     data class CheckNroOS(val checkNroOS: Boolean) : OSApontFragmentState()
     data class CheckSetNroOS(val checkSetNroOS: Boolean) : OSApontFragmentState()
+    data class FeedbackUpdateOS(val statusRecover: StatusRecover) : OSApontFragmentState()
+    data class SetResultUpdate(val resultUpdateDataBase: ResultUpdateDataBase) : OSApontFragmentState()
 }

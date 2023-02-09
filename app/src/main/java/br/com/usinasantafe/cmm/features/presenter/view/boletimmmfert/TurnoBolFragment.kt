@@ -13,6 +13,7 @@ import br.com.usinasantafe.cmm.common.adapter.CustomAdapter
 import br.com.usinasantafe.cmm.common.base.BaseFragment
 import br.com.usinasantafe.cmm.common.dialog.GenericDialogProgressBar
 import br.com.usinasantafe.cmm.common.extension.showToast
+import br.com.usinasantafe.cmm.common.utils.StatusUpdate
 import br.com.usinasantafe.cmm.databinding.FragmentTurnoBolBinding
 import br.com.usinasantafe.cmm.features.domain.entities.stable.Turno
 import br.com.usinasantafe.cmm.features.presenter.models.ResultUpdateDataBase
@@ -28,8 +29,9 @@ class TurnoBolFragment : BaseFragment<FragmentTurnoBolBinding>(
 ) {
 
     private val viewModel: TurnoBolViewModel by viewModels()
-    private lateinit var genericDialogProgressBar: GenericDialogProgressBar
+    private var genericDialogProgressBar: GenericDialogProgressBar? = null
     private var fragmentAttachListenerBoletim: FragmentAttachListenerBoletim? = null
+    private lateinit var describeUpdate: String
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -42,7 +44,6 @@ class TurnoBolFragment : BaseFragment<FragmentTurnoBolBinding>(
 
     fun observe() {
         observeState()
-        observeResult()
     }
 
     private fun observeState() {
@@ -50,16 +51,6 @@ class TurnoBolFragment : BaseFragment<FragmentTurnoBolBinding>(
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.uiStateFlow.collect { state ->
                     handleStateChange(state)
-                }
-            }
-        }
-    }
-
-    private fun observeResult() {
-        lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.resultUpdateDataBase.collect { state ->
-                    handleStatusUpdate(state)
                 }
             }
         }
@@ -100,7 +91,8 @@ class TurnoBolFragment : BaseFragment<FragmentTurnoBolBinding>(
         when (state) {
             is TurnoBolFragmentState.Init -> Unit
             is TurnoBolFragmentState.ListTurno -> handleTurnoList(state.turnoList)
-            is TurnoBolFragmentState.IsUpdateTurno -> handleUpdate(state.isUpdateTurno)
+            is TurnoBolFragmentState.FeedbackUpdateTurno -> handleUpdate(state.statusUpdate)
+            is TurnoBolFragmentState.SetResultUpdate -> handleStatusUpdate(state.resultUpdateDataBase)
         }
     }
 
@@ -110,22 +102,41 @@ class TurnoBolFragment : BaseFragment<FragmentTurnoBolBinding>(
 
     private fun handleStatusUpdate(resultUpdateDataBase: ResultUpdateDataBase?) {
         resultUpdateDataBase?.let {
-            genericDialogProgressBar.setValue(resultUpdateDataBase)
+            if(genericDialogProgressBar == null){
+                showProgressBar()
+            }
+            describeUpdate = resultUpdateDataBase.describe
+            genericDialogProgressBar!!.setValue(resultUpdateDataBase)
         }
     }
 
-    private fun handleUpdate(isUpdate: Boolean) {
-        if (isUpdate) {
-            genericDialogProgressBar = GenericDialogProgressBar(requireContext())
-            genericDialogProgressBar.show()
-            genericDialogProgressBar.window?.setLayout(
-                WindowManager.LayoutParams.MATCH_PARENT,
-                WindowManager.LayoutParams.WRAP_CONTENT,
-            )
-        } else {
-            genericDialogProgressBar.cancel()
-            showToast(getString(R.string.texto_msg_atualizacao, "COLABORADORES"), requireContext())
+    private fun handleUpdate(statusUpdate: StatusUpdate) {
+        when(statusUpdate){
+            StatusUpdate.ATUALIZADO -> {
+                hideProgressBar()
+                showToast(getString(R.string.texto_msg_atualizacao, "COLABORADORES"), requireContext())
+            }
+            StatusUpdate.FALHA -> {
+                hideProgressBar()
+                showToast(getString(R.string.texto_update_failure, describeUpdate), requireContext())
+            }
         }
+    }
+
+    private fun showProgressBar() {
+        genericDialogProgressBar = GenericDialogProgressBar(requireContext())
+        genericDialogProgressBar!!.show()
+        genericDialogProgressBar!!.window?.setLayout(
+            WindowManager.LayoutParams.MATCH_PARENT,
+            WindowManager.LayoutParams.WRAP_CONTENT,
+        )
+    }
+
+    private fun hideProgressBar() {
+        if(genericDialogProgressBar != null){
+            genericDialogProgressBar!!.cancel()
+        }
+        genericDialogProgressBar = null
     }
 
     override fun onAttach(context: Context) {

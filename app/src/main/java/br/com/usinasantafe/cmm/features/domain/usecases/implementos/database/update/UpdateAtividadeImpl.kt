@@ -1,5 +1,9 @@
 package br.com.usinasantafe.cmm.features.domain.usecases.implementos.database.update
 
+import br.com.usinasantafe.cmm.common.utils.TB_ATIVIDADE
+import br.com.usinasantafe.cmm.common.utils.TEXT_CLEAR_TB
+import br.com.usinasantafe.cmm.common.utils.TEXT_RECEIVE_WS_TB
+import br.com.usinasantafe.cmm.common.utils.TEXT_SAVE_DATA_TB
 import br.com.usinasantafe.cmm.features.domain.repositories.stable.AtividadeRepository
 import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.database.update.UpdateAtividade
 import br.com.usinasantafe.cmm.features.presenter.models.ResultUpdateDataBase
@@ -14,13 +18,13 @@ class UpdateAtividadeImpl @Inject constructor(
     override suspend fun invoke(contador: Int, qtde: Int): Flow<ResultUpdateDataBase> {
         return flow {
             var contUpdateAtividade = contador
-            emit(ResultUpdateDataBase(++contUpdateAtividade, "Limpando Dados da Tabela Atividade", qtde))
+            emit(ResultUpdateDataBase(++contUpdateAtividade, TEXT_CLEAR_TB + TB_ATIVIDADE, qtde))
             atividadeRepository.deleteAllAtividade()
-            emit(ResultUpdateDataBase(++contUpdateAtividade, "Recebendo Dados da Tabela Atividade", qtde))
+            emit(ResultUpdateDataBase(++contUpdateAtividade, TEXT_RECEIVE_WS_TB + TB_ATIVIDADE, qtde))
             atividadeRepository.recoverAllAtividade()
                 .collect{ result ->
                     result.onSuccess { ativList ->
-                        emit(ResultUpdateDataBase(++contUpdateAtividade, "Salvandos Dados da Tabela Atividade", qtde))
+                        emit(ResultUpdateDataBase(++contUpdateAtividade, TEXT_SAVE_DATA_TB + TB_ATIVIDADE, qtde))
                         atividadeRepository.addAllAtividade(ativList)
                     }
                 }

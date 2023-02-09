@@ -1,7 +1,11 @@
 package br.com.usinasantafe.cmm.features.presenter.viewmodel.config
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import br.com.usinasantafe.cmm.common.utils.StatusRecover
+import br.com.usinasantafe.cmm.common.utils.StatusUpdate
+import br.com.usinasantafe.cmm.common.utils.WEB_RETURN_CLEAR_EQUIP
 import br.com.usinasantafe.cmm.features.domain.entities.variable.Config
 import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.common.CheckUpdate
 import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.config.RecoverConfig
@@ -17,41 +21,34 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class ConfigViewModel @Inject constructor (
+class ConfigViewModel @Inject constructor(
     private val recoverConfig: RecoverConfig,
     private val updateAllDataBase: UpdateAllDataBase,
     private val saveConfig: SaveConfig,
     private val checkUpdate: CheckUpdate
-): ViewModel() {
+) : ViewModel() {
 
     private val _uiStateFlow = MutableStateFlow<ConfigFragmentState>(ConfigFragmentState.Init)
     val uiStateFlow: StateFlow<ConfigFragmentState> get() = _uiStateFlow
 
-    private val _resultUpdateDataBase = MutableStateFlow<ResultUpdateDataBase?>(null)
-    val resultUpdateDataBase : StateFlow<ResultUpdateDataBase?> get() = _resultUpdateDataBase
-
-    private fun setLoadingDataBase(){
-        _uiStateFlow.value = ConfigFragmentState.IsLoadingDataBase(true)
+    private fun setLoadingDataBase(statusUpdate: StatusUpdate) {
+        _uiStateFlow.value = ConfigFragmentState.FeedbackLoadingDataBase(statusUpdate)
     }
 
-    private fun hideLoadingDataBase(){
-        _uiStateFlow.value = ConfigFragmentState.IsLoadingDataBase(false)
+    private fun setLoadingEquip(statusRecover: StatusRecover) {
+        _uiStateFlow.value = ConfigFragmentState.FeedbackLoadingEquip(statusRecover)
     }
 
-    private fun setLoadingEquip(){
-        _uiStateFlow.value = ConfigFragmentState.IsLoadingEquip(true)
-    }
-
-    private fun hideLoadingEquip(){
-        _uiStateFlow.value = ConfigFragmentState.IsLoadingEquip(false)
-    }
-
-    private fun setCheckUpdate(isCheckUpdate: Boolean){
+    private fun setCheckUpdate(isCheckUpdate: Boolean) {
         _uiStateFlow.value = ConfigFragmentState.IsCheckUpdate(isCheckUpdate)
     }
 
-    private fun setConfig(config: Config){
+    private fun setConfig(config: Config) {
         _uiStateFlow.value = ConfigFragmentState.RecoverConfig(config)
+    }
+
+    private fun setResultUpdate(resultUpdateDataBase: ResultUpdateDataBase){
+        _uiStateFlow.value = ConfigFragmentState.SetResultUpdate(resultUpdateDataBase)
     }
 
     fun recoverDataConfig() = viewModelScope.launch {
@@ -65,34 +62,34 @@ class ConfigViewModel @Inject constructor (
 
     fun saveDataConfig(nroEquip: String, senha: String) =
         viewModelScope.launch {
-            saveConfig(nroEquip, senha).
-                onStart {
-                    setLoadingEquip()
-                }
+            saveConfig(nroEquip, senha)
                 .catch { catch ->
-                    _resultUpdateDataBase.value = ResultUpdateDataBase(100, "Erro: $catch", 100)
+                    setResultUpdate(ResultUpdateDataBase(100, "Erro: $catch", 100))
+                    setLoadingEquip(StatusRecover.FALHA)
                 }
-                . collect { resultUpdateDataBase ->
-                    _resultUpdateDataBase.value = resultUpdateDataBase
-                    if(resultUpdateDataBase.percentage == 100){
-                        hideLoadingEquip()
+                .collect { resultUpdateDataBase ->
+                    setResultUpdate(resultUpdateDataBase)
+                    if (resultUpdateDataBase.percentage == 100) {
+                        if (resultUpdateDataBase.describe == WEB_RETURN_CLEAR_EQUIP) {
+                            setLoadingEquip(StatusRecover.VAZIO)
+                        } else {
+                            setLoadingEquip(StatusRecover.SUCESSO)
+                        }
                     }
                 }
         }
 
-    fun updateDados() =
+    fun updateDataBaseInitial() =
         viewModelScope.launch {
-            updateAllDataBase().
-                onStart {
-                    setLoadingDataBase()
-                }
+            updateAllDataBase()
                 .catch { catch ->
-                    _resultUpdateDataBase.value = ResultUpdateDataBase(100, "Erro: $catch", 100)
+                    setResultUpdate(ResultUpdateDataBase(100, "Erro: $catch", 100))
+                    setLoadingDataBase(StatusUpdate.FALHA)
                 }
-                .collect{ resultUpdateDataBase ->
-                    _resultUpdateDataBase.value = resultUpdateDataBase
-                    if(resultUpdateDataBase.percentage == 100){
-                        hideLoadingDataBase()
+                .collect { resultUpdateDataBase ->
+                    setResultUpdate(resultUpdateDataBase)
+                    if (resultUpdateDataBase.percentage == 100) {
+                        setLoadingDataBase(StatusUpdate.ATUALIZADO)
                     }
                 }
         }
@@ -101,7 +98,9 @@ class ConfigViewModel @Inject constructor (
 sealed class ConfigFragmentState {
     object Init : ConfigFragmentState()
     data class RecoverConfig(val config: Config) : ConfigFragmentState()
-    data class IsLoadingDataBase(val isLoadingDataBase: Boolean) : ConfigFragmentState()
-    data class IsLoadingEquip(val isLoadingEquip: Boolean) : ConfigFragmentState()
+    data class FeedbackLoadingDataBase(val statusUpdateDataBase: StatusUpdate) :
+        ConfigFragmentState()
+    data class FeedbackLoadingEquip(val statusUpdateEquip: StatusRecover) : ConfigFragmentState()
     data class IsCheckUpdate(val isCheckUpdate: Boolean) : ConfigFragmentState()
+    data class SetResultUpdate(val resultUpdateDataBase: ResultUpdateDataBase) : ConfigFragmentState()
 }

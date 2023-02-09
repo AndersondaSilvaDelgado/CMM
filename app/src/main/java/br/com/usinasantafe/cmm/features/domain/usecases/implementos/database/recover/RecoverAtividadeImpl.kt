@@ -1,6 +1,7 @@
 package br.com.usinasantafe.cmm.features.domain.usecases.implementos.database.recover
 
 import br.com.usinasantafe.cmm.common.utils.FlowNote
+import br.com.usinasantafe.cmm.common.utils.TEXT_SUCESS_UPDATE
 import br.com.usinasantafe.cmm.features.domain.repositories.stable.EquipRepository
 import br.com.usinasantafe.cmm.features.domain.repositories.variable.ApontMMFertRepository
 import br.com.usinasantafe.cmm.features.domain.repositories.variable.BoletimMMFertRepository
@@ -45,7 +46,7 @@ class RecoverAtividadeImpl @Inject constructor(
                 emit(it)
                 contRecoverAtiv = it.count;
             }
-            emit(ResultUpdateDataBase(count = qtde, describe = "Atualização realizada com Sucesso!", size = qtde))
+            emit(ResultUpdateDataBase(count = qtde, describe = TEXT_SUCESS_UPDATE, size = qtde))
         }
     }
 

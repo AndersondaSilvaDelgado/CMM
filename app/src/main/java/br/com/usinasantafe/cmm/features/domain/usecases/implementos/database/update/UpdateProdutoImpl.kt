@@ -1,5 +1,9 @@
 package br.com.usinasantafe.cmm.features.domain.usecases.implementos.database.update
 
+import br.com.usinasantafe.cmm.common.utils.TB_PRODUTO
+import br.com.usinasantafe.cmm.common.utils.TEXT_CLEAR_TB
+import br.com.usinasantafe.cmm.common.utils.TEXT_RECEIVE_WS_TB
+import br.com.usinasantafe.cmm.common.utils.TEXT_SAVE_DATA_TB
 import br.com.usinasantafe.cmm.features.domain.repositories.stable.ProdutoRepository
 import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.database.update.UpdateProduto
 import br.com.usinasantafe.cmm.features.presenter.models.ResultUpdateDataBase
@@ -14,13 +18,13 @@ class UpdateProdutoImpl @Inject constructor(
     override suspend fun invoke(contador: Int, qtde: Int): Flow<ResultUpdateDataBase> {
         return flow {
             var contUpdateProduto = contador
-            emit(ResultUpdateDataBase(++contUpdateProduto,"Limpando Dados da Tabela Produto", qtde))
+            emit(ResultUpdateDataBase(++contUpdateProduto,TEXT_CLEAR_TB + TB_PRODUTO, qtde))
             produtoRepository.deleteAllProduto()
-            emit(ResultUpdateDataBase(++contUpdateProduto,"Recebendo Dados da Tabela Produto", qtde))
+            emit(ResultUpdateDataBase(++contUpdateProduto,TEXT_RECEIVE_WS_TB + TB_PRODUTO, qtde))
             produtoRepository.recoverAllProduto()
                 .collect{ result ->
                     result.onSuccess { produtoList ->
-                        emit(ResultUpdateDataBase(++contUpdateProduto,"Salvandos Dados da Tabela Produto", qtde))
+                        emit(ResultUpdateDataBase(++contUpdateProduto,TEXT_SAVE_DATA_TB + TB_PRODUTO, qtde))
                         produtoRepository.addAllProduto(produtoList)
                     }
                 }

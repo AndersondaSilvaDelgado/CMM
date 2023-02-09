@@ -17,27 +17,27 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class AtivBolViewModel @Inject constructor (
+class AtivBolViewModel @Inject constructor(
     private val setIdAtivBoletimMMFert: SetIdAtivBoletimMMFert,
     private val listAtiv: ListAtiv,
     private val recoverAtividade: RecoverAtividade
-): ViewModel() {
+) : ViewModel() {
 
     private val _uiStateFlow = MutableStateFlow<AtivBolFragmentState>(AtivBolFragmentState.Init)
     val uiStateFlow: StateFlow<AtivBolFragmentState> get() = _uiStateFlow
 
     private val _resultUpdateDataBase = MutableStateFlow<ResultUpdateDataBase?>(null)
-    val resultUpdateDataBase : StateFlow<ResultUpdateDataBase?> get() = _resultUpdateDataBase
+    val resultUpdateDataBase: StateFlow<ResultUpdateDataBase?> get() = _resultUpdateDataBase
 
-    private fun setListAtiv(ativList: List<Atividade>){
+    private fun setListAtiv(ativList: List<Atividade>) {
         _uiStateFlow.value = AtivBolFragmentState.ListAtiv(ativList)
     }
 
-    private fun showUpdateTurno(){
+    private fun showUpdateTurno() {
         _uiStateFlow.value = AtivBolFragmentState.IsUpdateAtiv(true)
     }
 
-    private fun hideUpdateTurno(){
+    private fun hideUpdateTurno() {
         _uiStateFlow.value = AtivBolFragmentState.IsUpdateAtiv(false)
     }
 
@@ -51,19 +51,19 @@ class AtivBolViewModel @Inject constructor (
 
     fun updateDataAtiv() =
         viewModelScope.launch {
-            recoverAtividade(FlowNote.BOLETIM).
-            onStart {
-                showUpdateTurno()
-            }
-            .catch { catch ->
-                _resultUpdateDataBase.value = ResultUpdateDataBase(1, "Erro: $catch", 100, 100)
-            }
-            .collect{ resultUpdateDataBase ->
-                _resultUpdateDataBase.value = resultUpdateDataBase
-                if(resultUpdateDataBase.percentage == 100){
-                    hideUpdateTurno()
+            recoverAtividade(FlowNote.BOLETIM)
+                .onStart {
+                    showUpdateTurno()
                 }
-            }
+                .catch { catch ->
+                    _resultUpdateDataBase.value = ResultUpdateDataBase(1, "Erro: $catch", 100, 100)
+                }
+                .collect { resultUpdateDataBase ->
+                    _resultUpdateDataBase.value = resultUpdateDataBase
+                    if (resultUpdateDataBase.percentage == 100) {
+                        hideUpdateTurno()
+                    }
+                }
         }
 
 }

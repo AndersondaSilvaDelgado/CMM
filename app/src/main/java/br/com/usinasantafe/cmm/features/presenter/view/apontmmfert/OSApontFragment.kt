@@ -4,7 +4,6 @@ import android.content.Context
 import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
-import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -14,6 +13,7 @@ import br.com.usinasantafe.cmm.common.base.BaseFragment
 import br.com.usinasantafe.cmm.common.dialog.GenericDialogProgressBar
 import br.com.usinasantafe.cmm.common.extension.setListenerButtonsGenericSUpdate
 import br.com.usinasantafe.cmm.common.extension.showGenericAlertDialog
+import br.com.usinasantafe.cmm.common.utils.StatusRecover
 import br.com.usinasantafe.cmm.databinding.FragmentOsApontBinding
 import br.com.usinasantafe.cmm.features.presenter.models.ResultUpdateDataBase
 import br.com.usinasantafe.cmm.features.presenter.viewmodel.apontmmfert.OSApontFragmentState
@@ -28,8 +28,8 @@ class OSApontFragment : BaseFragment<FragmentOsApontBinding>(
 ) {
 
     private val viewModel: OSApontViewModel by viewModels()
-    private lateinit var genericDialogProgressBar: GenericDialogProgressBar
-    private lateinit var describe: String
+    private var genericDialogProgressBar: GenericDialogProgressBar? = null
+    private lateinit var describeRecover: String
     private var fragmentAttachListenerApont: FragmentAttachListenerApont? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -42,7 +42,6 @@ class OSApontFragment : BaseFragment<FragmentOsApontBinding>(
 
     private fun observe() {
         observeState()
-        observeResult()
     }
 
     private fun observeState() {
@@ -50,16 +49,6 @@ class OSApontFragment : BaseFragment<FragmentOsApontBinding>(
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 viewModel.uiStateFlow.collect { state ->
                     handleStateChange(state)
-                }
-            }
-        }
-    }
-
-    private fun observeResult() {
-        lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED) {
-                viewModel.resultUpdateDataBase.collect { state ->
-                    handleStatusUpdate(state)
                 }
             }
         }
@@ -87,7 +76,23 @@ class OSApontFragment : BaseFragment<FragmentOsApontBinding>(
         when (state) {
             is OSApontFragmentState.Init -> Unit
             is OSApontFragmentState.CheckNroOS -> handleCheckNroOS(state.checkNroOS)
-            is OSApontFragmentState.CheckSetNroOS -> handleCheckSetNroOS(state.checkSetNroOS)
+            is OSApontFragmentState.CheckSetNroOS -> fragmentAttachListenerApont?.goAtivApontFragment()
+            is OSApontFragmentState.FeedbackUpdateOS -> handleFeedbackUpdateOS(state.statusRecover)
+            is OSApontFragmentState.SetResultUpdate -> handleStatusUpdate(state.resultUpdateDataBase)
+        }
+    }
+
+    private fun handleFeedbackUpdateOS(statusRecover: StatusRecover) {
+        when(statusRecover){
+            StatusRecover.SUCESSO -> fragmentAttachListenerApont?.goAtivApontFragment()
+            StatusRecover.VAZIO -> {
+                hideProgressBar()
+                showGenericAlertDialog(getString(R.string.texto_dado_invalido, "OS"), requireContext())
+            }
+            StatusRecover.FALHA -> {
+                hideProgressBar()
+                showGenericAlertDialog(getString(R.string.texto_update_failure, describeRecover), requireContext())
+            }
         }
     }
 
@@ -101,42 +106,38 @@ class OSApontFragment : BaseFragment<FragmentOsApontBinding>(
         }
     }
 
-    private fun handleCheckSetNroOS(checkSetNroOS: Boolean) {
-        if (checkSetNroOS) {
-            fragmentAttachListenerApont?.goAtivApontFragment()
-        } else {
-            showGenericAlertDialog(
-                getString(R.string.texto_falha_insercao_campo, "OS"),
-                requireContext()
-            )
-        }
-    }
-
     private fun handleStatusUpdate(resultUpdateDataBase: ResultUpdateDataBase?) {
         resultUpdateDataBase?.let {
-            if(resultUpdateDataBase.count == 1){
+            if(genericDialogProgressBar == null){
                 showProgressBar()
             }
-            describe = resultUpdateDataBase.describe
-            genericDialogProgressBar.setValue(resultUpdateDataBase)
+            describeRecover = resultUpdateDataBase.describe
+            genericDialogProgressBar!!.setValue(resultUpdateDataBase)
             if (resultUpdateDataBase.percentage == 100) {
-                hideProgressBar()
+                finishProgressBar()
             }
         }
     }
 
     private fun showProgressBar() {
         genericDialogProgressBar = GenericDialogProgressBar(requireContext())
-        genericDialogProgressBar.show()
-        genericDialogProgressBar.window?.setLayout(
+        genericDialogProgressBar!!.show()
+        genericDialogProgressBar!!.window?.setLayout(
             WindowManager.LayoutParams.MATCH_PARENT,
             WindowManager.LayoutParams.WRAP_CONTENT,
         )
     }
 
     private fun hideProgressBar() {
-        genericDialogProgressBar.cancel()
-        if (describe == "OS Inexistente!") {
+        if(genericDialogProgressBar != null){
+            genericDialogProgressBar!!.cancel()
+        }
+        genericDialogProgressBar = null
+    }
+
+    private fun finishProgressBar() {
+        hideProgressBar()
+        if (describeRecover == "OS Inexistente!") {
             showGenericAlertDialog(getString(R.string.texto_dado_invalido, "OS"), requireContext())
         } else {
             viewModel.setNroOS(binding.editTextPadrao.text.toString())

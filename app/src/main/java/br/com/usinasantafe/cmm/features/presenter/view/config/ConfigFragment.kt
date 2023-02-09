@@ -13,6 +13,8 @@ import br.com.usinasantafe.cmm.R
 import br.com.usinasantafe.cmm.common.dialog.GenericDialogProgressBar
 import br.com.usinasantafe.cmm.common.base.BaseFragment
 import br.com.usinasantafe.cmm.common.extension.showGenericAlertDialog
+import br.com.usinasantafe.cmm.common.utils.StatusRecover
+import br.com.usinasantafe.cmm.common.utils.StatusUpdate
 import br.com.usinasantafe.cmm.databinding.FragmentConfigBinding
 import br.com.usinasantafe.cmm.features.domain.entities.variable.Config
 import br.com.usinasantafe.cmm.features.presenter.models.ResultUpdateDataBase
@@ -29,9 +31,10 @@ class ConfigFragment : BaseFragment<FragmentConfigBinding>(
 ) {
 
     private val viewModel: ConfigViewModel by viewModels()
-    private lateinit var genericDialogProgressBar: GenericDialogProgressBar
+    private var genericDialogProgressBar: GenericDialogProgressBar? = null
     private var typeUpdate: Boolean = true
     private var fragmentAttachListenerConfig: FragmentAttachListenerConfig? = null
+    private lateinit var describeRecover: String
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -44,7 +47,6 @@ class ConfigFragment : BaseFragment<FragmentConfigBinding>(
 
     private fun observe() {
         observeState()
-        observeResult()
     }
 
     private fun observeState(){
@@ -57,25 +59,19 @@ class ConfigFragment : BaseFragment<FragmentConfigBinding>(
         }
     }
 
-    private fun observeResult(){
-        lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED){
-                viewModel.resultUpdateDataBase.collect{
-                    state -> handleStatus(state)
-                }
-            }
-        }
-    }
-
     private fun setListener() {
         with(binding) {
             buttonAtualBaseDados.setOnClickListener {
-                viewModel.updateDados()
+                typeUpdate = true
+                textStatusAtualDados.isVisible = true
+                progressBarAtualDados.isVisible = true
+                viewModel.updateDataBaseInitial()
             }
             buttonSalvarConfig.setOnClickListener {
                 val nroEquip = editTextEquipConfig.text.toString().trim()
                 val senha = editTextSenhaConfig.text.toString().trim()
                 if(validate(nroEquip, senha)){
+                    typeUpdate = false
                     viewModel.saveDataConfig(nroEquip, senha)
                 } else {
                     showGenericAlertDialog(getString(R.string.texto_config_invalida), requireContext())
@@ -105,9 +101,10 @@ class ConfigFragment : BaseFragment<FragmentConfigBinding>(
         when(state){
             is ConfigFragmentState.Init -> Unit
             is ConfigFragmentState.RecoverConfig -> handleConfig(state.config)
-            is ConfigFragmentState.IsLoadingDataBase -> handleLoadingDataBase(state.isLoadingDataBase)
-            is ConfigFragmentState.IsLoadingEquip -> handleLoadingEquip(state.isLoadingEquip)
-            is ConfigFragmentState.IsCheckUpdate -> handleCheckUpdate(state.isCheckUpdate)
+            is ConfigFragmentState.FeedbackLoadingDataBase -> handleLoadingDataBase(state.statusUpdateDataBase)
+            is ConfigFragmentState.FeedbackLoadingEquip -> handleLoadingEquip(state.statusUpdateEquip)
+            is ConfigFragmentState.IsCheckUpdate -> binding.buttonSalvarConfig.isEnabled = state.isCheckUpdate
+            is ConfigFragmentState.SetResultUpdate -> handleStatus(state.resultUpdateDataBase)
         }
     }
 
@@ -125,41 +122,63 @@ class ConfigFragment : BaseFragment<FragmentConfigBinding>(
                     textStatusAtualDados.text = resultUpdateDataBase.describe
                     progressBarAtualDados.progress = resultUpdateDataBase.percentage
                 } else {
-                    genericDialogProgressBar.setValue(resultUpdateDataBase)
+                    if(genericDialogProgressBar == null){
+                        showProgressBar()
+                    }
+                    describeRecover = resultUpdateDataBase.describe
+                    genericDialogProgressBar!!.setValue(resultUpdateDataBase)
                 }
             }
         }
     }
 
-    private fun handleLoadingDataBase(isLoading: Boolean){
-        typeUpdate = true
-        with(binding) {
-            if(isLoading){
-                textStatusAtualDados.isVisible = isLoading
-                progressBarAtualDados.isVisible = isLoading
-            } else {
-                viewModel.checkUpdateData()
+    private fun handleLoadingDataBase(statusUpdate: StatusUpdate){
+        when(statusUpdate){
+            StatusUpdate.ATUALIZADO -> handleCheckUpdate(true)
+            StatusUpdate.FALHA -> handleCheckUpdate(false)
+        }
+    }
+
+    private fun handleLoadingEquip(statusRecover: StatusRecover){
+        when(statusRecover){
+            StatusRecover.SUCESSO -> {
+                hideProgressBar()
+                fragmentAttachListenerConfig?.goMenuInicial()
+            }
+            StatusRecover.FALHA -> {
+                hideProgressBar()
+                showGenericAlertDialog(getString(R.string.texto_update_failure, describeRecover), requireContext())
+            }
+            StatusRecover.VAZIO -> {
+                hideProgressBar()
+                showGenericAlertDialog(getString(R.string.texto_dado_invalido, "EQUIPAMENTO"), requireContext())
             }
         }
     }
 
-    private fun handleLoadingEquip(isLoading: Boolean){
-        typeUpdate = false
-        if(isLoading){
-            genericDialogProgressBar = GenericDialogProgressBar(requireContext())
-            genericDialogProgressBar.show()
-            genericDialogProgressBar.window?.setLayout(
-                WindowManager.LayoutParams.MATCH_PARENT,
-                WindowManager.LayoutParams.WRAP_CONTENT,
-            )
-        } else {
-            genericDialogProgressBar.cancel()
-            fragmentAttachListenerConfig?.goMenuInicial()
+    private fun showProgressBar() {
+        genericDialogProgressBar = GenericDialogProgressBar(requireContext())
+        genericDialogProgressBar!!.show()
+        genericDialogProgressBar!!.window?.setLayout(
+            WindowManager.LayoutParams.MATCH_PARENT,
+            WindowManager.LayoutParams.WRAP_CONTENT,
+        )
+    }
+
+    private fun hideProgressBar() {
+        if(genericDialogProgressBar != null){
+            genericDialogProgressBar!!.cancel()
         }
+        genericDialogProgressBar = null
     }
 
     private fun handleCheckUpdate(isCheckUpdate: Boolean){
         with(binding) {
+            if(isCheckUpdate){
+                showGenericAlertDialog(getString(R.string.texto_update_sucess), requireContext())
+            } else {
+                showGenericAlertDialog(getString(R.string.texto_update_failure, textStatusAtualDados.text), requireContext())
+            }
             buttonSalvarConfig.isEnabled = isCheckUpdate
         }
     }
