@@ -8,6 +8,7 @@ import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.EditText
 import android.widget.Toast
+import androidx.activity.OnBackPressedCallback
 import androidx.annotation.IdRes
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
@@ -193,9 +194,20 @@ fun AppCompatActivity.replaceFragment(@IdRes id: Int, fragment: Fragment){
     } else {
         supportFragmentManager.beginTransaction().apply {
             replace(id, fragment)
-            addToBackStack(null)
+            //addToBackStack(null)
             commit()
         }
     }
     hideKeyboard()
+}
+
+fun Fragment.onBackPressed(callback: () -> Unit){
+    val callback: OnBackPressedCallback = object : OnBackPressedCallback(true) {
+        override fun handleOnBackPressed() {
+            callback.invoke()
+        }
+    }
+    requireActivity().onBackPressedDispatcher.addCallback(
+        this, callback
+    )
 }

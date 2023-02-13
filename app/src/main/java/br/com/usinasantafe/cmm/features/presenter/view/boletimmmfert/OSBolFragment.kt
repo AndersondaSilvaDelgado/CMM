@@ -2,6 +2,7 @@ package br.com.usinasantafe.cmm.features.presenter.view.boletimmmfert
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.WindowManager
 import androidx.fragment.app.viewModels
@@ -11,6 +12,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import br.com.usinasantafe.cmm.R
 import br.com.usinasantafe.cmm.common.base.BaseFragment
 import br.com.usinasantafe.cmm.common.dialog.GenericDialogProgressBar
+import br.com.usinasantafe.cmm.common.extension.onBackPressed
 import br.com.usinasantafe.cmm.common.extension.setListenerButtonsGenericSUpdate
 import br.com.usinasantafe.cmm.common.extension.showGenericAlertDialog
 import br.com.usinasantafe.cmm.common.utils.StatusRecover
@@ -84,7 +86,10 @@ class OSBolFragment : BaseFragment<FragmentOsBolBinding>(
 
     private fun handleFeedbackUpdateOS(statusRecover: StatusRecover) {
         when(statusRecover){
-            StatusRecover.SUCESSO -> fragmentAttachListenerBoletim?.goAtivBolFragment()
+            StatusRecover.SUCESSO -> {
+                hideProgressBar()
+                fragmentAttachListenerBoletim?.goAtivBolFragment()
+            }
             StatusRecover.VAZIO -> {
                 hideProgressBar()
                 showGenericAlertDialog(getString(R.string.texto_dado_invalido, "OS"), requireContext())
@@ -131,10 +136,14 @@ class OSBolFragment : BaseFragment<FragmentOsBolBinding>(
         }
         genericDialogProgressBar = null
     }
+
     override fun onAttach(context: Context) {
         super.onAttach(context)
         if(context is FragmentAttachListenerBoletim){
             fragmentAttachListenerBoletim = context
+        }
+        onBackPressed {
+            fragmentAttachListenerBoletim?.goTurnoBolFragment()
         }
     }
 

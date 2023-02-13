@@ -1,5 +1,6 @@
 package br.com.usinasantafe.cmm.features.presenter.viewmodel.boletimmmfert
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import br.com.usinasantafe.cmm.common.utils.StatusRecover

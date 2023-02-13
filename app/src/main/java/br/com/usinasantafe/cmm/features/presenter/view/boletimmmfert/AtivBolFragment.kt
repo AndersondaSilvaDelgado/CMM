@@ -12,6 +12,7 @@ import br.com.usinasantafe.cmm.R
 import br.com.usinasantafe.cmm.common.adapter.CustomAdapter
 import br.com.usinasantafe.cmm.common.base.BaseFragment
 import br.com.usinasantafe.cmm.common.dialog.GenericDialogProgressBar
+import br.com.usinasantafe.cmm.common.extension.onBackPressed
 import br.com.usinasantafe.cmm.common.extension.showToast
 import br.com.usinasantafe.cmm.databinding.FragmentAtivBolBinding
 import br.com.usinasantafe.cmm.features.domain.entities.stable.Atividade
@@ -87,7 +88,7 @@ class AtivBolFragment : BaseFragment<FragmentAtivBolBinding>(
                 viewModel.updateDataAtiv()
             }
             buttonRetAtividade.setOnClickListener {
-                fragmentAttachListenerBoletim?.popBackStack()
+                fragmentAttachListenerBoletim?.goOSBolFragment()
             }
         }
     }
@@ -109,10 +110,8 @@ class AtivBolFragment : BaseFragment<FragmentAtivBolBinding>(
     }
 
     private fun handleStatusUpdate(resultUpdateDataBase: ResultUpdateDataBase?){
-        with(binding) {
-            resultUpdateDataBase?.let {
-                genericDialogProgressBar.setValue(resultUpdateDataBase)
-            }
+        resultUpdateDataBase?.let {
+            genericDialogProgressBar.setValue(resultUpdateDataBase)
         }
     }
 
@@ -134,6 +133,9 @@ class AtivBolFragment : BaseFragment<FragmentAtivBolBinding>(
         super.onAttach(context)
         if(context is FragmentAttachListenerBoletim){
             fragmentAttachListenerBoletim = context
+        }
+        onBackPressed {
+            fragmentAttachListenerBoletim?.goOSBolFragment()
         }
     }
 

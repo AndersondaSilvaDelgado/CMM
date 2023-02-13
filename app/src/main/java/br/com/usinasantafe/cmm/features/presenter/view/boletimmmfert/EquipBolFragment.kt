@@ -55,7 +55,7 @@ class EquipBolFragment : BaseFragment<FragmentEquipBolBinding>(
                 fragmentAttachListenerBoletim?.goTurnoBolFragment()
             }
             buttonCancEquip.setOnClickListener {
-                fragmentAttachListenerBoletim?.popBackStack()
+                fragmentAttachListenerBoletim?.goOperadorBolFragment()
             }
         }
     }
@@ -83,6 +83,14 @@ class EquipBolFragment : BaseFragment<FragmentEquipBolBinding>(
         if(context is FragmentAttachListenerBoletim){
             fragmentAttachListenerBoletim = context
         }
+        val callback: OnBackPressedCallback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                fragmentAttachListenerBoletim?.goOperadorBolFragment()
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(
+            this, callback
+        )
     }
 
     override fun onDestroy() {

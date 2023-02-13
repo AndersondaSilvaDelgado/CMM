@@ -11,7 +11,7 @@ import javax.inject.Inject
 
 class RecoverOSImpl @Inject constructor(
     private val osRepository: OSRepository,
-    private val rOSAtiv: RecoverROSAtiv
+    private val recoverROSAtiv: RecoverROSAtiv
 ): RecoverOS {
 
     override suspend fun invoke(nroOS: String, contador: Int, qtde: Int): Flow<ResultUpdateDataBase> {
@@ -26,13 +26,13 @@ class RecoverOSImpl @Inject constructor(
                         if(osList.isNotEmpty()){
                             emit(ResultUpdateDataBase(++contRecoverOS, TEXT_SAVE_DATA_TB + TB_OS, qtde))
                             osRepository.addAllOS(osList)
-                            rOSAtiv(nroOS, contRecoverOS, qtde).collect{
+                            recoverROSAtiv(nroOS, contRecoverOS, qtde).collect{
                                 emit(it)
                                 contRecoverOS = it.count;
                             }
-                            emit(ResultUpdateDataBase(qtde, TEXT_FINISH_UPDATE, qtde))
+                            emit(ResultUpdateDataBase(contRecoverOS, TEXT_FINISH_UPDATE, qtde))
                         } else {
-                            emit(ResultUpdateDataBase(qtde, WEB_RETURN_CLEAR_OS, qtde))
+                            emit(ResultUpdateDataBase(contRecoverOS, WEB_RETURN_CLEAR_OS, qtde))
                         }
                     }
                 }

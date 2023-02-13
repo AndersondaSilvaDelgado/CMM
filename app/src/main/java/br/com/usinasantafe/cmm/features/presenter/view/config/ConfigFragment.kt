@@ -12,6 +12,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import br.com.usinasantafe.cmm.R
 import br.com.usinasantafe.cmm.common.dialog.GenericDialogProgressBar
 import br.com.usinasantafe.cmm.common.base.BaseFragment
+import br.com.usinasantafe.cmm.common.extension.onBackPressed
 import br.com.usinasantafe.cmm.common.extension.showGenericAlertDialog
 import br.com.usinasantafe.cmm.common.utils.StatusRecover
 import br.com.usinasantafe.cmm.common.utils.StatusUpdate
@@ -187,6 +188,9 @@ class ConfigFragment : BaseFragment<FragmentConfigBinding>(
         super.onAttach(context)
         if(context is FragmentAttachListenerConfig){
             fragmentAttachListenerConfig = context
+        }
+        onBackPressed {
+            fragmentAttachListenerConfig?.goMenuInicial()
         }
     }
 

@@ -9,6 +9,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import br.com.usinasantafe.cmm.R
 import br.com.usinasantafe.cmm.common.base.BaseFragment
+import br.com.usinasantafe.cmm.common.extension.onBackPressed
 import br.com.usinasantafe.cmm.common.extension.showGenericAlertDialog
 import br.com.usinasantafe.cmm.databinding.FragmentSenhaBinding
 import br.com.usinasantafe.cmm.features.presenter.viewmodel.config.SenhaFragmentState
@@ -36,7 +37,7 @@ class SenhaFragment : BaseFragment<FragmentSenhaBinding>(
             viewModel.verificarSenha(binding.editTextSenha.text.toString())
         }
         binding.buttonCancSenha.setOnClickListener {
-            fragmentAttachListenerConfig?.popBackStack()
+            fragmentAttachListenerConfig?.goMenuInicial()
         }
     }
 
@@ -70,6 +71,9 @@ class SenhaFragment : BaseFragment<FragmentSenhaBinding>(
         super.onAttach(context)
         if(context is FragmentAttachListenerConfig){
             fragmentAttachListenerConfig = context
+        }
+        onBackPressed {
+            fragmentAttachListenerConfig?.goMenuInicial()
         }
     }
 

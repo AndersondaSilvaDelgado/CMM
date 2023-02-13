@@ -4,6 +4,7 @@ import android.content.Context
 import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
+import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -78,7 +79,7 @@ class TurnoBolFragment : BaseFragment<FragmentTurnoBolBinding>(
                 viewModel.updateDataTurno()
             }
             buttonRetTurno.setOnClickListener {
-                fragmentAttachListenerBoletim?.popBackStack()
+                fragmentAttachListenerBoletim?.goEquipBolFragment()
             }
         }
     }
@@ -144,11 +145,30 @@ class TurnoBolFragment : BaseFragment<FragmentTurnoBolBinding>(
         if(context is FragmentAttachListenerBoletim){
             fragmentAttachListenerBoletim = context
         }
+        val callback: OnBackPressedCallback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                fragmentAttachListenerBoletim?.goEquipBolFragment()
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(
+            this, callback
+        )
     }
 
     override fun onDestroy() {
         super.onDestroy()
         fragmentAttachListenerBoletim = null
+    }
+
+    private fun returnBack(){
+        val callback: OnBackPressedCallback = object : OnBackPressedCallback(true) {
+            override fun handleOnBackPressed() {
+                fragmentAttachListenerBoletim?.goEquipBolFragment()
+            }
+        }
+        requireActivity().onBackPressedDispatcher.addCallback(
+            this, callback
+        )
     }
 
 }

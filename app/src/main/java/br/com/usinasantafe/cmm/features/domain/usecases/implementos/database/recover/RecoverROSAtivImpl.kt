@@ -21,7 +21,7 @@ class RecoverROSAtivImpl @Inject constructor(
             emit(ResultUpdateDataBase(++contRecoverROSAtiv,TEXT_CLEAR_TB + TB_R_OS_ATIV, qtde))
             rOSAtivRepository.deleteAllROSAtiv()
             emit(ResultUpdateDataBase(++contRecoverROSAtiv,TEXT_RECEIVE_WS_TB + TB_R_OS_ATIV, qtde))
-            rOSAtivRepository.recoverAllROSAtiv()
+            rOSAtivRepository.recoverROSAtiv(nroOS)
                 .collect{ result ->
                     result.onSuccess { rOSAtivList ->
                         emit(ResultUpdateDataBase(++contRecoverROSAtiv,TEXT_SAVE_DATA_TB + TB_R_OS_ATIV, qtde))

@@ -10,6 +10,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import br.com.usinasantafe.cmm.R
 import br.com.usinasantafe.cmm.common.base.BaseFragment
+import br.com.usinasantafe.cmm.common.extension.onBackPressed
 import br.com.usinasantafe.cmm.common.extension.setListenerButtonsGenericCVirgula
 import br.com.usinasantafe.cmm.common.extension.showGenericAlertDialog
 import br.com.usinasantafe.cmm.databinding.FragmentHorimetroBolBinding
@@ -82,6 +83,9 @@ class HorimetroBolFragment : BaseFragment<FragmentHorimetroBolBinding>(
         super.onAttach(context)
         if(context is FragmentAttachListenerBoletim){
             fragmentAttachListenerBoletim = context
+        }
+        onBackPressed {
+            fragmentAttachListenerBoletim?.goAtivBolFragment()
         }
     }
 
