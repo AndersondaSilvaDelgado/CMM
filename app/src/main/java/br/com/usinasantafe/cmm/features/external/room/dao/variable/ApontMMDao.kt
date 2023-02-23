@@ -13,13 +13,16 @@ interface ApontMMDao {
     @Insert
     suspend fun insert(apontMMRoomModel: ApontMMRoomModel): Long
 
+    @Update
+    suspend fun update(apontMMRoomModel: ApontMMRoomModel): Int
+
     @Query("SELECT * FROM $TB_APONT_MM WHERE idBolApontMM = :idBol and statusApontMM = :status")
     suspend fun listApontIdBolStatusEnvio(status: Long, idBol: Long): List<ApontMMRoomModel>
 
     @Query("SELECT * FROM $TB_APONT_MM WHERE statusApontMM = :status")
     suspend fun listApontStatusEnvio(status: Long): List<ApontMMRoomModel>
 
-    @Query("UPDATE $TB_APONT_MM SET statusApontMM = :status WHERE idBolApontMM = :idApont")
-    suspend fun updateIdApontEnviado(status: Long, idApont: Long): Int
+    @Query("SELECT * FROM $TB_APONT_MM WHERE idApontMM = :idApont")
+    suspend fun listApontIdApont(idApont: Long): List<ApontMMRoomModel>
 
 }

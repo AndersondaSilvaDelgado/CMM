@@ -4,6 +4,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import br.com.usinasantafe.cmm.common.utils.StatusConnection
 import br.com.usinasantafe.cmm.common.utils.StatusData
+import br.com.usinasantafe.cmm.common.utils.StatusSend
 import br.com.usinasantafe.cmm.common.utils.TB_BOLETIM_FERT
 import br.com.usinasantafe.cmm.features.domain.entities.variable.BoletimFert
 import java.util.*
@@ -24,6 +25,7 @@ data class BoletimFertRoomModel (
     val dthrFinalBolFert: Long? = null,
     val statusBolFert: Long,
     val statusConBolFert: Long,
+    var statusEnvioBolFert: Long,
     val longitudeBolFert: Double,
     val latitudeBolFert: Double
 )
@@ -32,7 +34,7 @@ fun BoletimFert.toBoletimFertRoomModel(): BoletimFertRoomModel{
     return with(this){
         BoletimFertRoomModel(
             matricFuncBolFert = this.matricFuncBol!!,
-            idEquipBolFert = this.idEquipBol,
+            idEquipBolFert = this.idEquipBol!!,
             idEquipBombaBolMMFert = this.idEquipBombaBol!!,
             idTurnoBolFert = this.idTurnoBol!!,
             hodometroInicialBolFert = this.hodometroInicialBol!!,
@@ -41,6 +43,7 @@ fun BoletimFert.toBoletimFertRoomModel(): BoletimFertRoomModel{
             dthrInicialBolFert = Date().time,
             statusBolFert = StatusData.ABERTO.ordinal.toLong(),
             statusConBolFert = StatusConnection.ONLINE.ordinal.toLong(),
+            statusEnvioBolFert = StatusSend.ENVIAR.ordinal.toLong(),
             longitudeBolFert = 0.0,
             latitudeBolFert = 0.0
         )

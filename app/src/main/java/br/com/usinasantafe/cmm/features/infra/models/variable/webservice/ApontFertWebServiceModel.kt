@@ -26,7 +26,7 @@ fun ApontFert.toApontFertWebServiceModel(): ApontFertWebServiceModel {
     return with(this){
         ApontFertWebServiceModel(
             idApontFert = this.idApont!!,
-            idBolApontFert = this.idBolApont,
+            idBolApontFert = this.idBolApont!!,
             nroOSApontFert =  this.nroOSApont!!,
             idAtivApontFert =  this.idAtivApont!!,
             idParadaApontFert = this.idParadaApont,

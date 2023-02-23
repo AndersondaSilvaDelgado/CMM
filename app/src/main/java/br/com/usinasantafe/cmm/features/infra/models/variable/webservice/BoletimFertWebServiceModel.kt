@@ -32,7 +32,7 @@ fun BoletimFert.toBoletimFertWebServiceModel(): BoletimFertWebServiceModel {
         BoletimFertWebServiceModel(
             idBolFert = this.idBol!!,
             matricFuncBolFert = this.matricFuncBol!!,
-            idEquipBolFert = this.idEquipBol,
+            idEquipBolFert = this.idEquipBol!!,
             idEquipBombaBolMMFert = this.idEquipBombaBol!!,
             idTurnoBolFert = this.idTurnoBol!!,
             hodometroInicialBolFert = this.hodometroInicialBol!!,
@@ -41,7 +41,7 @@ fun BoletimFert.toBoletimFertWebServiceModel(): BoletimFertWebServiceModel {
             idAtivBolFert = this.idAtivBol!!,
             dthrInicialBolFert = SimpleDateFormat("dd/MM/yyyy HH:mm", Locale("pt", "BR")).format(this.dthrInicialBol),
             dthrFinalBolFert = SimpleDateFormat("dd/MM/yyyy HH:mm", Locale("pt", "BR")).format(this.dthrFinalBol),
-            statusBolFert = this.statusBol.ordinal.toLong(),
+            statusBolFert = this.statusBol!!.ordinal.toLong(),
             statusConBolFert = this.statusConBol!!.ordinal.toLong(),
             longitudeBolFert = this.longitudeBol!!,
             latitudeBolFert = this.latitudeBol!!,

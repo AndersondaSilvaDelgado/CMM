@@ -2,6 +2,7 @@ package br.com.usinasantafe.cmm.features.module.usecases
 
 import br.com.usinasantafe.cmm.features.domain.usecases.implementos.boletimmmfert.*
 import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.boletimmmfert.*
+import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.boletimmmfert.RecoverNroOSBoletimMMFert
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -19,6 +20,10 @@ interface BoletimMMFertModule {
     @Singleton
     @Binds
     fun bindRecoverNroOSBoletimMMFert(usecase: RecoverNroOSBoletimMMFertImpl): RecoverNroOSBoletimMMFert
+
+    @Singleton
+    @Binds
+    fun bindSetHorimetroFinalBoletimMMFert(usecase: SetHorimetroFinalBoletimMMFertImpl): SetHorimetroFinalBoletimMMFert
 
     @Singleton
     @Binds

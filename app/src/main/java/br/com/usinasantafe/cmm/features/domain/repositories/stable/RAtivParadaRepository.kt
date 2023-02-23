@@ -9,6 +9,8 @@ interface RAtivParadaRepository {
 
     suspend fun deleteAllRAtivParada()
 
+    suspend fun listRAtivParada(idAtiv: Long): List<RAtivParada>
+
     suspend fun recoverAllRAtivParada(): Flow<Result<List<RAtivParada>>>
 
 }

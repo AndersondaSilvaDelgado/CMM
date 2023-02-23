@@ -5,5 +5,5 @@ import br.com.usinasantafe.cmm.common.utils.StatusSend
 data class Config(
     val equipConfig: Long,
     val senhaConfig: String,
-    val statusEnvio: StatusSend
+    var statusEnvio: StatusSend
 )

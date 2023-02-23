@@ -1,6 +1,6 @@
-package br.com.usinasantafe.cmm.features.infra.datasource.memory
+package br.com.usinasantafe.cmm.features.infra.datasource.sharedpreferences
 
-interface BoletimMMFertDatasourceMemory {
+interface BoletimDatasourceSharedPreferences {
 
     suspend fun clearBoletim()
 

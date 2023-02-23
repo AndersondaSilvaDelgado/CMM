@@ -1,8 +1,8 @@
 package br.com.usinasantafe.cmm.features.domain.usecases.implementos.common
 
 import br.com.usinasantafe.cmm.common.utils.FlowNote
-import br.com.usinasantafe.cmm.features.domain.entities.stable.Atividade
-import br.com.usinasantafe.cmm.features.domain.repositories.stable.AtividadeRepository
+import br.com.usinasantafe.cmm.features.domain.entities.stable.Ativ
+import br.com.usinasantafe.cmm.features.domain.repositories.stable.AtivRepository
 import br.com.usinasantafe.cmm.features.domain.repositories.stable.EquipRepository
 import br.com.usinasantafe.cmm.features.domain.repositories.stable.REquipAtivRepository
 import br.com.usinasantafe.cmm.features.domain.repositories.stable.ROSAtivRepository
@@ -15,7 +15,7 @@ import javax.inject.Inject
 
 class ListAtivImpl @Inject constructor (
     private val equipRepository: EquipRepository,
-    private val atividadeRepository: AtividadeRepository,
+    private val ativRepository: AtivRepository,
     private val boletimMMFertRepository: BoletimMMFertRepository,
     private val apontMMFertRepository: ApontMMFertRepository,
     private val rOSAtivRepository: ROSAtivRepository,
@@ -24,10 +24,10 @@ class ListAtivImpl @Inject constructor (
     private val getOSNro: GetOSNro
 ): ListAtiv {
 
-    override suspend fun invoke(flowNote: FlowNote): List<Atividade> {
+    override suspend fun invoke(flowNote: FlowNote): List<Ativ> {
 
         var idOS = 0L
-        var nroOS = if(flowNote == FlowNote.BOLETIM) boletimMMFertRepository.getOS() else apontMMFertRepository.getOS()
+        var nroOS = if(flowNote == FlowNote.BOLETIM) boletimMMFertRepository.getOS() else apontMMFertRepository.getNroOS()
 
         if(checkNroOS(nroOS.toString())){
             idOS = getOSNro(nroOS).idOS
@@ -45,7 +45,7 @@ class ListAtivImpl @Inject constructor (
             listIdAtiv = listREquipAtiv.map { it.idAtiv }
         }
 
-        return atividadeRepository.listInIdAtiv(listIdAtiv)
+        return ativRepository.listInIdAtiv(listIdAtiv)
     }
 
 }

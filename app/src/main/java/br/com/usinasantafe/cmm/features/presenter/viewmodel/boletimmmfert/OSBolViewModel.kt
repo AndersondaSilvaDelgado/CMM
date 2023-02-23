@@ -1,6 +1,5 @@
 package br.com.usinasantafe.cmm.features.presenter.viewmodel.boletimmmfert
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import br.com.usinasantafe.cmm.common.utils.StatusRecover
@@ -8,13 +7,11 @@ import br.com.usinasantafe.cmm.common.utils.WEB_RETURN_CLEAR_OS
 import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.boletimmmfert.RecoverNroOSBoletimMMFert
 import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.boletimmmfert.SetNroOSBoletimMMFert
 import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.common.CheckNroOS
-import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.database.recover.RecoverOS
 import br.com.usinasantafe.cmm.features.presenter.models.ResultUpdateDataBase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 

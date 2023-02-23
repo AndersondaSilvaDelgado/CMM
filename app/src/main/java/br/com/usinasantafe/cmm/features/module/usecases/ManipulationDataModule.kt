@@ -30,6 +30,10 @@ interface ManipulationDataModule {
 
     @Singleton
     @Binds
+    fun bindRecoverParada(usecase: RecoverParadaImpl): RecoverParada
+
+    @Singleton
+    @Binds
     fun bindRecoverREquipAtiv(usecase: RecoverREquipAtivImpl): RecoverREquipAtiv
 
     @Singleton

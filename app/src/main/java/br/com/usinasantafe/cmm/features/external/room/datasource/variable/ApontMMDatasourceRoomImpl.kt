@@ -23,7 +23,9 @@ class ApontMMDatasourceRoomImpl @Inject constructor (
     }
 
     override suspend fun updateApontEnviadoMM(apontMMRoomModel: ApontMMRoomModel): Boolean {
-        return apontMMDao.updateIdApontEnviado(idApont = apontMMRoomModel.idApontMM!!, status = StatusData.ENVIADO.ordinal.toLong()) > 0
+        var apont = apontMMDao.listApontIdApont(apontMMRoomModel.idApontMM!!).single()
+        apont.statusApontMM = StatusData.ENVIADO.ordinal.toLong()
+        return apontMMDao.update(apont) > 0
     }
 
 }

@@ -3,7 +3,7 @@ package br.com.usinasantafe.cmm.features.infra.models.stable
 import androidx.room.Entity
 import androidx.room.PrimaryKey
 import br.com.usinasantafe.cmm.common.utils.TB_ATIVIDADE
-import br.com.usinasantafe.cmm.features.domain.entities.stable.Atividade
+import br.com.usinasantafe.cmm.features.domain.entities.stable.Ativ
 import kotlinx.serialization.Serializable
 
 @Serializable
@@ -14,9 +14,9 @@ data class AtividadeModel (
     val descrAtiv: String
 )
 
-fun AtividadeModel.toAtividade(): Atividade {
+fun AtividadeModel.toAtividade(): Ativ {
     return with(this){
-        Atividade(
+        Ativ(
             idAtiv = this.idAtiv,
             codAtiv = this.codAtiv,
             descrAtiv = this.descrAtiv
@@ -24,7 +24,7 @@ fun AtividadeModel.toAtividade(): Atividade {
     }
 }
 
-fun Atividade.toAtividadeModel(): AtividadeModel{
+fun Ativ.toAtividadeModel(): AtividadeModel{
     return with(this){
         AtividadeModel(
             idAtiv = this.idAtiv,

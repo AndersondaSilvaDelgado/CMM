@@ -17,4 +17,8 @@ class RAtivParadaDatasourceRoomImpl @Inject constructor (
         rAtivParadaDao.deleteAll()
     }
 
+    override suspend fun listRAtivParada(idAtiv: Long): List<RAtivParadaModel> {
+        return rAtivParadaDao.listIdAtiv(idAtiv)
+    }
+
 }

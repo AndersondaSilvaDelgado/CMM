@@ -8,15 +8,15 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
-import androidx.navigation.fragment.findNavController
 import br.com.usinasantafe.cmm.R
 import br.com.usinasantafe.cmm.common.adapter.CustomAdapter
 import br.com.usinasantafe.cmm.common.base.BaseFragment
 import br.com.usinasantafe.cmm.common.dialog.GenericDialogProgressBar
+import br.com.usinasantafe.cmm.common.extension.onBackPressed
 import br.com.usinasantafe.cmm.common.extension.showToast
 import br.com.usinasantafe.cmm.common.utils.TypeNote
 import br.com.usinasantafe.cmm.databinding.FragmentAtivApontBinding
-import br.com.usinasantafe.cmm.features.domain.entities.stable.Atividade
+import br.com.usinasantafe.cmm.features.domain.entities.stable.Ativ
 import br.com.usinasantafe.cmm.features.presenter.models.ResultUpdateDataBase
 import br.com.usinasantafe.cmm.features.presenter.viewmodel.apontmmfert.AtivApontFragmentState
 import br.com.usinasantafe.cmm.features.presenter.viewmodel.apontmmfert.AtivApontViewModel
@@ -44,7 +44,6 @@ class AtivApontFragment : BaseFragment<FragmentAtivApontBinding>(
 
     fun observe(){
         observeState()
-        observeResult()
     }
 
     private fun observeState(){
@@ -57,17 +56,7 @@ class AtivApontFragment : BaseFragment<FragmentAtivApontBinding>(
         }
     }
 
-    private fun observeResult(){
-        lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED){
-                viewModel.resultUpdateDataBase.collect{
-                        state -> handleStatusUpdate(state)
-                }
-            }
-        }
-    }
-
-    private fun viewList(ativList: List<Atividade>) {
+    private fun viewList(ativList: List<Ativ>) {
 
         val ativListView = ativList.map { it.descrAtiv }
 
@@ -88,7 +77,7 @@ class AtivApontFragment : BaseFragment<FragmentAtivApontBinding>(
                 viewModel.updateDataAtiv()
             }
             buttonRetAtividade.setOnClickListener {
-                fragmentAttachListenerApont?.popBackStack()
+                fragmentAttachListenerApont?.goOSApontFragment()
             }
         }
     }
@@ -103,10 +92,11 @@ class AtivApontFragment : BaseFragment<FragmentAtivApontBinding>(
             is AtivApontFragmentState.ListAtiv -> handleAtivList(state.ativList)
             is AtivApontFragmentState.IsUpdateAtiv -> handleUpdate(state.isUpdateAtiv)
             is AtivApontFragmentState.CheckSetAtivApont -> handleCheckSetAtiv(state.typeNote)
+            is AtivApontFragmentState.SetResultUpdate -> handleStatusUpdate(state.resultUpdateDataBase)
         }
     }
 
-    private fun handleAtivList(ativList: List<Atividade>) {
+    private fun handleAtivList(ativList: List<Ativ>) {
         viewList(ativList)
     }
 
@@ -142,6 +132,9 @@ class AtivApontFragment : BaseFragment<FragmentAtivApontBinding>(
         super.onAttach(context)
         if(context is FragmentAttachListenerApont){
             fragmentAttachListenerApont = context
+        }
+        onBackPressed {
+            fragmentAttachListenerApont?.goOSApontFragment()
         }
     }
 

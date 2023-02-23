@@ -2,10 +2,7 @@ package br.com.usinasantafe.cmm.features.infra.models.variable.room
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
-import br.com.usinasantafe.cmm.common.utils.StatusConnection
-import br.com.usinasantafe.cmm.common.utils.StatusData
-import br.com.usinasantafe.cmm.common.utils.TB_APONT_MM
-import br.com.usinasantafe.cmm.common.utils.TypeNote
+import br.com.usinasantafe.cmm.common.utils.*
 import br.com.usinasantafe.cmm.features.domain.entities.variable.ApontMM
 import java.util.*
 
@@ -21,6 +18,7 @@ data class ApontMMRoomModel(
     var dthrApontMM: Long,
     var statusApontMM: Long,
     var statusConApontMM: Long,
+    var statusEnvioApontMM: Long,
     var longitudeApontMM: Double,
     var latitudeApontMM: Double,
     var idFrenteApontMM: Long?,
@@ -39,6 +37,7 @@ fun ApontMM.toApontMMRoomModel(): ApontMMRoomModel{
             dthrApontMM = Date().time,
             statusApontMM = StatusData.FECHADO.ordinal.toLong(),
             statusConApontMM = StatusConnection.ONLINE.ordinal.toLong(),
+            statusEnvioApontMM = StatusSend.ENVIAR.ordinal.toLong(),
             longitudeApontMM = 0.0,
             latitudeApontMM = 0.0,
             idFrenteApontMM = this.idFrenteApont,
@@ -60,6 +59,7 @@ fun ApontMMRoomModel.toApontMM(): ApontMM{
             dthrApont = Date(this.dthrApontMM),
             statusApont = StatusData.values()[this.statusApontMM.toInt()],
             statusConApont = StatusConnection.values()[this.statusConApontMM.toInt()],
+            statusEnvioApont = StatusSend.values()[this.statusEnvioApontMM.toInt()],
             longitudeApont = this.longitudeApontMM,
             latitudeApont = this.latitudeApontMM,
             idFrenteApont = this.idFrenteApontMM,

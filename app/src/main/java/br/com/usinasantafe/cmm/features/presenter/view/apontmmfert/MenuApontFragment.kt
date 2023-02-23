@@ -6,7 +6,6 @@ import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
 import android.view.View
-import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -15,6 +14,7 @@ import br.com.usinasantafe.cmm.BuildConfig
 import br.com.usinasantafe.cmm.R
 import br.com.usinasantafe.cmm.common.adapter.CustomAdapter
 import br.com.usinasantafe.cmm.common.base.BaseFragment
+import br.com.usinasantafe.cmm.common.extension.onBackPressed
 import br.com.usinasantafe.cmm.common.extension.showGenericAlertDialog
 import br.com.usinasantafe.cmm.common.utils.StatusSend
 import br.com.usinasantafe.cmm.databinding.FragmentMenuApontBinding
@@ -79,7 +79,12 @@ class MenuApontFragment : BaseFragment<FragmentMenuApontBinding>(
             is MenuApontFragmentState.SetApontPar -> setApontPar(state.apontPar)
             is MenuApontFragmentState.SetApontTrab -> setApontTrab(state.apontTrab)
             is MenuApontFragmentState.GetStatusSend -> setProcesso(state.statusSend)
+            is MenuApontFragmentState.FinishBoletim -> handleClosedBoletim()
         }
+    }
+
+    private fun handleClosedBoletim() {
+        fragmentAttachListenerApont?.goBoletimMMFert()
     }
 
     private fun setOpcaoMenu(pos: Int, menuApontList: List<String>){
@@ -168,13 +173,7 @@ class MenuApontFragment : BaseFragment<FragmentMenuApontBinding>(
         if(context is FragmentAttachListenerApont){
             fragmentAttachListenerApont = context
         }
-        val callback: OnBackPressedCallback = object : OnBackPressedCallback(true) {
-            override fun handleOnBackPressed() {
-            }
-        }
-        requireActivity().onBackPressedDispatcher.addCallback(
-            this, callback
-        )
+        onBackPressed {}
     }
 
     override fun onDestroy() {

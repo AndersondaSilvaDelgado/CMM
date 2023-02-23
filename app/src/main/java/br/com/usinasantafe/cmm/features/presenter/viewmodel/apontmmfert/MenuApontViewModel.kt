@@ -42,6 +42,10 @@ class MenuApontViewModel @Inject constructor(
         _uiStateFlow.value = MenuApontFragmentState.GetStatusSend(statusSend)
     }
 
+    private fun finishBoletim(){
+        _uiStateFlow.value = MenuApontFragmentState.FinishBoletim
+    }
+
     fun checkStatusSend() = viewModelScope.launch {
         if (hasConfig()) {
             setStatusSend(recoverConfig()!!.statusEnvio)
@@ -58,6 +62,7 @@ class MenuApontViewModel @Inject constructor(
         when (menuApontList[pos]) {
             "TRABALHANDO" -> setApontTrab(setApontTrabalhando())
             "PARADO" -> setApontPar(setApontParada())
+            "FINALIZAR BOLETIM" -> finishBoletim()
         }
     }
 
@@ -69,4 +74,5 @@ sealed class MenuApontFragmentState {
     data class SetApontTrab(val apontTrab: Boolean) : MenuApontFragmentState()
     data class SetApontPar(val apontPar: Boolean) : MenuApontFragmentState()
     data class GetStatusSend(val statusSend: StatusSend) : MenuApontFragmentState()
+    object FinishBoletim : MenuApontFragmentState()
 }

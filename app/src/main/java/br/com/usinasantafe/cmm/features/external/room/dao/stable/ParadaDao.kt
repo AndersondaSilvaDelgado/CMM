@@ -3,7 +3,9 @@ package br.com.usinasantafe.cmm.features.external.room.dao.stable
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
+import br.com.usinasantafe.cmm.common.utils.TB_ATIVIDADE
 import br.com.usinasantafe.cmm.common.utils.TB_PARADA
+import br.com.usinasantafe.cmm.features.infra.models.stable.AtividadeModel
 import br.com.usinasantafe.cmm.features.infra.models.stable.ParadaModel
 
 @Dao
@@ -14,5 +16,8 @@ interface ParadaDao {
 
     @Query("DELETE FROM $TB_PARADA")
     suspend fun deleteAll()
+
+    @Query("SELECT * FROM $TB_PARADA WHERE idParada IN (:idParadas)")
+    suspend fun listInIdParada(vararg idParadas: Long): List<ParadaModel>
 
 }

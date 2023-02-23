@@ -3,8 +3,8 @@ package br.com.usinasantafe.cmm.features.infra.repositories.variable
 import br.com.usinasantafe.cmm.features.domain.entities.variable.BoletimMM
 import br.com.usinasantafe.cmm.features.domain.repositories.stable.EquipRepository
 import br.com.usinasantafe.cmm.features.domain.repositories.variable.BoletimMMFertRepository
-import br.com.usinasantafe.cmm.features.infra.datasource.memory.BoletimFertDatasourceMemory
-import br.com.usinasantafe.cmm.features.infra.datasource.memory.BoletimMMDatasourceMemory
+import br.com.usinasantafe.cmm.features.infra.datasource.sharedpreferences.BoletimFertDatasourceSharedPreferences
+import br.com.usinasantafe.cmm.features.infra.datasource.sharedpreferences.BoletimMMDatasourceSharedPreferences
 import br.com.usinasantafe.cmm.features.infra.datasource.room.variable.ApontMMDatasourceRoom
 import br.com.usinasantafe.cmm.features.infra.datasource.room.variable.BoletimFertDatasourceRoom
 import br.com.usinasantafe.cmm.features.infra.datasource.room.variable.BoletimMMDatasourceRoom
@@ -16,8 +16,8 @@ import javax.inject.Inject
 
 class BoletimMMFertRepositoryImpl @Inject constructor(
     private val equipRepository: EquipRepository,
-    private val boletimMMDatasourceMemory: BoletimMMDatasourceMemory,
-    private val boletimFertDatasourceMemory: BoletimFertDatasourceMemory,
+    private val boletimMMDatasourceSharedPreferences: BoletimMMDatasourceSharedPreferences,
+    private val boletimFertDatasourceSharedPreferences: BoletimFertDatasourceSharedPreferences,
     private val boletimMMDatasourceRoom: BoletimMMDatasourceRoom,
     private val boletimFertDatasourceRoom: BoletimFertDatasourceRoom,
     private val apontMMDatasourceRoom: ApontMMDatasourceRoom,
@@ -28,9 +28,12 @@ class BoletimMMFertRepositoryImpl @Inject constructor(
         return boletimMMDatasourceRoom.checkBoletimAbertoMM() || boletimFertDatasourceRoom.checkBoletimAbertoFert()
     }
 
-    override suspend fun clearBoletimMMFert() {
-        boletimMMDatasourceMemory.clearBoletim()
-        boletimFertDatasourceMemory.clearBoletim()
+    override suspend fun checkFechadoBoletimMMFertSend(): Boolean {
+        return boletimMMDatasourceRoom.checkBoletimFechadoMM()
+    }
+
+    override suspend fun finishBoletimMMFert(): Boolean {
+        return boletimMMDatasourceRoom.finishBoletimMM(boletimMMDatasourceRoom.listBoletimAbertoMM().single())
     }
 
     override suspend fun getAtiv(): Long {
@@ -51,19 +54,18 @@ class BoletimMMFertRepositoryImpl @Inject constructor(
 
     override suspend fun getOS(): Long {
         return if (equipRepository.getEquip().tipoEquip == 1L) {
-            boletimMMDatasourceMemory.getBoletimMM().nroOSBol!!
+            boletimMMDatasourceSharedPreferences.getBoletimMM().nroOSBol!!
         } else {
-            boletimFertDatasourceMemory.getBoletimFert().nroOSBol!!
+            boletimFertDatasourceSharedPreferences.getBoletimFert().nroOSBol!!
         }
     }
 
     override suspend fun insertBoletimMMFert(): Boolean {
         var ret = if (equipRepository.getEquip().tipoEquip == 1L) {
-            boletimMMDatasourceRoom.insertBoletimMM(boletimMMDatasourceMemory.getBoletimMM().toBoletimMMRoomModel())
+            boletimMMDatasourceRoom.insertBoletimMM(boletimMMDatasourceSharedPreferences.getBoletimMM().toBoletimMMRoomModel())
         } else {
-            boletimFertDatasourceRoom.insertBoletimFert(boletimFertDatasourceMemory.getBoletimFert().toBoletimFertRoomModel())
+            boletimFertDatasourceRoom.insertBoletimFert(boletimFertDatasourceSharedPreferences.getBoletimFert().toBoletimFertRoomModel())
         }
-        if (ret) clearBoletimMMFert()
         return ret
     }
 
@@ -85,13 +87,19 @@ class BoletimMMFertRepositoryImpl @Inject constructor(
         }
     }
 
+    override suspend fun setHorimetroFinalBoletimMMFert(horimetroFinal: String): Boolean {
+       return boletimMMDatasourceRoom.setHorimetroFinal(
+           horimetroFinal.replace(",", ".").toDouble()
+        )
+    }
+
     override suspend fun setHorimetroInicialBoletimMMFert(horimetroInicial: String): Boolean {
         return if (equipRepository.getEquip().tipoEquip == 1L) {
-            boletimMMDatasourceMemory.setHorimetroInicial(
+            boletimMMDatasourceSharedPreferences.setHorimetroInicial(
                 horimetroInicial.replace(",", ".").toDouble()
             )
         } else {
-            boletimFertDatasourceMemory.setHorimetroInicial(
+            boletimFertDatasourceSharedPreferences.setHorimetroInicial(
                 horimetroInicial.replace(",", ".").toDouble()
             )
         }
@@ -99,42 +107,41 @@ class BoletimMMFertRepositoryImpl @Inject constructor(
 
     override suspend fun setIdAtivBoletimMMFert(idAtiv: Long): Boolean {
         return if (equipRepository.getEquip().tipoEquip == 1L) {
-            boletimMMDatasourceMemory.setIdAtiv(idAtiv)
+            boletimMMDatasourceSharedPreferences.setIdAtiv(idAtiv)
         } else {
-            boletimFertDatasourceMemory.setIdAtiv(idAtiv)
+            boletimFertDatasourceSharedPreferences.setIdAtiv(idAtiv)
         }
     }
 
     override suspend fun setMatricFuncBoletimMMFert(matricOperador: String): Boolean {
         return if (equipRepository.getEquip().tipoEquip == 1L) {
-            boletimMMDatasourceMemory.setMatricOperador(matricOperador.toLong())
+            boletimMMDatasourceSharedPreferences.setMatricOperador(matricOperador.toLong())
         } else {
-            boletimFertDatasourceMemory.setMatricOperador(matricOperador.toLong())
+            boletimFertDatasourceSharedPreferences.setMatricOperador(matricOperador.toLong())
         }
     }
 
     override suspend fun setIdTurnoBoletimMMFert(idTurno: Long): Boolean {
         return if (equipRepository.getEquip().tipoEquip == 1L) {
-            boletimMMDatasourceMemory.setIdTurno(idTurno)
+            boletimMMDatasourceSharedPreferences.setIdTurno(idTurno)
         } else {
-            boletimFertDatasourceMemory.setIdTurno(idTurno)
+            boletimFertDatasourceSharedPreferences.setIdTurno(idTurno)
         }
     }
 
     override suspend fun setNroOSBoletimMMFert(nroOS: String): Boolean {
         return if (equipRepository.getEquip().tipoEquip == 1L) {
-            boletimMMDatasourceMemory.setNroOS(nroOS.toLong())
+            boletimMMDatasourceSharedPreferences.setNroOS(nroOS.toLong())
         } else {
-            boletimFertDatasourceMemory.setNroOS(nroOS.toLong())
+            boletimFertDatasourceSharedPreferences.setNroOS(nroOS.toLong())
         }
     }
 
     override suspend fun startBoletimMMFert(): Boolean {
-        clearBoletimMMFert()
         return if (equipRepository.getEquip().tipoEquip == 1L) {
-            boletimMMDatasourceMemory.startBoletim(equipRepository.getEquip().idEquip)
+            boletimMMDatasourceSharedPreferences.startBoletim(equipRepository.getEquip().idEquip)
         } else {
-            boletimFertDatasourceMemory.startBoletim(equipRepository.getEquip().idEquip)
+            boletimFertDatasourceSharedPreferences.startBoletim(equipRepository.getEquip().idEquip)
         }
     }
 

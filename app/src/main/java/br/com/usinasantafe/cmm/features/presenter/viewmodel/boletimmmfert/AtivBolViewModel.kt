@@ -3,7 +3,7 @@ package br.com.usinasantafe.cmm.features.presenter.viewmodel.boletimmmfert
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import br.com.usinasantafe.cmm.common.utils.FlowNote
-import br.com.usinasantafe.cmm.features.domain.entities.stable.Atividade
+import br.com.usinasantafe.cmm.features.domain.entities.stable.Ativ
 import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.boletimmmfert.SetIdAtivBoletimMMFert
 import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.common.ListAtiv
 import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.database.recover.RecoverAtividade
@@ -26,10 +26,7 @@ class AtivBolViewModel @Inject constructor(
     private val _uiStateFlow = MutableStateFlow<AtivBolFragmentState>(AtivBolFragmentState.Init)
     val uiStateFlow: StateFlow<AtivBolFragmentState> get() = _uiStateFlow
 
-    private val _resultUpdateDataBase = MutableStateFlow<ResultUpdateDataBase?>(null)
-    val resultUpdateDataBase: StateFlow<ResultUpdateDataBase?> get() = _resultUpdateDataBase
-
-    private fun setListAtiv(ativList: List<Atividade>) {
+    private fun setListAtiv(ativList: List<Ativ>) {
         _uiStateFlow.value = AtivBolFragmentState.ListAtiv(ativList)
     }
 
@@ -41,12 +38,16 @@ class AtivBolViewModel @Inject constructor(
         _uiStateFlow.value = AtivBolFragmentState.IsUpdateAtiv(false)
     }
 
+    private fun setResultUpdate(resultUpdateDataBase: ResultUpdateDataBase) {
+        _uiStateFlow.value = AtivBolFragmentState.SetResultUpdate(resultUpdateDataBase)
+    }
+
     fun recoverListAtiv() = viewModelScope.launch {
         setListAtiv(listAtiv(FlowNote.BOLETIM))
     }
 
-    fun setIdAtiv(atividade: Atividade) = viewModelScope.launch {
-        setIdAtivBoletimMMFert(atividade.idAtiv)
+    fun setIdAtiv(ativ: Ativ) = viewModelScope.launch {
+        setIdAtivBoletimMMFert(ativ.idAtiv)
     }
 
     fun updateDataAtiv() =
@@ -56,10 +57,10 @@ class AtivBolViewModel @Inject constructor(
                     showUpdateTurno()
                 }
                 .catch { catch ->
-                    _resultUpdateDataBase.value = ResultUpdateDataBase(1, "Erro: $catch", 100, 100)
+                    setResultUpdate(ResultUpdateDataBase(1, "Erro: $catch", 100, 100))
                 }
                 .collect { resultUpdateDataBase ->
-                    _resultUpdateDataBase.value = resultUpdateDataBase
+                    setResultUpdate(resultUpdateDataBase)
                     if (resultUpdateDataBase.percentage == 100) {
                         hideUpdateTurno()
                     }
@@ -70,6 +71,7 @@ class AtivBolViewModel @Inject constructor(
 
 sealed class AtivBolFragmentState {
     object Init : AtivBolFragmentState()
-    data class ListAtiv(val ativList: List<Atividade>) : AtivBolFragmentState()
+    data class ListAtiv(val ativList: List<Ativ>) : AtivBolFragmentState()
     data class IsUpdateAtiv(val isUpdateAtiv: Boolean) : AtivBolFragmentState()
+    data class SetResultUpdate(val resultUpdateDataBase: ResultUpdateDataBase) : AtivBolFragmentState()
 }

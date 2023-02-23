@@ -39,12 +39,16 @@ class TurnoBolViewModel @Inject constructor(
         _uiStateFlow.value = TurnoBolFragmentState.SetResultUpdate(resultUpdateDataBase)
     }
 
+    private fun checkSetTurno(checkSetTurno: Boolean){
+        _uiStateFlow.value = TurnoBolFragmentState.CheckSetTurno(checkSetTurno)
+    }
+
     fun recoverListTurno() = viewModelScope.launch {
         setListTurno(listTurno())
     }
 
     fun setIdTurno(turno: Turno) = viewModelScope.launch {
-        setIdTurnoBoletimMMFert(turno.idTurno)
+        checkSetTurno(setIdTurnoBoletimMMFert(turno.idTurno))
     }
 
     fun updateDataTurno() =
@@ -66,6 +70,7 @@ class TurnoBolViewModel @Inject constructor(
 
 sealed class TurnoBolFragmentState {
     object Init : TurnoBolFragmentState()
+    data class CheckSetTurno(val check: Boolean) : TurnoBolFragmentState()
     data class ListTurno(val turnoList: List<Turno>) : TurnoBolFragmentState()
     data class FeedbackUpdateTurno(val statusUpdate: StatusUpdate) : TurnoBolFragmentState()
     data class SetResultUpdate(val resultUpdateDataBase: ResultUpdateDataBase) : TurnoBolFragmentState()

@@ -11,6 +11,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import br.com.usinasantafe.cmm.R
 import br.com.usinasantafe.cmm.common.base.BaseFragment
 import br.com.usinasantafe.cmm.common.dialog.GenericDialogProgressBar
+import br.com.usinasantafe.cmm.common.extension.onBackPressed
 import br.com.usinasantafe.cmm.common.extension.setListenerButtonsGenericSUpdate
 import br.com.usinasantafe.cmm.common.extension.showGenericAlertDialog
 import br.com.usinasantafe.cmm.common.utils.StatusRecover
@@ -83,15 +84,24 @@ class OSApontFragment : BaseFragment<FragmentOsApontBinding>(
     }
 
     private fun handleFeedbackUpdateOS(statusRecover: StatusRecover) {
-        when(statusRecover){
-            StatusRecover.SUCESSO -> fragmentAttachListenerApont?.goAtivApontFragment()
+        when (statusRecover) {
+            StatusRecover.SUCESSO -> {
+                hideProgressBar()
+                fragmentAttachListenerApont?.goAtivApontFragment()
+            }
             StatusRecover.VAZIO -> {
                 hideProgressBar()
-                showGenericAlertDialog(getString(R.string.texto_dado_invalido, "OS"), requireContext())
+                showGenericAlertDialog(
+                    getString(R.string.texto_dado_invalido, "OS"),
+                    requireContext()
+                )
             }
             StatusRecover.FALHA -> {
                 hideProgressBar()
-                showGenericAlertDialog(getString(R.string.texto_update_failure, describeRecover), requireContext())
+                showGenericAlertDialog(
+                    getString(R.string.texto_update_failure, describeRecover),
+                    requireContext()
+                )
             }
         }
     }
@@ -108,7 +118,7 @@ class OSApontFragment : BaseFragment<FragmentOsApontBinding>(
 
     private fun handleStatusUpdate(resultUpdateDataBase: ResultUpdateDataBase?) {
         resultUpdateDataBase?.let {
-            if(genericDialogProgressBar == null){
+            if (genericDialogProgressBar == null) {
                 showProgressBar()
             }
             describeRecover = resultUpdateDataBase.describe
@@ -129,7 +139,7 @@ class OSApontFragment : BaseFragment<FragmentOsApontBinding>(
     }
 
     private fun hideProgressBar() {
-        if(genericDialogProgressBar != null){
+        if (genericDialogProgressBar != null) {
             genericDialogProgressBar!!.cancel()
         }
         genericDialogProgressBar = null
@@ -146,8 +156,11 @@ class OSApontFragment : BaseFragment<FragmentOsApontBinding>(
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        if(context is FragmentAttachListenerApont){
+        if (context is FragmentAttachListenerApont) {
             fragmentAttachListenerApont = context
+        }
+        onBackPressed {
+            fragmentAttachListenerApont?.goMenuApontFragment()
         }
     }
 

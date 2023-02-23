@@ -6,7 +6,9 @@ interface ApontMMFertRepository {
 
     suspend fun checkApontSend(): Boolean
 
-    suspend fun getOS(): Long
+    suspend fun getIdAtiv(): Long
+
+    suspend fun getNroOS(): Long
 
     suspend fun getTipo(): TypeNote
 

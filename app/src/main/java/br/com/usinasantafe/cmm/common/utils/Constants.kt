@@ -1,13 +1,15 @@
 package br.com.usinasantafe.cmm.common.utils
 
 const val BASE_URL = "https://www.usinasantafe.com.br/cmmdev/view/"
-const val BASE_SHARE_PREFERENCES = "config"
+const val BASE_SHARE_PREFERENCES = "cmm"
 const val BASE_DB = "cmm.db"
 const val VERSION_DB = 1
 
-const val BASE_SHARE_PREFERENCES_SENHA = "senha"
-const val BASE_SHARE_PREFERENCES_EQUIP = "equip"
-const val BASE_SHARE_PREFERENCES_STATUS_ENVIO = "status_envio"
+const val BASE_SHARE_PREFERENCES_TABLE_CONFIG = "config"
+const val BASE_SHARE_PREFERENCES_TABLE_BOLETIM_MM = "boletim_mm"
+const val BASE_SHARE_PREFERENCES_TABLE_BOLETIM_FERT = "boletim_fert"
+const val BASE_SHARE_PREFERENCES_TABLE_APONT_MM = "apont_mm"
+const val BASE_SHARE_PREFERENCES_TABLE_APONT_FERT = "apont_fert"
 
 const val TB_ATIVIDADE = "tb_atividade"
 const val TB_BOCAL = "tb_bocal"

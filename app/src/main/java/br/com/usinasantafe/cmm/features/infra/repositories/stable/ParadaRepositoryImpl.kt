@@ -6,6 +6,7 @@ import br.com.usinasantafe.cmm.features.infra.models.stable.toParadaModel
 import br.com.usinasantafe.cmm.features.domain.repositories.stable.ParadaRepository
 import br.com.usinasantafe.cmm.features.infra.datasource.room.stable.ParadaDatasourceRoom
 import br.com.usinasantafe.cmm.features.infra.datasource.webservice.stable.ParadaDatasourceWebService
+import br.com.usinasantafe.cmm.features.infra.models.stable.toAtividade
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
@@ -21,6 +22,10 @@ class ParadaRepositoryImpl @Inject constructor(
 
     override suspend fun deleteAllParada() {
         paradaDatasourceRoom.deleteAllParada()
+    }
+
+    override suspend fun listInIdParada(idParadas: List<Long>): List<Parada> {
+        return paradaDatasourceRoom.listInIdParada(*idParadas.toLongArray()).map { it.toParada() }
     }
 
     override suspend fun recoverAllParada(): Flow<Result<List<Parada>>> {

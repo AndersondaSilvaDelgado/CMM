@@ -1,8 +1,8 @@
-package br.com.usinasantafe.cmm.features.infra.datasource.memory
+package br.com.usinasantafe.cmm.features.infra.datasource.sharedpreferences
 
 import br.com.usinasantafe.cmm.common.utils.TypeNote
 
-interface ApontMMFertDatasourceMemory {
+interface ApontDatasourceSharedPreferences {
 
     suspend fun setIdAtiv(idAtiv: Long): Boolean
 

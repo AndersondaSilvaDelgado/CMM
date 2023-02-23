@@ -24,7 +24,7 @@ interface RepositoryModule {
 
     @Singleton
     @Binds
-    fun bindAtividadeRepository(repository: AtividadeRepositoryImpl): AtividadeRepository
+    fun bindAtividadeRepository(repository: AtivRepositoryImpl): AtivRepository
 
     @Singleton
     @Binds

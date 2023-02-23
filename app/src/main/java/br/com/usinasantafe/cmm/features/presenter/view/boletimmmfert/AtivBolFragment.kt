@@ -15,7 +15,7 @@ import br.com.usinasantafe.cmm.common.dialog.GenericDialogProgressBar
 import br.com.usinasantafe.cmm.common.extension.onBackPressed
 import br.com.usinasantafe.cmm.common.extension.showToast
 import br.com.usinasantafe.cmm.databinding.FragmentAtivBolBinding
-import br.com.usinasantafe.cmm.features.domain.entities.stable.Atividade
+import br.com.usinasantafe.cmm.features.domain.entities.stable.Ativ
 import br.com.usinasantafe.cmm.features.presenter.models.ResultUpdateDataBase
 import br.com.usinasantafe.cmm.features.presenter.viewmodel.boletimmmfert.AtivBolFragmentState
 import br.com.usinasantafe.cmm.features.presenter.viewmodel.boletimmmfert.AtivBolViewModel
@@ -43,7 +43,6 @@ class AtivBolFragment : BaseFragment<FragmentAtivBolBinding>(
 
     fun observe(){
         observeState()
-        observeResult()
     }
 
     private fun observeState(){
@@ -56,17 +55,7 @@ class AtivBolFragment : BaseFragment<FragmentAtivBolBinding>(
         }
     }
 
-    private fun observeResult(){
-        lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED){
-                viewModel.resultUpdateDataBase.collect{
-                    state -> handleStatusUpdate(state)
-                }
-            }
-        }
-    }
-
-    private fun viewList(ativList: List<Atividade>) {
+    private fun viewList(ativList: List<Ativ>) {
 
         val ativListView = ativList.map { it.descrAtiv }
 
@@ -102,10 +91,11 @@ class AtivBolFragment : BaseFragment<FragmentAtivBolBinding>(
             is AtivBolFragmentState.Init -> Unit
             is AtivBolFragmentState.ListAtiv -> handleAtivList(state.ativList)
             is AtivBolFragmentState.IsUpdateAtiv -> handleUpdate(state.isUpdateAtiv)
+            is AtivBolFragmentState.SetResultUpdate -> handleStatusUpdate(state.resultUpdateDataBase)
         }
     }
 
-    private fun handleAtivList(ativList: List<Atividade>) {
+    private fun handleAtivList(ativList: List<Ativ>) {
         viewList(ativList)
     }
 

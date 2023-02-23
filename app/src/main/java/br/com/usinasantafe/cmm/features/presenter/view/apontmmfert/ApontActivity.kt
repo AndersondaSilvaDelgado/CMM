@@ -19,6 +19,9 @@ class ApontActivity : AppCompatActivity(), FragmentAttachListenerApont {
         super.onCreate(savedInstanceState)
         binding = ActivityApontBinding.inflate(layoutInflater)
         setContentView(binding.root)
+
+        goMenuApontFragment()
+
     }
 
     private fun replaceFragment(fragment: Fragment){

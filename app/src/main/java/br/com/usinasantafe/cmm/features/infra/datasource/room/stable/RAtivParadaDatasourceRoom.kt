@@ -8,4 +8,6 @@ interface RAtivParadaDatasourceRoom {
 
     suspend fun deleteAllRAtivParada()
 
+    suspend fun listRAtivParada(idAtiv: Long): List<RAtivParadaModel>
+
 }

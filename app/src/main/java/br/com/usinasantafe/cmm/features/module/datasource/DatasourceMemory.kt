@@ -1,7 +1,13 @@
 package br.com.usinasantafe.cmm.features.module.datasource
 
-import br.com.usinasantafe.cmm.features.external.memory.datasource.*
-import br.com.usinasantafe.cmm.features.infra.datasource.memory.*
+import br.com.usinasantafe.cmm.features.external.sharedpreferences.datasource.ApontFertDatasourceSharedPreferencesImpl
+import br.com.usinasantafe.cmm.features.external.sharedpreferences.datasource.ApontMMDatasourceSharedPreferencesImpl
+import br.com.usinasantafe.cmm.features.external.sharedpreferences.datasource.BoletimFertDatasourceSharedPreferencesImpl
+import br.com.usinasantafe.cmm.features.external.sharedpreferences.datasource.BoletimMMDatasourceSharedPreferencesImpl
+import br.com.usinasantafe.cmm.features.infra.datasource.sharedpreferences.ApontFertDatasourceSharedPreferences
+import br.com.usinasantafe.cmm.features.infra.datasource.sharedpreferences.ApontMMDatasourceSharedPreferences
+import br.com.usinasantafe.cmm.features.infra.datasource.sharedpreferences.BoletimFertDatasourceSharedPreferences
+import br.com.usinasantafe.cmm.features.infra.datasource.sharedpreferences.BoletimMMDatasourceSharedPreferences
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -14,18 +20,18 @@ interface DatasourceMemory {
 
     @Singleton
     @Binds
-    fun bindApontMMDatasourceMemory(dataSource: ApontMMDatasourceMemoryImpl): ApontMMDatasourceMemory
+    fun bindApontMMDatasourceMemory(dataSource: ApontMMDatasourceSharedPreferencesImpl): ApontMMDatasourceSharedPreferences
 
     @Singleton
     @Binds
-    fun bindApontFertDatasourceMemory(dataSource: ApontFertDatasourceMemoryImpl): ApontFertDatasourceMemory
+    fun bindApontFertDatasourceMemory(dataSource: ApontFertDatasourceSharedPreferencesImpl): ApontFertDatasourceSharedPreferences
 
     @Singleton
     @Binds
-    fun bindBoletimFertDatasource(dataSource: BoletimFertDatasourceMemoryImpl): BoletimFertDatasourceMemory
+    fun bindBoletimFertDatasource(dataSource: BoletimFertDatasourceSharedPreferencesImpl): BoletimFertDatasourceSharedPreferences
 
     @Singleton
     @Binds
-    fun bindBoletimMMDatasource(dataSource: BoletimMMDatasourceMemoryImpl): BoletimMMDatasourceMemory
+    fun bindBoletimMMDatasource(dataSource: BoletimMMDatasourceSharedPreferencesImpl): BoletimMMDatasourceSharedPreferences
 
 }

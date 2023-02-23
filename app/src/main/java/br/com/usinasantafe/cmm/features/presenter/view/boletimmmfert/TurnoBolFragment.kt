@@ -13,6 +13,7 @@ import br.com.usinasantafe.cmm.R
 import br.com.usinasantafe.cmm.common.adapter.CustomAdapter
 import br.com.usinasantafe.cmm.common.base.BaseFragment
 import br.com.usinasantafe.cmm.common.dialog.GenericDialogProgressBar
+import br.com.usinasantafe.cmm.common.extension.showGenericAlertDialog
 import br.com.usinasantafe.cmm.common.extension.showToast
 import br.com.usinasantafe.cmm.common.utils.StatusUpdate
 import br.com.usinasantafe.cmm.databinding.FragmentTurnoBolBinding
@@ -64,7 +65,6 @@ class TurnoBolFragment : BaseFragment<FragmentTurnoBolBinding>(
         val listAdapter = CustomAdapter(turnoListView).apply {
             onItemClick = { _, pos ->
                 viewModel.setIdTurno(turnoList[pos])
-                fragmentAttachListenerBoletim?.goOSBolFragment()
             }
         }
         binding.listTurno.run {
@@ -94,9 +94,16 @@ class TurnoBolFragment : BaseFragment<FragmentTurnoBolBinding>(
             is TurnoBolFragmentState.ListTurno -> handleTurnoList(state.turnoList)
             is TurnoBolFragmentState.FeedbackUpdateTurno -> handleUpdate(state.statusUpdate)
             is TurnoBolFragmentState.SetResultUpdate -> handleStatusUpdate(state.resultUpdateDataBase)
+            is TurnoBolFragmentState.CheckSetTurno -> handleCheckSetTurno(state.check)
         }
     }
-
+    private fun handleCheckSetTurno(checkSetTurno: Boolean) {
+        if(checkSetTurno){
+            fragmentAttachListenerBoletim?.goOSBolFragment()
+        } else {
+            showGenericAlertDialog(getString(R.string.texto_falha_insercao_campo, "HORIMETRO INICIAL"), requireContext())
+        }
+    }
     private fun handleTurnoList(turnoList: List<Turno>) {
         viewList(turnoList)
     }

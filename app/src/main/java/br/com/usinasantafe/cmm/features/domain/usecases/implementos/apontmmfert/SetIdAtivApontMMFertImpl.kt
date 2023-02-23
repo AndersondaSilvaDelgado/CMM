@@ -20,15 +20,6 @@ class SetIdAtivApontMMFertImpl @Inject constructor(
             return TypeNote.PARADA
         }
         startSendData()
-//        var result = boletimMMFertRepository.sendBoletimMMAbertoFert()
-//        return if(result.isSuccess){
-//            result.onSuccess {
-//                boletimMMFertRepository.sentBoletimMMAbertoFert(it)
-//            }
-//            TypeNote.TRABALHANDO
-//        } else {
-//            TypeNote.FALHA
-//        }
         return TypeNote.TRABALHANDO
     }
 }

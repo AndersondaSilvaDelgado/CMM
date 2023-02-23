@@ -1,7 +1,6 @@
 package br.com.usinasantafe.cmm.features.presenter.view.boletimmmfert
 
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
@@ -14,7 +13,6 @@ import br.com.usinasantafe.cmm.common.extension.onBackPressed
 import br.com.usinasantafe.cmm.common.extension.setListenerButtonsGenericCVirgula
 import br.com.usinasantafe.cmm.common.extension.showGenericAlertDialog
 import br.com.usinasantafe.cmm.databinding.FragmentHorimetroBolBinding
-import br.com.usinasantafe.cmm.features.presenter.view.apontmmfert.ApontActivity
 import br.com.usinasantafe.cmm.features.presenter.viewmodel.boletimmmfert.HorimetroBolFragmentState
 import br.com.usinasantafe.cmm.features.presenter.viewmodel.boletimmmfert.HorimetroBolViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -33,8 +31,8 @@ class HorimetroBolFragment : BaseFragment<FragmentHorimetroBolBinding>(
         super.onViewCreated(view, savedInstanceState)
 
         observe()
+        startEvents()
         setListener()
-
     }
 
     private fun observe() {
@@ -51,12 +49,16 @@ class HorimetroBolFragment : BaseFragment<FragmentHorimetroBolBinding>(
         }
     }
 
+    private fun startEvents() {
+        viewModel.checkBoletim()
+    }
+
     private fun setListener() {
         with(binding){
             setListenerButtonsGenericCVirgula(layoutBotoes, editTextPadrao)
             layoutBotoes.buttonOkPadrao.setOnClickListener {
                 if(editTextPadrao.text.isNotEmpty()){
-                    viewModel.setHorimetroInicial(editTextPadrao.text.toString())
+                    viewModel.setHorimetro(editTextPadrao.text.toString())
                 } else {
                     showGenericAlertDialog(getString(R.string.texto_campo_vazio, "HORIMETRO INICIAL"), requireContext())
                 }
@@ -67,15 +69,30 @@ class HorimetroBolFragment : BaseFragment<FragmentHorimetroBolBinding>(
     private fun handleStateChange(state: HorimetroBolFragmentState){
         when(state){
             is HorimetroBolFragmentState.Init -> Unit
-            is HorimetroBolFragmentState.CheckSetHorimetro -> handleCheckSetMatricOperador(state.checkSetHorimetro)
+            is HorimetroBolFragmentState.CheckSetHorimetroInicial -> handleCheckSetHorimetroInicial(state.checkSetHorimetroInicial)
+            is HorimetroBolFragmentState.CheckSetHorimetroFinal -> handleCheckSetHorimetroFinal(state.checkSetHorimetroFinal)
+            is HorimetroBolFragmentState.HorimetroInicial -> handleSetTitle("INICIAL")
+            is HorimetroBolFragmentState.HorimetroFinal -> handleSetTitle("FINAL")
         }
     }
 
-    private fun handleCheckSetMatricOperador(checkSetHorimetro: Boolean) {
+    private fun handleSetTitle(title: String){
+        binding.textViewPadrao.text = getString(R.string.texto_horimetro, title)
+    }
+
+    private fun handleCheckSetHorimetroInicial(checkSetHorimetro: Boolean) {
         if(checkSetHorimetro){
             fragmentAttachListenerBoletim?.goAtivMMFert()
         } else {
             showGenericAlertDialog(getString(R.string.texto_falha_insercao_campo, "HORIMETRO INICIAL"), requireContext())
+        }
+    }
+
+    private fun handleCheckSetHorimetroFinal(checkSetHorimetro: Boolean) {
+        if(checkSetHorimetro){
+            fragmentAttachListenerBoletim?.goConfig()
+        } else {
+            showGenericAlertDialog(getString(R.string.texto_falha_insercao_campo, "HORIMETRO FINAL"), requireContext())
         }
     }
 

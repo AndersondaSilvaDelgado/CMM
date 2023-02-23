@@ -32,7 +32,7 @@
     <string name="texto_os">NUM. OS:</string>
     <string name="texto_atividade">ATIVIDADE</string>
     <string name="texto_atualizar">ATUALIZAR</string>
-    <string name="texto_horimetro">HORÍMETRO:</string>
+    <string name="texto_horimetro">HORÍMETRO %1$s:</string>
     <string name="texto_limpar_dados">LIMPAR DADOS</string>
     <string name="texto_senha_invalida">SENHA INVÁLIDA!</string>
     <string name="texto_config_invalida">CAMPO VAZIO! POR FAVOR, PREENCHA TODOS OS CAMPOS PARA SALVAR AS CONFIGURAÇÕES.</string>

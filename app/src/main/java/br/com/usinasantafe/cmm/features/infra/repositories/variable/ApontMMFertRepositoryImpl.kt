@@ -3,8 +3,8 @@ package br.com.usinasantafe.cmm.features.infra.repositories.variable
 import br.com.usinasantafe.cmm.common.utils.TypeNote
 import br.com.usinasantafe.cmm.features.domain.repositories.stable.EquipRepository
 import br.com.usinasantafe.cmm.features.domain.repositories.variable.ApontMMFertRepository
-import br.com.usinasantafe.cmm.features.infra.datasource.memory.ApontFertDatasourceMemory
-import br.com.usinasantafe.cmm.features.infra.datasource.memory.ApontMMDatasourceMemory
+import br.com.usinasantafe.cmm.features.infra.datasource.sharedpreferences.ApontFertDatasourceSharedPreferences
+import br.com.usinasantafe.cmm.features.infra.datasource.sharedpreferences.ApontMMDatasourceSharedPreferences
 import br.com.usinasantafe.cmm.features.infra.datasource.room.variable.ApontFertDatasourceRoom
 import br.com.usinasantafe.cmm.features.infra.datasource.room.variable.ApontMMDatasourceRoom
 import br.com.usinasantafe.cmm.features.infra.datasource.room.variable.BoletimFertDatasourceRoom
@@ -15,8 +15,8 @@ import javax.inject.Inject
 
 class ApontMMFertRepositoryImpl @Inject constructor(
     private val equipRepository: EquipRepository,
-    private val apontFertDatasourceMemory: ApontFertDatasourceMemory,
-    private val apontMMDatasourceMemory: ApontMMDatasourceMemory,
+    private val apontFertDatasourceMemory: ApontFertDatasourceSharedPreferences,
+    private val apontMMDatasourceMemory: ApontMMDatasourceSharedPreferences,
     private val apontFertDatasourceRoom: ApontFertDatasourceRoom,
     private val apontMMDatasourceRoom: ApontMMDatasourceRoom,
     private val boletimMMDatasourceRoom: BoletimMMDatasourceRoom,
@@ -24,11 +24,14 @@ class ApontMMFertRepositoryImpl @Inject constructor(
 ) : ApontMMFertRepository {
 
     override suspend fun checkApontSend(): Boolean {
-//        return ((apontMMDatasourceRoom.checkApontMMSend()) && (apontFertDatasourceRoom.checkApontFertSend()))
         return apontMMDatasourceRoom.checkApontMMSend()
     }
 
-    override suspend fun getOS(): Long {
+    override suspend fun getIdAtiv(): Long {
+        return apontMMDatasourceMemory.getApontMM().idAtivApont!!
+    }
+
+    override suspend fun getNroOS(): Long {
         return if (equipRepository.getEquip().tipoEquip == 1L) {
             apontMMDatasourceMemory.getApontMM().nroOSApont!!
         } else {
@@ -40,7 +43,7 @@ class ApontMMFertRepositoryImpl @Inject constructor(
         return if (equipRepository.getEquip().tipoEquip == 1L) {
             apontMMDatasourceMemory.getApontMM().tipoApont!!
         } else {
-            apontFertDatasourceMemory.getApontFert().tipoApont
+            apontFertDatasourceMemory.getApontFert().tipoApont!!
         }
     }
 

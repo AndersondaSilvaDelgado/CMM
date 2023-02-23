@@ -42,6 +42,14 @@ interface ApontMMFertModule {
 
     @Singleton
     @Binds
+    fun bindSetIdParadaApontMMFert(usecase: SetIdParadaApontMMFertImpl): SetIdParadaApontMMFert
+
+    @Singleton
+    @Binds
     fun bindSetNroOSApontMMFert(usecase: SetNroOSApontMMFertImpl): SetNroOSApontMMFert
+
+    @Singleton
+    @Binds
+    fun bindListParada(usecase: ListParadaImpl): ListParada
 
 }

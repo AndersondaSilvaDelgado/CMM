@@ -4,6 +4,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import br.com.usinasantafe.cmm.common.utils.StatusConnection
 import br.com.usinasantafe.cmm.common.utils.StatusData
+import br.com.usinasantafe.cmm.common.utils.StatusSend
 import br.com.usinasantafe.cmm.common.utils.TB_BOLETIM_MM
 import br.com.usinasantafe.cmm.features.domain.entities.variable.BoletimMM
 import java.util.*
@@ -16,13 +17,14 @@ data class BoletimMMRoomModel(
     val idEquipBolMM: Long,
     val idTurnoBolMM: Long,
     val hodometroInicialBolMM: Double,
-    val hodometroFinalBolMM: Double? = null,
+    var hodometroFinalBolMM: Double? = null,
     val nroOSBolMM: Long,
     val idAtivBolMM: Long,
     val dthrInicialBolMM: Long,
-    val dthrFinalBolMM: Long,
-    val statusBolMM: Long,
+    var dthrFinalBolMM: Long,
+    var statusBolMM: Long,
     val statusConBolMM: Long,
+    var statusEnvioBolMM: Long,
     val longitudeBolMM: Double,
     val latitudeBolMM: Double
 )
@@ -40,6 +42,7 @@ fun BoletimMM.toBoletimMMRoomModel(): BoletimMMRoomModel{
             dthrFinalBolMM = Date().time,
             statusBolMM = StatusData.ABERTO.ordinal.toLong(),
             statusConBolMM = StatusConnection.ONLINE.ordinal.toLong(),
+            statusEnvioBolMM = StatusSend.ENVIAR.ordinal.toLong(),
             longitudeBolMM = 0.0,
             latitudeBolMM = 0.0
         )
@@ -61,6 +64,7 @@ fun BoletimMMRoomModel.toBoletimMM(): BoletimMM{
             dthrFinalBol = Date(this.dthrFinalBolMM),
             statusBol = StatusData.values()[this.statusBolMM.toInt()],
             statusConBol = StatusConnection.values()[this.statusConBolMM.toInt()],
+            statusEnvioBol = StatusSend.values()[this.statusEnvioBolMM.toInt()],
             longitudeBol = this.longitudeBolMM,
             latitudeBol = this.latitudeBolMM,
         )

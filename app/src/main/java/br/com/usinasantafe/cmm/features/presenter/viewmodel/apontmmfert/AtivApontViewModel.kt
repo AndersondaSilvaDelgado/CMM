@@ -4,7 +4,7 @@ import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import br.com.usinasantafe.cmm.common.utils.FlowNote
 import br.com.usinasantafe.cmm.common.utils.TypeNote
-import br.com.usinasantafe.cmm.features.domain.entities.stable.Atividade
+import br.com.usinasantafe.cmm.features.domain.entities.stable.Ativ
 import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.apontmmfert.SetIdAtivApontMMFert
 import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.common.ListAtiv
 import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.database.recover.RecoverAtividade
@@ -18,55 +18,56 @@ import kotlinx.coroutines.launch
 import javax.inject.Inject
 
 @HiltViewModel
-class AtivApontViewModel @Inject constructor (
+class AtivApontViewModel @Inject constructor(
     private val setIdAtivApontMMFert: SetIdAtivApontMMFert,
     private val listAtiv: ListAtiv,
     private val recoverAtividade: RecoverAtividade
-): ViewModel() {
+) : ViewModel() {
 
     private val _uiStateFlow = MutableStateFlow<AtivApontFragmentState>(AtivApontFragmentState.Init)
     val uiStateFlow: StateFlow<AtivApontFragmentState> get() = _uiStateFlow
 
-    private val _resultUpdateDataBase = MutableStateFlow<ResultUpdateDataBase?>(null)
-    val resultUpdateDataBase : StateFlow<ResultUpdateDataBase?> get() = _resultUpdateDataBase
-
-    private fun setListAtiv(ativList: List<Atividade>){
+    private fun setListAtiv(ativList: List<Ativ>) {
         _uiStateFlow.value = AtivApontFragmentState.ListAtiv(ativList)
     }
 
-    private fun showUpdateTurno(){
+    private fun checkSetAtivApont(typeNote: TypeNote) {
+        _uiStateFlow.value = AtivApontFragmentState.CheckSetAtivApont(typeNote)
+    }
+
+    private fun showUpdateAtiv() {
         _uiStateFlow.value = AtivApontFragmentState.IsUpdateAtiv(true)
     }
 
-    private fun hideUpdateTurno(){
+    private fun hideUpdateAtiv() {
         _uiStateFlow.value = AtivApontFragmentState.IsUpdateAtiv(false)
     }
 
-    private fun checkSetAtivApont(typeNote: TypeNote){
-        _uiStateFlow.value = AtivApontFragmentState.CheckSetAtivApont(typeNote)
+    private fun setResultUpdate(resultUpdateDataBase: ResultUpdateDataBase) {
+        _uiStateFlow.value = AtivApontFragmentState.SetResultUpdate(resultUpdateDataBase)
     }
 
     fun recoverListAtiv() = viewModelScope.launch {
         setListAtiv(listAtiv(FlowNote.APONTAMENTO))
     }
 
-    fun setIdAtiv(atividade: Atividade) = viewModelScope.launch {
-        checkSetAtivApont(setIdAtivApontMMFert(atividade.idAtiv))
+    fun setIdAtiv(ativ: Ativ) = viewModelScope.launch {
+        checkSetAtivApont(setIdAtivApontMMFert(ativ.idAtiv))
     }
 
     fun updateDataAtiv() =
         viewModelScope.launch {
-            recoverAtividade(FlowNote.APONTAMENTO).
-            onStart {
-                showUpdateTurno()
-            }
-                .catch { catch ->
-                    _resultUpdateDataBase.value = ResultUpdateDataBase(1, "Erro: $catch", 100, 100)
+            recoverAtividade(FlowNote.APONTAMENTO)
+                .onStart {
+                    showUpdateAtiv()
                 }
-                .collect{ resultUpdateDataBase ->
-                    _resultUpdateDataBase.value = resultUpdateDataBase
-                    if(resultUpdateDataBase.percentage == 100){
-                        hideUpdateTurno()
+                .catch { catch ->
+                    setResultUpdate(ResultUpdateDataBase(1, "Erro: $catch", 100, 100))
+                }
+                .collect { resultUpdateDataBase ->
+                    setResultUpdate(resultUpdateDataBase)
+                    if (resultUpdateDataBase.percentage == 100) {
+                        hideUpdateAtiv()
                     }
                 }
         }
@@ -75,7 +76,9 @@ class AtivApontViewModel @Inject constructor (
 
 sealed class AtivApontFragmentState {
     object Init : AtivApontFragmentState()
-    data class ListAtiv(val ativList: List<Atividade>) : AtivApontFragmentState()
+    data class ListAtiv(val ativList: List<Ativ>) : AtivApontFragmentState()
     data class IsUpdateAtiv(val isUpdateAtiv: Boolean) : AtivApontFragmentState()
-    data class CheckSetAtivApont(val typeNote: TypeNote): AtivApontFragmentState()
+    data class CheckSetAtivApont(val typeNote: TypeNote) : AtivApontFragmentState()
+    data class SetResultUpdate(val resultUpdateDataBase: ResultUpdateDataBase) :
+        AtivApontFragmentState()
 }

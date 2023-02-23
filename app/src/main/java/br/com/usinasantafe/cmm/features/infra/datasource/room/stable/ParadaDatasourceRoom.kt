@@ -8,4 +8,6 @@ interface ParadaDatasourceRoom {
 
     suspend fun deleteAllParada()
 
+    suspend fun listInIdParada(vararg idParadas: Long): List<ParadaModel>
+
 }

@@ -5,13 +5,19 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import br.com.usinasantafe.cmm.R
 import br.com.usinasantafe.cmm.common.extension.replaceFragment
 import br.com.usinasantafe.cmm.databinding.ActivityBoletimBinding
+import br.com.usinasantafe.cmm.features.domain.entities.stable.Ativ
 import br.com.usinasantafe.cmm.features.presenter.view.apontmmfert.ApontActivity
 import br.com.usinasantafe.cmm.features.presenter.view.config.ConfigActivity
 import br.com.usinasantafe.cmm.features.presenter.viewmodel.boletimmmfert.BoletimViewModel
+import br.com.usinasantafe.cmm.features.presenter.viewmodel.boletimmmfert.BoletimViewState
 import dagger.hilt.android.AndroidEntryPoint
+import kotlinx.coroutines.launch
 
 
 @AndroidEntryPoint
@@ -26,13 +32,43 @@ class BoletimActivity : AppCompatActivity(), FragmentAttachListenerBoletim {
         binding = ActivityBoletimBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
+        observe()
         startEvents()
 
     }
 
+    fun observe(){
+        observeState()
+    }
+
+    private fun observeState(){
+        lifecycleScope.launch {
+            repeatOnLifecycle(Lifecycle.State.STARTED){
+                viewModel.uiStateFlow.collect{
+                        state -> handleStateChange(state)
+                }
+            }
+        }
+    }
+
     private fun startEvents() {
-        viewModel.startBoletim()
+        viewModel.checkBoletim()
+    }
+
+    private fun handleStateChange(state: BoletimViewState){
+        when(state){
+            BoletimViewState.Init -> Unit
+            BoletimViewState.StartBoletim -> handleStartBoletim()
+            BoletimViewState.FinishBoletim -> handleFinishBoletim()
+        }
+    }
+
+    private fun handleStartBoletim() {
         goOperadorBolFragment()
+    }
+
+    private fun handleFinishBoletim() {
+        goHorimetroBolFragment()
     }
 
     private fun replaceFragment(fragment: Fragment){

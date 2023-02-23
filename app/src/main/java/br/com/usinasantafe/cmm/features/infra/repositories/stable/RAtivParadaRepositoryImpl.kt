@@ -23,6 +23,10 @@ class RAtivParadaRepositoryImpl @Inject constructor(
         rAtivParadaDatasourceRoom.deleteAllRAtivParada()
     }
 
+    override suspend fun listRAtivParada(idAtiv: Long): List<RAtivParada> {
+        return rAtivParadaDatasourceRoom.listRAtivParada(idAtiv).map { it.toRAtivParada() }
+    }
+
     override suspend fun recoverAllRAtivParada(): Flow<Result<List<RAtivParada>>> {
         return flow {
             rAtivParadaDatasourceWebService.getAllRAtivParada()

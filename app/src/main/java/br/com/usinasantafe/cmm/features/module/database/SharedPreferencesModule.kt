@@ -3,6 +3,7 @@ package br.com.usinasantafe.cmm.features.module.database
 import android.content.Context
 import android.content.SharedPreferences
 import br.com.usinasantafe.cmm.common.utils.BASE_SHARE_PREFERENCES
+import br.com.usinasantafe.cmm.common.utils.BASE_SHARE_PREFERENCES_TABLE_CONFIG
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

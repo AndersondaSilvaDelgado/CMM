@@ -19,7 +19,7 @@ class ProcessWorkManager @AssistedInject constructor(
     private val checkSendData: CheckSendData,
     private val sendDataBoletimMMFert: SendDataBoletimMMFert,
     private val sentDataBoletimMMFert: SentDataBoletimMMFert,
-    private val setStatusSendConfig: SetStatusSendConfig
+    private val setStatusSendConfig: SetStatusSendConfig,
 ): CoroutineWorker(context, params) {
 
     override suspend fun doWork(): Result {

@@ -29,7 +29,7 @@ class RecoverAtividadeImpl @Inject constructor(
         return flow {
             var contRecoverAtiv = contador
             var nroEquip = equipRepository.getEquip().nroEquip
-            var nroOS = if(flowNote == FlowNote.BOLETIM) boletimMMFertRepository.getOS() else apontMMFertRepository.getOS()
+            var nroOS = if(flowNote == FlowNote.BOLETIM) boletimMMFertRepository.getOS() else apontMMFertRepository.getNroOS()
             recoverREquipAtiv(nroEquip.toString(), contRecoverAtiv, qtde).collect{
                 emit(it)
                 contRecoverAtiv = it.count;
