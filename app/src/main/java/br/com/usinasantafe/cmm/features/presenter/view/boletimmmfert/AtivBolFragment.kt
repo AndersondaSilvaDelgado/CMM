@@ -13,6 +13,7 @@ import br.com.usinasantafe.cmm.common.adapter.CustomAdapter
 import br.com.usinasantafe.cmm.common.base.BaseFragment
 import br.com.usinasantafe.cmm.common.dialog.GenericDialogProgressBar
 import br.com.usinasantafe.cmm.common.extension.onBackPressed
+import br.com.usinasantafe.cmm.common.extension.showGenericAlertDialog
 import br.com.usinasantafe.cmm.common.extension.showToast
 import br.com.usinasantafe.cmm.databinding.FragmentAtivBolBinding
 import br.com.usinasantafe.cmm.features.domain.entities.stable.Ativ
@@ -62,7 +63,6 @@ class AtivBolFragment : BaseFragment<FragmentAtivBolBinding>(
         val listAdapter = CustomAdapter(ativListView).apply {
             onItemClick = { _, pos ->
                 viewModel.setIdAtiv(ativList[pos])
-                fragmentAttachListenerBoletim?.goHorimetroBolFragment()
             }
         }
         binding.listAtividade.run {
@@ -92,6 +92,15 @@ class AtivBolFragment : BaseFragment<FragmentAtivBolBinding>(
             is AtivBolFragmentState.ListAtiv -> handleAtivList(state.ativList)
             is AtivBolFragmentState.IsUpdateAtiv -> handleUpdate(state.isUpdateAtiv)
             is AtivBolFragmentState.SetResultUpdate -> handleStatusUpdate(state.resultUpdateDataBase)
+            is AtivBolFragmentState.CheckSetAtiv -> handleCheckSetAtiv(state.check)
+        }
+    }
+
+    private fun handleCheckSetAtiv(checkSetTurno: Boolean) {
+        if(checkSetTurno){
+            fragmentAttachListenerBoletim?.goHorimetroBolFragment()
+        } else {
+            showGenericAlertDialog(getString(R.string.texto_falha_insercao_campo, "HORIMETRO INICIAL"), requireContext())
         }
     }
 

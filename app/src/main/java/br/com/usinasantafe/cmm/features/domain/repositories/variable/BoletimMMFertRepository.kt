@@ -6,7 +6,7 @@ interface BoletimMMFertRepository {
 
     suspend fun checkAbertoBoletimMMFert(): Boolean
 
-    suspend fun checkFechadoBoletimMMFertSend(): Boolean
+    suspend fun checkBoletimSend(): Boolean
 
     suspend fun finishBoletimMMFert(): Boolean
 
@@ -18,9 +18,9 @@ interface BoletimMMFertRepository {
 
     suspend fun insertBoletimMMFert(): Boolean
 
-    suspend fun sendBoletimMMAbertoFert(): Result<List<BoletimMM>>
+    suspend fun sendBoletimMMFert(): Result<List<BoletimMM>>
 
-    suspend fun sentBoletimMMAbertoFert(boletimMMList: List<BoletimMM>)
+    suspend fun sentBoletimMMFert(boletimMMList: List<BoletimMM>)
 
     suspend fun setHorimetroFinalBoletimMMFert(horimetroFinal: String): Boolean
 
@@ -33,6 +33,8 @@ interface BoletimMMFertRepository {
     suspend fun setIdTurnoBoletimMMFert(idTurno: Long): Boolean
 
     suspend fun setNroOSBoletimMMFert(nroOS: String): Boolean
+
+    suspend fun setStatusEnviarBoletimMM(idBol: Long): Boolean
 
     suspend fun startBoletimMMFert(): Boolean
 

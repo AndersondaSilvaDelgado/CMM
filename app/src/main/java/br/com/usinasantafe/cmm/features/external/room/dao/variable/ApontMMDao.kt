@@ -16,11 +16,11 @@ interface ApontMMDao {
     @Update
     suspend fun update(apontMMRoomModel: ApontMMRoomModel): Int
 
-    @Query("SELECT * FROM $TB_APONT_MM WHERE idBolApontMM = :idBol and statusApontMM = :status")
-    suspend fun listApontIdBolStatusEnvio(status: Long, idBol: Long): List<ApontMMRoomModel>
+    @Query("SELECT * FROM $TB_APONT_MM WHERE idBolApontMM = :idBol and statusEnvioApontMM = :statusEnvio")
+    suspend fun listApontIdBolStatusEnviar(statusEnvio: Long, idBol: Long): List<ApontMMRoomModel>
 
-    @Query("SELECT * FROM $TB_APONT_MM WHERE statusApontMM = :status")
-    suspend fun listApontStatusEnvio(status: Long): List<ApontMMRoomModel>
+    @Query("SELECT * FROM $TB_APONT_MM WHERE statusEnvioApontMM = :statusEnvio")
+    suspend fun listApontStatusEnvio(statusEnvio: Long): List<ApontMMRoomModel>
 
     @Query("SELECT * FROM $TB_APONT_MM WHERE idApontMM = :idApont")
     suspend fun listApontIdApont(idApont: Long): List<ApontMMRoomModel>

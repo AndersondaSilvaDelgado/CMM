@@ -6,16 +6,22 @@ interface BoletimMMDatasourceRoom {
 
     suspend fun checkBoletimAbertoMM(): Boolean
 
-    suspend fun checkBoletimFechadoMM(): Boolean
+    suspend fun checkBoletimMMSend(): Boolean
 
     suspend fun finishBoletimMM(boletimMMRoomModel: BoletimMMRoomModel): Boolean
 
     suspend fun getBoletimAbertoMM(): BoletimMMRoomModel
 
+    suspend fun getBoletimIdBol(idBol: Long): BoletimMMRoomModel
+
     suspend fun insertBoletimMM(boletimMMRoomModel: BoletimMMRoomModel): Boolean
 
-    suspend fun listBoletimAbertoMM(): List<BoletimMMRoomModel>
+    suspend fun listBoletimMMEnviar(): List<BoletimMMRoomModel>
 
     suspend fun setHorimetroFinal(horimetroFinal: Double): Boolean
+
+    suspend fun setStatusEnviado(idBol: Long): Boolean
+
+    suspend fun setStatusEnviar(idBol: Long): Boolean
 
 }

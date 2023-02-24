@@ -28,12 +28,12 @@ class BoletimMMFertRepositoryImpl @Inject constructor(
         return boletimMMDatasourceRoom.checkBoletimAbertoMM() || boletimFertDatasourceRoom.checkBoletimAbertoFert()
     }
 
-    override suspend fun checkFechadoBoletimMMFertSend(): Boolean {
-        return boletimMMDatasourceRoom.checkBoletimFechadoMM()
+    override suspend fun checkBoletimSend(): Boolean {
+        return boletimMMDatasourceRoom.checkBoletimMMSend()
     }
 
     override suspend fun finishBoletimMMFert(): Boolean {
-        return boletimMMDatasourceRoom.finishBoletimMM(boletimMMDatasourceRoom.listBoletimAbertoMM().single())
+        return boletimMMDatasourceRoom.finishBoletimMM(boletimMMDatasourceRoom.getBoletimAbertoMM())
     }
 
     override suspend fun getAtiv(): Long {
@@ -69,21 +69,22 @@ class BoletimMMFertRepositoryImpl @Inject constructor(
         return ret
     }
 
-    override suspend fun sendBoletimMMAbertoFert(): Result<List<BoletimMM>> {
-        var listBoletim: List<BoletimMM> = boletimMMDatasourceRoom.listBoletimAbertoMM().map { boletimMMRoomModel ->
+    override suspend fun sendBoletimMMFert(): Result<List<BoletimMM>> {
+        var listBoletim: List<BoletimMM> = boletimMMDatasourceRoom.listBoletimMMEnviar().map { boletimMMRoomModel ->
             var boletimMM = boletimMMRoomModel.toBoletimMM()
-            boletimMM.apontList = apontMMDatasourceRoom.listApontIdBol(boletimMM.idBol!!).map { it.toApontMM() }
+            boletimMM.apontList = apontMMDatasourceRoom.listApontIdBolStatusEnviar(boletimMM.idBol!!).map { it.toApontMM() }
             boletimMM
         }
         var result = motoMecDatasourceWebService.sendMotoMec(listBoletim.map { it.toBoletimMMWebServiceModel() })
         return result.map { boletimMMList -> boletimMMList.map { it.toBoletimMM() }}
     }
 
-    override suspend fun sentBoletimMMAbertoFert(boletimMMList: List<BoletimMM>) {
+    override suspend fun sentBoletimMMFert(boletimMMList: List<BoletimMM>) {
         boletimMMList.forEach { boletimMM ->
             boletimMM.apontList!!.forEach {
                 apontMMDatasourceRoom.updateApontEnviadoMM(it.toApontMMRoomModel())
             }
+            boletimMMDatasourceRoom.setStatusEnviado(boletimMM.idBol!!)
         }
     }
 
@@ -135,6 +136,10 @@ class BoletimMMFertRepositoryImpl @Inject constructor(
         } else {
             boletimFertDatasourceSharedPreferences.setNroOS(nroOS.toLong())
         }
+    }
+
+    override suspend fun setStatusEnviarBoletimMM(idBol: Long): Boolean {
+        return boletimMMDatasourceRoom.setStatusEnviar(idBol)
     }
 
     override suspend fun startBoletimMMFert(): Boolean {

@@ -97,6 +97,7 @@ class TurnoBolFragment : BaseFragment<FragmentTurnoBolBinding>(
             is TurnoBolFragmentState.CheckSetTurno -> handleCheckSetTurno(state.check)
         }
     }
+
     private fun handleCheckSetTurno(checkSetTurno: Boolean) {
         if(checkSetTurno){
             fragmentAttachListenerBoletim?.goOSBolFragment()
@@ -104,6 +105,7 @@ class TurnoBolFragment : BaseFragment<FragmentTurnoBolBinding>(
             showGenericAlertDialog(getString(R.string.texto_falha_insercao_campo, "HORIMETRO INICIAL"), requireContext())
         }
     }
+
     private fun handleTurnoList(turnoList: List<Turno>) {
         viewList(turnoList)
     }

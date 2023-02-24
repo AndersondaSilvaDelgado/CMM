@@ -20,5 +20,10 @@ interface BoletimMMDao {
     @Query("SELECT * FROM $TB_BOLETIM_MM WHERE statusBolMM = :status")
     suspend fun listBoletimStatus(status: Long): List<BoletimMMRoomModel>
 
+    @Query("SELECT * FROM $TB_BOLETIM_MM WHERE statusEnvioBolMM = :statusEnvio")
+    suspend fun listBoletimStatusEnvio(statusEnvio: Long): List<BoletimMMRoomModel>
+
+    @Query("SELECT * FROM $TB_BOLETIM_MM WHERE idBolMM = :idBol")
+    suspend fun listBoletimIdBol(idBol: Long): List<BoletimMMRoomModel>
 
 }

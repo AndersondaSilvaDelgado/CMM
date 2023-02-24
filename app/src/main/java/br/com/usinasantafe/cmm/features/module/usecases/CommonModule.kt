@@ -28,6 +28,10 @@ interface CommonModule {
 
     @Singleton
     @Binds
+    fun bindCheckSendBoletimMM(usecase: CheckSendBoletimMMImpl): CheckSendBoletimMM
+
+    @Singleton
+    @Binds
     fun bindCheckSendData(usecase: CheckSendDataImpl): CheckSendData
 
     @Singleton
@@ -52,11 +56,11 @@ interface CommonModule {
 
     @Singleton
     @Binds
-    fun bindSendData(usecase: SendDataBoletimMMFertImpl): SendDataBoletimMMFert
+    fun bindSendDataBoletimMMFert(usecase: SendDataBoletimMMFertImpl): SendDataBoletimMMFert
 
     @Singleton
     @Binds
-    fun bindSentData(usecase: SentDataBoletimMMFertImpl): SentDataBoletimMMFert
+    fun bindSentDataBoletimMMFert(usecase: SentDataBoletimMMFertImpl): SentDataBoletimMMFert
 
     @Singleton
     @Binds

@@ -10,7 +10,7 @@ class SendDataBoletimMMFertImpl @Inject constructor(
 ) : SendDataBoletimMMFert {
 
     override suspend fun invoke(): Result<List<BoletimMM>> {
-        return boletimMMFertRepository.sendBoletimMMAbertoFert()
+        return boletimMMFertRepository.sendBoletimMMFert()
     }
 
 }

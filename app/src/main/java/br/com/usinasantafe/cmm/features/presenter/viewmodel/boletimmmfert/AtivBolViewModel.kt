@@ -42,12 +42,16 @@ class AtivBolViewModel @Inject constructor(
         _uiStateFlow.value = AtivBolFragmentState.SetResultUpdate(resultUpdateDataBase)
     }
 
+    private fun checkSetAtiv(checkSetAtiv: Boolean){
+        _uiStateFlow.value = AtivBolFragmentState.CheckSetAtiv(checkSetAtiv)
+    }
+
     fun recoverListAtiv() = viewModelScope.launch {
         setListAtiv(listAtiv(FlowNote.BOLETIM))
     }
 
     fun setIdAtiv(ativ: Ativ) = viewModelScope.launch {
-        setIdAtivBoletimMMFert(ativ.idAtiv)
+        checkSetAtiv(setIdAtivBoletimMMFert(ativ.idAtiv))
     }
 
     fun updateDataAtiv() =
@@ -71,6 +75,7 @@ class AtivBolViewModel @Inject constructor(
 
 sealed class AtivBolFragmentState {
     object Init : AtivBolFragmentState()
+    data class CheckSetAtiv(val check: Boolean) : AtivBolFragmentState()
     data class ListAtiv(val ativList: List<Ativ>) : AtivBolFragmentState()
     data class IsUpdateAtiv(val isUpdateAtiv: Boolean) : AtivBolFragmentState()
     data class SetResultUpdate(val resultUpdateDataBase: ResultUpdateDataBase) : AtivBolFragmentState()

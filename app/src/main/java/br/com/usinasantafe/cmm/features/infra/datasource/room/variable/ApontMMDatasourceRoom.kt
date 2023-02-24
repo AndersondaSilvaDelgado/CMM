@@ -8,7 +8,7 @@ interface ApontMMDatasourceRoom {
 
     suspend fun insertApontMM(apontMMRoomModel: ApontMMRoomModel): Boolean
 
-    suspend fun listApontIdBol(idBol: Long): List<ApontMMRoomModel>
+    suspend fun listApontIdBolStatusEnviar(idBol: Long): List<ApontMMRoomModel>
 
     suspend fun updateApontEnviadoMM(apontMMRoomModel: ApontMMRoomModel): Boolean
 
