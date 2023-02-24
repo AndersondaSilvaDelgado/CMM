@@ -7,3 +7,4 @@ enum class FlowNote { BOLETIM, APONTAMENTO }
 enum class StatusSend { VAZIO, ENVIADO, ENVIANDO, ENVIAR }
 enum class StatusUpdate { ATUALIZADO, FALHA }
 enum class StatusRecover { SUCESSO, VAZIO, FALHA }
+enum class PointerStart { MENUINICIAL, MENUAPONT }

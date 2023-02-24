@@ -10,7 +10,7 @@ class RecoverConfigImpl @Inject constructor (
 ): RecoverConfig {
 
     override suspend fun invoke(): Config? {
-        return if (configRepository.hasSenhaConfig())
+        return if (configRepository.hasConfig())
             configRepository.getConfig()
         else
             null

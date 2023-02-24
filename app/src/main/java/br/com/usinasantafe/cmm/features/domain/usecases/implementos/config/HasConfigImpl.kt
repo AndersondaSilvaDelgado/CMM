@@ -9,7 +9,7 @@ class HasConfigImpl @Inject constructor (
 ): HasConfig {
 
     override suspend fun invoke(): Boolean {
-        return (configRepository.hasSenhaConfig())
+        return (configRepository.hasConfig())
     }
 
 }

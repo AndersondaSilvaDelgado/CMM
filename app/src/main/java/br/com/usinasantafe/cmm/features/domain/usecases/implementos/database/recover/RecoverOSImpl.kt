@@ -32,7 +32,7 @@ class RecoverOSImpl @Inject constructor(
                             }
                             emit(ResultUpdateDataBase(contRecoverOS, TEXT_FINISH_UPDATE, qtde))
                         } else {
-                            emit(ResultUpdateDataBase(contRecoverOS, WEB_RETURN_CLEAR_OS, qtde))
+                            emit(ResultUpdateDataBase(qtde, WEB_RETURN_CLEAR_OS, qtde))
                         }
                     }
                 }

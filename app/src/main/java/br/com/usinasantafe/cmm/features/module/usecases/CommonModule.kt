@@ -1,13 +1,7 @@
 package br.com.usinasantafe.cmm.features.module.usecases
 
-import br.com.usinasantafe.cmm.features.domain.usecases.implementos.boletimmmfert.SendDataBoletimMMFertImpl
-import br.com.usinasantafe.cmm.features.domain.usecases.implementos.boletimmmfert.SentDataBoletimMMFertImpl
 import br.com.usinasantafe.cmm.features.domain.usecases.implementos.common.*
-import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.boletimmmfert.SendDataBoletimMMFert
-import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.boletimmmfert.SentDataBoletimMMFert
 import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.common.*
-import br.com.usinasantafe.cmm.features.domain.usecases.workmanager.StartSendData
-import br.com.usinasantafe.cmm.features.domain.usecases.workmanager.StartSendDataImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -56,14 +50,14 @@ interface CommonModule {
 
     @Singleton
     @Binds
-    fun bindSendDataBoletimMMFert(usecase: SendDataBoletimMMFertImpl): SendDataBoletimMMFert
+    fun bindSendDataAPPUpdateFert(usecase: SendDataAppUpdateImpl): SendDataAppUpdate
 
     @Singleton
     @Binds
-    fun bindSentDataBoletimMMFert(usecase: SentDataBoletimMMFertImpl): SentDataBoletimMMFert
+    fun bindSentDataAPPUpdateFert(usecase: SentDataAppUpdateImpl): SentDataAppUpdate
 
     @Singleton
     @Binds
-    fun bindStartSentData(usecase: StartSendDataImpl): StartSendData
+    fun bindStartAPP(usecase: StartAppImpl): StartApp
 
 }

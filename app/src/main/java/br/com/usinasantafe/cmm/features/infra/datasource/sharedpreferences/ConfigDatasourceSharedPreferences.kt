@@ -5,7 +5,7 @@ import br.com.usinasantafe.cmm.features.domain.entities.variable.Config
 
 interface ConfigDatasourceSharedPreferences {
 
-    suspend fun hasSenhaConfig(): Boolean
+    suspend fun hasConfig(): Boolean
 
     suspend fun getConfig(): Config
 

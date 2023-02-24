@@ -10,6 +10,7 @@ import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import br.com.usinasantafe.cmm.R
+import br.com.usinasantafe.cmm.common.utils.PointerStart
 import br.com.usinasantafe.cmm.databinding.ActivitySplashBinding
 import br.com.usinasantafe.cmm.features.presenter.view.apontmmfert.ApontActivity
 import br.com.usinasantafe.cmm.features.presenter.view.config.ConfigActivity
@@ -68,20 +69,27 @@ class SplashActivity : AppCompatActivity() {
     private fun handleStateChange(state: SplashState){
         when(state){
             is SplashState.Init -> Unit
-            is SplashState.CheckData -> handleCheckData(state.checkData)
+            is SplashState.CheckStartAPP -> handleCheckStartAPP(state.pointerStart)
         }
     }
 
-    private fun handleCheckData(checkData: Boolean){
-        if(checkData){
-            val intent = Intent(this, ApontActivity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-            startActivity(intent)
-        } else {
-            val intent = Intent(this, ConfigActivity::class.java)
-            intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
-            startActivity(intent)
+    private fun handleCheckStartAPP(checkStartAPP: PointerStart){
+        when(checkStartAPP){
+            PointerStart.MENUINICIAL -> goMenuInicial()
+            PointerStart.MENUAPONT -> goMenuApont()
         }
-
     }
+
+    private fun goMenuInicial(){
+        val intent = Intent(this, ConfigActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+        startActivity(intent)
+    }
+
+    private fun goMenuApont(){
+        val intent = Intent(this, ApontActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+        startActivity(intent)
+    }
+
 }

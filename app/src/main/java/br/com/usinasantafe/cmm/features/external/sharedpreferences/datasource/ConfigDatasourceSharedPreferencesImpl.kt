@@ -11,7 +11,7 @@ class ConfigDatasourceSharedPreferencesImpl @Inject constructor(
     private val sharedPreferences: SharedPreferences
 ) : ConfigDatasourceSharedPreferences {
 
-    override suspend fun hasSenhaConfig(): Boolean {
+    override suspend fun hasConfig(): Boolean {
         val result = sharedPreferences.getString(BASE_SHARE_PREFERENCES_TABLE_CONFIG, null)
         return result != null
     }

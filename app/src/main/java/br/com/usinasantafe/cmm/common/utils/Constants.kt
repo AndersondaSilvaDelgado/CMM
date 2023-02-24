@@ -75,6 +75,8 @@ const val WEB_ALL_TURNO = "turno.php"
 const val WEB_SAVE_FERTIRRIGACAO = "savefertirrigacao.php"
 const val WEB_SAVE_MOTOMEC = "savemotomec.php"
 
+const val WEB_UPDATE_APP = "atualaplic.php"
+
 const val WEB_RETURN_CLEAR_EQUIP = "Equipamento Inexistente!"
 const val WEB_RETURN_CLEAR_OS = "OS Inexistente!"
 

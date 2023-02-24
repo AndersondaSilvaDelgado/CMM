@@ -10,8 +10,8 @@ class ConfigRepositoryImpl @Inject constructor (
     private val configDatasourceSharedPreferences: ConfigDatasourceSharedPreferences
 ): ConfigRepository {
 
-    override suspend fun hasSenhaConfig(): Boolean {
-        return configDatasourceSharedPreferences.hasSenhaConfig()
+    override suspend fun hasConfig(): Boolean {
+        return configDatasourceSharedPreferences.hasConfig()
     }
 
     override suspend fun getConfig(): Config {
