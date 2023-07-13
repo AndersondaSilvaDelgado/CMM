@@ -2,6 +2,7 @@ package br.com.usinasantafe.cmm.features.presenter.view.boletimmmfert
 
 import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.view.WindowManager
 import androidx.fragment.app.viewModels
@@ -17,7 +18,7 @@ import br.com.usinasantafe.cmm.common.extension.showGenericAlertDialog
 import br.com.usinasantafe.cmm.common.extension.showToast
 import br.com.usinasantafe.cmm.databinding.FragmentAtivBolBinding
 import br.com.usinasantafe.cmm.features.domain.entities.stable.Ativ
-import br.com.usinasantafe.cmm.features.presenter.models.ResultUpdateDataBase
+import br.com.usinasantafe.cmm.features.presenter.models.ResultUpdateDatabase
 import br.com.usinasantafe.cmm.features.presenter.viewmodel.boletimmmfert.AtivBolFragmentState
 import br.com.usinasantafe.cmm.features.presenter.viewmodel.boletimmmfert.AtivBolViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -91,7 +92,7 @@ class AtivBolFragment : BaseFragment<FragmentAtivBolBinding>(
             is AtivBolFragmentState.Init -> Unit
             is AtivBolFragmentState.ListAtiv -> handleAtivList(state.ativList)
             is AtivBolFragmentState.IsUpdateAtiv -> handleUpdate(state.isUpdateAtiv)
-            is AtivBolFragmentState.SetResultUpdate -> handleStatusUpdate(state.resultUpdateDataBase)
+            is AtivBolFragmentState.SetResultUpdate -> handleStatusUpdate(state.resultUpdateDatabase)
             is AtivBolFragmentState.CheckSetAtiv -> handleCheckSetAtiv(state.check)
         }
     }
@@ -108,9 +109,9 @@ class AtivBolFragment : BaseFragment<FragmentAtivBolBinding>(
         viewList(ativList)
     }
 
-    private fun handleStatusUpdate(resultUpdateDataBase: ResultUpdateDataBase?){
-        resultUpdateDataBase?.let {
-            genericDialogProgressBar.setValue(resultUpdateDataBase)
+    private fun handleStatusUpdate(resultUpdateDatabase: ResultUpdateDatabase?){
+        resultUpdateDatabase?.let {
+            genericDialogProgressBar.setValue(resultUpdateDatabase)
         }
     }
 

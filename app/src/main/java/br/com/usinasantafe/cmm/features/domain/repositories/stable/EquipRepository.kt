@@ -9,12 +9,11 @@ interface EquipRepository {
 
     suspend fun deleteAllEquip()
 
+    suspend fun getEquip(): Equip
+
+    suspend fun hasEquip(): Boolean
+
     suspend fun recoverEquip(nroEquip: String): Flow<Result<List<Equip>>>
 
-    suspend fun getEquipNro(nroEquip: Long): Equip
-
-    suspend fun getEquipId(idEquip: Long): Equip
-
-    suspend fun getEquip(): Equip
 
 }

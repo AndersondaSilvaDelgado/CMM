@@ -1,8 +1,8 @@
 package br.com.usinasantafe.cmm.features.infra.repositories.stable
 
 import br.com.usinasantafe.cmm.features.domain.entities.stable.OperMotoMec
-import br.com.usinasantafe.cmm.features.infra.models.stable.toMotoMec
-import br.com.usinasantafe.cmm.features.infra.models.stable.toMotoMecModel
+import br.com.usinasantafe.cmm.features.infra.models.room.stable.toMotoMec
+import br.com.usinasantafe.cmm.features.infra.models.room.stable.toMotoMecModel
 import br.com.usinasantafe.cmm.features.domain.repositories.stable.OperMotoMecRepository
 import br.com.usinasantafe.cmm.features.infra.datasource.room.stable.OperMotoMecDatasourceRoom
 import br.com.usinasantafe.cmm.features.infra.datasource.webservice.stable.OperMotoMecDatasourceWebService

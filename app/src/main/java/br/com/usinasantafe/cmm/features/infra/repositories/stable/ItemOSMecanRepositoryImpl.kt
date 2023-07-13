@@ -1,8 +1,8 @@
 package br.com.usinasantafe.cmm.features.infra.repositories.stable
 
 import br.com.usinasantafe.cmm.features.domain.entities.stable.ItemOSMecan
-import br.com.usinasantafe.cmm.features.infra.models.stable.toItemOSMecan
-import br.com.usinasantafe.cmm.features.infra.models.stable.toItemOSMecanModel
+import br.com.usinasantafe.cmm.features.infra.models.room.stable.toItemOSMecan
+import br.com.usinasantafe.cmm.features.infra.models.room.stable.toItemOSMecanModel
 import br.com.usinasantafe.cmm.features.domain.repositories.stable.ItemOSMecanRepository
 import br.com.usinasantafe.cmm.features.infra.datasource.room.stable.ItemOSMecanDatasourceRoom
 import br.com.usinasantafe.cmm.features.infra.datasource.webservice.stable.ItemOSMecanDatasourceWebService

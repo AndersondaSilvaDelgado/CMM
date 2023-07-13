@@ -1,7 +1,7 @@
 package br.com.usinasantafe.cmm.features.external.webservice.datasource.stable
 
 import br.com.usinasantafe.cmm.features.external.webservice.api.stable.PropriedadeApi
-import br.com.usinasantafe.cmm.features.infra.models.stable.PropriedadeModel
+import br.com.usinasantafe.cmm.features.infra.models.room.stable.PropriedadeRoomModel
 import br.com.usinasantafe.cmm.features.infra.datasource.webservice.stable.PropriedadeDatasourceWebService
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -11,7 +11,7 @@ class PropriedadeDatasourceWebServiceImpl @Inject constructor(
     private val propriedadeApi: PropriedadeApi
 ): PropriedadeDatasourceWebService {
 
-    override suspend fun getAllPropriedade(): Flow<Result<List<PropriedadeModel>>> {
+    override suspend fun getAllPropriedade(): Flow<Result<List<PropriedadeRoomModel>>> {
         return flow{
             val response = propriedadeApi.all()
             if (response.isSuccessful) {

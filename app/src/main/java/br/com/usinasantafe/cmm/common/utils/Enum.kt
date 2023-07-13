@@ -8,3 +8,7 @@ enum class StatusSend { VAZIO, ENVIADO, ENVIANDO, ENVIAR }
 enum class StatusUpdate { ATUALIZADO, FALHA }
 enum class StatusRecover { SUCESSO, VAZIO, FALHA }
 enum class PointerStart { MENUINICIAL, MENUAPONT }
+enum class FlagUpdateApp { DESATUALIZADO, ATUALIZADO }
+enum class FlagUpdateCheckList  { DESATUALIZADO, ATUALIZADO }
+enum class ChoiceHorimetro { FALHA, APONTAMENTO, CHECKLIST }
+enum class ChoiceCheckList { CONFORME, ANALISAR, REPARO }

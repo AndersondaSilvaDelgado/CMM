@@ -1,8 +1,8 @@
 package br.com.usinasantafe.cmm.features.infra.repositories.stable
 
 import br.com.usinasantafe.cmm.features.domain.entities.stable.Propriedade
-import br.com.usinasantafe.cmm.features.infra.models.stable.toPropriedade
-import br.com.usinasantafe.cmm.features.infra.models.stable.toPropriedadeModel
+import br.com.usinasantafe.cmm.features.infra.models.room.stable.toPropriedade
+import br.com.usinasantafe.cmm.features.infra.models.room.stable.toPropriedadeModel
 import br.com.usinasantafe.cmm.features.domain.repositories.stable.PropriedadeRepository
 import br.com.usinasantafe.cmm.features.infra.datasource.room.stable.PropriedadeDatasourceRoom
 import br.com.usinasantafe.cmm.features.infra.datasource.webservice.stable.PropriedadeDatasourceWebService

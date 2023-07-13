@@ -16,6 +16,7 @@ import androidx.fragment.app.Fragment
 import br.com.usinasantafe.cmm.R
 import br.com.usinasantafe.cmm.databinding.LayoutBotoesBinding
 import br.com.usinasantafe.cmm.databinding.LayoutBotoesSAtualBinding
+import br.com.usinasantafe.cmm.features.presenter.view.boletimmmfert.OperadorBolFragment
 
 fun Activity.hideKeyboard(){
     val imm: InputMethodManager = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
@@ -194,7 +195,7 @@ fun AppCompatActivity.replaceFragment(@IdRes id: Int, fragment: Fragment){
     } else {
         supportFragmentManager.beginTransaction().apply {
             replace(id, fragment)
-            //addToBackStack(null)
+            addToBackStack(null)
             commit()
         }
     }
@@ -202,12 +203,12 @@ fun AppCompatActivity.replaceFragment(@IdRes id: Int, fragment: Fragment){
 }
 
 fun Fragment.onBackPressed(callback: () -> Unit){
-    val callback: OnBackPressedCallback = object : OnBackPressedCallback(true) {
+    val funReturn: OnBackPressedCallback = object : OnBackPressedCallback(true) {
         override fun handleOnBackPressed() {
             callback.invoke()
         }
     }
     requireActivity().onBackPressedDispatcher.addCallback(
-        this, callback
+        this, funReturn
     )
 }

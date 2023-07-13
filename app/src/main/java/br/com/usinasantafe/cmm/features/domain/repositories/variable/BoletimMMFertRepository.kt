@@ -8,13 +8,19 @@ interface BoletimMMFertRepository {
 
     suspend fun checkBoletimSend(): Boolean
 
+    suspend fun deleteBoletimEnviado(): Boolean
+
     suspend fun finishBoletimMMFert(): Boolean
 
-    suspend fun getAtiv(): Long
+    suspend fun getIdAtivBoletimAberto(): Long
 
-    suspend fun getIdBoletim(): Long
+    suspend fun getIdBoletimAberto(): Long
 
-    suspend fun getOS(): Long
+    suspend fun getNroMatricFuncBoletimAberto(): Long
+
+    suspend fun getNroOSBoletimAberto(): Long
+
+    suspend fun getIdTurnoBoletimAberto(): Long
 
     suspend fun insertBoletimMMFert(): Boolean
 

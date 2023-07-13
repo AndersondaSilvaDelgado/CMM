@@ -4,8 +4,8 @@ import br.com.usinasantafe.cmm.features.domain.entities.stable.REquipPneu
 import br.com.usinasantafe.cmm.features.domain.repositories.stable.REquipPneuRepository
 import br.com.usinasantafe.cmm.features.infra.datasource.room.stable.REquipPneuDatasourceRoom
 import br.com.usinasantafe.cmm.features.infra.datasource.webservice.stable.REquipPneuDatasourceWebService
-import br.com.usinasantafe.cmm.features.infra.models.stable.toREquipPneu
-import br.com.usinasantafe.cmm.features.infra.models.stable.toREquipPneuModel
+import br.com.usinasantafe.cmm.features.infra.models.room.stable.toREquipPneu
+import br.com.usinasantafe.cmm.features.infra.models.room.stable.toREquipPneuModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject

@@ -1,8 +1,8 @@
 package br.com.usinasantafe.cmm.features.infra.repositories.stable
 
 import br.com.usinasantafe.cmm.features.domain.entities.stable.Leira
-import br.com.usinasantafe.cmm.features.infra.models.stable.toLeira
-import br.com.usinasantafe.cmm.features.infra.models.stable.toLeiraModel
+import br.com.usinasantafe.cmm.features.infra.models.room.stable.toLeira
+import br.com.usinasantafe.cmm.features.infra.models.room.stable.toLeiraModel
 import br.com.usinasantafe.cmm.features.domain.repositories.stable.LeiraRepository
 import br.com.usinasantafe.cmm.features.infra.datasource.room.stable.LeiraDatasourceRoom
 import br.com.usinasantafe.cmm.features.infra.datasource.webservice.stable.LeiraDatasourceWebService

@@ -9,7 +9,7 @@ class CheckPasswordConfigImpl @Inject constructor(
 ): CheckPasswordConfig {
 
     override suspend fun invoke(senha: String): Boolean {
-        return if (configRepository.hasConfig()) configRepository.getConfig().senhaConfig == senha else true
+        return if (configRepository.hasConfig()) configRepository.getConfig().passwordConfig == senha else true
     }
 
 }

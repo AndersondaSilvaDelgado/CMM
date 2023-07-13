@@ -7,7 +7,7 @@ import br.com.usinasantafe.cmm.common.utils.WEB_RETURN_CLEAR_OS
 import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.boletimmmfert.RecoverNroOSBoletimMMFert
 import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.boletimmmfert.SetNroOSBoletimMMFert
 import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.common.CheckNroOS
-import br.com.usinasantafe.cmm.features.presenter.models.ResultUpdateDataBase
+import br.com.usinasantafe.cmm.features.presenter.models.ResultUpdateDatabase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -37,8 +37,8 @@ class OSBolViewModel @Inject constructor(
         _uiStateFlow.value = OSBolFragmentState.FeedbackUpdateOS(statusRecover)
     }
 
-    private fun setResultUpdate(resultUpdateDataBase: ResultUpdateDataBase){
-        _uiStateFlow.value = OSBolFragmentState.SetResultUpdate(resultUpdateDataBase)
+    private fun setResultUpdate(resultUpdateDatabase: ResultUpdateDatabase){
+        _uiStateFlow.value = OSBolFragmentState.SetResultUpdate(resultUpdateDatabase)
     }
 
     fun checkDataNroOS(nroOS: String) = viewModelScope.launch {
@@ -53,13 +53,13 @@ class OSBolViewModel @Inject constructor(
         viewModelScope.launch {
             recoverNroOSBoletimMMFert(nroOS)
                 .catch { catch ->
-                    setResultUpdate(ResultUpdateDataBase(1, "Erro: $catch", 100, 100))
+                    setResultUpdate(ResultUpdateDatabase(1, "Erro: $catch", 100, 100))
                     setStatusRecoverOS(StatusRecover.FALHA)
                 }
-                .collect { resultUpdateDataBase ->
-                    setResultUpdate(resultUpdateDataBase)
-                    if (resultUpdateDataBase.percentage == 100) {
-                        if (resultUpdateDataBase.describe == WEB_RETURN_CLEAR_OS) {
+                .collect { resultUpdateDatabase ->
+                    setResultUpdate(resultUpdateDatabase)
+                    if (resultUpdateDatabase.percentage == 100) {
+                        if (resultUpdateDatabase.describe == WEB_RETURN_CLEAR_OS) {
                             setStatusRecoverOS(StatusRecover.VAZIO)
                         } else {
                             setStatusRecoverOS(StatusRecover.SUCESSO)
@@ -75,5 +75,5 @@ sealed class OSBolFragmentState {
     data class CheckNroOS(val checkNroOS: Boolean) : OSBolFragmentState()
     data class CheckSetNroOS(val checkSetNroOS: Boolean) : OSBolFragmentState()
     data class FeedbackUpdateOS(val statusRecover: StatusRecover) : OSBolFragmentState()
-    data class SetResultUpdate(val resultUpdateDataBase: ResultUpdateDataBase) : OSBolFragmentState()
+    data class SetResultUpdate(val resultUpdateDatabase: ResultUpdateDatabase) : OSBolFragmentState()
 }

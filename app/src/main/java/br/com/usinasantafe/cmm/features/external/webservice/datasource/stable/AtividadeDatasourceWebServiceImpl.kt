@@ -1,7 +1,7 @@
 package br.com.usinasantafe.cmm.features.external.webservice.datasource.stable
 
 import br.com.usinasantafe.cmm.features.external.webservice.api.stable.AtividadeApi
-import br.com.usinasantafe.cmm.features.infra.models.stable.AtividadeModel
+import br.com.usinasantafe.cmm.features.infra.models.room.stable.AtividadeRoomModel
 import br.com.usinasantafe.cmm.features.infra.datasource.webservice.stable.AtividadeDatasourceWebService
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -11,7 +11,7 @@ class AtividadeDatasourceWebServiceImpl @Inject constructor (
     private val atividadeApi: AtividadeApi
 ): AtividadeDatasourceWebService {
 
-    override suspend fun getAllAtividade(): Flow<Result<List<AtividadeModel>>> {
+    override suspend fun getAllAtividade(): Flow<Result<List<AtividadeRoomModel>>> {
         return flow{
             val response = atividadeApi.all()
             if (response.isSuccessful) {

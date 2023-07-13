@@ -1,13 +1,15 @@
 package br.com.usinasantafe.cmm.features.infra.datasource.room.stable
 
-import br.com.usinasantafe.cmm.features.infra.models.stable.RFuncaoAtivParadaModel
+import br.com.usinasantafe.cmm.features.infra.models.room.stable.RFuncaoAtivParadaRoomModel
 
 interface RFuncaoAtivParadaDatasourceRoom {
 
-    suspend fun addAllRFuncaoAtivParada(vararg rFuncaoAtivParadaModels: RFuncaoAtivParadaModel)
+    suspend fun addAllRFuncaoAtivParada(vararg rFuncaoAtivParadaRoomModels: RFuncaoAtivParadaRoomModel)
 
     suspend fun deleteAllRFuncaoAtivParada()
 
-    suspend fun listRFuncaoAtiv(idAtiv: Long): List<RFuncaoAtivParadaModel>
+    suspend fun getParadaCheckList(): RFuncaoAtivParadaRoomModel
+
+    suspend fun listRFuncaoAtivIdAtiv(idAtiv: Long): List<RFuncaoAtivParadaRoomModel>
 
 }

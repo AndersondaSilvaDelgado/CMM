@@ -49,4 +49,11 @@
     <string name="texto_pesquisar">PESQUISAR</string>
     <string name="texto_update_sucess">ATUALIZAÇÃO DA BASE DE DADOS REALIZADA COM SUCESSO!</string>
     <string name="texto_update_failure">FALHA DE ATUALIZAÇÃO DE DADOS! POR FAVOR ENTRA EM CONTATO COM TI. %1$s</string>
+    <string name="texto_padrao_nao">NÃO</string>
+    <string name="texto_padrao_sim">SIM</string>
+    <string name="texto_atual_checklist">ATENÇÃO! HÁ NOVAS ATUALIZAÇÕES PARA QUESTÕES DE CHECKLIST. DESEJA ATUALIZÁ-LAS?</string>
+    <string name="texto_titulo_checklist">CHECKLIST</string>
+    <string name="texto_conforme">CONFORME (OK)</string>
+    <string name="texto_nao_conforme">NÃO CONFORME (ANALISAR)</string>
+    <string name="texto_reparo">NÃO CONFORME (REPARO)</string>
 </resources>

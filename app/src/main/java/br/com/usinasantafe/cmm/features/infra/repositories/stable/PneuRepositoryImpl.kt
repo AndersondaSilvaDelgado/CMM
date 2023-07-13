@@ -1,8 +1,8 @@
 package br.com.usinasantafe.cmm.features.infra.repositories.stable
 
 import br.com.usinasantafe.cmm.features.domain.entities.stable.Pneu
-import br.com.usinasantafe.cmm.features.infra.models.stable.toPneu
-import br.com.usinasantafe.cmm.features.infra.models.stable.toPneuModel
+import br.com.usinasantafe.cmm.features.infra.models.room.stable.toPneu
+import br.com.usinasantafe.cmm.features.infra.models.room.stable.toPneuModel
 import br.com.usinasantafe.cmm.features.domain.repositories.stable.PneuRepository
 import br.com.usinasantafe.cmm.features.infra.datasource.room.stable.PneuDatasourceRoom
 import br.com.usinasantafe.cmm.features.infra.datasource.webservice.stable.PneuDatasourceWebService

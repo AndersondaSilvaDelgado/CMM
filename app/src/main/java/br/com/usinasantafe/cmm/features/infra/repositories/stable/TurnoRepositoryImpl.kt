@@ -1,8 +1,8 @@
 package br.com.usinasantafe.cmm.features.infra.repositories.stable
 
 import br.com.usinasantafe.cmm.features.domain.entities.stable.Turno
-import br.com.usinasantafe.cmm.features.infra.models.stable.toTurno
-import br.com.usinasantafe.cmm.features.infra.models.stable.toTurnoModel
+import br.com.usinasantafe.cmm.features.infra.models.room.stable.toTurno
+import br.com.usinasantafe.cmm.features.infra.models.room.stable.toTurnoModel
 import br.com.usinasantafe.cmm.features.domain.repositories.stable.TurnoRepository
 import br.com.usinasantafe.cmm.features.infra.datasource.room.stable.TurnoDatasourceRoom
 import br.com.usinasantafe.cmm.features.infra.datasource.webservice.stable.TurnoDatasourceWebService

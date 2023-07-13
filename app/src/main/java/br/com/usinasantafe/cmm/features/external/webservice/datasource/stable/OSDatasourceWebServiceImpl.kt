@@ -1,7 +1,7 @@
 package br.com.usinasantafe.cmm.features.external.webservice.datasource.stable
 
 import br.com.usinasantafe.cmm.features.external.webservice.api.stable.OSApi
-import br.com.usinasantafe.cmm.features.infra.models.stable.OSModel
+import br.com.usinasantafe.cmm.features.infra.models.room.stable.OSRoomModel
 import br.com.usinasantafe.cmm.features.infra.datasource.webservice.stable.OSDatasourceWebService
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -11,7 +11,7 @@ class OSDatasourceWebServiceImpl @Inject constructor(
     private val osApi: OSApi
 ): OSDatasourceWebService {
 
-    override suspend fun getAllOS(): Flow<Result<List<OSModel>>> {
+    override suspend fun getAllOS(): Flow<Result<List<OSRoomModel>>> {
         return flow{
             val response = osApi.all()
             if (response.isSuccessful) {
@@ -22,7 +22,7 @@ class OSDatasourceWebServiceImpl @Inject constructor(
         }
     }
 
-    override suspend fun recoverOS(nroOS: String): Flow<Result<List<OSModel>>> {
+    override suspend fun recoverOS(nroOS: String): Flow<Result<List<OSRoomModel>>> {
         return flow{
             val response = osApi.get(nroOS)
             if (response.isSuccessful) {

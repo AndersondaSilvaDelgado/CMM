@@ -6,13 +6,14 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import br.com.usinasantafe.cmm.R
 import br.com.usinasantafe.cmm.common.extension.replaceFragment
 import br.com.usinasantafe.cmm.databinding.ActivityBoletimBinding
-import br.com.usinasantafe.cmm.features.domain.entities.stable.Ativ
 import br.com.usinasantafe.cmm.features.presenter.view.apontmmfert.ApontActivity
+import br.com.usinasantafe.cmm.features.presenter.view.checklist.CheckListActivity
 import br.com.usinasantafe.cmm.features.presenter.view.config.ConfigActivity
 import br.com.usinasantafe.cmm.features.presenter.viewmodel.boletimmmfert.BoletimViewModel
 import br.com.usinasantafe.cmm.features.presenter.viewmodel.boletimmmfert.BoletimViewState
@@ -43,9 +44,9 @@ class BoletimActivity : AppCompatActivity(), FragmentAttachListenerBoletim {
 
     private fun observeState(){
         lifecycleScope.launch {
-            repeatOnLifecycle(Lifecycle.State.STARTED){
+            repeatOnLifecycle(Lifecycle.State.CREATED){
                 viewModel.uiStateFlow.collect{
-                        state -> handleStateChange(state)
+                    state -> handleStateChange(state)
                 }
             }
         }
@@ -87,6 +88,12 @@ class BoletimActivity : AppCompatActivity(), FragmentAttachListenerBoletim {
 
     override fun goAtivMMFert() {
         val intent = Intent(this, ApontActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+        startActivity(intent)
+    }
+
+    override fun goCheckList() {
+        val intent = Intent(this, CheckListActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
         startActivity(intent)
     }

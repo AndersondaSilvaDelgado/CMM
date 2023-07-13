@@ -1,8 +1,8 @@
 package br.com.usinasantafe.cmm.features.infra.repositories.stable
 
 import br.com.usinasantafe.cmm.features.domain.entities.stable.EquipSeg
-import br.com.usinasantafe.cmm.features.infra.models.stable.toEquipSeg
-import br.com.usinasantafe.cmm.features.infra.models.stable.toEquipSegModel
+import br.com.usinasantafe.cmm.features.infra.models.room.stable.toEquipSeg
+import br.com.usinasantafe.cmm.features.infra.models.room.stable.toEquipSegModel
 import br.com.usinasantafe.cmm.features.domain.repositories.stable.EquipSegRepository
 import br.com.usinasantafe.cmm.features.infra.datasource.room.stable.EquipSegDatasourceRoom
 import br.com.usinasantafe.cmm.features.infra.datasource.webservice.stable.EquipSegDatasourceWebService

@@ -34,7 +34,7 @@ class MenuInicialViewModel @Inject constructor (
 
     fun checkStatusSend() = viewModelScope.launch {
         if(hasConfig()){
-            setStatusSend(recoverConfig()!!.statusEnvio)
+            setStatusSend(recoverConfig()!!.statusEnvio!!)
         } else {
             setStatusSend(StatusSend.VAZIO)
         }

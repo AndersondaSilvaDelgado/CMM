@@ -1,8 +1,8 @@
 package br.com.usinasantafe.cmm.features.infra.repositories.stable
 
 import br.com.usinasantafe.cmm.features.domain.entities.stable.Frente
-import br.com.usinasantafe.cmm.features.infra.models.stable.toFrente
-import br.com.usinasantafe.cmm.features.infra.models.stable.toFrenteModel
+import br.com.usinasantafe.cmm.features.infra.models.room.stable.toFrente
+import br.com.usinasantafe.cmm.features.infra.models.room.stable.toFrenteModel
 import br.com.usinasantafe.cmm.features.domain.repositories.stable.FrenteRepository
 import br.com.usinasantafe.cmm.features.infra.datasource.room.stable.FrenteDatasourceRoom
 import br.com.usinasantafe.cmm.features.infra.datasource.webservice.stable.FrenteDatasourceWebService

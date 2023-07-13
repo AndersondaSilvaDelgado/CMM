@@ -3,46 +3,41 @@ package br.com.usinasantafe.cmm.features.external.room
 import androidx.room.*
 import br.com.usinasantafe.cmm.common.utils.VERSION_DB
 import br.com.usinasantafe.cmm.features.external.room.dao.stable.*
-import br.com.usinasantafe.cmm.features.external.room.dao.variable.ApontFertDao
-import br.com.usinasantafe.cmm.features.external.room.dao.variable.ApontMMDao
-import br.com.usinasantafe.cmm.features.external.room.dao.variable.BoletimFertDao
-import br.com.usinasantafe.cmm.features.external.room.dao.variable.BoletimMMDao
-import br.com.usinasantafe.cmm.features.infra.models.stable.*
-import br.com.usinasantafe.cmm.features.infra.models.variable.room.ApontFertRoomModel
-import br.com.usinasantafe.cmm.features.infra.models.variable.room.ApontMMRoomModel
-import br.com.usinasantafe.cmm.features.infra.models.variable.room.BoletimFertRoomModel
-import br.com.usinasantafe.cmm.features.infra.models.variable.room.BoletimMMRoomModel
+import br.com.usinasantafe.cmm.features.external.room.dao.variable.*
+import br.com.usinasantafe.cmm.features.infra.models.room.stable.*
+import br.com.usinasantafe.cmm.features.infra.models.room.variable.*
 
 @Database(
     entities = [
         ApontFertRoomModel::class,
         ApontMMRoomModel::class,
-        AtividadeModel::class,
-        BocalModel::class,
-        ComponenteModel::class,
+        AtividadeRoomModel::class,
+        BocalRoomModel::class,
+        CabecCheckListRoomModel::class,
+        ComponenteRoomModel::class,
         BoletimMMRoomModel::class,
         BoletimFertRoomModel::class,
-        EquipModel::class,
-        EquipSegModel::class,
-        FrenteModel::class,
-        FuncModel::class,
-        ItemCheckListModel::class,
-        ItemOSMecanModel::class,
-        LeiraModel::class,
-        OperMotoMecModel::class,
-        OSModel::class,
-        ParadaModel::class,
-        PneuModel::class,
-        PressaoBocalModel::class,
-        ProdutoModel::class,
-        PropriedadeModel::class,
-        RAtivParadaModel::class,
-        REquipAtivModel::class,
-        REquipPneuModel::class,
-        RFuncaoAtivParadaModel::class,
-        ROSAtivModel::class,
-        ServicoModel::class,
-        TurnoModel::class], version = VERSION_DB, exportSchema = false
+        EquipRoomModel::class,
+        EquipSegRoomModel::class,
+        FrenteRoomModel::class,
+        FuncRoomModel::class,
+        ItemCheckListRoomModel::class,
+        ItemOSMecanRoomModel::class,
+        LeiraRoomModel::class,
+        OperMotoMecRoomModel::class,
+        OSRoomModel::class,
+        ParadaRoomModel::class,
+        PneuRoomModel::class,
+        PressaoBocalRoomModel::class,
+        ProdutoRoomModel::class,
+        PropriedadeRoomModel::class,
+        RAtivParadaRoomModel::class,
+        REquipAtivRoomModel::class,
+        REquipPneuRoomModel::class,
+        RFuncaoAtivParadaRoomModel::class,
+        ROSAtivRoomModel::class,
+        ServicoRoomModel::class,
+        TurnoRoomModel::class], version = VERSION_DB, exportSchema = false
 )
 abstract class AppDatabaseRoom : RoomDatabase() {
     abstract fun apontFertDao(): ApontFertDao

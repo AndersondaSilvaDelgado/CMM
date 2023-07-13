@@ -10,7 +10,7 @@ import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.database.reco
 import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.database.recover.RecoverROSAtiv
 import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.database.update.UpdateAtividade
 import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.database.update.UpdateRFuncaoAtivParada
-import br.com.usinasantafe.cmm.features.presenter.models.ResultUpdateDataBase
+import br.com.usinasantafe.cmm.features.presenter.models.ResultUpdateDatabase
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
@@ -25,11 +25,11 @@ class RecoverAtividadeImpl @Inject constructor(
     private val updateRFuncaoAtivParada: UpdateRFuncaoAtivParada
 ): RecoverAtividade {
 
-    override suspend fun invoke(flowNote: FlowNote, contador: Int, qtde: Int): Flow<ResultUpdateDataBase> {
+    override suspend fun invoke(flowNote: FlowNote, contador: Int, qtde: Int): Flow<ResultUpdateDatabase> {
         return flow {
             var contRecoverAtiv = contador
             var nroEquip = equipRepository.getEquip().nroEquip
-            var nroOS = if(flowNote == FlowNote.BOLETIM) boletimMMFertRepository.getOS() else apontMMFertRepository.getNroOS()
+            var nroOS = if(flowNote == FlowNote.BOLETIM) boletimMMFertRepository.getNroOSBoletimAberto() else apontMMFertRepository.getNroOS()
             recoverREquipAtiv(nroEquip.toString(), contRecoverAtiv, qtde).collect{
                 emit(it)
                 contRecoverAtiv = it.count;
@@ -46,7 +46,7 @@ class RecoverAtividadeImpl @Inject constructor(
                 emit(it)
                 contRecoverAtiv = it.count;
             }
-            emit(ResultUpdateDataBase(count = qtde, describe = TEXT_SUCESS_UPDATE, size = qtde))
+            emit(ResultUpdateDatabase(count = qtde, describe = TEXT_SUCESS_UPDATE, size = qtde))
         }
     }
 

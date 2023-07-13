@@ -9,7 +9,7 @@ import br.com.usinasantafe.cmm.features.infra.datasource.room.variable.ApontMMDa
 import br.com.usinasantafe.cmm.features.infra.datasource.room.variable.BoletimFertDatasourceRoom
 import br.com.usinasantafe.cmm.features.infra.datasource.room.variable.BoletimMMDatasourceRoom
 import br.com.usinasantafe.cmm.features.infra.datasource.webservice.variable.MotoMecDatasourceWebService
-import br.com.usinasantafe.cmm.features.infra.models.variable.room.*
+import br.com.usinasantafe.cmm.features.infra.models.room.variable.*
 import br.com.usinasantafe.cmm.features.infra.models.variable.webservice.toBoletimMM
 import br.com.usinasantafe.cmm.features.infra.models.variable.webservice.toBoletimMMWebServiceModel
 import javax.inject.Inject
@@ -25,18 +25,34 @@ class BoletimMMFertRepositoryImpl @Inject constructor(
 ) : BoletimMMFertRepository {
 
     override suspend fun checkAbertoBoletimMMFert(): Boolean {
-        return boletimMMDatasourceRoom.checkBoletimAbertoMM() || boletimFertDatasourceRoom.checkBoletimAbertoFert()
+        return boletimMMDatasourceRoom.checkBoletimAbertoMM()
     }
 
     override suspend fun checkBoletimSend(): Boolean {
         return boletimMMDatasourceRoom.checkBoletimMMSend()
     }
 
+    override suspend fun deleteBoletimEnviado(): Boolean {
+        var listBoletim = boletimMMDatasourceRoom.listBoletimMMFechadoEnviado()
+        listBoletim.forEach { boletimMMRoomModel ->
+            var listApont = apontMMDatasourceRoom.listApontIdBolStatusEnviar(boletimMMRoomModel.idBolMM!!)
+            listApont.forEach { apontMMRoomModel ->
+                if(!apontMMDatasourceRoom.deleteApontMM(apontMMRoomModel)){
+                    return false
+                }
+            }
+            if(!boletimMMDatasourceRoom.deleteBoletimMM(boletimMMRoomModel)){
+                return false
+            }
+        }
+        return true
+    }
+
     override suspend fun finishBoletimMMFert(): Boolean {
         return boletimMMDatasourceRoom.finishBoletimMM(boletimMMDatasourceRoom.getBoletimAbertoMM())
     }
 
-    override suspend fun getAtiv(): Long {
+    override suspend fun getIdAtivBoletimAberto(): Long {
         return if (equipRepository.getEquip().tipoEquip == 1L) {
             boletimMMDatasourceRoom.getBoletimAbertoMM().idAtivBolMM
         } else {
@@ -44,7 +60,7 @@ class BoletimMMFertRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun getIdBoletim(): Long {
+    override suspend fun getIdBoletimAberto(): Long {
         return if (equipRepository.getEquip().tipoEquip == 1L) {
             boletimMMDatasourceRoom.getBoletimAbertoMM().idBolMM!!
         } else {
@@ -52,11 +68,27 @@ class BoletimMMFertRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun getOS(): Long {
+    override suspend fun getNroMatricFuncBoletimAberto(): Long {
+        return if (equipRepository.getEquip().tipoEquip == 1L) {
+            boletimMMDatasourceRoom.getBoletimAbertoMM().matricFuncBolMM
+        } else {
+            boletimFertDatasourceRoom.getBoletimAbertoFert().matricFuncBolFert
+        }
+    }
+
+    override suspend fun getNroOSBoletimAberto(): Long {
         return if (equipRepository.getEquip().tipoEquip == 1L) {
             boletimMMDatasourceSharedPreferences.getBoletimMM().nroOSBol!!
         } else {
             boletimFertDatasourceSharedPreferences.getBoletimFert().nroOSBol!!
+        }
+    }
+
+    override suspend fun getIdTurnoBoletimAberto(): Long {
+        return if (equipRepository.getEquip().tipoEquip == 1L) {
+            boletimMMDatasourceRoom.getBoletimAbertoMM().idTurnoBolMM
+        } else {
+            boletimFertDatasourceRoom.getBoletimAbertoFert().idTurnoBolFert
         }
     }
 

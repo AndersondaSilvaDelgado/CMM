@@ -1,10 +1,10 @@
 package br.com.usinasantafe.cmm.features.infra.datasource.room.stable
 
-import br.com.usinasantafe.cmm.features.infra.models.stable.ComponenteModel
+import br.com.usinasantafe.cmm.features.infra.models.room.stable.ComponenteRoomModel
 
 interface ComponenteDatasourceRoom {
 
-    suspend fun addAllComponente(vararg componenteModels: ComponenteModel)
+    suspend fun addAllComponente(vararg componenteRoomModels: ComponenteRoomModel)
 
     suspend fun deleteAllComponente()
 

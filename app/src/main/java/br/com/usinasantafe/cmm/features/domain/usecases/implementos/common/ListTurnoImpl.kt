@@ -8,13 +8,12 @@ import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.common.ListTu
 import javax.inject.Inject
 
 class ListTurnoImpl @Inject constructor (
-    private val configRepository: ConfigRepository,
     private val equipRepository: EquipRepository,
     private val turnoRepository: TurnoRepository
 ): ListTurno {
 
     override suspend fun invoke(): List<Turno> {
-        return turnoRepository.listTurno(equipRepository.getEquipNro(configRepository.getConfig().equipConfig).codTurno)
+        return turnoRepository.listTurno(equipRepository.getEquip().codTurno)
     }
 
 }

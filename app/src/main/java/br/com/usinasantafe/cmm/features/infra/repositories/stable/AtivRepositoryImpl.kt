@@ -1,8 +1,8 @@
 package br.com.usinasantafe.cmm.features.infra.repositories.stable
 
 import br.com.usinasantafe.cmm.features.domain.entities.stable.Ativ
-import br.com.usinasantafe.cmm.features.infra.models.stable.toAtividade
-import br.com.usinasantafe.cmm.features.infra.models.stable.toAtividadeModel
+import br.com.usinasantafe.cmm.features.infra.models.room.stable.toAtividade
+import br.com.usinasantafe.cmm.features.infra.models.room.stable.toAtividadeModel
 import br.com.usinasantafe.cmm.features.domain.repositories.stable.AtivRepository
 import br.com.usinasantafe.cmm.features.infra.datasource.room.stable.AtividadeDatasourceRoom
 import br.com.usinasantafe.cmm.features.infra.datasource.webservice.stable.AtividadeDatasourceWebService

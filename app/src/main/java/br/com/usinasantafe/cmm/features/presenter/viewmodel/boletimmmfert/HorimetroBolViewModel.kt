@@ -2,6 +2,7 @@ package br.com.usinasantafe.cmm.features.presenter.viewmodel.boletimmmfert
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import br.com.usinasantafe.cmm.common.utils.ChoiceHorimetro
 import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.boletimmmfert.CheckAbertoBoletimMMFert
 import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.boletimmmfert.SetHorimetroFinalBoletimMMFert
 import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.boletimmmfert.SetHorimetroInicialBoletimMMFert
@@ -21,8 +22,8 @@ class HorimetroBolViewModel @Inject constructor (
     private val _uiStateFlow = MutableStateFlow<HorimetroBolFragmentState>(HorimetroBolFragmentState.Init)
     val uiStateFlow: StateFlow<HorimetroBolFragmentState> get() = _uiStateFlow
 
-    private fun checkSetHorimetroInicial(checkSetHorimetro: Boolean){
-        _uiStateFlow.value = HorimetroBolFragmentState.CheckSetHorimetroInicial(checkSetHorimetro)
+    private fun checkSetHorimetroInicial(choiceHorimetro: ChoiceHorimetro){
+        _uiStateFlow.value = HorimetroBolFragmentState.CheckSetHorimetroInicial(choiceHorimetro)
     }
 
     private fun checkSetHorimetroFinal(checkSetHorimetro: Boolean){
@@ -49,7 +50,7 @@ class HorimetroBolViewModel @Inject constructor (
 
 sealed class HorimetroBolFragmentState {
     object Init : HorimetroBolFragmentState()
-    data class CheckSetHorimetroInicial(val checkSetHorimetroInicial: Boolean): HorimetroBolFragmentState()
+    data class CheckSetHorimetroInicial(val choiceHorimetro: ChoiceHorimetro): HorimetroBolFragmentState()
     data class CheckSetHorimetroFinal(val checkSetHorimetroFinal: Boolean): HorimetroBolFragmentState()
     object HorimetroInicial : HorimetroBolFragmentState()
     object HorimetroFinal : HorimetroBolFragmentState()

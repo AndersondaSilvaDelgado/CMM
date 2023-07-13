@@ -27,7 +27,7 @@ class ListAtivImpl @Inject constructor (
     override suspend fun invoke(flowNote: FlowNote): List<Ativ> {
 
         var idOS = 0L
-        var nroOS = if(flowNote == FlowNote.BOLETIM) boletimMMFertRepository.getOS() else apontMMFertRepository.getNroOS()
+        var nroOS = if(flowNote == FlowNote.BOLETIM) boletimMMFertRepository.getNroOSBoletimAberto() else apontMMFertRepository.getNroOS()
 
         if(checkNroOS(nroOS.toString())){
             idOS = getOSNro(nroOS).idOS
@@ -35,14 +35,13 @@ class ListAtivImpl @Inject constructor (
         var listREquipAtiv = rEquipAtivRepository.listREquipAtiv(equipRepository.getEquip().idEquip)
         var listROSAtiv = rOSAtivRepository.listROSAtiv(idOS)
 
-        var listIdAtiv = emptyList<Long>()
+        var listIdAtiv = listREquipAtiv.map { it.idAtiv }
 
-        if(listROSAtiv.isNotEmpty()){
-            listREquipAtiv.forEach { rEquipAtiv ->
-                listIdAtiv = listROSAtiv.filter { it.idAtiv == rEquipAtiv.idAtiv }.map { it.idAtiv }
-            }
-        } else {
-            listIdAtiv = listREquipAtiv.map { it.idAtiv }
+        if(listROSAtiv.isNotEmpty()) {
+            listIdAtiv = listROSAtiv.filter { listIdAtiv.contains(it.idAtiv) }.map { it.idAtiv }
+//            listREquipAtiv.forEach { rEquipAtiv ->
+//                listIdAtiv = listROSAtiv.filter { it.idAtiv == rEquipAtiv.idAtiv }.map { it.idAtiv }
+//            }
         }
 
         return ativRepository.listInIdAtiv(listIdAtiv)

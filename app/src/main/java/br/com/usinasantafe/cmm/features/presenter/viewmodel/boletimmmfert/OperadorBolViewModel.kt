@@ -6,13 +6,11 @@ import br.com.usinasantafe.cmm.common.utils.StatusUpdate
 import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.boletimmmfert.SetMatricFuncBoletimMMFert
 import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.common.CheckMatricOperador
 import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.database.update.UpdateFunc
-import br.com.usinasantafe.cmm.features.presenter.models.ResultUpdateDataBase
-import br.com.usinasantafe.cmm.features.presenter.viewmodel.config.ConfigFragmentState
+import br.com.usinasantafe.cmm.features.presenter.models.ResultUpdateDatabase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -35,12 +33,12 @@ class OperadorBolViewModel @Inject constructor(
         _uiStateFlow.value = OperadorBolFragmentState.CheckSetMatricFunc(checkSetMatricOperador)
     }
 
-    private fun setStatusUpdateFunc(statusUpdate: StatusUpdate) {
-        _uiStateFlow.value = OperadorBolFragmentState.FeedbackUpdateFunc(statusUpdate)
+    private fun setStatusUpdate(statusUpdate: StatusUpdate) {
+        _uiStateFlow.value = OperadorBolFragmentState.FeedbackUpdate(statusUpdate)
     }
 
-    private fun setResultUpdate(resultUpdateDataBase: ResultUpdateDataBase){
-        _uiStateFlow.value = OperadorBolFragmentState.SetResultUpdate(resultUpdateDataBase)
+    private fun setResultUpdate(resultUpdateDatabase: ResultUpdateDatabase){
+        _uiStateFlow.value = OperadorBolFragmentState.SetResultUpdate(resultUpdateDatabase)
     }
 
     fun checkMatricFunc(matricOperador: String) = viewModelScope.launch {
@@ -55,13 +53,13 @@ class OperadorBolViewModel @Inject constructor(
         viewModelScope.launch {
             updateFunc()
                 .catch { catch ->
-                    setResultUpdate(ResultUpdateDataBase(1, "Erro: $catch", 100, 100))
-                    setStatusUpdateFunc(StatusUpdate.FALHA)
+                    setResultUpdate(ResultUpdateDatabase(1, "Erro: $catch", 100, 100))
+                    setStatusUpdate(StatusUpdate.FALHA)
                 }
-                .collect { resultUpdateDataBase ->
-                    setResultUpdate(resultUpdateDataBase)
-                    if (resultUpdateDataBase.percentage == 100) {
-                        setStatusUpdateFunc(StatusUpdate.ATUALIZADO)
+                .collect { resultUpdateDatabase ->
+                    setResultUpdate(resultUpdateDatabase)
+                    if (resultUpdateDatabase.percentage == 100) {
+                        setStatusUpdate(StatusUpdate.ATUALIZADO)
                     }
                 }
         }
@@ -72,6 +70,6 @@ sealed class OperadorBolFragmentState {
     object Init : OperadorBolFragmentState()
     data class CheckMatricFunc(val checkMatricOperador: Boolean) : OperadorBolFragmentState()
     data class CheckSetMatricFunc(val checkSetMatricOperador: Boolean) : OperadorBolFragmentState()
-    data class FeedbackUpdateFunc(val statusUpdate: StatusUpdate) : OperadorBolFragmentState()
-    data class SetResultUpdate(val resultUpdateDataBase: ResultUpdateDataBase) : OperadorBolFragmentState()
+    data class FeedbackUpdate(val statusUpdate: StatusUpdate) : OperadorBolFragmentState()
+    data class SetResultUpdate(val resultUpdateDatabase: ResultUpdateDatabase) : OperadorBolFragmentState()
 }

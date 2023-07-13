@@ -1,8 +1,8 @@
 package br.com.usinasantafe.cmm.features.infra.repositories.stable
 
 import br.com.usinasantafe.cmm.features.domain.entities.stable.RAtivParada
-import br.com.usinasantafe.cmm.features.infra.models.stable.toRAtivParada
-import br.com.usinasantafe.cmm.features.infra.models.stable.toRAtivParadaModel
+import br.com.usinasantafe.cmm.features.infra.models.room.stable.toRAtivParada
+import br.com.usinasantafe.cmm.features.infra.models.room.stable.toRAtivParadaModel
 import br.com.usinasantafe.cmm.features.domain.repositories.stable.RAtivParadaRepository
 import br.com.usinasantafe.cmm.features.infra.datasource.room.stable.RAtivParadaDatasourceRoom
 import br.com.usinasantafe.cmm.features.infra.datasource.webservice.stable.RAtivParadaDatasourceWebService

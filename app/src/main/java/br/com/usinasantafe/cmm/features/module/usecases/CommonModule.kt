@@ -26,11 +26,15 @@ interface CommonModule {
 
     @Singleton
     @Binds
-    fun bindCheckSendData(usecase: CheckSendDataImpl): CheckSendData
+    fun bindCheckStatusSend(usecase: CheckStatusSendImpl): CheckStatusSend
 
     @Singleton
     @Binds
     fun bindCheckUpdate(usecase: CheckUpdateImpl): CheckUpdate
+
+    @Singleton
+    @Binds
+    fun bindClearDataMotoMec(usecase: ClearDataMotoMecImpl): ClearDataMotoMec
 
     @Singleton
     @Binds

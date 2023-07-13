@@ -4,13 +4,13 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
 import br.com.usinasantafe.cmm.common.utils.TB_FUNC
-import br.com.usinasantafe.cmm.features.infra.models.stable.FuncModel
+import br.com.usinasantafe.cmm.features.infra.models.room.stable.FuncRoomModel
 
 @Dao
 interface FuncDao {
 
     @Insert
-    suspend fun insertAll(vararg funcModels: FuncModel)
+    suspend fun insertAll(vararg funcRoomModels: FuncRoomModel)
 
     @Query("DELETE FROM $TB_FUNC")
     suspend fun deleteAll()

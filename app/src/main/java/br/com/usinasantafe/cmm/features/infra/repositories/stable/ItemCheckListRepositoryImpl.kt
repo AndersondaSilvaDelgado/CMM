@@ -1,8 +1,8 @@
 package br.com.usinasantafe.cmm.features.infra.repositories.stable
 
 import br.com.usinasantafe.cmm.features.domain.entities.stable.ItemCheckList
-import br.com.usinasantafe.cmm.features.infra.models.stable.toItemCheckList
-import br.com.usinasantafe.cmm.features.infra.models.stable.toItemCheckListModel
+import br.com.usinasantafe.cmm.features.infra.models.room.stable.toItemCheckList
+import br.com.usinasantafe.cmm.features.infra.models.room.stable.toItemCheckListModel
 import br.com.usinasantafe.cmm.features.domain.repositories.stable.ItemCheckListRepository
 import br.com.usinasantafe.cmm.features.infra.datasource.room.stable.ItemCheckListDatasourceRoom
 import br.com.usinasantafe.cmm.features.infra.datasource.webservice.stable.ItemCheckListDatasourceWebService

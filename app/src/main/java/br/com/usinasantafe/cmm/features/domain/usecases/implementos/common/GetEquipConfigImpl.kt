@@ -7,12 +7,11 @@ import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.common.GetEqu
 import javax.inject.Inject
 
 class GetEquipConfigImpl @Inject constructor (
-    private val configRepository: ConfigRepository,
     private val equipRepository: EquipRepository
 ): GetEquipConfig {
 
     override suspend fun invoke(): Equip {
-        return equipRepository.getEquipNro(configRepository.getConfig().equipConfig)
+        return equipRepository.getEquip()
     }
 
 }

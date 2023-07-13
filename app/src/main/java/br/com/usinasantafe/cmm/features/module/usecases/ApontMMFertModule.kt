@@ -14,6 +14,10 @@ interface ApontMMFertModule {
 
     @Singleton
     @Binds
+    fun bindInsertParadaCheckListMMFert(usecase: InsertParadaCheckListMMFertImpl): InsertParadaCheckListMMFert
+
+    @Singleton
+    @Binds
     fun bindListMenuECM(usecase: ListMenuECMImpl): ListMenuECM
 
     @Singleton

@@ -17,7 +17,7 @@ import br.com.usinasantafe.cmm.common.extension.showToast
 import br.com.usinasantafe.cmm.common.utils.TypeNote
 import br.com.usinasantafe.cmm.databinding.FragmentAtivApontBinding
 import br.com.usinasantafe.cmm.features.domain.entities.stable.Ativ
-import br.com.usinasantafe.cmm.features.presenter.models.ResultUpdateDataBase
+import br.com.usinasantafe.cmm.features.presenter.models.ResultUpdateDatabase
 import br.com.usinasantafe.cmm.features.presenter.viewmodel.apontmmfert.AtivApontFragmentState
 import br.com.usinasantafe.cmm.features.presenter.viewmodel.apontmmfert.AtivApontViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -92,7 +92,7 @@ class AtivApontFragment : BaseFragment<FragmentAtivApontBinding>(
             is AtivApontFragmentState.ListAtiv -> handleAtivList(state.ativList)
             is AtivApontFragmentState.IsUpdateAtiv -> handleUpdate(state.isUpdateAtiv)
             is AtivApontFragmentState.CheckSetAtivApont -> handleCheckSetAtiv(state.typeNote)
-            is AtivApontFragmentState.SetResultUpdate -> handleStatusUpdate(state.resultUpdateDataBase)
+            is AtivApontFragmentState.SetResultUpdate -> handleStatusUpdate(state.resultUpdateDatabase)
         }
     }
 
@@ -100,9 +100,9 @@ class AtivApontFragment : BaseFragment<FragmentAtivApontBinding>(
         viewList(ativList)
     }
 
-    private fun handleStatusUpdate(resultUpdateDataBase: ResultUpdateDataBase?){
-        resultUpdateDataBase?.let {
-            genericDialogProgressBar.setValue(resultUpdateDataBase)
+    private fun handleStatusUpdate(resultUpdateDatabase: ResultUpdateDatabase?){
+        resultUpdateDatabase?.let {
+            genericDialogProgressBar.setValue(resultUpdateDatabase)
         }
     }
 

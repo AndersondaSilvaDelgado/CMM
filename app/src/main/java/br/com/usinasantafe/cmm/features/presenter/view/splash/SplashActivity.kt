@@ -44,7 +44,7 @@ class SplashActivity : AppCompatActivity() {
         lifecycleScope.launch {
             repeatOnLifecycle(Lifecycle.State.STARTED){
                 viewModel.uiStateFlow.collect{
-                        state -> handleStateChange(state)
+                    state -> handleStateChange(state)
                 }
             }
         }

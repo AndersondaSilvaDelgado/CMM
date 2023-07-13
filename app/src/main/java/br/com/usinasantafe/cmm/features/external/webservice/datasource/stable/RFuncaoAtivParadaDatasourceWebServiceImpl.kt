@@ -1,7 +1,7 @@
 package br.com.usinasantafe.cmm.features.external.webservice.datasource.stable
 
 import br.com.usinasantafe.cmm.features.external.webservice.api.stable.RFuncaoAtivParadaApi
-import br.com.usinasantafe.cmm.features.infra.models.stable.RFuncaoAtivParadaModel
+import br.com.usinasantafe.cmm.features.infra.models.room.stable.RFuncaoAtivParadaRoomModel
 import br.com.usinasantafe.cmm.features.infra.datasource.webservice.stable.RFuncaoAtivParadaDatasourceWebService
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -11,7 +11,7 @@ class RFuncaoAtivParadaDatasourceWebServiceImpl @Inject constructor(
     private val rFuncaoAtivParadaApi: RFuncaoAtivParadaApi
 ): RFuncaoAtivParadaDatasourceWebService {
 
-    override suspend fun getAllRFuncaoAtivParada(): Flow<Result<List<RFuncaoAtivParadaModel>>> {
+    override suspend fun getAllRFuncaoAtivParada(): Flow<Result<List<RFuncaoAtivParadaRoomModel>>> {
         return flow{
             val response = rFuncaoAtivParadaApi.all()
             if (response.isSuccessful) {

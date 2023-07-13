@@ -12,6 +12,7 @@ import br.com.usinasantafe.cmm.common.base.BaseFragment
 import br.com.usinasantafe.cmm.common.extension.onBackPressed
 import br.com.usinasantafe.cmm.common.extension.setListenerButtonsGenericCVirgula
 import br.com.usinasantafe.cmm.common.extension.showGenericAlertDialog
+import br.com.usinasantafe.cmm.common.utils.ChoiceHorimetro
 import br.com.usinasantafe.cmm.databinding.FragmentHorimetroBolBinding
 import br.com.usinasantafe.cmm.features.presenter.viewmodel.boletimmmfert.HorimetroBolFragmentState
 import br.com.usinasantafe.cmm.features.presenter.viewmodel.boletimmmfert.HorimetroBolViewModel
@@ -69,7 +70,7 @@ class HorimetroBolFragment : BaseFragment<FragmentHorimetroBolBinding>(
     private fun handleStateChange(state: HorimetroBolFragmentState){
         when(state){
             is HorimetroBolFragmentState.Init -> Unit
-            is HorimetroBolFragmentState.CheckSetHorimetroInicial -> handleCheckSetHorimetroInicial(state.checkSetHorimetroInicial)
+            is HorimetroBolFragmentState.CheckSetHorimetroInicial -> handleCheckSetHorimetroInicial(state.choiceHorimetro)
             is HorimetroBolFragmentState.CheckSetHorimetroFinal -> handleCheckSetHorimetroFinal(state.checkSetHorimetroFinal)
             is HorimetroBolFragmentState.HorimetroInicial -> handleSetTitle("INICIAL")
             is HorimetroBolFragmentState.HorimetroFinal -> handleSetTitle("FINAL")
@@ -80,11 +81,11 @@ class HorimetroBolFragment : BaseFragment<FragmentHorimetroBolBinding>(
         binding.textViewPadrao.text = getString(R.string.texto_horimetro, title)
     }
 
-    private fun handleCheckSetHorimetroInicial(checkSetHorimetro: Boolean) {
-        if(checkSetHorimetro){
-            fragmentAttachListenerBoletim?.goAtivMMFert()
-        } else {
-            showGenericAlertDialog(getString(R.string.texto_falha_insercao_campo, "HORIMETRO INICIAL"), requireContext())
+    private fun handleCheckSetHorimetroInicial(choiceHorimetro: ChoiceHorimetro) {
+        when(choiceHorimetro){
+            ChoiceHorimetro.FALHA -> showGenericAlertDialog(getString(R.string.texto_falha_insercao_campo, "HORIMETRO INICIAL"), requireContext())
+            ChoiceHorimetro.APONTAMENTO -> fragmentAttachListenerBoletim?.goAtivMMFert()
+            ChoiceHorimetro.CHECKLIST -> fragmentAttachListenerBoletim?.goCheckList()
         }
     }
 

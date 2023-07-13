@@ -16,7 +16,7 @@ import br.com.usinasantafe.cmm.common.extension.onBackPressed
 import br.com.usinasantafe.cmm.common.extension.showToast
 import br.com.usinasantafe.cmm.databinding.FragmentParadaApontBinding
 import br.com.usinasantafe.cmm.features.domain.entities.stable.Parada
-import br.com.usinasantafe.cmm.features.presenter.models.ResultUpdateDataBase
+import br.com.usinasantafe.cmm.features.presenter.models.ResultUpdateDatabase
 import br.com.usinasantafe.cmm.features.presenter.viewmodel.apontmmfert.ParadaApontFragmentState
 import br.com.usinasantafe.cmm.features.presenter.viewmodel.apontmmfert.ParadaApontViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -60,7 +60,7 @@ class ParadaApontFragment : BaseFragment<FragmentParadaApontBinding>(
             is ParadaApontFragmentState.CheckSetParadaApont -> handleCheckSetParada(state.check)
             is ParadaApontFragmentState.IsUpdateParada -> handleUpdate(state.isUpdateParada)
             is ParadaApontFragmentState.ListParada -> handleParadaList(state.paradaList)
-            is ParadaApontFragmentState.SetResultUpdate -> handleStatusUpdate(state.resultUpdateDataBase)
+            is ParadaApontFragmentState.SetResultUpdate -> handleStatusUpdate(state.resultUpdateDatabase)
         }
     }
 
@@ -109,9 +109,9 @@ class ParadaApontFragment : BaseFragment<FragmentParadaApontBinding>(
         }
     }
 
-    private fun handleStatusUpdate(resultUpdateDataBase: ResultUpdateDataBase?){
-        resultUpdateDataBase?.let {
-            genericDialogProgressBar.setValue(resultUpdateDataBase)
+    private fun handleStatusUpdate(resultUpdateDatabase: ResultUpdateDatabase?){
+        resultUpdateDatabase?.let {
+            genericDialogProgressBar.setValue(resultUpdateDatabase)
         }
     }
 

@@ -6,4 +6,5 @@ interface FragmentAttachListenerConfig {
     fun goConfigFragment()
     fun goMenuInicial()
     fun goBoletimMMFert()
+    fun goSplash()
 }

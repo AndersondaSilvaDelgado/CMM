@@ -1,8 +1,8 @@
 package br.com.usinasantafe.cmm.features.infra.repositories.stable
 
 import br.com.usinasantafe.cmm.features.domain.entities.stable.Func
-import br.com.usinasantafe.cmm.features.infra.models.stable.toFunc
-import br.com.usinasantafe.cmm.features.infra.models.stable.toFuncModel
+import br.com.usinasantafe.cmm.features.infra.models.room.stable.toFunc
+import br.com.usinasantafe.cmm.features.infra.models.room.stable.toFuncModel
 import br.com.usinasantafe.cmm.features.domain.repositories.stable.FuncRepository
 import br.com.usinasantafe.cmm.features.infra.datasource.room.stable.FuncDatasourceRoom
 import br.com.usinasantafe.cmm.features.infra.datasource.webservice.stable.FuncDatasourceWebService

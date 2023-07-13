@@ -2,7 +2,6 @@ package br.com.usinasantafe.cmm.features.presenter.view.boletimmmfert
 
 import android.content.Context
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.view.WindowManager
 import androidx.fragment.app.viewModels
@@ -17,7 +16,7 @@ import br.com.usinasantafe.cmm.common.extension.setListenerButtonsGenericSUpdate
 import br.com.usinasantafe.cmm.common.extension.showGenericAlertDialog
 import br.com.usinasantafe.cmm.common.utils.StatusRecover
 import br.com.usinasantafe.cmm.databinding.FragmentOsBolBinding
-import br.com.usinasantafe.cmm.features.presenter.models.ResultUpdateDataBase
+import br.com.usinasantafe.cmm.features.presenter.models.ResultUpdateDatabase
 import br.com.usinasantafe.cmm.features.presenter.viewmodel.boletimmmfert.OSBolFragmentState
 import br.com.usinasantafe.cmm.features.presenter.viewmodel.boletimmmfert.OSBolViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -80,7 +79,7 @@ class OSBolFragment : BaseFragment<FragmentOsBolBinding>(
             is OSBolFragmentState.CheckNroOS -> handleCheckNroOS(state.checkNroOS)
             is OSBolFragmentState.CheckSetNroOS -> fragmentAttachListenerBoletim?.goAtivBolFragment()
             is OSBolFragmentState.FeedbackUpdateOS -> handleFeedbackUpdateOS(state.statusRecover)
-            is OSBolFragmentState.SetResultUpdate -> handleStatusUpdate(state.resultUpdateDataBase)
+            is OSBolFragmentState.SetResultUpdate -> handleStatusUpdate(state.resultUpdateDatabase)
         }
     }
 
@@ -111,13 +110,13 @@ class OSBolFragment : BaseFragment<FragmentOsBolBinding>(
         }
     }
 
-    private fun handleStatusUpdate(resultUpdateDataBase: ResultUpdateDataBase?) {
-        resultUpdateDataBase?.let {
-            describeRecover = resultUpdateDataBase.describe
+    private fun handleStatusUpdate(resultUpdateDatabase: ResultUpdateDatabase?) {
+        resultUpdateDatabase?.let {
+            describeRecover = resultUpdateDatabase.describe
             if(genericDialogProgressBar == null){
                 showProgressBar()
             }
-            genericDialogProgressBar!!.setValue(resultUpdateDataBase)
+            genericDialogProgressBar!!.setValue(resultUpdateDatabase)
         }
     }
 

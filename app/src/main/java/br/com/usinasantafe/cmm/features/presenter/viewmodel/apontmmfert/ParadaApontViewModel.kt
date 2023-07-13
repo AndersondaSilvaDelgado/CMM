@@ -2,13 +2,11 @@ package br.com.usinasantafe.cmm.features.presenter.viewmodel.apontmmfert
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import br.com.usinasantafe.cmm.common.utils.FlowNote
-import br.com.usinasantafe.cmm.common.utils.TypeNote
 import br.com.usinasantafe.cmm.features.domain.entities.stable.Parada
 import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.apontmmfert.ListParada
 import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.apontmmfert.SetIdParadaApontMMFert
 import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.database.recover.RecoverParada
-import br.com.usinasantafe.cmm.features.presenter.models.ResultUpdateDataBase
+import br.com.usinasantafe.cmm.features.presenter.models.ResultUpdateDatabase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -43,8 +41,8 @@ class ParadaApontViewModel @Inject constructor (
         _uiStateFlow.value = ParadaApontFragmentState.IsUpdateParada(false)
     }
 
-    private fun setResultUpdate(resultUpdateDataBase: ResultUpdateDataBase) {
-        _uiStateFlow.value = ParadaApontFragmentState.SetResultUpdate(resultUpdateDataBase)
+    private fun setResultUpdate(resultUpdateDatabase: ResultUpdateDatabase) {
+        _uiStateFlow.value = ParadaApontFragmentState.SetResultUpdate(resultUpdateDatabase)
     }
 
     fun setIdParada(parada: Parada) = viewModelScope.launch {
@@ -61,11 +59,11 @@ class ParadaApontViewModel @Inject constructor (
                     showUpdateParada()
                 }
                 .catch { catch ->
-                    setResultUpdate(ResultUpdateDataBase(1, "Erro: $catch", 100, 100))
+                    setResultUpdate(ResultUpdateDatabase(1, "Erro: $catch", 100, 100))
                 }
-                .collect { resultUpdateDataBase ->
-                    setResultUpdate(resultUpdateDataBase)
-                    if (resultUpdateDataBase.percentage == 100) {
+                .collect { resultUpdateDatabase ->
+                    setResultUpdate(resultUpdateDatabase)
+                    if (resultUpdateDatabase.percentage == 100) {
                         hideUpdateParada()
                     }
                 }
@@ -78,6 +76,6 @@ sealed class ParadaApontFragmentState {
     data class ListParada(val paradaList: List<Parada>) : ParadaApontFragmentState()
     data class IsUpdateParada(val isUpdateParada: Boolean) : ParadaApontFragmentState()
     data class CheckSetParadaApont(val check: Boolean) : ParadaApontFragmentState()
-    data class SetResultUpdate(val resultUpdateDataBase: ResultUpdateDataBase) :
+    data class SetResultUpdate(val resultUpdateDatabase: ResultUpdateDatabase) :
         ParadaApontFragmentState()
 }

@@ -4,13 +4,13 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
 import br.com.usinasantafe.cmm.common.utils.TB_OS
-import br.com.usinasantafe.cmm.features.infra.models.stable.OSModel
+import br.com.usinasantafe.cmm.features.infra.models.room.stable.OSRoomModel
 
 @Dao
 interface OSDao {
 
     @Insert
-    suspend fun insertAll(vararg osModels: OSModel)
+    suspend fun insertAll(vararg osRoomModels: OSRoomModel)
 
     @Query("DELETE FROM $TB_OS")
     suspend fun deleteAll()
@@ -19,5 +19,5 @@ interface OSDao {
     suspend fun check(nroOS: Long): Int
 
     @Query("SELECT * FROM $TB_OS WHERE nroOS = :nroOS")
-    suspend fun getNroOS(nroOS: Long): OSModel
+    suspend fun getNroOS(nroOS: Long): OSRoomModel
 }

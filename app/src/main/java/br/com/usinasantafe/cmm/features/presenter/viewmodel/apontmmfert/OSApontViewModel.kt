@@ -7,14 +7,11 @@ import br.com.usinasantafe.cmm.common.utils.WEB_RETURN_CLEAR_OS
 import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.apontmmfert.RecoverNroOSApontMMFert
 import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.apontmmfert.SetNroOSApontMMFert
 import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.common.CheckNroOS
-import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.database.recover.RecoverOS
-import br.com.usinasantafe.cmm.features.presenter.models.ResultUpdateDataBase
-import br.com.usinasantafe.cmm.features.presenter.viewmodel.boletimmmfert.OSBolFragmentState
+import br.com.usinasantafe.cmm.features.presenter.models.ResultUpdateDatabase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -40,8 +37,8 @@ class OSApontViewModel @Inject constructor (
         _uiStateFlow.value = OSApontFragmentState.FeedbackUpdateOS(statusRecover)
     }
 
-    private fun setResultUpdate(resultUpdateDataBase: ResultUpdateDataBase){
-        _uiStateFlow.value = OSApontFragmentState.SetResultUpdate(resultUpdateDataBase)
+    private fun setResultUpdate(resultUpdateDatabase: ResultUpdateDatabase){
+        _uiStateFlow.value = OSApontFragmentState.SetResultUpdate(resultUpdateDatabase)
     }
 
     fun checkDataNroOS(nroOS: String) = viewModelScope.launch {
@@ -56,13 +53,13 @@ class OSApontViewModel @Inject constructor (
         viewModelScope.launch {
             recoverNroOSApontMMFert(nroOS)
                 .catch { catch ->
-                    setResultUpdate(ResultUpdateDataBase(1, "Erro: $catch", 100, 100))
+                    setResultUpdate(ResultUpdateDatabase(1, "Erro: $catch", 100, 100))
                     setStatusRecoverOS(StatusRecover.FALHA)
                 }
-                .collect { resultUpdateDataBase ->
-                    setResultUpdate(resultUpdateDataBase)
-                    if (resultUpdateDataBase.percentage == 100) {
-                        if (resultUpdateDataBase.describe == WEB_RETURN_CLEAR_OS) {
+                .collect { resultUpdateDatabase ->
+                    setResultUpdate(resultUpdateDatabase)
+                    if (resultUpdateDatabase.percentage == 100) {
+                        if (resultUpdateDatabase.describe == WEB_RETURN_CLEAR_OS) {
                             setStatusRecoverOS(StatusRecover.VAZIO)
                         } else {
                             setStatusRecoverOS(StatusRecover.SUCESSO)
@@ -78,5 +75,5 @@ sealed class OSApontFragmentState {
     data class CheckNroOS(val checkNroOS: Boolean) : OSApontFragmentState()
     data class CheckSetNroOS(val checkSetNroOS: Boolean) : OSApontFragmentState()
     data class FeedbackUpdateOS(val statusRecover: StatusRecover) : OSApontFragmentState()
-    data class SetResultUpdate(val resultUpdateDataBase: ResultUpdateDataBase) : OSApontFragmentState()
+    data class SetResultUpdate(val resultUpdateDatabase: ResultUpdateDatabase) : OSApontFragmentState()
 }

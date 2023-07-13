@@ -4,7 +4,7 @@ import br.com.usinasantafe.cmm.common.utils.StatusData
 import br.com.usinasantafe.cmm.common.utils.StatusSend
 import br.com.usinasantafe.cmm.features.external.room.dao.variable.BoletimMMDao
 import br.com.usinasantafe.cmm.features.infra.datasource.room.variable.BoletimMMDatasourceRoom
-import br.com.usinasantafe.cmm.features.infra.models.variable.room.BoletimMMRoomModel
+import br.com.usinasantafe.cmm.features.infra.models.room.variable.BoletimMMRoomModel
 import java.util.*
 import javax.inject.Inject
 
@@ -13,23 +13,27 @@ class BoletimMMDatasourceRoomImpl @Inject constructor (
 ): BoletimMMDatasourceRoom {
 
     override suspend fun checkBoletimAbertoMM(): Boolean {
-        return boletimMMDao.listBoletimStatus(StatusData.ABERTO.ordinal.toLong()).isNotEmpty()
+        return boletimMMDao.listBoletimFluxo(StatusData.ABERTO).isNotEmpty()
     }
 
     override suspend fun checkBoletimMMSend(): Boolean {
-        return boletimMMDao.listBoletimStatusEnvio(StatusSend.ENVIAR.ordinal.toLong()).isNotEmpty()
+        return boletimMMDao.listBoletimStatusEnvio(StatusSend.ENVIAR).isNotEmpty()
+    }
+
+    override suspend fun deleteBoletimMM(boletimMMRoomModel: BoletimMMRoomModel): Boolean {
+        return boletimMMDao.delete(boletimMMRoomModel) > 0
     }
 
     override suspend fun finishBoletimMM(boletimMMRoomModel: BoletimMMRoomModel): Boolean {
         var boletim = getBoletimAbertoMM()
         boletim.dthrFinalBolMM = Date().time
-        boletim.statusBolMM = StatusData.FECHADO.ordinal.toLong()
-        boletim.statusEnvioBolMM = StatusSend.ENVIAR.ordinal.toLong()
+        boletim.statusBolMM = StatusData.FECHADO
+        boletim.statusEnvioBolMM = StatusSend.ENVIAR
         return boletimMMDao.update(boletim) > 0
     }
 
     override suspend fun getBoletimAbertoMM(): BoletimMMRoomModel {
-        return boletimMMDao.listBoletimStatus(StatusData.ABERTO.ordinal.toLong()).single()
+        return boletimMMDao.listBoletimFluxo(StatusData.ABERTO).single()
     }
 
     override suspend fun getBoletimIdBol(idBol: Long): BoletimMMRoomModel {
@@ -41,7 +45,11 @@ class BoletimMMDatasourceRoomImpl @Inject constructor (
     }
 
     override suspend fun listBoletimMMEnviar(): List<BoletimMMRoomModel> {
-        return boletimMMDao.listBoletimStatusEnvio(StatusSend.ENVIAR.ordinal.toLong())
+        return boletimMMDao.listBoletimStatusEnvio(StatusSend.ENVIAR)
+    }
+
+    override suspend fun listBoletimMMFechadoEnviado(): List<BoletimMMRoomModel> {
+        return boletimMMDao.listBoletimFluxoStatusEnvio(StatusData.FECHADO.ordinal.toLong(), StatusSend.ENVIADO)
     }
 
     override suspend fun setHorimetroFinal(horimetroFinal: Double): Boolean {
@@ -52,13 +60,13 @@ class BoletimMMDatasourceRoomImpl @Inject constructor (
 
     override suspend fun setStatusEnviado(idBol: Long): Boolean {
         var boletim = getBoletimIdBol(idBol)
-        boletim.statusEnvioBolMM = StatusSend.ENVIADO.ordinal.toLong()
+        boletim.statusEnvioBolMM = StatusSend.ENVIADO
         return boletimMMDao.update(boletim) > 0
     }
 
     override suspend fun setStatusEnviar(idBol: Long): Boolean {
         var boletim = getBoletimIdBol(idBol)
-        boletim.statusEnvioBolMM = StatusSend.ENVIAR.ordinal.toLong()
+        boletim.statusEnvioBolMM = StatusSend.ENVIAR
         return boletimMMDao.update(boletim) > 0
     }
 

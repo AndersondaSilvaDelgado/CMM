@@ -1,15 +1,15 @@
 package br.com.usinasantafe.cmm.features.infra.datasource.room.stable
 
-import br.com.usinasantafe.cmm.features.infra.models.stable.EquipModel
+import br.com.usinasantafe.cmm.features.infra.models.room.stable.EquipRoomModel
 
 interface EquipDatasourceRoom {
 
-    suspend fun addAllEquip(vararg equipModels: EquipModel)
+    suspend fun addAllEquip(vararg equipRoomModels: EquipRoomModel)
 
     suspend fun deleteAllEquip()
 
-    suspend fun getEquipNro(nroEquip: Long): EquipModel
+    suspend fun getEquip(): EquipRoomModel
 
-    suspend fun getEquipId(idEquip: Long): EquipModel
+    suspend fun hasEquip(): Boolean
 
 }

@@ -1,7 +1,7 @@
 package br.com.usinasantafe.cmm.features.external.webservice.datasource.stable
 
 import br.com.usinasantafe.cmm.features.external.webservice.api.stable.ServicoApi
-import br.com.usinasantafe.cmm.features.infra.models.stable.ServicoModel
+import br.com.usinasantafe.cmm.features.infra.models.room.stable.ServicoRoomModel
 import br.com.usinasantafe.cmm.features.infra.datasource.webservice.stable.ServicoDatasourceWebService
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
@@ -11,7 +11,7 @@ class ServicoDatasourceWebServiceImpl @Inject constructor(
     private val servicoApi: ServicoApi
 ): ServicoDatasourceWebService {
 
-    override suspend fun getAllServico(): Flow<Result<List<ServicoModel>>> {
+    override suspend fun getAllServico(): Flow<Result<List<ServicoRoomModel>>> {
         return flow{
             val response = servicoApi.all()
             if (response.isSuccessful) {

@@ -1,6 +1,6 @@
 package br.com.usinasantafe.cmm.features.infra.datasource.room.variable
 
-import br.com.usinasantafe.cmm.features.infra.models.variable.room.BoletimFertRoomModel
+import br.com.usinasantafe.cmm.features.infra.models.room.variable.BoletimFertRoomModel
 
 interface BoletimFertDatasourceRoom {
 

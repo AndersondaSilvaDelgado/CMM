@@ -18,7 +18,7 @@ import br.com.usinasantafe.cmm.common.extension.showToast
 import br.com.usinasantafe.cmm.common.utils.StatusUpdate
 import br.com.usinasantafe.cmm.databinding.FragmentTurnoBolBinding
 import br.com.usinasantafe.cmm.features.domain.entities.stable.Turno
-import br.com.usinasantafe.cmm.features.presenter.models.ResultUpdateDataBase
+import br.com.usinasantafe.cmm.features.presenter.models.ResultUpdateDatabase
 import br.com.usinasantafe.cmm.features.presenter.viewmodel.boletimmmfert.TurnoBolFragmentState
 import br.com.usinasantafe.cmm.features.presenter.viewmodel.boletimmmfert.TurnoBolViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -93,7 +93,7 @@ class TurnoBolFragment : BaseFragment<FragmentTurnoBolBinding>(
             is TurnoBolFragmentState.Init -> Unit
             is TurnoBolFragmentState.ListTurno -> handleTurnoList(state.turnoList)
             is TurnoBolFragmentState.FeedbackUpdateTurno -> handleUpdate(state.statusUpdate)
-            is TurnoBolFragmentState.SetResultUpdate -> handleStatusUpdate(state.resultUpdateDataBase)
+            is TurnoBolFragmentState.SetResultUpdate -> handleStatusUpdate(state.resultUpdateDatabase)
             is TurnoBolFragmentState.CheckSetTurno -> handleCheckSetTurno(state.check)
         }
     }
@@ -110,13 +110,13 @@ class TurnoBolFragment : BaseFragment<FragmentTurnoBolBinding>(
         viewList(turnoList)
     }
 
-    private fun handleStatusUpdate(resultUpdateDataBase: ResultUpdateDataBase?) {
-        resultUpdateDataBase?.let {
+    private fun handleStatusUpdate(resultUpdateDatabase: ResultUpdateDatabase?) {
+        resultUpdateDatabase?.let {
             if(genericDialogProgressBar == null){
                 showProgressBar()
             }
-            describeUpdate = resultUpdateDataBase.describe
-            genericDialogProgressBar!!.setValue(resultUpdateDataBase)
+            describeUpdate = resultUpdateDatabase.describe
+            genericDialogProgressBar!!.setValue(resultUpdateDatabase)
         }
     }
 

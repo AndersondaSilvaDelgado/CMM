@@ -1,8 +1,8 @@
 package br.com.usinasantafe.cmm.features.infra.repositories.stable
 
 import br.com.usinasantafe.cmm.features.domain.entities.stable.RFuncaoAtivParada
-import br.com.usinasantafe.cmm.features.infra.models.stable.toRFuncaoAtivParada
-import br.com.usinasantafe.cmm.features.infra.models.stable.toRFuncaoAtivParadaModel
+import br.com.usinasantafe.cmm.features.infra.models.room.stable.toRFuncaoAtivParada
+import br.com.usinasantafe.cmm.features.infra.models.room.stable.toRFuncaoAtivParadaModel
 import br.com.usinasantafe.cmm.features.domain.repositories.stable.RFuncaoAtivParadaRepository
 import br.com.usinasantafe.cmm.features.domain.repositories.variable.BoletimMMFertRepository
 import br.com.usinasantafe.cmm.features.infra.datasource.room.stable.RFuncaoAtivParadaDatasourceRoom
@@ -25,6 +25,14 @@ class RFuncaoAtivParadaRepositoryImpl @Inject constructor(
         rFuncaoAtivParadaDatasourceRoom.deleteAllRFuncaoAtivParada()
     }
 
+    override suspend fun getParadaCheckList(): RFuncaoAtivParada {
+        return rFuncaoAtivParadaDatasourceRoom.getParadaCheckList().toRFuncaoAtivParada()
+    }
+
+    override suspend fun listRFuncaoAtiv(): List<RFuncaoAtivParada> {
+        return rFuncaoAtivParadaDatasourceRoom.listRFuncaoAtivIdAtiv(boletimMMFertRepository.getIdAtivBoletimAberto()).map { it.toRFuncaoAtivParada() }
+    }
+
     override suspend fun recoverAllRFuncaoAtivParada(): Flow<Result<List<RFuncaoAtivParada>>> {
         return flow {
             rFuncaoAtivParadaDatasourceWebService.getAllRFuncaoAtivParada()
@@ -34,10 +42,6 @@ class RFuncaoAtivParadaRepositoryImpl @Inject constructor(
                     }
                 }
         }
-    }
-
-    override suspend fun listRFuncaoAtiv(): List<RFuncaoAtivParada> {
-        return rFuncaoAtivParadaDatasourceRoom.listRFuncaoAtiv(boletimMMFertRepository.getAtiv()).map { it.toRFuncaoAtivParada() }
     }
 
 }

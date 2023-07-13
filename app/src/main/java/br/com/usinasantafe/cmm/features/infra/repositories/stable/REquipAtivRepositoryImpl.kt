@@ -4,8 +4,8 @@ import br.com.usinasantafe.cmm.features.domain.entities.stable.REquipAtiv
 import br.com.usinasantafe.cmm.features.domain.repositories.stable.REquipAtivRepository
 import br.com.usinasantafe.cmm.features.infra.datasource.room.stable.REquipAtivDatasourceRoom
 import br.com.usinasantafe.cmm.features.infra.datasource.webservice.stable.REquipAtivDatasourceWebService
-import br.com.usinasantafe.cmm.features.infra.models.stable.toREquipAtiv
-import br.com.usinasantafe.cmm.features.infra.models.stable.toREquipAtivModel
+import br.com.usinasantafe.cmm.features.infra.models.room.stable.toREquipAtiv
+import br.com.usinasantafe.cmm.features.infra.models.room.stable.toREquipAtivModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject

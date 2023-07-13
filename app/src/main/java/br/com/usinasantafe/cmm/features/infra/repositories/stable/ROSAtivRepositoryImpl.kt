@@ -1,8 +1,8 @@
 package br.com.usinasantafe.cmm.features.infra.repositories.stable
 
 import br.com.usinasantafe.cmm.features.domain.entities.stable.ROSAtiv
-import br.com.usinasantafe.cmm.features.infra.models.stable.toROSAtiv
-import br.com.usinasantafe.cmm.features.infra.models.stable.toROSAtivModel
+import br.com.usinasantafe.cmm.features.infra.models.room.stable.toROSAtiv
+import br.com.usinasantafe.cmm.features.infra.models.room.stable.toROSAtivModel
 import br.com.usinasantafe.cmm.features.domain.repositories.stable.ROSAtivRepository
 import br.com.usinasantafe.cmm.features.infra.datasource.room.stable.ROSAtivDatasourceRoom
 import br.com.usinasantafe.cmm.features.infra.datasource.webservice.stable.ROSAtivDatasourceWebService

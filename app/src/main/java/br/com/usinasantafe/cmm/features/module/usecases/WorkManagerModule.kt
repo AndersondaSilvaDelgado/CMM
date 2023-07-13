@@ -1,7 +1,7 @@
 package br.com.usinasantafe.cmm.features.module.usecases
 
-import br.com.usinasantafe.cmm.features.domain.usecases.workmanager.StartSendData
-import br.com.usinasantafe.cmm.features.domain.usecases.workmanager.StartSendDataImpl
+import br.com.usinasantafe.cmm.features.domain.usecases.workmanager.StartProcessSendData
+import br.com.usinasantafe.cmm.features.domain.usecases.workmanager.StartProcessSendDataImpl
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -14,6 +14,6 @@ interface WorkManagerModule {
 
     @Singleton
     @Binds
-    fun bindStartSentData(usecase: StartSendDataImpl): StartSendData
+    fun bindStartSentData(usecase: StartProcessSendDataImpl): StartProcessSendData
 
 }

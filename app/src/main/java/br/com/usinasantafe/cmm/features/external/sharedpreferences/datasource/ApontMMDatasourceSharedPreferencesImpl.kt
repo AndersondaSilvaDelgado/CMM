@@ -47,10 +47,12 @@ class ApontMMDatasourceSharedPreferencesImpl @Inject constructor (
         return true
     }
 
-    override suspend fun startApont(typeNote: TypeNote, idBoletim: Long): Boolean {
+    override suspend fun startApont(typeNote: TypeNote, idBoletim: Long, nroOS: Long?, idAtiv: Long?): Boolean {
         var apont = ApontMM()
         apont.idBolApont = idBoletim
         apont.tipoApont = typeNote
+        apont.nroOSApont = nroOS
+        apont.idAtivApont = idAtiv
         saveApont(apont)
         return true
     }

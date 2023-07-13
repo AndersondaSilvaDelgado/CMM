@@ -4,10 +4,8 @@ import android.content.Context
 import android.os.Bundle
 import android.view.View
 import android.view.WindowManager
-import androidx.activity.OnBackPressedCallback
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.flowWithLifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import br.com.usinasantafe.cmm.R
@@ -19,12 +17,10 @@ import br.com.usinasantafe.cmm.common.extension.showGenericAlertDialog
 import br.com.usinasantafe.cmm.common.extension.showToast
 import br.com.usinasantafe.cmm.common.utils.StatusUpdate
 import br.com.usinasantafe.cmm.databinding.FragmentOperadorBolBinding
-import br.com.usinasantafe.cmm.features.presenter.models.ResultUpdateDataBase
+import br.com.usinasantafe.cmm.features.presenter.models.ResultUpdateDatabase
 import br.com.usinasantafe.cmm.features.presenter.viewmodel.boletimmmfert.OperadorBolFragmentState
 import br.com.usinasantafe.cmm.features.presenter.viewmodel.boletimmmfert.OperadorBolViewModel
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.launchIn
-import kotlinx.coroutines.flow.onEach
 import kotlinx.coroutines.launch
 
 
@@ -88,8 +84,8 @@ class OperadorBolFragment : BaseFragment<FragmentOperadorBolBinding>(
             is OperadorBolFragmentState.Init -> Unit
             is OperadorBolFragmentState.CheckMatricFunc -> handleCheckMatricOperador(state.checkMatricOperador)
             is OperadorBolFragmentState.CheckSetMatricFunc -> handleCheckSetMatricOperador(state.checkSetMatricOperador)
-            is OperadorBolFragmentState.FeedbackUpdateFunc -> handleUpdate(state.statusUpdate)
-            is OperadorBolFragmentState.SetResultUpdate -> handleStatusUpdate(state.resultUpdateDataBase)
+            is OperadorBolFragmentState.FeedbackUpdate -> handleUpdate(state.statusUpdate)
+            is OperadorBolFragmentState.SetResultUpdate -> handleStatusUpdate(state.resultUpdateDatabase)
         }
     }
 
@@ -119,13 +115,13 @@ class OperadorBolFragment : BaseFragment<FragmentOperadorBolBinding>(
         }
     }
 
-    private fun handleStatusUpdate(resultUpdateDataBase: ResultUpdateDataBase?) {
-        resultUpdateDataBase?.let {
+    private fun handleStatusUpdate(resultUpdateDatabase: ResultUpdateDatabase?) {
+        resultUpdateDatabase?.let {
             if (genericDialogProgressBar == null) {
                 showProgressBar()
             }
-            describeUpdate = resultUpdateDataBase.describe
-            genericDialogProgressBar!!.setValue(resultUpdateDataBase)
+            describeUpdate = resultUpdateDatabase.describe
+            genericDialogProgressBar!!.setValue(resultUpdateDatabase)
         }
     }
 

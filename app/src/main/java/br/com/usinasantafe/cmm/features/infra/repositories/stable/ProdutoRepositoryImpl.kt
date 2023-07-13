@@ -1,8 +1,8 @@
 package br.com.usinasantafe.cmm.features.infra.repositories.stable
 
 import br.com.usinasantafe.cmm.features.domain.entities.stable.Produto
-import br.com.usinasantafe.cmm.features.infra.models.stable.toProduto
-import br.com.usinasantafe.cmm.features.infra.models.stable.toProdutoModel
+import br.com.usinasantafe.cmm.features.infra.models.room.stable.toProduto
+import br.com.usinasantafe.cmm.features.infra.models.room.stable.toProdutoModel
 import br.com.usinasantafe.cmm.features.domain.repositories.stable.ProdutoRepository
 import br.com.usinasantafe.cmm.features.infra.datasource.room.stable.ProdutoDatasourceRoom
 import br.com.usinasantafe.cmm.features.infra.datasource.webservice.stable.ProdutoDatasourceWebService

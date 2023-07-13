@@ -16,7 +16,7 @@ import br.com.usinasantafe.cmm.common.extension.setListenerButtonsGenericSUpdate
 import br.com.usinasantafe.cmm.common.extension.showGenericAlertDialog
 import br.com.usinasantafe.cmm.common.utils.StatusRecover
 import br.com.usinasantafe.cmm.databinding.FragmentOsApontBinding
-import br.com.usinasantafe.cmm.features.presenter.models.ResultUpdateDataBase
+import br.com.usinasantafe.cmm.features.presenter.models.ResultUpdateDatabase
 import br.com.usinasantafe.cmm.features.presenter.viewmodel.apontmmfert.OSApontFragmentState
 import br.com.usinasantafe.cmm.features.presenter.viewmodel.apontmmfert.OSApontViewModel
 import dagger.hilt.android.AndroidEntryPoint
@@ -79,7 +79,7 @@ class OSApontFragment : BaseFragment<FragmentOsApontBinding>(
             is OSApontFragmentState.CheckNroOS -> handleCheckNroOS(state.checkNroOS)
             is OSApontFragmentState.CheckSetNroOS -> fragmentAttachListenerApont?.goAtivApontFragment()
             is OSApontFragmentState.FeedbackUpdateOS -> handleFeedbackUpdateOS(state.statusRecover)
-            is OSApontFragmentState.SetResultUpdate -> handleStatusUpdate(state.resultUpdateDataBase)
+            is OSApontFragmentState.SetResultUpdate -> handleStatusUpdate(state.resultUpdateDatabase)
         }
     }
 
@@ -116,14 +116,14 @@ class OSApontFragment : BaseFragment<FragmentOsApontBinding>(
         }
     }
 
-    private fun handleStatusUpdate(resultUpdateDataBase: ResultUpdateDataBase?) {
-        resultUpdateDataBase?.let {
+    private fun handleStatusUpdate(resultUpdateDatabase: ResultUpdateDatabase?) {
+        resultUpdateDatabase?.let {
             if (genericDialogProgressBar == null) {
                 showProgressBar()
             }
-            describeRecover = resultUpdateDataBase.describe
-            genericDialogProgressBar!!.setValue(resultUpdateDataBase)
-            if (resultUpdateDataBase.percentage == 100) {
+            describeRecover = resultUpdateDatabase.describe
+            genericDialogProgressBar!!.setValue(resultUpdateDatabase)
+            if (resultUpdateDatabase.percentage == 100) {
                 finishProgressBar()
             }
         }

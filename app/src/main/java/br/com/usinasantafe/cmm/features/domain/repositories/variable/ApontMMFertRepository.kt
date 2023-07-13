@@ -18,6 +18,6 @@ interface ApontMMFertRepository {
 
     suspend fun setNroOSApontMMFert(nroOS: String): Boolean
 
-    suspend fun startApontMMFert(typeNote: TypeNote): Boolean
+    suspend fun startApontMMFert(typeNote: TypeNote, nroOS: Long? = null, idAtiv: Long? = null): Boolean
 
 }

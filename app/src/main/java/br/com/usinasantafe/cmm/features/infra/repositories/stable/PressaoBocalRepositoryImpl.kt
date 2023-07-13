@@ -1,8 +1,8 @@
 package br.com.usinasantafe.cmm.features.infra.repositories.stable
 
 import br.com.usinasantafe.cmm.features.domain.entities.stable.PressaoBocal
-import br.com.usinasantafe.cmm.features.infra.models.stable.toPressaoBocal
-import br.com.usinasantafe.cmm.features.infra.models.stable.toPressaoBocalModel
+import br.com.usinasantafe.cmm.features.infra.models.room.stable.toPressaoBocal
+import br.com.usinasantafe.cmm.features.infra.models.room.stable.toPressaoBocalModel
 import br.com.usinasantafe.cmm.features.domain.repositories.stable.PressaoBocalRepository
 import br.com.usinasantafe.cmm.features.infra.datasource.room.stable.PressaoBocalDatasourceRoom
 import br.com.usinasantafe.cmm.features.infra.datasource.webservice.stable.PressaoBocalDatasourceWebService

@@ -3,7 +3,7 @@ package br.com.usinasantafe.cmm.features.domain.usecases.implementos.database
 import br.com.usinasantafe.cmm.common.utils.TEXT_SUCESS_UPDATE
 import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.database.UpdateAllDataBase
 import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.database.update.*
-import br.com.usinasantafe.cmm.features.presenter.models.ResultUpdateDataBase
+import br.com.usinasantafe.cmm.features.presenter.models.ResultUpdateDatabase
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
@@ -33,7 +33,7 @@ class UpdateAllDataBaseImpl @Inject constructor(
     private val updateTurno: UpdateTurno
 ) : UpdateAllDataBase {
 
-    override suspend fun invoke(count: Int, size: Int): Flow<ResultUpdateDataBase> {
+    override suspend fun invoke(count: Int, size: Int): Flow<ResultUpdateDatabase> {
         return flow {
             val size = size
             var count = count
@@ -121,7 +121,7 @@ class UpdateAllDataBaseImpl @Inject constructor(
                 emit(it)
                 count = it.count;
             }
-            emit(ResultUpdateDataBase(size, TEXT_SUCESS_UPDATE, size))
+            emit(ResultUpdateDatabase(size, TEXT_SUCESS_UPDATE, size))
         }
     }
 

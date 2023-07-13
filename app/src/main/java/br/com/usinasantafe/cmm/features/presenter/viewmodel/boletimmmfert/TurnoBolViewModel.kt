@@ -7,13 +7,11 @@ import br.com.usinasantafe.cmm.features.domain.entities.stable.Turno
 import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.boletimmmfert.SetIdTurnoBoletimMMFert
 import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.common.ListTurno
 import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.database.update.UpdateTurno
-import br.com.usinasantafe.cmm.features.presenter.models.ResultUpdateDataBase
-import br.com.usinasantafe.cmm.features.presenter.viewmodel.config.ConfigFragmentState
+import br.com.usinasantafe.cmm.features.presenter.models.ResultUpdateDatabase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.catch
-import kotlinx.coroutines.flow.onStart
 import kotlinx.coroutines.launch
 import javax.inject.Inject
 
@@ -35,8 +33,8 @@ class TurnoBolViewModel @Inject constructor(
         _uiStateFlow.value = TurnoBolFragmentState.FeedbackUpdateTurno(statusUpdate)
     }
 
-    private fun setResultUpdate(resultUpdateDataBase: ResultUpdateDataBase){
-        _uiStateFlow.value = TurnoBolFragmentState.SetResultUpdate(resultUpdateDataBase)
+    private fun setResultUpdate(resultUpdateDatabase: ResultUpdateDatabase){
+        _uiStateFlow.value = TurnoBolFragmentState.SetResultUpdate(resultUpdateDatabase)
     }
 
     private fun checkSetTurno(checkSetTurno: Boolean){
@@ -55,12 +53,12 @@ class TurnoBolViewModel @Inject constructor(
         viewModelScope.launch {
             updateTurno()
                 .catch { catch ->
-                    setResultUpdate(ResultUpdateDataBase(1, "Erro: $catch", 100, 100))
+                    setResultUpdate(ResultUpdateDatabase(1, "Erro: $catch", 100, 100))
                     setStatusUpdateTurno(StatusUpdate.FALHA)
                 }
-                .collect { resultUpdateDataBase ->
-                    setResultUpdate(resultUpdateDataBase)
-                    if (resultUpdateDataBase.percentage == 100) {
+                .collect { resultUpdateDatabase ->
+                    setResultUpdate(resultUpdateDatabase)
+                    if (resultUpdateDatabase.percentage == 100) {
                         setStatusUpdateTurno(StatusUpdate.ATUALIZADO)
                     }
                 }
@@ -73,5 +71,5 @@ sealed class TurnoBolFragmentState {
     data class CheckSetTurno(val check: Boolean) : TurnoBolFragmentState()
     data class ListTurno(val turnoList: List<Turno>) : TurnoBolFragmentState()
     data class FeedbackUpdateTurno(val statusUpdate: StatusUpdate) : TurnoBolFragmentState()
-    data class SetResultUpdate(val resultUpdateDataBase: ResultUpdateDataBase) : TurnoBolFragmentState()
+    data class SetResultUpdate(val resultUpdateDatabase: ResultUpdateDatabase) : TurnoBolFragmentState()
 }

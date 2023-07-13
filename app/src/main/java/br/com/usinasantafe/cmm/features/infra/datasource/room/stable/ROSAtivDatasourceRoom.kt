@@ -1,13 +1,13 @@
 package br.com.usinasantafe.cmm.features.infra.datasource.room.stable
 
-import br.com.usinasantafe.cmm.features.infra.models.stable.ROSAtivModel
+import br.com.usinasantafe.cmm.features.infra.models.room.stable.ROSAtivRoomModel
 
 interface ROSAtivDatasourceRoom {
 
-    suspend fun addAllROSAtiv(vararg rOSAtivModels: ROSAtivModel)
+    suspend fun addAllROSAtiv(vararg rOSAtivRoomModels: ROSAtivRoomModel)
 
     suspend fun deleteAllROSAtiv()
 
-    suspend fun listROSAtiv(idOS: Long): List<ROSAtivModel>
+    suspend fun listROSAtiv(idOS: Long): List<ROSAtivRoomModel>
 
 }

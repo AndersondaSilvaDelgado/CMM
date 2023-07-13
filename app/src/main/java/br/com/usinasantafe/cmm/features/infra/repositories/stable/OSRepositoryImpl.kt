@@ -1,8 +1,8 @@
 package br.com.usinasantafe.cmm.features.infra.repositories.stable
 
 import br.com.usinasantafe.cmm.features.domain.entities.stable.OS
-import br.com.usinasantafe.cmm.features.infra.models.stable.toOS
-import br.com.usinasantafe.cmm.features.infra.models.stable.toOSModel
+import br.com.usinasantafe.cmm.features.infra.models.room.stable.toOS
+import br.com.usinasantafe.cmm.features.infra.models.room.stable.toOSModel
 import br.com.usinasantafe.cmm.features.domain.repositories.stable.OSRepository
 import br.com.usinasantafe.cmm.features.infra.datasource.room.stable.OSDatasourceRoom
 import br.com.usinasantafe.cmm.features.infra.datasource.webservice.stable.OSDatasourceWebService

@@ -18,12 +18,11 @@ import br.com.usinasantafe.cmm.common.utils.StatusRecover
 import br.com.usinasantafe.cmm.common.utils.StatusUpdate
 import br.com.usinasantafe.cmm.databinding.FragmentConfigBinding
 import br.com.usinasantafe.cmm.features.domain.entities.variable.Config
-import br.com.usinasantafe.cmm.features.presenter.models.ResultUpdateDataBase
+import br.com.usinasantafe.cmm.features.presenter.models.ResultUpdateDatabase
 import br.com.usinasantafe.cmm.features.presenter.viewmodel.config.ConfigFragmentState
 import br.com.usinasantafe.cmm.features.presenter.viewmodel.config.ConfigViewModel
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-
 
 @AndroidEntryPoint
 class ConfigFragment : BaseFragment<FragmentConfigBinding>(
@@ -105,29 +104,29 @@ class ConfigFragment : BaseFragment<FragmentConfigBinding>(
             is ConfigFragmentState.FeedbackLoadingDataBase -> handleLoadingDataBase(state.statusUpdateDataBase)
             is ConfigFragmentState.FeedbackLoadingEquip -> handleLoadingEquip(state.statusUpdateEquip)
             is ConfigFragmentState.IsCheckUpdate -> binding.buttonSalvarConfig.isEnabled = state.isCheckUpdate
-            is ConfigFragmentState.SetResultUpdate -> handleStatus(state.resultUpdateDataBase)
+            is ConfigFragmentState.SetResultUpdate -> handleStatus(state.resultUpdateDatabase)
         }
     }
 
     private fun handleConfig(config: Config){
         with(binding) {
-            editTextEquipConfig.setText(config.equipConfig.toString())
-            editTextSenhaConfig.setText(config.senhaConfig)
+            editTextEquipConfig.setText(config.nroEquipConfig.toString())
+            editTextSenhaConfig.setText(config.passwordConfig)
         }
     }
 
-    private fun handleStatus(resultUpdateDataBase: ResultUpdateDataBase?){
+    private fun handleStatus(resultUpdateDatabase: ResultUpdateDatabase?){
         with(binding) {
-            resultUpdateDataBase?.let {
+            resultUpdateDatabase?.let {
                 if(typeUpdate){
-                    textStatusAtualDados.text = resultUpdateDataBase.describe
-                    progressBarAtualDados.progress = resultUpdateDataBase.percentage
+                    textStatusAtualDados.text = resultUpdateDatabase.describe
+                    progressBarAtualDados.progress = resultUpdateDatabase.percentage
                 } else {
                     if(genericDialogProgressBar == null){
                         showProgressBar()
                     }
-                    describeRecover = resultUpdateDataBase.describe
-                    genericDialogProgressBar!!.setValue(resultUpdateDataBase)
+                    describeRecover = resultUpdateDatabase.describe
+                    genericDialogProgressBar!!.setValue(resultUpdateDatabase)
                 }
             }
         }
@@ -144,7 +143,7 @@ class ConfigFragment : BaseFragment<FragmentConfigBinding>(
         when(statusRecover){
             StatusRecover.SUCESSO -> {
                 hideProgressBar()
-                fragmentAttachListenerConfig?.goMenuInicial()
+                fragmentAttachListenerConfig?.goSplash()
             }
             StatusRecover.FALHA -> {
                 hideProgressBar()

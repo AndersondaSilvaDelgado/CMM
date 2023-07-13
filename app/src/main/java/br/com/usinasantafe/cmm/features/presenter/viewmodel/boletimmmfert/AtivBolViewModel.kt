@@ -7,7 +7,7 @@ import br.com.usinasantafe.cmm.features.domain.entities.stable.Ativ
 import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.boletimmmfert.SetIdAtivBoletimMMFert
 import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.common.ListAtiv
 import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.database.recover.RecoverAtividade
-import br.com.usinasantafe.cmm.features.presenter.models.ResultUpdateDataBase
+import br.com.usinasantafe.cmm.features.presenter.models.ResultUpdateDatabase
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -38,8 +38,8 @@ class AtivBolViewModel @Inject constructor(
         _uiStateFlow.value = AtivBolFragmentState.IsUpdateAtiv(false)
     }
 
-    private fun setResultUpdate(resultUpdateDataBase: ResultUpdateDataBase) {
-        _uiStateFlow.value = AtivBolFragmentState.SetResultUpdate(resultUpdateDataBase)
+    private fun setResultUpdate(resultUpdateDatabase: ResultUpdateDatabase) {
+        _uiStateFlow.value = AtivBolFragmentState.SetResultUpdate(resultUpdateDatabase)
     }
 
     private fun checkSetAtiv(checkSetAtiv: Boolean){
@@ -61,11 +61,11 @@ class AtivBolViewModel @Inject constructor(
                     showUpdateTurno()
                 }
                 .catch { catch ->
-                    setResultUpdate(ResultUpdateDataBase(1, "Erro: $catch", 100, 100))
+                    setResultUpdate(ResultUpdateDatabase(1, "Erro: $catch", 100, 100))
                 }
-                .collect { resultUpdateDataBase ->
-                    setResultUpdate(resultUpdateDataBase)
-                    if (resultUpdateDataBase.percentage == 100) {
+                .collect { resultUpdateDatabase ->
+                    setResultUpdate(resultUpdateDatabase)
+                    if (resultUpdateDatabase.percentage == 100) {
                         hideUpdateTurno()
                     }
                 }
@@ -78,5 +78,5 @@ sealed class AtivBolFragmentState {
     data class CheckSetAtiv(val check: Boolean) : AtivBolFragmentState()
     data class ListAtiv(val ativList: List<Ativ>) : AtivBolFragmentState()
     data class IsUpdateAtiv(val isUpdateAtiv: Boolean) : AtivBolFragmentState()
-    data class SetResultUpdate(val resultUpdateDataBase: ResultUpdateDataBase) : AtivBolFragmentState()
+    data class SetResultUpdate(val resultUpdateDatabase: ResultUpdateDatabase) : AtivBolFragmentState()
 }

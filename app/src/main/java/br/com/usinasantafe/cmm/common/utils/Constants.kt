@@ -40,6 +40,8 @@ const val TB_APONT_FERT = "tb_apont_fert"
 const val TB_APONT_MM = "tb_apont_mm"
 const val TB_BOLETIM_FERT = "tb_boletim_fert"
 const val TB_BOLETIM_MM = "tb_boletim_mm"
+const val TB_CABEC_CHECK_LIST = "tb_cabec_check_list"
+const val TB_RESP_ITEM_CHECK_LIST = "tb_resp_item_check_list"
 
 const val WEB_FIELD_NRO_EQUIP = "nroEquip"
 const val WEB_FIELD_NRO_OS = "nroOS"
@@ -72,10 +74,10 @@ const val WEB_ALL_R_OS_ATIV = "rosativ.php"
 const val WEB_ALL_SERVICO = "servico.php"
 const val WEB_ALL_TURNO = "turno.php"
 
-const val WEB_SAVE_FERTIRRIGACAO = "savefertirrigacao.php"
-const val WEB_SAVE_MOTOMEC = "savemotomec.php"
+const val WEB_SAVE_FERTIRRIGACAO = "save-fertirrigacao.php"
+const val WEB_SAVE_MOTOMEC = "save-motomec.php"
 
-const val WEB_UPDATE_APP = "atualaplic.php"
+const val WEB_UPDATE_APP = "update-app.php"
 
 const val WEB_RETURN_CLEAR_EQUIP = "Equipamento Inexistente!"
 const val WEB_RETURN_CLEAR_OS = "OS Inexistente!"

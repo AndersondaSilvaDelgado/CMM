@@ -5,14 +5,13 @@ import br.com.usinasantafe.cmm.features.domain.repositories.stable.EquipReposito
 import br.com.usinasantafe.cmm.features.domain.repositories.variable.ConfigRepository
 import br.com.usinasantafe.cmm.features.infra.datasource.room.stable.EquipDatasourceRoom
 import br.com.usinasantafe.cmm.features.infra.datasource.webservice.stable.EquipDatasourceWebService
-import br.com.usinasantafe.cmm.features.infra.models.stable.toEquip
-import br.com.usinasantafe.cmm.features.infra.models.stable.toEquipModel
+import br.com.usinasantafe.cmm.features.infra.models.room.stable.toEquip
+import br.com.usinasantafe.cmm.features.infra.models.room.stable.toEquipModel
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
 class EquipRepositoryImpl @Inject constructor(
-    private val configRepository: ConfigRepository,
     private val equipDatasourceRoom: EquipDatasourceRoom,
     private val equipDatasourceWebService: EquipDatasourceWebService
 ): EquipRepository {
@@ -25,6 +24,14 @@ class EquipRepositoryImpl @Inject constructor(
         equipDatasourceRoom.deleteAllEquip()
     }
 
+    override suspend fun getEquip(): Equip {
+        return equipDatasourceRoom.getEquip().toEquip()
+    }
+
+    override suspend fun hasEquip(): Boolean {
+        return equipDatasourceRoom.hasEquip()
+    }
+
     override suspend fun recoverEquip(nroEquip: String): Flow<Result<List<Equip>>> {
         return flow {
             equipDatasourceWebService.getEquip(nroEquip)
@@ -34,18 +41,6 @@ class EquipRepositoryImpl @Inject constructor(
                     }
                 }
         }
-    }
-
-    override suspend fun getEquipNro(nroEquip: Long): Equip {
-        return equipDatasourceRoom.getEquipNro(nroEquip).toEquip()
-    }
-
-    override suspend fun getEquipId(idEquip: Long): Equip {
-        return equipDatasourceRoom.getEquipId(idEquip).toEquip()
-    }
-
-    override suspend fun getEquip(): Equip {
-        return getEquipNro(configRepository.getConfig().equipConfig)
     }
 
 }

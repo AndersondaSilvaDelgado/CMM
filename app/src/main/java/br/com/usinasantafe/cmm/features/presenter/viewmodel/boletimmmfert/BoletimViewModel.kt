@@ -2,11 +2,8 @@ package br.com.usinasantafe.cmm.features.presenter.viewmodel.boletimmmfert
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import br.com.usinasantafe.cmm.features.domain.entities.stable.Ativ
 import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.boletimmmfert.CheckAbertoBoletimMMFert
 import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.boletimmmfert.StartBoletimMMFert
-import br.com.usinasantafe.cmm.features.presenter.models.ResultUpdateDataBase
-import br.com.usinasantafe.cmm.features.presenter.viewmodel.config.SenhaFragmentState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow

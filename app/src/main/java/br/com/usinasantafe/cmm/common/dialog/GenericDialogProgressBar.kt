@@ -4,7 +4,7 @@ import android.app.Dialog
 import android.content.Context
 import android.os.Bundle
 import br.com.usinasantafe.cmm.databinding.DialogProgressBarGenericBinding
-import br.com.usinasantafe.cmm.features.presenter.models.ResultUpdateDataBase
+import br.com.usinasantafe.cmm.features.presenter.models.ResultUpdateDatabase
 
 class GenericDialogProgressBar(
     context: Context
@@ -19,10 +19,10 @@ class GenericDialogProgressBar(
         setContentView(binding.root)
     }
 
-    fun setValue(resultUpdateDataBase: ResultUpdateDataBase){
+    fun setValue(resultUpdateDatabase: ResultUpdateDatabase){
         with(binding) {
-            dialogProgressBarTitle.text = resultUpdateDataBase.describe
-            progressBarGeneric.progress = resultUpdateDataBase.percentage
+            dialogProgressBarTitle.text = resultUpdateDatabase.describe
+            progressBarGeneric.progress = resultUpdateDatabase.percentage
         }
     }
 

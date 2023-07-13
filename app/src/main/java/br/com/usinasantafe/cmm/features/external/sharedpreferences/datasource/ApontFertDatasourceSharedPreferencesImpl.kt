@@ -5,13 +5,14 @@ import br.com.usinasantafe.cmm.common.utils.BASE_SHARE_PREFERENCES_TABLE_APONT_F
 import br.com.usinasantafe.cmm.common.utils.BASE_SHARE_PREFERENCES_TABLE_APONT_MM
 import br.com.usinasantafe.cmm.common.utils.TypeNote
 import br.com.usinasantafe.cmm.features.domain.entities.variable.ApontFert
+import br.com.usinasantafe.cmm.features.domain.entities.variable.ApontMM
 import br.com.usinasantafe.cmm.features.infra.datasource.sharedpreferences.ApontFertDatasourceSharedPreferences
 import com.google.gson.Gson
 import javax.inject.Inject
 
-class ApontFertDatasourceSharedPreferencesImpl @Inject constructor (
+class ApontFertDatasourceSharedPreferencesImpl @Inject constructor(
     private val sharedPreferences: SharedPreferences
-): ApontFertDatasourceSharedPreferences {
+) : ApontFertDatasourceSharedPreferences {
 
     override suspend fun getApontFert(): ApontFert {
         var apont = sharedPreferences.getString(BASE_SHARE_PREFERENCES_TABLE_APONT_FERT, null)!!
@@ -19,7 +20,7 @@ class ApontFertDatasourceSharedPreferencesImpl @Inject constructor (
     }
 
     override suspend fun setIdAtiv(idAtiv: Long): Boolean {
-        if(checkApont()){
+        if (checkApont()) {
             return false
         }
         var apont = getApontFert()
@@ -29,7 +30,7 @@ class ApontFertDatasourceSharedPreferencesImpl @Inject constructor (
     }
 
     override suspend fun setIdParada(idParada: Long): Boolean {
-        if(checkApont()){
+        if (checkApont()) {
             return false
         }
         var apont = getApontFert()
@@ -39,7 +40,7 @@ class ApontFertDatasourceSharedPreferencesImpl @Inject constructor (
     }
 
     override suspend fun setNroOS(nroOS: Long): Boolean {
-        if(checkApont()){
+        if (checkApont()) {
             return false
         }
         var apont = getApontFert()
@@ -48,15 +49,22 @@ class ApontFertDatasourceSharedPreferencesImpl @Inject constructor (
         return true
     }
 
-    override suspend fun startApont(typeNote: TypeNote, idBoletim: Long): Boolean {
+    override suspend fun startApont(
+        typeNote: TypeNote,
+        idBoletim: Long,
+        nroOS: Long?,
+        idAtiv: Long?
+    ): Boolean {
         var apont = ApontFert()
         apont.idBolApont = idBoletim
         apont.tipoApont = typeNote
+        apont.nroOSApont = nroOS
+        apont.idAtivApont = idAtiv
         saveApont(apont)
         return true
     }
 
-    private fun checkApont(): Boolean{
+    private fun checkApont(): Boolean {
         val result = sharedPreferences.getString(BASE_SHARE_PREFERENCES_TABLE_APONT_MM, null)
         return result == null
     }
