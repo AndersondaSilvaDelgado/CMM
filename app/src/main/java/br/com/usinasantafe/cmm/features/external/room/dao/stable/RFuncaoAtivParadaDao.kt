@@ -21,5 +21,7 @@ interface RFuncaoAtivParadaDao {
     @Query("SELECT * FROM $TB_R_FUNCAO_ATIV_PARADA WHERE codFuncao = :codFuncao AND tipoFuncao = :tipoFuncao")
     suspend fun getRFuncaoAtivParadaCodTipo(codFuncao: Long, tipoFuncao: Long): RFuncaoAtivParadaRoomModel
 
+    @Query("SELECT * FROM $TB_R_FUNCAO_ATIV_PARADA WHERE idAtivPar = :idAtiv AND tipoFuncao = :tipoFuncao AND codFuncao = 3")
+    suspend fun listRFuncaoIdAtivTipoImplemento(idAtiv: Long, tipoFuncao: Long): List<RFuncaoAtivParadaRoomModel>
 
 }

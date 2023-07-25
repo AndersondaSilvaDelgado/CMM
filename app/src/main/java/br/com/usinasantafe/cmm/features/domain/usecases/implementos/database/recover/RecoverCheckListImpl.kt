@@ -4,7 +4,7 @@ import br.com.usinasantafe.cmm.common.utils.*
 import br.com.usinasantafe.cmm.features.domain.repositories.stable.EquipRepository
 import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.database.recover.RecoverCheckList
 import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.database.update.UpdateItemCheckList
-import br.com.usinasantafe.cmm.features.presenter.models.ResultUpdateDatabase
+import br.com.usinasantafe.cmm.common.utils.ResultUpdateDatabase
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject

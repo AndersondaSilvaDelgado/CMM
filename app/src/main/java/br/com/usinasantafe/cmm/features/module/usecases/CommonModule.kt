@@ -14,6 +14,10 @@ interface CommonModule {
 
     @Singleton
     @Binds
+    fun bindCheckImplemento(usecase: CheckImplementoImpl): CheckImplemento
+
+    @Singleton
+    @Binds
     fun bindCheckMatricOperador(usecase: CheckMatricOperadorImpl): CheckMatricOperador
 
     @Singleton
@@ -34,11 +38,19 @@ interface CommonModule {
 
     @Singleton
     @Binds
+    fun bindClearDataImplemento(usecase: ClearDataImplementoImpl): ClearDataImplemento
+
+    @Singleton
+    @Binds
     fun bindClearDataMotoMec(usecase: ClearDataMotoMecImpl): ClearDataMotoMec
 
     @Singleton
     @Binds
-    fun bindGetNroEquipConfig(usecase: GetEquipConfigImpl): GetEquipConfig
+    fun bindGetEquipConfig(usecase: GetEquipConfigImpl): GetEquipConfig
+
+    @Singleton
+    @Binds
+    fun bindGetHorimetroEquip(usecase: GetHorimetroEquipImpl): GetHorimetroEquip
 
     @Singleton
     @Binds
@@ -54,11 +66,19 @@ interface CommonModule {
 
     @Singleton
     @Binds
+    fun bindPositionImplemento(usecase: PositionImplementoImpl): PositionImplemento
+
+    @Singleton
+    @Binds
     fun bindSendDataAPPUpdateFert(usecase: SendDataAppUpdateImpl): SendDataAppUpdate
 
     @Singleton
     @Binds
     fun bindSentDataAPPUpdateFert(usecase: SentDataAppUpdateImpl): SentDataAppUpdate
+
+    @Singleton
+    @Binds
+    fun bindSetHorimetroEquip(usecase: SetHorimetroEquipImpl): SetHorimetroEquip
 
     @Singleton
     @Binds

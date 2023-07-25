@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".features.presenter.view.apontmmfert.ApontActivity">
+    tools:context=".features.presenter.apontmmfert.ApontActivity">
 
     <FrameLayout
         android:id="@+id/apont_manager_fragment"

@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".features.presenter.view.config.ConfigActivity">
+    tools:context=".features.presenter.config.ConfigActivity">
 
     <FrameLayout
         android:id="@+id/config_manager_fragment"

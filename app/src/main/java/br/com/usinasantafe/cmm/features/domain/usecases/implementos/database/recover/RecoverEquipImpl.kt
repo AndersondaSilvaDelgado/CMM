@@ -5,7 +5,7 @@ import br.com.usinasantafe.cmm.features.domain.repositories.stable.EquipReposito
 import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.database.recover.RecoverEquip
 import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.database.recover.RecoverREquipAtiv
 import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.database.recover.RecoverREquipPneu
-import br.com.usinasantafe.cmm.features.presenter.models.ResultUpdateDatabase
+import br.com.usinasantafe.cmm.common.utils.ResultUpdateDatabase
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject

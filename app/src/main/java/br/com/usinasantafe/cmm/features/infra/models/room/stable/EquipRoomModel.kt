@@ -15,7 +15,7 @@ data class EquipRoomModel(
     val descrClasseEquip: String,
     val codTurno: Long,
     val idCheckList: Long,
-    val horimetroEquip: Double,
+    var horimetroEquip: Double,
     val medicaoEquipFert: Double,
     val tipoEquip: Long,
     val classifEquip: Long

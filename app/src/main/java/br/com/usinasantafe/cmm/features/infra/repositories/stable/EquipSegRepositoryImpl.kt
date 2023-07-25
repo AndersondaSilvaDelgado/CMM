@@ -19,6 +19,10 @@ class EquipSegRepositoryImpl @Inject constructor(
         equipSegDatasourceRoom.addAllEquipSeg(*equipSegList.map { it.toEquipSegModel() }.toTypedArray())
     }
 
+    override suspend fun checkEquipSeg(nroEquip: Long, typeEquigSeg: Long): Boolean {
+        return equipSegDatasourceRoom.checkEquipSeg(nroEquip, typeEquigSeg)
+    }
+
     override suspend fun deleteAllEquipSeg() {
         equipSegDatasourceRoom.deleteAllEquipSeg()
     }

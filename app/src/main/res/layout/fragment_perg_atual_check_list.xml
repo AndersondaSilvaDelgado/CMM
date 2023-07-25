@@ -9,7 +9,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
-    tools:context=".features.presenter.view.checklist.PergAtualCheckListFragment">
+    tools:context=".features.presenter.checklist.pergatualchecklist.PergAtualCheckListFragment">
 
     <TextView
         android:id="@+id/text_view_perg_atualizar_checklist"

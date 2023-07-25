@@ -21,6 +21,10 @@ class RFuncaoAtivParadaRepositoryImpl @Inject constructor(
         rFuncaoAtivParadaDatasourceRoom.addAllRFuncaoAtivParada(*rFuncaoAtivParadaList.map { it.toRFuncaoAtivParadaModel() }.toTypedArray())
     }
 
+    override suspend fun checkImplementoIdAtiv(): Boolean {
+        return rFuncaoAtivParadaDatasourceRoom.checkImplementoIdAtiv(boletimMMFertRepository.getIdAtivBoletimAberto())
+    }
+
     override suspend fun deleteAllRFuncaoAtivParada() {
         rFuncaoAtivParadaDatasourceRoom.deleteAllRFuncaoAtivParada()
     }

@@ -12,6 +12,9 @@ interface EquipSegDao {
     @Insert
     suspend fun insertAll(vararg equipSegRoomModels: EquipSegRoomModel)
 
+    @Query("SELECT count(*) FROM $TB_EQUIP_SEG WHERE nroEquip = :nroEquip and tipoEquip = :tipoEquip")
+    suspend fun checkNroEquipTipo(nroEquip: Long, tipoEquip: Long): Int
+
     @Query("DELETE FROM $TB_EQUIP_SEG")
     suspend fun deleteAll()
 

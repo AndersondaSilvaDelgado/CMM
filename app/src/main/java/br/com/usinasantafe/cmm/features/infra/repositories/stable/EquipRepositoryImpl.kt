@@ -32,6 +32,10 @@ class EquipRepositoryImpl @Inject constructor(
         return equipDatasourceRoom.hasEquip()
     }
 
+    override suspend fun updateHorimetroEquip(horimetro: Double): Boolean {
+        return equipDatasourceRoom.updateHorimetroEquip(horimetro)
+    }
+
     override suspend fun recoverEquip(nroEquip: String): Flow<Result<List<Equip>>> {
         return flow {
             equipDatasourceWebService.getEquip(nroEquip)

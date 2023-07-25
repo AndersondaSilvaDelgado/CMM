@@ -13,6 +13,10 @@ class EquipSegDatasourceRoomImpl @Inject constructor (
         equipSegDao.insertAll(*equipSegRoomModels)
     }
 
+    override suspend fun checkEquipSeg(nroEquip: Long, typeEquigSeg: Long): Boolean {
+        return equipSegDao.checkNroEquipTipo(nroEquip, typeEquigSeg) > 0
+    }
+
     override suspend fun deleteAllEquipSeg() {
         equipSegDao.deleteAll()
     }

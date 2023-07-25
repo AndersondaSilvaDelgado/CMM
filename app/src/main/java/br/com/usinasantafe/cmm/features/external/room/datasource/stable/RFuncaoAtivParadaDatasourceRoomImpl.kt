@@ -25,4 +25,8 @@ class RFuncaoAtivParadaDatasourceRoomImpl @Inject constructor (
         return rFuncaoAtivParadaDao.getRFuncaoAtivParadaCodTipo(1L , 2L)
     }
 
+    override suspend fun checkImplementoIdAtiv(idAtiv: Long): Boolean {
+        return rFuncaoAtivParadaDao.listRFuncaoIdAtivTipoImplemento(idAtiv, 1L).isNotEmpty()
+    }
+
 }

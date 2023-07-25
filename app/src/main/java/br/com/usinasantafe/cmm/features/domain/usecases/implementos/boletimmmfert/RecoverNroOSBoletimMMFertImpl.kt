@@ -4,7 +4,7 @@ import br.com.usinasantafe.cmm.common.utils.TEXT_FINISH_UPDATE
 import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.boletimmmfert.RecoverNroOSBoletimMMFert
 import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.boletimmmfert.SetNroOSBoletimMMFert
 import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.database.recover.RecoverOS
-import br.com.usinasantafe.cmm.features.presenter.models.ResultUpdateDatabase
+import br.com.usinasantafe.cmm.common.utils.ResultUpdateDatabase
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
@@ -14,7 +14,8 @@ class RecoverNroOSBoletimMMFertImpl @Inject constructor(
     private val setNroOSBoletimMMFert: SetNroOSBoletimMMFert
 ): RecoverNroOSBoletimMMFert {
 
-    override suspend fun invoke(nroOS: String): Flow<ResultUpdateDatabase> {
+    override suspend fun invoke(nroOS: String, checkConn: Boolean): Flow<ResultUpdateDatabase> {
+
         return flow {
             recoverOS(nroOS)
                 .collect{

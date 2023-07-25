@@ -4,7 +4,7 @@ import br.com.usinasantafe.cmm.common.utils.TEXT_SUCESS_UPDATE
 import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.database.recover.RecoverParada
 import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.database.update.UpdateParada
 import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.database.update.UpdateRAtivParada
-import br.com.usinasantafe.cmm.features.presenter.models.ResultUpdateDatabase
+import br.com.usinasantafe.cmm.common.utils.ResultUpdateDatabase
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject

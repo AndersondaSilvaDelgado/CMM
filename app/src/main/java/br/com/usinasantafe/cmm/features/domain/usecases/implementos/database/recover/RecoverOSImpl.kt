@@ -4,7 +4,7 @@ import br.com.usinasantafe.cmm.common.utils.*
 import br.com.usinasantafe.cmm.features.domain.repositories.stable.OSRepository
 import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.database.recover.RecoverOS
 import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.database.recover.RecoverROSAtiv
-import br.com.usinasantafe.cmm.features.presenter.models.ResultUpdateDatabase
+import br.com.usinasantafe.cmm.common.utils.ResultUpdateDatabase
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject

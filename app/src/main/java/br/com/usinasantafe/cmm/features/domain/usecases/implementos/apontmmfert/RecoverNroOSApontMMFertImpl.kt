@@ -3,7 +3,7 @@ package br.com.usinasantafe.cmm.features.domain.usecases.implementos.apontmmfert
 import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.apontmmfert.RecoverNroOSApontMMFert
 import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.apontmmfert.SetNroOSApontMMFert
 import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.database.recover.RecoverOS
-import br.com.usinasantafe.cmm.features.presenter.models.ResultUpdateDatabase
+import br.com.usinasantafe.cmm.common.utils.ResultUpdateDatabase
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject

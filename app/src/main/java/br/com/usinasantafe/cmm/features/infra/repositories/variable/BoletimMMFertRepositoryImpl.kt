@@ -93,12 +93,11 @@ class BoletimMMFertRepositoryImpl @Inject constructor(
     }
 
     override suspend fun insertBoletimMMFert(): Boolean {
-        var ret = if (equipRepository.getEquip().tipoEquip == 1L) {
+        return if (equipRepository.getEquip().tipoEquip == 1L) {
             boletimMMDatasourceRoom.insertBoletimMM(boletimMMDatasourceSharedPreferences.getBoletimMM().toBoletimMMRoomModel())
         } else {
             boletimFertDatasourceRoom.insertBoletimFert(boletimFertDatasourceSharedPreferences.getBoletimFert().toBoletimFertRoomModel())
         }
-        return ret
     }
 
     override suspend fun sendBoletimMMFert(): Result<List<BoletimMM>> {
@@ -121,21 +120,21 @@ class BoletimMMFertRepositoryImpl @Inject constructor(
     }
 
     override suspend fun setHorimetroFinalBoletimMMFert(horimetroFinal: String): Boolean {
-       return boletimMMDatasourceRoom.setHorimetroFinal(
-           horimetroFinal.replace(",", ".").toDouble()
-        )
+        var horimetro = horimetroFinal.replace(",", ".").toDouble()
+        var check = boletimMMDatasourceRoom.setHorimetroFinal(horimetro)
+        if(!check) return check
+        return equipRepository.updateHorimetroEquip(horimetro)
     }
 
     override suspend fun setHorimetroInicialBoletimMMFert(horimetroInicial: String): Boolean {
-        return if (equipRepository.getEquip().tipoEquip == 1L) {
-            boletimMMDatasourceSharedPreferences.setHorimetroInicial(
-                horimetroInicial.replace(",", ".").toDouble()
-            )
+        var horimetro = horimetroInicial.replace(",", ".").toDouble()
+        var check = if (equipRepository.getEquip().tipoEquip == 1L) {
+            boletimMMDatasourceSharedPreferences.setHorimetroInicial(horimetro)
         } else {
-            boletimFertDatasourceSharedPreferences.setHorimetroInicial(
-                horimetroInicial.replace(",", ".").toDouble()
-            )
+            boletimFertDatasourceSharedPreferences.setHorimetroInicial(horimetro)
         }
+        if(!check) return check
+        return equipRepository.updateHorimetroEquip(horimetro)
     }
 
     override suspend fun setIdAtivBoletimMMFert(idAtiv: Long): Boolean {

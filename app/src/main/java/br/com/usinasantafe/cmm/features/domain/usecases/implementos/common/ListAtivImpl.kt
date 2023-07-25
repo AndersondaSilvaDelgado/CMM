@@ -39,9 +39,6 @@ class ListAtivImpl @Inject constructor (
 
         if(listROSAtiv.isNotEmpty()) {
             listIdAtiv = listROSAtiv.filter { listIdAtiv.contains(it.idAtiv) }.map { it.idAtiv }
-//            listREquipAtiv.forEach { rEquipAtiv ->
-//                listIdAtiv = listROSAtiv.filter { it.idAtiv == rEquipAtiv.idAtiv }.map { it.idAtiv }
-//            }
         }
 
         return ativRepository.listInIdAtiv(listIdAtiv)

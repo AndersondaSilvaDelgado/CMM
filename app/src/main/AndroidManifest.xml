@@ -17,25 +17,35 @@
         android:theme="@style/Theme.CMM"
         tools:targetApi="31">
         <activity
-            android:name=".features.presenter.view.splash.SplashActivity"
-            android:exported="true">
+            android:name="br.com.usinasantafe.cmm.features.presenter.splash.SplashActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
-            android:name=".features.presenter.view.checklist.CheckListActivity"
-            android:exported="true" />
+            android:name="br.com.usinasantafe.cmm.features.presenter.checklist.CheckListActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
         <activity
-            android:name=".features.presenter.view.apontmmfert.ApontActivity"
-            android:exported="true" />
+            android:name="br.com.usinasantafe.cmm.features.presenter.apontmmfert.ApontActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
         <activity
-            android:name=".features.presenter.view.boletimmmfert.BoletimActivity"
-            android:exported="true" />
+            android:name="br.com.usinasantafe.cmm.features.presenter.boletimmmfert.BoletimActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
         <activity
-            android:name=".features.presenter.view.config.ConfigActivity"
-            android:exported="true"></activity>
+            android:name="br.com.usinasantafe.cmm.features.presenter.config.ConfigActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
 
         <provider
             android:name="androidx.startup.InitializationProvider"
@@ -48,17 +58,6 @@
                 android:value="androidx.startup"
                 tools:node="remove" />
         </provider>
-
-<!--        <provider-->
-<!--            android:name="androidx.startup.InitializationProvider"-->
-<!--            android:authorities="${applicationId}.androidx-startup"-->
-<!--            tools:node="remove"></provider>-->
-<!--         disable default provider-->
-<!--        <provider-->
-<!--            android:name="androidx.work.impl.WorkManagerInitializer"-->
-<!--            android:authorities="${applicationId}.workmanager-init"-->
-<!--            android:exported="false"-->
-<!--            android:enabled="false"/>-->
 
     </application>
 

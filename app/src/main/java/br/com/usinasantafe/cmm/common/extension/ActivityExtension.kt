@@ -16,7 +16,6 @@ import androidx.fragment.app.Fragment
 import br.com.usinasantafe.cmm.R
 import br.com.usinasantafe.cmm.databinding.LayoutBotoesBinding
 import br.com.usinasantafe.cmm.databinding.LayoutBotoesSAtualBinding
-import br.com.usinasantafe.cmm.features.presenter.view.boletimmmfert.OperadorBolFragment
 
 fun Activity.hideKeyboard(){
     val imm: InputMethodManager = getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager

@@ -3,7 +3,7 @@ package br.com.usinasantafe.cmm.features.domain.usecases.implementos.database
 import br.com.usinasantafe.cmm.common.utils.TEXT_SUCESS_UPDATE
 import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.database.UpdateAllDataBase
 import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.database.update.*
-import br.com.usinasantafe.cmm.features.presenter.models.ResultUpdateDatabase
+import br.com.usinasantafe.cmm.common.utils.ResultUpdateDatabase
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject

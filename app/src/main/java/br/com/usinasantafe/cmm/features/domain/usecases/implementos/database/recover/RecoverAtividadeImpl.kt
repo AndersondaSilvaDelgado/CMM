@@ -10,7 +10,7 @@ import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.database.reco
 import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.database.recover.RecoverROSAtiv
 import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.database.update.UpdateAtividade
 import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.database.update.UpdateRFuncaoAtivParada
-import br.com.usinasantafe.cmm.features.presenter.models.ResultUpdateDatabase
+import br.com.usinasantafe.cmm.common.utils.ResultUpdateDatabase
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject

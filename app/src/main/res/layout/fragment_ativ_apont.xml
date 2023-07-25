@@ -10,7 +10,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context=".features.presenter.view.apontmmfert.AtivApontFragment">
+    tools:context=".features.presenter.apontmmfert.ativapont.AtivApontFragment">
 
     <TextView
         android:id="@+id/textViewTituloAtividade"

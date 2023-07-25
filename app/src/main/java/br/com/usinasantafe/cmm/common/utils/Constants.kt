@@ -10,6 +10,7 @@ const val BASE_SHARE_PREFERENCES_TABLE_BOLETIM_MM = "boletim_mm"
 const val BASE_SHARE_PREFERENCES_TABLE_BOLETIM_FERT = "boletim_fert"
 const val BASE_SHARE_PREFERENCES_TABLE_APONT_MM = "apont_mm"
 const val BASE_SHARE_PREFERENCES_TABLE_APONT_FERT = "apont_fert"
+const val BASE_SHARE_PREFERENCES_TABLE_LIST_IMPLEMENTO = "list_implemento"
 
 const val TB_ATIVIDADE = "tb_atividade"
 const val TB_BOCAL = "tb_bocal"
@@ -87,3 +88,5 @@ const val TEXT_CLEAR_TB = "Limpando Dados da Tabela "
 const val TEXT_RECEIVE_WS_TB = "Recebendo Dados da Tabela "
 const val TEXT_SAVE_DATA_TB = "Salvandos Dados da Tabela "
 const val TEXT_FINISH_UPDATE = "Termino de Atualização"
+
+const val TYPE_EQUIP_SEG_TRANSBORDO = 3L

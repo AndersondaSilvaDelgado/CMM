@@ -12,4 +12,6 @@ interface EquipDatasourceRoom {
 
     suspend fun hasEquip(): Boolean
 
+    suspend fun updateHorimetroEquip(horimetro: Double): Boolean
+
 }

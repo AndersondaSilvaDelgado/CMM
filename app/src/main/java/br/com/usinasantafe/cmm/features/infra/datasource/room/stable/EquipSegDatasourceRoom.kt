@@ -6,6 +6,8 @@ interface EquipSegDatasourceRoom {
 
     suspend fun addAllEquipSeg(vararg equipSegRoomModels: EquipSegRoomModel)
 
+    suspend fun checkEquipSeg(nroEquip: Long, typeEquigSeg: Long): Boolean
+
     suspend fun deleteAllEquipSeg()
 
 }

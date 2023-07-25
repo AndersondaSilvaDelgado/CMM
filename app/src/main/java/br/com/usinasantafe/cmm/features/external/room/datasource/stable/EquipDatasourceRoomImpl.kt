@@ -13,6 +13,12 @@ class EquipDatasourceRoomImpl @Inject constructor (
         equipDao.insertAll(*equipRoomModels)
     }
 
+    override suspend fun updateHorimetroEquip(horimetro: Double): Boolean {
+        var equip = equipDao.get()
+        equip.horimetroEquip = horimetro
+        return equipDao.update(equip) > 0
+    }
+
     override suspend fun deleteAllEquip() {
         equipDao.deleteAll()
     }

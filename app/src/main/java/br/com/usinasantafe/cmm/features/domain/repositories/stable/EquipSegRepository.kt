@@ -7,6 +7,8 @@ interface EquipSegRepository {
 
     suspend fun addAllEquipSeg(equipSegList: List<EquipSeg>)
 
+    suspend fun checkEquipSeg(nroEquip: Long, typeEquigSeg: Long): Boolean
+
     suspend fun deleteAllEquipSeg()
 
     suspend fun recoverAllEquipSeg(): Flow<Result<List<EquipSeg>>>

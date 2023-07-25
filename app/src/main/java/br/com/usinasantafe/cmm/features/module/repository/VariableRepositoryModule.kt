@@ -30,6 +30,10 @@ interface VariableRepositoryModule {
 
     @Singleton
     @Binds
+    fun bindImplementoRepository(repository: ImplementoRepositoryImpl): ImplementoRepository
+
+    @Singleton
+    @Binds
     fun bindRespItemCheckListRepository(repository: RespItemCheckListRepositoryImpl): RespItemCheckListRepository
 
 }

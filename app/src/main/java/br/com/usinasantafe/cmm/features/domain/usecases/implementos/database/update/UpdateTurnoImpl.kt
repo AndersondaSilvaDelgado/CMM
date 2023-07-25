@@ -6,7 +6,7 @@ import br.com.usinasantafe.cmm.common.utils.TEXT_RECEIVE_WS_TB
 import br.com.usinasantafe.cmm.common.utils.TEXT_SAVE_DATA_TB
 import br.com.usinasantafe.cmm.features.domain.repositories.stable.TurnoRepository
 import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.database.update.UpdateTurno
-import br.com.usinasantafe.cmm.features.presenter.models.ResultUpdateDatabase
+import br.com.usinasantafe.cmm.common.utils.ResultUpdateDatabase
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flow
 import javax.inject.Inject

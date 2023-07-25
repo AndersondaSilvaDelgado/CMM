@@ -13,7 +13,8 @@ interface EquipRepository {
 
     suspend fun hasEquip(): Boolean
 
-    suspend fun recoverEquip(nroEquip: String): Flow<Result<List<Equip>>>
+    suspend fun updateHorimetroEquip(horimetro: Double): Boolean
 
+    suspend fun recoverEquip(nroEquip: String): Flow<Result<List<Equip>>>
 
 }

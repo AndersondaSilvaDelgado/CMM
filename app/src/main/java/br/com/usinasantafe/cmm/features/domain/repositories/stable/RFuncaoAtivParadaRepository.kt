@@ -7,6 +7,8 @@ interface RFuncaoAtivParadaRepository {
 
     suspend fun addAllRFuncaoAtivParada(rFuncaoAtivParadaList: List<RFuncaoAtivParada>)
 
+    suspend fun checkImplementoIdAtiv(): Boolean
+
     suspend fun deleteAllRFuncaoAtivParada()
 
     suspend fun listRFuncaoAtiv(): List<RFuncaoAtivParada>

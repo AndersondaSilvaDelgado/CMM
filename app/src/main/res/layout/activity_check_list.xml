@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".features.presenter.view.checklist.CheckListActivity">
+    tools:context=".features.presenter.checklist.CheckListActivity">
 
     <FrameLayout
         android:id="@+id/check_list_manager_fragment"

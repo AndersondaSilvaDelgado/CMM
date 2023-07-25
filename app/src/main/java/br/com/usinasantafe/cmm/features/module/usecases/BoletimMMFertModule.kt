@@ -14,7 +14,19 @@ interface BoletimMMFertModule {
 
     @Singleton
     @Binds
+    fun bindAddImplementoBoletimMMFert(usecase: AddImplementoBoletimMMFertImpl): AddImplementoBoletimMMFert
+
+    @Singleton
+    @Binds
     fun bindCheckAbertoBoletimMMFert(usecase: CheckAbertoBoletimMMFertImpl): CheckAbertoBoletimMMFert
+
+    @Singleton
+    @Binds
+    fun bindCheckHorimetroBoletimMMFert(usecase: CheckHorimetroBoletimMMFertImpl): CheckHorimetroBoletimMMFert
+
+    @Singleton
+    @Binds
+    fun bindCheckImplementoBoletimMMFert(usecase: CheckImplementoBoletimMMFertImpl): CheckImplementoBoletimMMFert
 
     @Singleton
     @Binds
