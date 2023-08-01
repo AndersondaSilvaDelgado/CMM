@@ -10,4 +10,6 @@ interface ImplementoDatasourceSharedPreferences {
 
     suspend fun countImplemento(): Int
 
+    suspend fun listImplemento(): List<Implemento>
+
 }

@@ -4,16 +4,13 @@ import android.content.Context
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
 import br.com.usinasantafe.cmm.R
 import br.com.usinasantafe.cmm.common.base.BaseFragment
 import br.com.usinasantafe.cmm.common.extension.onBackPressed
+import br.com.usinasantafe.cmm.common.utils.ChoiceCheckList
 import br.com.usinasantafe.cmm.databinding.FragmentItemCheckListBinding
 import br.com.usinasantafe.cmm.features.presenter.checklist.FragmentAttachListenerCheckList
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class ItemCheckListFragment : BaseFragment<FragmentItemCheckListBinding>(
@@ -21,6 +18,7 @@ class ItemCheckListFragment : BaseFragment<FragmentItemCheckListBinding>(
     FragmentItemCheckListBinding::bind
 ) {
 
+    private var position = 0
     private val viewModel: ItemCheckListViewModel by viewModels()
     private var fragmentAttachListenerCheckList: FragmentAttachListenerCheckList? = null
 
@@ -40,15 +38,58 @@ class ItemCheckListFragment : BaseFragment<FragmentItemCheckListBinding>(
     }
 
     private fun setListener() {
-        TODO("Not yet implemented")
+        with(binding){
+            buttonConforme.setOnClickListener {
+                viewModel.checkAddRespItemCheckList(ChoiceCheckList.CONFORME, position)
+            }
+            buttonReparo.setOnClickListener {
+                viewModel.checkAddRespItemCheckList(ChoiceCheckList.REPARO, position)
+            }
+            buttonNaoConforme.setOnClickListener {
+                viewModel.checkAddRespItemCheckList(ChoiceCheckList.NAOCONFORME, position)
+            }
+            buttonCancChecklist.setOnClickListener {
+                viewModel.checkDeleteRespItemCheckList(--position)
+            }
+        }
     }
 
     private fun startEvents() {
-
+        viewModel.recoverItemCheckList(++position)
     }
 
     private fun handleStateChange(state: ItemCheckListFragmentState) {
+        when(state) {
+            is ItemCheckListFragmentState.GetItemCheckList -> displayItemCheckList(state.descrItemCheckList)
+            is ItemCheckListFragmentState.CheckAddItemCheckList -> handleAddItemCheckList()
+            is ItemCheckListFragmentState.CheckLastItemCheckList -> handleLastRespItemCheckList(state.checkLastItemCheckList)
+            is ItemCheckListFragmentState.CheckDeleteItemCheckList -> handleDeleteRespItemCheckList()
+            is ItemCheckListFragmentState.CheckCloseCheckList -> handleCloseCheckList()
+        }
+    }
 
+    private fun handleAddItemCheckList(){
+        viewModel.checkLastRespItemCheckList()
+    }
+
+    private fun handleCloseCheckList(){
+        fragmentAttachListenerCheckList?.goAtivMMFert()
+    }
+
+    private fun handleDeleteRespItemCheckList(){
+        viewModel.recoverItemCheckList(position)
+    }
+
+    private fun handleLastRespItemCheckList(checkLastItemCheckList: Boolean){
+        if(checkLastItemCheckList){
+            viewModel.checkCloseCheckList()
+        } else {
+            viewModel.recoverItemCheckList(++position)
+        }
+    }
+
+    private fun displayItemCheckList(descrItemCheckList: String){
+        binding.textViewItemChecklist.text = "$position - $descrItemCheckList"
     }
 
     override fun onAttach(context: Context) {

@@ -75,6 +75,7 @@ const val WEB_ALL_R_OS_ATIV = "rosativ.php"
 const val WEB_ALL_SERVICO = "servico.php"
 const val WEB_ALL_TURNO = "turno.php"
 
+const val WEB_SAVE_CHECK_LIST = "save-checklist.php"
 const val WEB_SAVE_FERTIRRIGACAO = "save-fertirrigacao.php"
 const val WEB_SAVE_MOTOMEC = "save-motomec.php"
 

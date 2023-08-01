@@ -24,7 +24,7 @@
         android:fillViewport="true">
 
         <TextView
-            android:id="@+id/textViewItemChecklist"
+            android:id="@+id/text_view_item_checklist"
             style="@style/TextViewTituloLista"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

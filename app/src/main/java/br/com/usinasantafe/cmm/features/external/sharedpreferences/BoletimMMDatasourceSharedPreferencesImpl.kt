@@ -75,7 +75,7 @@ class BoletimMMDatasourceSharedPreferencesImpl @Inject constructor (
 
     override suspend fun startBoletim(idEquip: Long): Boolean {
         var boletim = BoletimMM()
-        boletim.statusBol = StatusData.INICIADO
+        boletim.statusBol = StatusData.INITIATE
         boletim.idEquipBol = idEquip
         saveBoletim(boletim)
         return true

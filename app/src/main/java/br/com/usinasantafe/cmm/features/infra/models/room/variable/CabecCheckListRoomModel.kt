@@ -16,8 +16,8 @@ data class CabecCheckListRoomModel (
     val dtCabecCheckList: Long,
     val matricFuncCabecCheckList: Long,
     val idTurnoCabecCheckList: Long,
-    val statusData: StatusData = StatusData.ABERTO,
-    val statusSend: StatusSend = StatusSend.VAZIO
+    var statusData: StatusData = StatusData.OPEN,
+    var statusSend: StatusSend = StatusSend.EMPTY
 )
 
 fun CabecCheckList.toCabecCheckListRoomModel(): CabecCheckListRoomModel{

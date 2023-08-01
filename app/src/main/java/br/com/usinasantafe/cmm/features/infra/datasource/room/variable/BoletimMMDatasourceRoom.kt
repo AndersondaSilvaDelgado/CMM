@@ -18,14 +18,14 @@ interface BoletimMMDatasourceRoom {
 
     suspend fun insertBoletimMM(boletimMMRoomModel: BoletimMMRoomModel): Boolean
 
-    suspend fun listBoletimMMEnviar(): List<BoletimMMRoomModel>
+    suspend fun listBoletimMMSend(): List<BoletimMMRoomModel>
 
-    suspend fun listBoletimMMFechadoEnviado(): List<BoletimMMRoomModel>
+    suspend fun listBoletimMMFechadoSent(): List<BoletimMMRoomModel>
 
     suspend fun setHorimetroFinal(horimetroFinal: Double): Boolean
 
-    suspend fun setStatusEnviado(idBol: Long): Boolean
+    suspend fun setStatusSent(idBol: Long): Boolean
 
-    suspend fun setStatusEnviar(idBol: Long): Boolean
+    suspend fun setStatusSend(idBol: Long): Boolean
 
 }

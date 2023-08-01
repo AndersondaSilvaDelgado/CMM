@@ -40,9 +40,9 @@ fun BoletimMM.toBoletimMMRoomModel(): BoletimMMRoomModel{
             idAtivBolMM = this.idAtivBol!!,
             dthrInicialBolMM = Date().time,
             dthrFinalBolMM = Date().time,
-            statusBolMM = StatusData.ABERTO,
+            statusBolMM = StatusData.OPEN,
             statusConBolMM = StatusConnection.ONLINE,
-            statusEnvioBolMM = StatusSend.ENVIAR,
+            statusEnvioBolMM = StatusSend.SEND,
             longitudeBolMM = 0.0,
             latitudeBolMM = 0.0
         )

@@ -14,11 +14,7 @@ interface BoletimMMFertModule {
 
     @Singleton
     @Binds
-    fun bindAddImplementoBoletimMMFert(usecase: AddImplementoBoletimMMFertImpl): AddImplementoBoletimMMFert
-
-    @Singleton
-    @Binds
-    fun bindCheckAbertoBoletimMMFert(usecase: CheckAbertoBoletimMMFertImpl): CheckAbertoBoletimMMFert
+    fun bindCheckAbertoBoletimMMFert(usecase: CheckOpenBoletimMMFertImpl): CheckOpenBoletimMMFert
 
     @Singleton
     @Binds
@@ -38,15 +34,15 @@ interface BoletimMMFertModule {
 
     @Singleton
     @Binds
-    fun bindSentDataBoletimMMFert(usecase: SentDataBoletimMMFertImpl): SentDataBoletimMMFert
+    fun bindSentDataBoletimMMFert(usecase: ReceiverSentDataBoletimMMFertImpl): ReceiverSentDataBoletimMMFert
 
     @Singleton
     @Binds
-    fun bindSetHorimetroFinalBoletimMMFert(usecase: SetHorimetroFinalBoletimMMFertImpl): SetHorimetroFinalBoletimMMFert
+    fun bindSetHorimetroFinalBoletimMMFert(usecase: SetHorimetroFinishBoletimMMFertImpl): SetHorimetroFinishBoletimMMFert
 
     @Singleton
     @Binds
-    fun bindSetHorimetroInicialBoletimMMFert(usecase: SetHorimetroInicialBoletimMMFertImpl): SetHorimetroInicialBoletimMMFert
+    fun bindSetHorimetroInicialBoletimMMFert(usecase: SetHorimetroStartBoletimMMFertImpl): SetHorimetroStartBoletimMMFert
 
     @Singleton
     @Binds

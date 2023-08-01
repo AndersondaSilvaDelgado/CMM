@@ -12,8 +12,8 @@ class CheckStatusSendImpl @Inject constructor (
 ): CheckStatusSend {
 
     override suspend fun invoke(): Boolean {
-        return if(configRepository.getConfig().statusEnvio == StatusSend.ENVIADO) {
-            setStatusSendConfig(StatusSend.ENVIAR)
+        return if(configRepository.getConfig().statusEnvio == StatusSend.SENT) {
+            setStatusSendConfig(StatusSend.SEND)
             true
         } else false
     }

@@ -2,8 +2,8 @@ package br.com.usinasantafe.cmm.features.external.webservice.datasource.variable
 
 import br.com.usinasantafe.cmm.features.external.webservice.api.variable.MotoMecApi
 import br.com.usinasantafe.cmm.features.infra.datasource.webservice.variable.MotoMecDatasourceWebService
-import br.com.usinasantafe.cmm.features.infra.models.variable.webservice.BoletimMMWebServiceModelInput
-import br.com.usinasantafe.cmm.features.infra.models.variable.webservice.BoletimMMWebServiceModelOutput
+import br.com.usinasantafe.cmm.features.infra.models.webservice.BoletimMMWebServiceModelInput
+import br.com.usinasantafe.cmm.features.infra.models.webservice.BoletimMMWebServiceModelOutput
 import javax.inject.Inject
 
 class MotoMecDatasourceWebServiceImpl @Inject constructor (

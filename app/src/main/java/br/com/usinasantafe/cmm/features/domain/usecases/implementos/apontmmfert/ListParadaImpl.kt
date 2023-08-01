@@ -14,7 +14,7 @@ class ListParadaImpl @Inject constructor(
 ): ListParada {
 
     override suspend fun invoke(): List<Parada> {
-        var idAtiv = apontMMFertRepository.getIdAtiv()
+        var idAtiv = apontMMFertRepository.getIdAtivApontMMFert()
         var listRAtivParada = rAtivParadaRepository.listRAtivParada(idAtiv)
         var listIdParada = listRAtivParada.map { it.idParada }
         return paradaRepository.listInIdParada(listIdParada)

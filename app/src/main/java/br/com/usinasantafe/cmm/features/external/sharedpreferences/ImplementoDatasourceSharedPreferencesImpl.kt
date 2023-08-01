@@ -14,19 +14,17 @@ class ImplementoDatasourceSharedPreferencesImpl @Inject constructor(
 ) : ImplementoDatasourceSharedPreferences {
 
     override suspend fun addImplemento(implemento: Implemento): Boolean {
-        var data = mutableListOf<Implemento>()
-        val typeToken = object : TypeToken<List<Implemento>>() {}.type
-        val result = sharedPreferences.getString(BASE_SHARE_PREFERENCES_TABLE_LIST_IMPLEMENTO, null)
-        if(!result.isNullOrEmpty()){
-            data = Gson().fromJson(result, typeToken)
-        }
+        var data = listImplemento() as MutableList<Implemento>
         data.add(implemento)
         val editor = sharedPreferences.edit()
+        val typeToken = object : TypeToken<List<Implemento>>() {}.type
         editor.putString(BASE_SHARE_PREFERENCES_TABLE_LIST_IMPLEMENTO, Gson().toJson(data, typeToken))
         editor.commit()
         data.clear()
         return true
     }
+
+
 
     override suspend fun clearData() {
         val result = sharedPreferences.getString(BASE_SHARE_PREFERENCES_TABLE_LIST_IMPLEMENTO, null)
@@ -36,6 +34,8 @@ class ImplementoDatasourceSharedPreferencesImpl @Inject constructor(
             editor.commit()
         }
     }
+
+
 
     override suspend fun countImplemento(): Int {
         var count = 0
@@ -48,6 +48,16 @@ class ImplementoDatasourceSharedPreferencesImpl @Inject constructor(
             data.clear()
         }
         return count
+    }
+
+    override suspend fun listImplemento(): List<Implemento> {
+        var data = mutableListOf<Implemento>()
+        val typeToken = object : TypeToken<List<Implemento>>() {}.type
+        val result = sharedPreferences.getString(BASE_SHARE_PREFERENCES_TABLE_LIST_IMPLEMENTO, null)
+        if(!result.isNullOrEmpty()){
+            data = Gson().fromJson(result, typeToken)
+        }
+        return data
     }
 
 }

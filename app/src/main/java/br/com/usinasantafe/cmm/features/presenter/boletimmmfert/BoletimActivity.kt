@@ -5,9 +5,6 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
 import br.com.usinasantafe.cmm.R
 import br.com.usinasantafe.cmm.common.extension.replaceFragment
 import br.com.usinasantafe.cmm.databinding.ActivityBoletimBinding
@@ -16,15 +13,14 @@ import br.com.usinasantafe.cmm.features.presenter.boletimmmfert.ativbol.AtivBolF
 import br.com.usinasantafe.cmm.features.presenter.boletimmmfert.datahora.DataHoraFragment
 import br.com.usinasantafe.cmm.features.presenter.boletimmmfert.equipbol.EquipBolFragment
 import br.com.usinasantafe.cmm.features.presenter.boletimmmfert.horimetrobol.HorimetroBolFragment
-import br.com.usinasantafe.cmm.features.presenter.boletimmmfert.implemento.ImplementoFragment
+import br.com.usinasantafe.cmm.features.presenter.implementomm.implemento.ImplementoFragment
 import br.com.usinasantafe.cmm.features.presenter.boletimmmfert.operadorbol.OperadorBolFragment
 import br.com.usinasantafe.cmm.features.presenter.boletimmmfert.osbol.OSBolFragment
 import br.com.usinasantafe.cmm.features.presenter.boletimmmfert.turnobol.TurnoBolFragment
 import br.com.usinasantafe.cmm.features.presenter.checklist.CheckListActivity
 import br.com.usinasantafe.cmm.features.presenter.config.ConfigActivity
+import br.com.usinasantafe.cmm.features.presenter.implementomm.ImplementoActivity
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.launch
-
 
 @AndroidEntryPoint
 class BoletimActivity : AppCompatActivity(), FragmentAttachListenerBoletim {
@@ -123,7 +119,9 @@ class BoletimActivity : AppCompatActivity(), FragmentAttachListenerBoletim {
     }
 
     override fun goImplemento() {
-        replaceFragment(ImplementoFragment())
+        val intent = Intent(this, ImplementoActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+        startActivity(intent)
     }
 
 }

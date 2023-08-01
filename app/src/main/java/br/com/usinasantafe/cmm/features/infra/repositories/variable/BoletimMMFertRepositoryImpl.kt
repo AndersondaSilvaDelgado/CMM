@@ -10,8 +10,8 @@ import br.com.usinasantafe.cmm.features.infra.datasource.room.variable.BoletimFe
 import br.com.usinasantafe.cmm.features.infra.datasource.room.variable.BoletimMMDatasourceRoom
 import br.com.usinasantafe.cmm.features.infra.datasource.webservice.variable.MotoMecDatasourceWebService
 import br.com.usinasantafe.cmm.features.infra.models.room.variable.*
-import br.com.usinasantafe.cmm.features.infra.models.variable.webservice.toBoletimMM
-import br.com.usinasantafe.cmm.features.infra.models.variable.webservice.toBoletimMMWebServiceModel
+import br.com.usinasantafe.cmm.features.infra.models.webservice.toBoletimMM
+import br.com.usinasantafe.cmm.features.infra.models.webservice.toBoletimMMWebServiceModel
 import javax.inject.Inject
 
 class BoletimMMFertRepositoryImpl @Inject constructor(
@@ -33,9 +33,9 @@ class BoletimMMFertRepositoryImpl @Inject constructor(
     }
 
     override suspend fun deleteBoletimEnviado(): Boolean {
-        var listBoletim = boletimMMDatasourceRoom.listBoletimMMFechadoEnviado()
+        var listBoletim = boletimMMDatasourceRoom.listBoletimMMFechadoSent()
         listBoletim.forEach { boletimMMRoomModel ->
-            var listApont = apontMMDatasourceRoom.listApontIdBolStatusEnviar(boletimMMRoomModel.idBolMM!!)
+            var listApont = apontMMDatasourceRoom.listApontIdBolStatusSend(boletimMMRoomModel.idBolMM!!)
             listApont.forEach { apontMMRoomModel ->
                 if(!apontMMDatasourceRoom.deleteApontMM(apontMMRoomModel)){
                     return false
@@ -101,21 +101,21 @@ class BoletimMMFertRepositoryImpl @Inject constructor(
     }
 
     override suspend fun sendBoletimMMFert(): Result<List<BoletimMM>> {
-        var listBoletim: List<BoletimMM> = boletimMMDatasourceRoom.listBoletimMMEnviar().map { boletimMMRoomModel ->
+        var listBoletim: List<BoletimMM> = boletimMMDatasourceRoom.listBoletimMMSend().map { boletimMMRoomModel ->
             var boletimMM = boletimMMRoomModel.toBoletimMM()
-            boletimMM.apontList = apontMMDatasourceRoom.listApontIdBolStatusEnviar(boletimMM.idBol!!).map { it.toApontMM() }
+            boletimMM.apontList = apontMMDatasourceRoom.listApontIdBolStatusSend(boletimMM.idBol!!).map { it.toApontMM() }
             boletimMM
         }
         var result = motoMecDatasourceWebService.sendMotoMec(listBoletim.map { it.toBoletimMMWebServiceModel() })
         return result.map { boletimMMList -> boletimMMList.map { it.toBoletimMM() }}
     }
 
-    override suspend fun sentBoletimMMFert(boletimMMList: List<BoletimMM>) {
+    override suspend fun receiverSentBoletimMMFert(boletimMMList: List<BoletimMM>) {
         boletimMMList.forEach { boletimMM ->
             boletimMM.apontList!!.forEach {
-                apontMMDatasourceRoom.updateApontEnviadoMM(it.toApontMMRoomModel())
+                apontMMDatasourceRoom.updateApontMMSent(it.toApontMMRoomModel())
             }
-            boletimMMDatasourceRoom.setStatusEnviado(boletimMM.idBol!!)
+            boletimMMDatasourceRoom.setStatusSent(boletimMM.idBol!!)
         }
     }
 
@@ -170,7 +170,7 @@ class BoletimMMFertRepositoryImpl @Inject constructor(
     }
 
     override suspend fun setStatusEnviarBoletimMM(idBol: Long): Boolean {
-        return boletimMMDatasourceRoom.setStatusEnviar(idBol)
+        return boletimMMDatasourceRoom.setStatusSend(idBol)
     }
 
     override suspend fun startBoletimMMFert(): Boolean {

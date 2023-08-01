@@ -23,15 +23,15 @@ class ApontMMFertRepositoryImpl @Inject constructor(
     private val boletimFertDatasourceRoom: BoletimFertDatasourceRoom
 ) : ApontMMFertRepository {
 
-    override suspend fun checkApontSend(): Boolean {
+    override suspend fun checkApontMMFertSend(): Boolean {
         return apontMMDatasourceRoom.checkApontMMSend()
     }
 
-    override suspend fun getIdAtiv(): Long {
+    override suspend fun getIdAtivApontMMFert(): Long {
         return apontMMDatasourceSharedPreferences.getApontMM().idAtivApont!!
     }
 
-    override suspend fun getNroOS(): Long {
+    override suspend fun getNroOSApontMMFert(): Long {
         return if (equipRepository.getEquip().tipoEquip == 1L) {
             apontMMDatasourceSharedPreferences.getApontMM().nroOSApont!!
         } else {
@@ -39,7 +39,7 @@ class ApontMMFertRepositoryImpl @Inject constructor(
         }
     }
 
-    override suspend fun getTipo(): TypeNote {
+    override suspend fun getTipoMMFert(): TypeNote {
         return if (equipRepository.getEquip().tipoEquip == 1L) {
             apontMMDatasourceSharedPreferences.getApontMM().tipoApont!!
         } else {

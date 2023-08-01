@@ -14,6 +14,6 @@ data class Config(
     var flagUpdateApp: FlagUpdateApp? = null,
     var flagUpdateCheckList: FlagUpdateCheckList? = null,
     var dthrServer: Date? = null,
-    var idTurno: Long? = null,
+    var ultTurnoCheckList: Long? = null,
     var dtUltCheckList: Date? = null,
 )

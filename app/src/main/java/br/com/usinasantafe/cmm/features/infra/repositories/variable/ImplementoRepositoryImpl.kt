@@ -21,4 +21,8 @@ class ImplementoRepositoryImpl @Inject constructor (
     override suspend fun countImplemento(): Int {
         return implementoDatasourceSharedPreferences.countImplemento()
     }
+
+    override suspend fun listImplemento(): List<Implemento> {
+        return implementoDatasourceSharedPreferences.listImplemento()
+    }
 }

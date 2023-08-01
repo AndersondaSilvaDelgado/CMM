@@ -11,7 +11,7 @@ class ApontMMDatasourceRoomImpl @Inject constructor (
 ): ApontMMDatasourceRoom {
 
     override suspend fun checkApontMMSend(): Boolean {
-        return apontMMDao.listApontStatusEnvio(statusEnvio = StatusSend.ENVIAR).isNotEmpty()
+        return apontMMDao.listApontStatusEnvio(statusEnvio = StatusSend.SEND).isNotEmpty()
     }
 
     override suspend fun insertApontMM(apontMMRoomModel: ApontMMRoomModel): Boolean {
@@ -22,17 +22,17 @@ class ApontMMDatasourceRoomImpl @Inject constructor (
         return apontMMDao.delete(apontMMRoomModel) > 0
     }
 
-    override suspend fun listApontIdBolStatusEnviar(idBol: Long): List<ApontMMRoomModel> {
-        return apontMMDao.listApontIdBolStatusEnviar(idBol = idBol, statusEnvio = StatusSend.ENVIAR)
+    override suspend fun listApontIdBolStatusSend(idBol: Long): List<ApontMMRoomModel> {
+        return apontMMDao.listApontIdBolStatusEnviar(idBol = idBol, statusEnvio = StatusSend.SEND)
     }
 
     override suspend fun listApontIdBolStatusEnviado(idBol: Long): List<ApontMMRoomModel> {
-        return apontMMDao.listApontIdBolStatusEnviar(idBol = idBol, statusEnvio = StatusSend.ENVIADO)
+        return apontMMDao.listApontIdBolStatusEnviar(idBol = idBol, statusEnvio = StatusSend.SENT)
     }
 
-    override suspend fun updateApontEnviadoMM(apontMMRoomModel: ApontMMRoomModel): Boolean {
+    override suspend fun updateApontMMSent(apontMMRoomModel: ApontMMRoomModel): Boolean {
         var apont = apontMMDao.listApontIdApont(apontMMRoomModel.idApontMM!!).single()
-        apont.statusEnvioApontMM = StatusSend.ENVIADO
+        apont.statusEnvioApontMM = StatusSend.SENT
         return apontMMDao.update(apont) > 0
     }
 

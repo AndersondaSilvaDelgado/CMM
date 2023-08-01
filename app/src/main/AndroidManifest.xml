@@ -17,6 +17,11 @@
         android:theme="@style/Theme.CMM"
         tools:targetApi="31">
         <activity
+            android:name="br.com.usinasantafe.cmm.features.presenter.implementomm.ImplementoActivity"
+            android:exported="true"
+            android:screenOrientation="portrait"
+            tools:ignore="LockedOrientationActivity" />
+        <activity
             android:name="br.com.usinasantafe.cmm.features.presenter.splash.SplashActivity"
             android:exported="true"
             android:screenOrientation="portrait"
@@ -52,13 +57,13 @@
             android:authorities="${applicationId}.androidx-startup"
             android:exported="false"
             tools:node="merge">
+
             <!-- If you are using androidx.startup to initialize other components -->
             <meta-data
                 android:name="androidx.work.WorkManagerInitializer"
                 android:value="androidx.startup"
                 tools:node="remove" />
         </provider>
-
     </application>
 
 </manifest>

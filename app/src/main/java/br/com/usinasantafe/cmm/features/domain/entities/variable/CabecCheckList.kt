@@ -6,10 +6,11 @@ import java.util.*
 
 data class CabecCheckList (
     val idCabecCheckList: Long? = null,
-    val nroEquipCabecCheckList: Long,
-    val dtCabecCheckList: Date,
-    val matricFuncCabecCheckList: Long,
-    val idTurnoCabecCheckList: Long,
+    val nroEquipCabecCheckList: Long? = null,
+    val dtCabecCheckList: Date? = null,
+    val matricFuncCabecCheckList: Long? = null,
+    val idTurnoCabecCheckList: Long? = null,
     val statusData: StatusData? = null,
-    val statusSend: StatusSend? = null
+    val statusSend: StatusSend? = null,
+    var respItemList: List<RespItemCheckList>? = emptyList(),
 )

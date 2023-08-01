@@ -18,7 +18,7 @@ class SetIdAtivApontMMFertImpl @Inject constructor(
         if(!apontMMFertRepository.setIdAtivApontMMFert(idAtiv)){
             return TypeNote.FALHA
         }
-        if (apontMMFertRepository.getTipo() == TypeNote.PARADA) {
+        if (apontMMFertRepository.getTipoMMFert() == TypeNote.PARADA) {
             return TypeNote.PARADA
         }
         boletimMMFertRepository.setStatusEnviarBoletimMM(boletimMMFertRepository.getIdBoletimAberto())

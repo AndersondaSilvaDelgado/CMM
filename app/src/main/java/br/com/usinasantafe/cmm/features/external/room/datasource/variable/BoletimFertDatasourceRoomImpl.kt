@@ -15,7 +15,7 @@ class BoletimFertDatasourceRoomImpl @Inject constructor (
     }
 
     override suspend fun getBoletimAbertoFert(): BoletimFertRoomModel {
-        return boletimFertDao.getBoletimStatus(StatusData.ABERTO)
+        return boletimFertDao.getBoletimStatus(StatusData.OPEN)
     }
 
     override suspend fun insertBoletimFert(boletimFertRoomModel: BoletimFertRoomModel): Boolean {

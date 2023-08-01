@@ -27,7 +27,7 @@ class ListAtivImpl @Inject constructor (
     override suspend fun invoke(flowNote: FlowNote): List<Ativ> {
 
         var idOS = 0L
-        var nroOS = if(flowNote == FlowNote.BOLETIM) boletimMMFertRepository.getNroOSBoletimAberto() else apontMMFertRepository.getNroOS()
+        var nroOS = if(flowNote == FlowNote.BOLETIM) boletimMMFertRepository.getNroOSBoletimAberto() else apontMMFertRepository.getNroOSApontMMFert()
 
         if(checkNroOS(nroOS.toString())){
             idOS = getOSNro(nroOS).idOS

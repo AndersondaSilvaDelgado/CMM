@@ -1,10 +1,7 @@
 package br.com.usinasantafe.cmm.features.module.dao
 
 import br.com.usinasantafe.cmm.features.external.room.AppDatabaseRoom
-import br.com.usinasantafe.cmm.features.external.room.dao.variable.ApontFertDao
-import br.com.usinasantafe.cmm.features.external.room.dao.variable.ApontMMDao
-import br.com.usinasantafe.cmm.features.external.room.dao.variable.BoletimFertDao
-import br.com.usinasantafe.cmm.features.external.room.dao.variable.BoletimMMDao
+import br.com.usinasantafe.cmm.features.external.room.dao.variable.*
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -37,6 +34,18 @@ object VariableDaoRoomModule {
     @Provides
     fun provideBoletimMMDao(database: AppDatabaseRoom): BoletimMMDao {
         return database.boletimMMDao()
+    }
+
+    @Singleton
+    @Provides
+    fun provideCabecCheckListDao(database: AppDatabaseRoom): CabecCheckListDao {
+        return database.cabecCheckListDao()
+    }
+
+    @Singleton
+    @Provides
+    fun provideRespItemCheckListDao(database: AppDatabaseRoom): RespItemCheckListDao {
+        return database.respItemCheckListDao()
     }
 
 }

@@ -5,10 +5,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import br.com.usinasantafe.cmm.common.utils.ChoiceHorimetro
-import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.boletimmmfert.CheckAbertoBoletimMMFert
+import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.boletimmmfert.CheckOpenBoletimMMFert
 import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.boletimmmfert.CheckHorimetroBoletimMMFert
-import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.boletimmmfert.SetHorimetroFinalBoletimMMFert
-import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.boletimmmfert.SetHorimetroInicialBoletimMMFert
+import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.boletimmmfert.SetHorimetroFinishBoletimMMFert
+import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.boletimmmfert.SetHorimetroStartBoletimMMFert
 import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.common.GetHorimetroEquip
 import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.launch
@@ -16,11 +16,11 @@ import javax.inject.Inject
 
 @HiltViewModel
 class HorimetroBolViewModel @Inject constructor (
-    private val checkAbertoBoletimMMFert: CheckAbertoBoletimMMFert,
+    private val checkOpenBoletimMMFert: CheckOpenBoletimMMFert,
     private val checkHorimetroBoletimMMFert: CheckHorimetroBoletimMMFert,
     private val getHorimetroEquip: GetHorimetroEquip,
-    private val setHorimetroInicialBoletimMMFert: SetHorimetroInicialBoletimMMFert,
-    private val setHorimetroFinalBoletimMMFert: SetHorimetroFinalBoletimMMFert,
+    private val setHorimetroStartBoletimMMFert: SetHorimetroStartBoletimMMFert,
+    private val setHorimetroFinishBoletimMMFert: SetHorimetroFinishBoletimMMFert,
 ): ViewModel() {
 
     private val _uiLiveData = MutableLiveData<HorimetroBolFragmentState>()
@@ -51,15 +51,15 @@ class HorimetroBolViewModel @Inject constructor (
     }
 
     fun setHorimetro(horimetro: String) = viewModelScope.launch {
-        if(!checkAbertoBoletimMMFert()) {
-            checkSetHorimetroInicial(setHorimetroInicialBoletimMMFert(horimetro))
+        if(!checkOpenBoletimMMFert()) {
+            checkSetHorimetroInicial(setHorimetroStartBoletimMMFert(horimetro))
         } else {
-            checkSetHorimetroFinal(setHorimetroFinalBoletimMMFert(horimetro))
+            checkSetHorimetroFinal(setHorimetroFinishBoletimMMFert(horimetro))
         }
     }
 
     fun checkBoletim() = viewModelScope.launch {
-        if(!checkAbertoBoletimMMFert()) {
+        if(!checkOpenBoletimMMFert()) {
             _uiLiveData.value = HorimetroBolFragmentState.HorimetroInicial
         } else {
             _uiLiveData.value = HorimetroBolFragmentState.HorimetroFinal

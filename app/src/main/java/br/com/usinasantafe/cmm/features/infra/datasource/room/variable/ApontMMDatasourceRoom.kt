@@ -10,10 +10,10 @@ interface ApontMMDatasourceRoom {
 
     suspend fun deleteApontMM(apontMMRoomModel: ApontMMRoomModel): Boolean
 
-    suspend fun listApontIdBolStatusEnviar(idBol: Long): List<ApontMMRoomModel>
+    suspend fun listApontIdBolStatusSend(idBol: Long): List<ApontMMRoomModel>
 
     suspend fun listApontIdBolStatusEnviado(idBol: Long): List<ApontMMRoomModel>
 
-    suspend fun updateApontEnviadoMM(apontMMRoomModel: ApontMMRoomModel): Boolean
+    suspend fun updateApontMMSent(apontMMRoomModel: ApontMMRoomModel): Boolean
 
 }

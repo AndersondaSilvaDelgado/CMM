@@ -111,7 +111,6 @@ class HorimetroBolFragment : BaseFragment<FragmentHorimetroBolBinding>(
 
     private fun showMessage(horimetro: String){
         with(binding) {
-            Log.i("PMM", "Rodou 1")
             AlertDialog.Builder(requireContext())
                 .setMessage("O HODÔMETRO REGISTRADO ${editTextPadrao.text} É MENOR QUE O ANTERIOR DE ${horimetro}. DESEJA MANTÊ-LO?")
                 .setPositiveButton("SIM") { _, _ ->

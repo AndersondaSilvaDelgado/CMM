@@ -19,7 +19,7 @@ interface BoletimMMDao {
     suspend fun delete(boletimMMRoomModel: BoletimMMRoomModel): Int
 
     @Query("SELECT * FROM $TB_BOLETIM_MM WHERE statusBolMM = :status")
-    suspend fun listBoletimFluxo(status: StatusData): List<BoletimMMRoomModel>
+    suspend fun listBoletimStatus(status: StatusData): List<BoletimMMRoomModel>
 
     @Query("SELECT * FROM $TB_BOLETIM_MM WHERE statusEnvioBolMM = :statusEnvio")
     suspend fun listBoletimStatusEnvio(statusEnvio: StatusSend): List<BoletimMMRoomModel>

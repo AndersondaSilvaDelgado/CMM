@@ -4,13 +4,13 @@ import br.com.usinasantafe.cmm.common.utils.TypeNote
 
 interface ApontMMFertRepository {
 
-    suspend fun checkApontSend(): Boolean
+    suspend fun checkApontMMFertSend(): Boolean
 
-    suspend fun getIdAtiv(): Long
+    suspend fun getIdAtivApontMMFert(): Long
 
-    suspend fun getNroOS(): Long
+    suspend fun getNroOSApontMMFert(): Long
 
-    suspend fun getTipo(): TypeNote
+    suspend fun getTipoMMFert(): TypeNote
 
     suspend fun setIdAtivApontMMFert(idAtiv: Long): Boolean
 

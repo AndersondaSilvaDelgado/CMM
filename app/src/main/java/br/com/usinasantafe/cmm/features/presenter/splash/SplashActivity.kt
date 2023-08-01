@@ -11,6 +11,7 @@ import br.com.usinasantafe.cmm.common.utils.PointerStart
 import br.com.usinasantafe.cmm.databinding.ActivitySplashBinding
 import br.com.usinasantafe.cmm.features.presenter.apontmmfert.ApontActivity
 import br.com.usinasantafe.cmm.features.presenter.config.ConfigActivity
+import br.com.usinasantafe.cmm.features.presenter.implementomm.ImplementoActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -66,6 +67,7 @@ class SplashActivity : AppCompatActivity() {
         when(checkStartAPP){
             PointerStart.MENUINICIAL -> goMenuInicial()
             PointerStart.MENUAPONT -> goMenuApont()
+            PointerStart.IMPLEMENTO -> goImplemento()
         }
     }
 
@@ -77,6 +79,12 @@ class SplashActivity : AppCompatActivity() {
 
     private fun goMenuApont(){
         val intent = Intent(this, ApontActivity::class.java)
+        intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
+        startActivity(intent)
+    }
+
+    private fun goImplemento(){
+        val intent = Intent(this, ImplementoActivity::class.java)
         intent.flags = Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK
         startActivity(intent)
     }

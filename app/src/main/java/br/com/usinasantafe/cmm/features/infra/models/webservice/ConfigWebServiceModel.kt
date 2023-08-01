@@ -1,4 +1,4 @@
-package br.com.usinasantafe.cmm.features.infra.models.variable.webservice
+package br.com.usinasantafe.cmm.features.infra.models.webservice
 
 import br.com.usinasantafe.cmm.common.utils.FlagUpdateApp
 import br.com.usinasantafe.cmm.common.utils.FlagUpdateCheckList

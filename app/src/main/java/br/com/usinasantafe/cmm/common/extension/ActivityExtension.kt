@@ -39,12 +39,13 @@ fun Fragment.showGenericAlertDialog(message: String, context: Context){
     }.show()
 }
 
-fun Activity.animationEnd(callback: () -> Unit): AnimatorListenerAdapter {
-    return object : AnimatorListenerAdapter(){
-        override fun onAnimationEnd(animation: Animator?) {
-            callback.invoke()
+fun Activity.showGenericAlertDialog(message: String, context: Context){
+    AlertDialog.Builder(context).apply {
+        setMessage(message)
+        setPositiveButton(getString(R.string.texto_padrao_ok)){ dialog, _ ->
+            dialog.dismiss()
         }
-    }
+    }.show()
 }
 
 fun setListenerButtonsGeneric(layoutBotoesBinding: LayoutBotoesBinding, editText: EditText){

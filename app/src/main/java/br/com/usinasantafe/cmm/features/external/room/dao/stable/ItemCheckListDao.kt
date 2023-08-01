@@ -15,4 +15,7 @@ interface ItemCheckListDao {
     @Query("DELETE FROM $TB_ITEM_CHECKLIST")
     suspend fun deleteAll()
 
+    @Query("SELECT * FROM $TB_ITEM_CHECKLIST WHERE idCheckList = :idCheckList")
+    suspend fun get(idCheckList: Long): List<ItemCheckListRoomModel>
+
 }

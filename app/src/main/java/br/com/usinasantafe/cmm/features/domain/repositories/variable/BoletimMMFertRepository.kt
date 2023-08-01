@@ -24,9 +24,9 @@ interface BoletimMMFertRepository {
 
     suspend fun insertBoletimMMFert(): Boolean
 
-    suspend fun sendBoletimMMFert(): Result<List<BoletimMM>>
+    suspend fun receiverSentBoletimMMFert(boletimMMList: List<BoletimMM>)
 
-    suspend fun sentBoletimMMFert(boletimMMList: List<BoletimMM>)
+    suspend fun sendBoletimMMFert(): Result<List<BoletimMM>>
 
     suspend fun setHorimetroFinalBoletimMMFert(horimetroFinal: String): Boolean
 

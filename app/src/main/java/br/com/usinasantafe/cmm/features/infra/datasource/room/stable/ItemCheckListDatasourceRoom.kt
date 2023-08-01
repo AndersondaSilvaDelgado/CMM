@@ -6,6 +6,10 @@ interface ItemCheckListDatasourceRoom {
 
     suspend fun addAllItemCheckList(vararg itemCheckListRoomModels: ItemCheckListRoomModel)
 
+    suspend fun countItemCheckList(idCheckList: Long): Int
+
     suspend fun deleteAllItemCheckList()
+
+    suspend fun getItemCheckList(idCheckList: Long, position: Int): ItemCheckListRoomModel
 
 }

@@ -13,8 +13,19 @@ class ItemCheckListDatasourceRoomImpl @Inject constructor (
         itemCheckListDao.insertAll(*itemCheckListRoomModels)
     }
 
+    override suspend fun countItemCheckList(idCheckList: Long): Int {
+        return itemCheckListDao.get(idCheckList).size
+    }
+
     override suspend fun deleteAllItemCheckList() {
         itemCheckListDao.deleteAll()
+    }
+
+    override suspend fun getItemCheckList(
+        idCheckList: Long,
+        position: Int
+    ): ItemCheckListRoomModel {
+        return itemCheckListDao.get(idCheckList)[position]
     }
 
 }

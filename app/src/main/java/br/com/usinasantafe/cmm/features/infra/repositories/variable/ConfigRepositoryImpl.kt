@@ -25,7 +25,7 @@ class ConfigRepositoryImpl @Inject constructor (
     }
 
     override suspend fun saveConfig(nroEquip: String, senha: String) {
-        configDatasourceSharedPreferences.saveConfig(Config(nroEquip.toLong(), senha, StatusSend.ENVIADO))
+        configDatasourceSharedPreferences.saveConfig(Config(nroEquip.toLong(), senha, StatusSend.SENT))
     }
 
     override suspend fun sendUpdateApp(versao: String): Result<Config> {

@@ -32,4 +32,8 @@ interface VariableRoomDatasourceModule {
     @Binds
     fun bindCabecCheckListDatasource(dataSource: CabecCheckListDatasourceRoomImpl): CabecCheckListDatasourceRoom
 
+    @Singleton
+    @Binds
+    fun bindRespItemCheckListDatasource(dataSource: RespItemCheckListDatasourceRoomImpl): RespItemCheckListDatasourceRoom
+
 }

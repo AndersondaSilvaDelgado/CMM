@@ -11,7 +11,6 @@ import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.config.Recove
 import br.com.usinasantafe.cmm.features.domain.usecases.interfaces.database.UpdateAllDataBase
 import br.com.usinasantafe.cmm.common.utils.ResultUpdateDatabase
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.launch
 import javax.inject.Inject
@@ -50,7 +49,7 @@ class MenuInicialViewModel @Inject constructor (
         if(hasConfig()){
             setStatusSend(recoverConfig()!!.statusEnvio!!)
         } else {
-            setStatusSend(StatusSend.VAZIO)
+            setStatusSend(StatusSend.EMPTY)
         }
     }
 

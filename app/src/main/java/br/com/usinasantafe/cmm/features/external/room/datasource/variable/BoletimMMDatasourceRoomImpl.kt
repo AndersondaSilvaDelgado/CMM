@@ -13,11 +13,11 @@ class BoletimMMDatasourceRoomImpl @Inject constructor (
 ): BoletimMMDatasourceRoom {
 
     override suspend fun checkBoletimAbertoMM(): Boolean {
-        return boletimMMDao.listBoletimFluxo(StatusData.ABERTO).isNotEmpty()
+        return boletimMMDao.listBoletimStatus(StatusData.OPEN).isNotEmpty()
     }
 
     override suspend fun checkBoletimMMSend(): Boolean {
-        return boletimMMDao.listBoletimStatusEnvio(StatusSend.ENVIAR).isNotEmpty()
+        return boletimMMDao.listBoletimStatusEnvio(StatusSend.SEND).isNotEmpty()
     }
 
     override suspend fun deleteBoletimMM(boletimMMRoomModel: BoletimMMRoomModel): Boolean {
@@ -25,15 +25,14 @@ class BoletimMMDatasourceRoomImpl @Inject constructor (
     }
 
     override suspend fun finishBoletimMM(boletimMMRoomModel: BoletimMMRoomModel): Boolean {
-        var boletim = getBoletimAbertoMM()
-        boletim.dthrFinalBolMM = Date().time
-        boletim.statusBolMM = StatusData.FECHADO
-        boletim.statusEnvioBolMM = StatusSend.ENVIAR
-        return boletimMMDao.update(boletim) > 0
+        boletimMMRoomModel.dthrFinalBolMM = Date().time
+        boletimMMRoomModel.statusBolMM = StatusData.CLOSE
+        boletimMMRoomModel.statusEnvioBolMM = StatusSend.SEND
+        return boletimMMDao.update(boletimMMRoomModel) > 0
     }
 
     override suspend fun getBoletimAbertoMM(): BoletimMMRoomModel {
-        return boletimMMDao.listBoletimFluxo(StatusData.ABERTO).single()
+        return boletimMMDao.listBoletimStatus(StatusData.OPEN).single()
     }
 
     override suspend fun getBoletimIdBol(idBol: Long): BoletimMMRoomModel {
@@ -44,12 +43,12 @@ class BoletimMMDatasourceRoomImpl @Inject constructor (
         return boletimMMDao.insert(boletimMMRoomModel) > 0
     }
 
-    override suspend fun listBoletimMMEnviar(): List<BoletimMMRoomModel> {
-        return boletimMMDao.listBoletimStatusEnvio(StatusSend.ENVIAR)
+    override suspend fun listBoletimMMSend(): List<BoletimMMRoomModel> {
+        return boletimMMDao.listBoletimStatusEnvio(StatusSend.SEND)
     }
 
-    override suspend fun listBoletimMMFechadoEnviado(): List<BoletimMMRoomModel> {
-        return boletimMMDao.listBoletimFluxoStatusEnvio(StatusData.FECHADO.ordinal.toLong(), StatusSend.ENVIADO)
+    override suspend fun listBoletimMMFechadoSent(): List<BoletimMMRoomModel> {
+        return boletimMMDao.listBoletimFluxoStatusEnvio(StatusData.CLOSE.ordinal.toLong(), StatusSend.SENT)
     }
 
     override suspend fun setHorimetroFinal(horimetroFinal: Double): Boolean {
@@ -58,15 +57,15 @@ class BoletimMMDatasourceRoomImpl @Inject constructor (
         return boletimMMDao.update(boletim) > 0
     }
 
-    override suspend fun setStatusEnviado(idBol: Long): Boolean {
+    override suspend fun setStatusSent(idBol: Long): Boolean {
         var boletim = getBoletimIdBol(idBol)
-        boletim.statusEnvioBolMM = StatusSend.ENVIADO
+        boletim.statusEnvioBolMM = StatusSend.SENT
         return boletimMMDao.update(boletim) > 0
     }
 
-    override suspend fun setStatusEnviar(idBol: Long): Boolean {
+    override suspend fun setStatusSend(idBol: Long): Boolean {
         var boletim = getBoletimIdBol(idBol)
-        boletim.statusEnvioBolMM = StatusSend.ENVIAR
+        boletim.statusEnvioBolMM = StatusSend.SEND
         return boletimMMDao.update(boletim) > 0
     }
 

@@ -14,10 +14,6 @@ interface CommonModule {
 
     @Singleton
     @Binds
-    fun bindCheckImplemento(usecase: CheckImplementoImpl): CheckImplemento
-
-    @Singleton
-    @Binds
     fun bindCheckMatricOperador(usecase: CheckMatricOperadorImpl): CheckMatricOperador
 
     @Singleton
@@ -35,10 +31,6 @@ interface CommonModule {
     @Singleton
     @Binds
     fun bindCheckUpdate(usecase: CheckUpdateImpl): CheckUpdate
-
-    @Singleton
-    @Binds
-    fun bindClearDataImplemento(usecase: ClearDataImplementoImpl): ClearDataImplemento
 
     @Singleton
     @Binds
@@ -63,10 +55,6 @@ interface CommonModule {
     @Singleton
     @Binds
     fun bindListTurno(usecase: ListTurnoImpl): ListTurno
-
-    @Singleton
-    @Binds
-    fun bindPositionImplemento(usecase: PositionImplementoImpl): PositionImplemento
 
     @Singleton
     @Binds

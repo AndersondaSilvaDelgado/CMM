@@ -49,7 +49,7 @@
     <string name="texto_motivo_parada">MOTIVOS DE PARADA</string>
     <string name="texto_pesquisar">PESQUISAR</string>
     <string name="texto_update_sucess">ATUALIZAÇÃO DA BASE DE DADOS REALIZADA COM SUCESSO!</string>
-    <string name="texto_update_failure">FALHA DE ATUALIZAÇÃO DE DADOS! POR FAVOR ENTRA EM CONTATO COM TI. %1$s</string>
+    <string name="texto_update_failure">FALHA DE ATUALIZAÇÃO DE DADOS! POR FAVOR ENTRE EM CONTATO COM TI. %1$s</string>
     <string name="texto_padrao_nao">NÃO</string>
     <string name="texto_padrao_sim">SIM</string>
     <string name="texto_atual_checklist">ATENÇÃO! HÁ NOVAS ATUALIZAÇÕES PARA QUESTÕES DE CHECKLIST. DESEJA ATUALIZÁ-LAS?</string>
@@ -59,4 +59,6 @@
     <string name="texto_reparo">NÃO CONFORME (REPARO)</string>
     <string name="texto_titulo_data_hora">DATA/HORA</string>
     <string name="texto_equip_invalido">EQUIPAMENTO INVÁLIDO! POR FAVOR, VERIFIQUE O NUMERO DO EQUIPAMENTO FOI DIGITADO CORRETAMENTE OU EQUIPAMENTO REALMENTE EXERCE A FUNÇÃO DE %1$s.</string>
+    <string name="texto_implemento_repeated">IMPLEMENTO REPETIDO! POR FAVOR, VERIFIQUE O NUMERO DO EQUIPAMENTO FOI DIGITADO CORRETAMENTE.</string>
+    <string name="texto_falha_processo">FALHA NO PROCESSO DE %1$s! POR FAVOR ENTRE EM CONTATO COM TI.</string>
 </resources>

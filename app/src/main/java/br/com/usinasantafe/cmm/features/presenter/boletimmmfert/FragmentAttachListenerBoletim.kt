@@ -1,16 +1,16 @@
 package br.com.usinasantafe.cmm.features.presenter.boletimmmfert
 
 interface FragmentAttachListenerBoletim {
-    fun popBackStack()
+    fun goAtivBolFragment()
+    fun goAtivMMFert()
     fun goCheckList()
     fun goConfig()
-    fun goAtivMMFert()
-    fun goOperadorBolFragment()
-    fun goEquipBolFragment()
-    fun goTurnoBolFragment()
-    fun goOSBolFragment()
-    fun goAtivBolFragment()
-    fun goHorimetroBolFragment()
     fun goDataHoraFragment()
+    fun goEquipBolFragment()
+    fun goHorimetroBolFragment()
     fun goImplemento()
+    fun goOperadorBolFragment()
+    fun goOSBolFragment()
+    fun goTurnoBolFragment()
+    fun popBackStack()
 }

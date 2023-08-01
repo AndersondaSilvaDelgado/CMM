@@ -14,14 +14,46 @@ interface CheckListModule {
 
     @Singleton
     @Binds
-    fun bindCheckPasswordConfig(usecase: CheckAberturaCheckListImpl): CheckAberturaCheckList
+    fun bindAddRespItemCheckList(usecase: AddRespItemCheckListImpl): AddRespItemCheckList
 
     @Singleton
     @Binds
-    fun bindCheckAtualCheckList(usecase: CheckAtualCheckListImpl): CheckAtualCheckList
+    fun bindCheckDataSendCheckList(usecase: CheckDataSendCheckListImpl): CheckDataSendCheckList
+
+    @Singleton
+    @Binds
+    fun bindCheckLastItemCheckList(usecase: CheckLastItemCheckListImpl): CheckLastItemCheckList
+
+    @Singleton
+    @Binds
+    fun bindCheckOpenCheckList(usecase: CheckOpenCheckListImpl): CheckOpenCheckList
+
+    @Singleton
+    @Binds
+    fun bindCheckUpdateCheckList(usecase: CheckUpdateCheckListImpl): CheckUpdateCheckList
+
+    @Singleton
+    @Binds
+    fun bindCloseCheckList(usecase: CloseCheckListImpl): CloseCheckList
+
+    @Singleton
+    @Binds
+    fun bindDeleteRespItemCheckList(usecase: DeleteRespItemCheckListImpl): DeleteRespItemCheckList
+
+    @Singleton
+    @Binds
+    fun bindGetDescrItemCheckList(usecase: GetDescrItemCheckListImpl): GetDescrItemCheckList
 
     @Singleton
     @Binds
     fun bindOpenCheckList(usecase: OpenCheckListImpl): OpenCheckList
+
+    @Singleton
+    @Binds
+    fun bindReceiverSentDataCheckList(usecase: ReceiverSentDataCheckListImpl): ReceiverSentDataCheckList
+
+    @Singleton
+    @Binds
+    fun bindSendDataCheckList(usecase: SendDataCheckListImpl): SendDataCheckList
 
 }

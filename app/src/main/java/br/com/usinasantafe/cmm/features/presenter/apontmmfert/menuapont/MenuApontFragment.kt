@@ -7,9 +7,6 @@ import android.os.Handler
 import android.os.Looper
 import android.view.View
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
 import br.com.usinasantafe.cmm.BuildConfig
 import br.com.usinasantafe.cmm.R
 import br.com.usinasantafe.cmm.common.adapter.CustomAdapter
@@ -20,7 +17,6 @@ import br.com.usinasantafe.cmm.common.utils.StatusSend
 import br.com.usinasantafe.cmm.databinding.FragmentMenuApontBinding
 import br.com.usinasantafe.cmm.features.presenter.apontmmfert.FragmentAttachListenerApont
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class MenuApontFragment : BaseFragment<FragmentMenuApontBinding>(
@@ -116,10 +112,10 @@ class MenuApontFragment : BaseFragment<FragmentMenuApontBinding>(
 
     private fun setProcesso(statusSend: StatusSend){
         when(statusSend){
-            StatusSend.VAZIO -> statusVazio()
-            StatusSend.ENVIADO -> statusEnviado()
-            StatusSend.ENVIANDO -> statusEnviando()
-            StatusSend.ENVIAR -> statusEnviar()
+            StatusSend.EMPTY -> statusVazio()
+            StatusSend.SENT -> statusEnviado()
+            StatusSend.SENDING -> statusEnviando()
+            StatusSend.SEND -> statusEnviar()
         }
     }
 

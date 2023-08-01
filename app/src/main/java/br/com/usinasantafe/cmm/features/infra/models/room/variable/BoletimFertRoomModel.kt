@@ -41,9 +41,9 @@ fun BoletimFert.toBoletimFertRoomModel(): BoletimFertRoomModel{
             nroOSBolFert = this.nroOSBol!!,
             idAtivBolFert = this.idAtivBol!!,
             dthrInicialBolFert = Date().time,
-            statusBolFert = StatusData.ABERTO.ordinal.toLong(),
+            statusBolFert = StatusData.OPEN.ordinal.toLong(),
             statusConBolFert = StatusConnection.ONLINE.ordinal.toLong(),
-            statusEnvioBolFert = StatusSend.ENVIAR.ordinal.toLong(),
+            statusEnvioBolFert = StatusSend.SEND.ordinal.toLong(),
             longitudeBolFert = 0.0,
             latitudeBolFert = 0.0
         )

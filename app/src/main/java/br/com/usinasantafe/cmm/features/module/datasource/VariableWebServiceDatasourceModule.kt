@@ -1,15 +1,7 @@
 package br.com.usinasantafe.cmm.features.module.datasource
 
-import br.com.usinasantafe.cmm.features.external.webservice.datasource.stable.AtividadeDatasourceWebServiceImpl
-import br.com.usinasantafe.cmm.features.external.webservice.datasource.stable.BocalDatasourceWebServiceImpl
-import br.com.usinasantafe.cmm.features.external.webservice.datasource.variable.ConfigDatasourceWebServiceImpl
-import br.com.usinasantafe.cmm.features.external.webservice.datasource.variable.FertirrigacaoDatasourceWebServiceImpl
-import br.com.usinasantafe.cmm.features.external.webservice.datasource.variable.MotoMecDatasourceWebServiceImpl
-import br.com.usinasantafe.cmm.features.infra.datasource.webservice.stable.AtividadeDatasourceWebService
-import br.com.usinasantafe.cmm.features.infra.datasource.webservice.stable.BocalDatasourceWebService
-import br.com.usinasantafe.cmm.features.infra.datasource.webservice.variable.ConfigDatasourceWebService
-import br.com.usinasantafe.cmm.features.infra.datasource.webservice.variable.FertirrigacaoDatasourceWebService
-import br.com.usinasantafe.cmm.features.infra.datasource.webservice.variable.MotoMecDatasourceWebService
+import br.com.usinasantafe.cmm.features.external.webservice.datasource.variable.*
+import br.com.usinasantafe.cmm.features.infra.datasource.webservice.variable.*
 import dagger.Binds
 import dagger.Module
 import dagger.hilt.InstallIn
@@ -22,14 +14,18 @@ interface VariableWebServiceDatasourceModule {
 
     @Singleton
     @Binds
-    fun bindFertirrigacaoDatasource(dataSource: FertirrigacaoDatasourceWebServiceImpl): FertirrigacaoDatasourceWebService
+    fun bindCheckListDatasourceWebService(dataSource: CheckListDatasourceWebServiceImpl): CheckListDatasourceWebService
 
     @Singleton
     @Binds
-    fun bindMotoMecDatasource(dataSource: MotoMecDatasourceWebServiceImpl): MotoMecDatasourceWebService
+    fun bindConfigDatasourceWebService(dataSource: ConfigDatasourceWebServiceImpl): ConfigDatasourceWebService
 
     @Singleton
     @Binds
-    fun bindConfigDatasource(dataSource: ConfigDatasourceWebServiceImpl): ConfigDatasourceWebService
+    fun bindFertirrigacaoDatasourceWebService(dataSource: FertirrigacaoDatasourceWebServiceImpl): FertirrigacaoDatasourceWebService
+
+    @Singleton
+    @Binds
+    fun bindMotoMecDatasourceWebService(dataSource: MotoMecDatasourceWebServiceImpl): MotoMecDatasourceWebService
 
 }

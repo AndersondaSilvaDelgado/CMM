@@ -50,7 +50,7 @@ class MenuApontViewModel @Inject constructor(
         if (hasConfig()) {
             setStatusSend(recoverConfig()!!.statusEnvio!!)
         } else {
-            setStatusSend(StatusSend.VAZIO)
+            setStatusSend(StatusSend.EMPTY)
         }
     }
 

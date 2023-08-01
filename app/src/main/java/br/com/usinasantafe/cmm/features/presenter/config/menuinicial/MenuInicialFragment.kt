@@ -9,9 +9,6 @@ import android.os.Looper
 import android.view.View
 import android.view.WindowManager
 import androidx.fragment.app.viewModels
-import androidx.lifecycle.Lifecycle
-import androidx.lifecycle.lifecycleScope
-import androidx.lifecycle.repeatOnLifecycle
 import br.com.usinasantafe.cmm.BuildConfig
 import br.com.usinasantafe.cmm.R
 import br.com.usinasantafe.cmm.common.adapter.CustomAdapter
@@ -24,7 +21,6 @@ import br.com.usinasantafe.cmm.databinding.FragmentMenuInicialBinding
 import br.com.usinasantafe.cmm.common.utils.ResultUpdateDatabase
 import br.com.usinasantafe.cmm.features.presenter.config.FragmentAttachListenerConfig
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.launch
 
 @AndroidEntryPoint
 class MenuInicialFragment: BaseFragment<FragmentMenuInicialBinding>(
@@ -160,10 +156,10 @@ class MenuInicialFragment: BaseFragment<FragmentMenuInicialBinding>(
 
     private fun setProcesso(statusSend: StatusSend){
         when(statusSend){
-            StatusSend.VAZIO -> statusVazio()
-            StatusSend.ENVIADO -> statusEnviado()
-            StatusSend.ENVIANDO -> statusEnviando()
-            StatusSend.ENVIAR -> statusEnviar()
+            StatusSend.EMPTY -> statusVazio()
+            StatusSend.SENT -> statusEnviado()
+            StatusSend.SENDING -> statusEnviando()
+            StatusSend.SEND -> statusEnviar()
         }
     }
 

@@ -2,8 +2,8 @@ package br.com.usinasantafe.cmm.features.external.webservice.datasource.variable
 
 import br.com.usinasantafe.cmm.features.external.webservice.api.variable.ConfigApi
 import br.com.usinasantafe.cmm.features.infra.datasource.webservice.variable.ConfigDatasourceWebService
-import br.com.usinasantafe.cmm.features.infra.models.variable.webservice.ConfigWebServiceModelInput
-import br.com.usinasantafe.cmm.features.infra.models.variable.webservice.ConfigWebServiceModelOutput
+import br.com.usinasantafe.cmm.features.infra.models.webservice.ConfigWebServiceModelInput
+import br.com.usinasantafe.cmm.features.infra.models.webservice.ConfigWebServiceModelOutput
 import javax.inject.Inject
 
 class ConfigDatasourceWebServiceImpl @Inject constructor (

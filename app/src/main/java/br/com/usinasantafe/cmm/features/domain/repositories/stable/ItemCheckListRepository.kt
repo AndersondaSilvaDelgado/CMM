@@ -7,7 +7,11 @@ interface ItemCheckListRepository {
 
     suspend fun addAllItemCheckList(itemCheckListList: List<ItemCheckList>)
 
+    suspend fun countItemCheckList(): Int
+
     suspend fun deleteAllItemCheckList()
+
+    suspend fun getDescrItemCheckList(position: Int): String
 
     suspend fun recoverAllItemCheckList(): Flow<Result<List<ItemCheckList>>>
 
